@@ -32,6 +32,7 @@ and reproducible models.
 | [Why did a winning trade pay less than expected?](docs/research-notes/001-winning-trade-payout.md) | Candidate payout stages and a plan to distinguish deductions from delayed availability |
 | [Research method](docs/research-method.md) | Separate provenance, support, reproduction, implementation, and version scope |
 | [Source index](docs/sources.md) | Actual retrieval status distinguished from unread source seeds |
+| [Initial evidence records](docs/evidence-records.md) | Six source readings and thirteen atomic claims; data records, not a working validator |
 | [Data policy](DATA_POLICY.md) | What may be contributed and what must stay out of public history |
 
 Start with the mechanism map, then the payout note and its evidence gaps.
@@ -39,8 +40,9 @@ No installation or wallet connection is needed to read this release.
 
 ## Next milestone
 
-M0 establishes structured evidence and claim records, version identities, and
-reviewable export rules. Then M1 selects a bounded public settlement case and
+M0 has begun with structured source/claim records and a documentation version identity.
+An executable validator and enforceable collection/export rules remain to be built.
+Then M1 selects a bounded public settlement case and
 compares an independent integer model with independently sourced execution results.
 See the [roadmap](ROADMAP.md) for acceptance criteria and the [status](STATUS.md)
 for actual progress.

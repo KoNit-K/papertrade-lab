@@ -1,0 +1,401 @@
+[
+  {
+    "claim_id": "CLM-OBS-001",
+    "statement": "BTC was reportedly available for shorts but not longs.",
+    "scope_kind": "unidentified_user_observation",
+    "provenance_kinds": [
+      "user_report"
+    ],
+    "support_status": "unverified",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [
+      "OBS-001"
+    ],
+    "evidence_ids": [],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": null,
+    "origin_domain": null,
+    "observed_at": null,
+    "transaction_hash": null,
+    "falsification": "A permitted, version-bound record contradicts this atomic interpretation; a different product or time requires separate scope.",
+    "missing_inputs": [
+      "origin_domain",
+      "observation_time",
+      "authorized_redacted_record",
+      "applicable_version"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "An authorized anonymous summary is available; underlying historical evidence is absent.",
+      "No current documentation claim upgrades this observation."
+    ]
+  },
+  {
+    "claim_id": "CLM-OBS-002",
+    "statement": "Opening and closing reportedly involved waiting.",
+    "scope_kind": "unidentified_user_observation",
+    "provenance_kinds": [
+      "user_report"
+    ],
+    "support_status": "unverified",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [
+      "OBS-002"
+    ],
+    "evidence_ids": [],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": null,
+    "origin_domain": null,
+    "observed_at": null,
+    "transaction_hash": null,
+    "falsification": "A permitted, version-bound record contradicts this atomic interpretation; a different product or time requires separate scope.",
+    "missing_inputs": [
+      "origin_domain",
+      "observation_time",
+      "authorized_redacted_record",
+      "applicable_version"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "An authorized anonymous summary is available; underlying historical evidence is absent.",
+      "No current documentation claim upgrades this observation."
+    ]
+  },
+  {
+    "claim_id": "CLM-OBS-003",
+    "statement": "A report interpreted the winning-trade deduction as ten percent.",
+    "scope_kind": "unidentified_user_observation",
+    "provenance_kinds": [
+      "user_report"
+    ],
+    "support_status": "unverified",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [
+      "OBS-003"
+    ],
+    "evidence_ids": [],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": null,
+    "origin_domain": null,
+    "observed_at": null,
+    "transaction_hash": null,
+    "falsification": "A permitted, version-bound record contradicts this atomic interpretation; a different product or time requires separate scope.",
+    "missing_inputs": [
+      "origin_domain",
+      "observation_time",
+      "authorized_redacted_record",
+      "applicable_version"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "An authorized anonymous summary is available; underlying historical evidence is absent.",
+      "No current documentation claim upgrades this observation."
+    ]
+  },
+  {
+    "claim_id": "CLM-OBS-004",
+    "statement": "PAPER per loss reportedly changed from roughly 100:1 to the teens per 1.",
+    "scope_kind": "unidentified_user_observation",
+    "provenance_kinds": [
+      "user_report"
+    ],
+    "support_status": "unverified",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [
+      "OBS-004"
+    ],
+    "evidence_ids": [],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": null,
+    "origin_domain": null,
+    "observed_at": null,
+    "transaction_hash": null,
+    "falsification": "A permitted, version-bound record contradicts this atomic interpretation; a different product or time requires separate scope.",
+    "missing_inputs": [
+      "origin_domain",
+      "observation_time",
+      "authorized_redacted_record",
+      "applicable_version"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "An authorized anonymous summary is available; underlying historical evidence is absent.",
+      "No current documentation claim upgrades this observation."
+    ]
+  },
+  {
+    "claim_id": "CLM-OBS-005-A",
+    "statement": "The reported interface offered up to 1000x leverage.",
+    "scope_kind": "unidentified_user_observation",
+    "provenance_kinds": [
+      "user_report"
+    ],
+    "support_status": "unverified",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [
+      "OBS-005"
+    ],
+    "evidence_ids": [],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": null,
+    "origin_domain": null,
+    "observed_at": null,
+    "transaction_hash": null,
+    "falsification": "A permitted, version-bound record contradicts this atomic interpretation; a different product or time requires separate scope.",
+    "missing_inputs": [
+      "origin_domain",
+      "observation_time",
+      "authorized_redacted_record",
+      "applicable_version"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "An authorized anonymous summary is available; underlying historical evidence is absent.",
+      "No current documentation claim upgrades this observation."
+    ]
+  },
+  {
+    "claim_id": "CLM-OBS-005-B",
+    "statement": "The reported margin mode was isolated.",
+    "scope_kind": "unidentified_user_observation",
+    "provenance_kinds": [
+      "user_report"
+    ],
+    "support_status": "unverified",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [
+      "OBS-005"
+    ],
+    "evidence_ids": [],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": null,
+    "origin_domain": null,
+    "observed_at": null,
+    "transaction_hash": null,
+    "falsification": "A permitted, version-bound record contradicts this atomic interpretation; a different product or time requires separate scope.",
+    "missing_inputs": [
+      "origin_domain",
+      "observation_time",
+      "authorized_redacted_record",
+      "applicable_version"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "An authorized anonymous summary is available; underlying historical evidence is absent.",
+      "No current documentation claim upgrades this observation."
+    ]
+  },
+  {
+    "claim_id": "CLM-OBS-005-C",
+    "statement": "The reported interface allowed only full closure.",
+    "scope_kind": "unidentified_user_observation",
+    "provenance_kinds": [
+      "user_report"
+    ],
+    "support_status": "unverified",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [
+      "OBS-005"
+    ],
+    "evidence_ids": [],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": null,
+    "origin_domain": null,
+    "observed_at": null,
+    "transaction_hash": null,
+    "falsification": "A permitted, version-bound record contradicts this atomic interpretation; a different product or time requires separate scope.",
+    "missing_inputs": [
+      "origin_domain",
+      "observation_time",
+      "authorized_redacted_record",
+      "applicable_version"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "An authorized anonymous summary is available; underlying historical evidence is absent.",
+      "No current documentation claim upgrades this observation."
+    ]
+  },
+  {
+    "claim_id": "CLM-DOC-S2",
+    "statement": "The architecture page describes relayed intents dispatched by BatchExecutor to Exchange, with a precompile-based price wrapper.",
+    "scope_kind": "source_description_only",
+    "provenance_kinds": [
+      "official_doc"
+    ],
+    "support_status": "supported",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [],
+    "evidence_ids": [
+      "EVD-DOC-S2"
+    ],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": "VER-DOCS-20261021",
+    "falsification": "The identified captured page does not contain the attributed description. Deployment disagreement is a separate claim, not proof the page never said it.",
+    "missing_inputs": [
+      "independent_deployment_evidence",
+      "historical_transaction_context"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "Supported means the source was read and the bounded attribution is supported; behavior is not independently reproduced.",
+      "Raw source bytes are not redistributed; third parties cannot fully re-check this exact capture from the repository alone."
+    ]
+  },
+  {
+    "claim_id": "CLM-DOC-S3",
+    "statement": "The profit page describes a deadband, impact scaling and a fee on scaled gain; its launch base rate is not a universal fixed total deduction.",
+    "scope_kind": "source_description_only",
+    "provenance_kinds": [
+      "official_doc"
+    ],
+    "support_status": "supported",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [],
+    "evidence_ids": [
+      "EVD-DOC-S3"
+    ],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": "VER-DOCS-20261021",
+    "falsification": "The identified captured page does not contain the attributed description. Deployment disagreement is a separate claim, not proof the page never said it.",
+    "missing_inputs": [
+      "independent_deployment_evidence",
+      "historical_transaction_context"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "Supported means the source was read and the bounded attribution is supported; behavior is not independently reproduced.",
+      "Raw source bytes are not redistributed; third parties cannot fully re-check this exact capture from the repository alone."
+    ]
+  },
+  {
+    "claim_id": "CLM-DOC-S4",
+    "statement": "The address page identifies chain 999 and proxy contract entries, plus governance entries. Current implementations and roles have not been read from chain.",
+    "scope_kind": "source_description_only",
+    "provenance_kinds": [
+      "official_doc"
+    ],
+    "support_status": "supported",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [],
+    "evidence_ids": [
+      "EVD-DOC-S4"
+    ],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": "VER-DOCS-20261021",
+    "falsification": "The identified captured page does not contain the attributed description. Deployment disagreement is a separate claim, not proof the page never said it.",
+    "missing_inputs": [
+      "independent_deployment_evidence",
+      "historical_transaction_context"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "Supported means the source was read and the bounded attribution is supported; behavior is not independently reproduced.",
+      "Raw source bytes are not redistributed; third parties cannot fully re-check this exact capture from the repository alone."
+    ]
+  },
+  {
+    "claim_id": "CLM-DOC-S5",
+    "statement": "The risk page describes separate long/short exposure caps, market retirement, a global opening gate, and distinct owner, guardian and keeper powers.",
+    "scope_kind": "source_description_only",
+    "provenance_kinds": [
+      "official_doc"
+    ],
+    "support_status": "supported",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [],
+    "evidence_ids": [
+      "EVD-DOC-S5"
+    ],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": "VER-DOCS-20261021",
+    "falsification": "The identified captured page does not contain the attributed description. Deployment disagreement is a separate claim, not proof the page never said it.",
+    "missing_inputs": [
+      "independent_deployment_evidence",
+      "historical_transaction_context"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "Supported means the source was read and the bounded attribution is supported; behavior is not independently reproduced.",
+      "Raw source bytes are not redistributed; third parties cannot fully re-check this exact capture from the repository alone."
+    ]
+  },
+  {
+    "claim_id": "CLM-DOC-S6",
+    "statement": "The queue page distinguishes cash, parked loss proceeds and unpaid claims, including cash-funded and debt-funded settlement branches. Payment depends on available backing and execution.",
+    "scope_kind": "source_description_only",
+    "provenance_kinds": [
+      "official_doc"
+    ],
+    "support_status": "supported",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [],
+    "evidence_ids": [
+      "EVD-DOC-S6"
+    ],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": "VER-DOCS-20261021",
+    "falsification": "The identified captured page does not contain the attributed description. Deployment disagreement is a separate claim, not proof the page never said it.",
+    "missing_inputs": [
+      "independent_deployment_evidence",
+      "historical_transaction_context"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "Supported means the source was read and the bounded attribution is supported; behavior is not independently reproduced.",
+      "Raw source bytes are not redistributed; third parties cannot fully re-check this exact capture from the repository alone."
+    ]
+  },
+  {
+    "claim_id": "CLM-DOC-S7",
+    "statement": "The mint page distinguishes eligible loss basis, tracked LP and a high-water tail variable. It describes flat and decaying regions; actual average issuance needs interval evidence.",
+    "scope_kind": "source_description_only",
+    "provenance_kinds": [
+      "official_doc"
+    ],
+    "support_status": "supported",
+    "reproduction_status": "not_attempted",
+    "implementation_status": "not_started",
+    "observation_ids": [],
+    "evidence_ids": [
+      "EVD-DOC-S7"
+    ],
+    "counterevidence_ids": [],
+    "source_dependency_ids": [],
+    "version_id": "VER-DOCS-20261021",
+    "falsification": "The identified captured page does not contain the attributed description. Deployment disagreement is a separate claim, not proof the page never said it.",
+    "missing_inputs": [
+      "independent_deployment_evidence",
+      "historical_transaction_context"
+    ],
+    "verification_command": null,
+    "limitations": [
+      "Supported means the source was read and the bounded attribution is supported; behavior is not independently reproduced.",
+      "Raw source bytes are not redistributed; third parties cannot fully re-check this exact capture from the repository alone."
+    ]
+  }
+]

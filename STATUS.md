@@ -7,8 +7,10 @@ Updated: 2026-10-21. **Research preview; documentation foundation.**
 The initial release contains bilingual entry pages, a 14-area mechanism map,
 five anonymized unverified reports, one exploratory payout note, research method,
 source pointers, roadmap, contribution/data/security policies, and licensing.
-Publication status is established by GitHub's repository and Releases records;
-this file describes the contents of the release, not proof of a remote operation.
+P0 was published and read back through GitHub on 2026-10-21 as
+[v0.1.0-alpha.1](https://github.com/KoNit-K/papertrade-lab/releases/tag/v0.1.0-alpha.1),
+a public, non-draft prerelease bound to commit `54a5340215d1846709fc115d37e9f0c83a0d6f83`.
+The current branch additionally contains the M0 document/data increment below.
 
 ## Capability and verification
 
@@ -17,7 +19,8 @@ this file describes the contents of the release, not proof of a remote operation
 | Original research documentation | Present |
 | User observations | 5 reports; all unverified; no identifying records |
 | Source reading | Per-source status in [source index](docs/sources.md) |
-| Structured evidence/version validator | Not implemented |
+| Structured records | 6 document evidence entries; 13 atomic claims; 1 documentation version; see [records](docs/evidence-records.md) |
+| Evidence/version validator | Not implemented; current data only has syntax/reference checks |
 | Read-only collector / safe export tooling | Not implemented |
 | Integer model / transaction CLI / offline replay | Not implemented |
 | Real transaction reproduction | Not attempted; no case packet |
@@ -29,9 +32,18 @@ See the [publication review](docs/publication-review.md) for actual P0 checks an
 
 ## Next three tasks
 
-1. Establish claim/evidence/version records and reject unsupported `reproduced` claims.
-2. Retrieve and version primary source descriptions with explicit access and redistribution limits.
-3. Select one bounded public settlement case and inventory historical inputs before modeling.
+1. Implement an offline record validator with real invalid-input and unsupported-reproduction tests.
+2. Enforce read-only collection and reviewed export boundaries; add negative tests before accepting raw evidence.
+3. Select a bounded public settlement case under the [intake plan](docs/first-case-intake.md) and inventory historical inputs.
 
-M0–M4 remain open. P0 publication does not imply any of these technical milestones
+M0 is partial; M1–M4 have not started implementation. All remain open.
+P0 publication does not imply any of these technical milestones
 are complete. See [ROADMAP.md](ROADMAP.md) for their acceptance criteria.
+
+## Checks for the post-launch increment
+
+JSON syntax, stable-ID uniqueness, cross-file references, expected record counts,
+source-capture hashes, and unattempted reproduction states were checked with a
+temporary Python standard-library script. Local links, sensitive patterns and
+whitespace were checked again for the changed files and outgoing commit.
+No executable schema, model tests, chain replay or REA investigation was run.

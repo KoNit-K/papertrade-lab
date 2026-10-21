@@ -34,7 +34,8 @@ index is a reading log, not yet a machine-validated evidence manifest.
 ## Source seeds not read during P0
 
 The URLs below come from the research brief. Their content, current availability,
-licenses, update dates, and claimed test results have **not** been rechecked here.
+licenses, update dates, and claimed test results were **not** rechecked for P0.
+S4–S7 were subsequently read in the post-launch increment below; all other seeds remain unread.
 No inherited blob hash is presented as a commit or a new verification.
 
 | ID | Seed | Intended question |
@@ -53,3 +54,19 @@ No inherited blob hash is presented as a commit or a new verification.
 The task brief is not mechanism evidence and is not redistributed. No SDK test
 suite, REA analysis, authenticated API capture, wallet session, archival node,
 transaction trace, or contract-state read was performed for this launch.
+
+## Post-launch reading: first M0 increment
+
+S4, S5, S6 and S7 were each retrieved successfully by unauthenticated HTTPS GET
+on 2026-10-21 after the initial release, then read as HTML text. All four pages
+state an update date of 2026-10-06. No production API or chain state was queried.
+Exact client start/end times, HTTP 200 statuses, curl 8.7.1 and SHA-256 digests
+are in the [evidence records](../research/records/evidence.json).
+
+- **S4:** the address page is a proxy/deployment lead, not an implementation verification.
+- **S5:** separate directional caps and administrative gates suggest distinct candidates for OBS-001, not its confirmed cause.
+- **S6:** cash-funded and debt-funded settlement branches require separate reconciliation. Its eventual-payment wording does not establish a payment deadline or sufficient future backing.
+- **S7:** eligible basis, tracked LP and high-water progress must be distinguished before comparing a marginal display with average PAPER received.
+
+These are bounded source summaries. The original pages are not mirrored; current
+and historical deployed behavior remain unverified. See [record limitations](evidence-records.md).

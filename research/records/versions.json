@@ -1,0 +1,31 @@
+[
+  {
+    "version_id": "VER-DOCS-20261021",
+    "kind": "documentation_collection",
+    "source_ids": [
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S7"
+    ],
+    "chain_id": null,
+    "block_number": null,
+    "block_hash": null,
+    "proxy": null,
+    "implementation_address": null,
+    "implementation_code_hash": null,
+    "parameter_snapshot_id": null,
+    "frontend_bundle_hash": null,
+    "api_schema_hash": null,
+    "effective_from": null,
+    "effective_to": null,
+    "needs_revalidation": false,
+    "limitations": [
+      "This groups six document readings, not one authenticated deployment snapshot.",
+      "Null means unknown/not collected, not zero.",
+      "A future deployment case must use a separate version record with historical inputs."
+    ]
+  }
+]

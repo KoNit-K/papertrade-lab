@@ -1,5 +1,12 @@
 # Changelog
 
+## Post-launch increment — 2026-10-21
+
+- Read four further official sources and register six document readings with capture hashes.
+- Separate seven unverified atomic observation claims from six source-description claims.
+- Add a documentation-only version record, evidence-record limitations and a bounded first-case intake plan.
+- Verify data syntax, references and capture hashes; no executable schema or protocol reproduction is claimed.
+
 ## v0.1.0-alpha.1 — Public Research Launch — 2026-10-21
 
 - Establish the independent research scope and English/Chinese reading paths.

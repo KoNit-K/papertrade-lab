@@ -1,0 +1,248 @@
+[
+  {
+    "evidence_id": "EVD-DOC-S2",
+    "source_id": "S2",
+    "provenance_kind": "official_doc",
+    "url": "https://docs.papertrade.xyz/how/architecture/",
+    "collection_date": "2026-10-21",
+    "retrieval_started_at": null,
+    "retrieval_finished_at": null,
+    "timestamp_precision": "date",
+    "source_stated_updated_at": "2026-10-06",
+    "retrieval_status": "read",
+    "http_status": null,
+    "retrieval_tool": {
+      "name": "curl",
+      "version": "8.7.1"
+    },
+    "method": {
+      "http_method": "GET",
+      "authentication": "none",
+      "redirects_followed": true,
+      "timeout_seconds": 25
+    },
+    "raw_capture": {
+      "hash_algorithm": "sha256",
+      "content_hash": "300b5911c29623550f8b6cdbf4f2569297c854b7450f1efb078d59a1cc0bcaa5",
+      "byte_length": 17423,
+      "published": false,
+      "repository_path": null,
+      "redistribution_status": "not_established"
+    },
+    "public_summary": "The architecture page describes relayed intents dispatched by BatchExecutor to Exchange, with a precompile-based price wrapper.",
+    "version_id": "VER-DOCS-20261021",
+    "source_dependency_ids": [],
+    "independence_note": "Primary publisher description; not independent deployment or transaction evidence.",
+    "privacy_review": "No user session, wallet identity, original chat, or authenticated request was collected.",
+    "limitations": [
+      "Raw bytes retained outside repository; published hash cannot recreate them.",
+      "Page date is self-reported, not a deployment or effective-change timestamp.",
+      "Tool outputs and descriptions do not establish contract correctness."
+    ]
+  },
+  {
+    "evidence_id": "EVD-DOC-S3",
+    "source_id": "S3",
+    "provenance_kind": "official_doc",
+    "url": "https://docs.papertrade.xyz/how/asymmetric-impact/",
+    "collection_date": "2026-10-21",
+    "retrieval_started_at": null,
+    "retrieval_finished_at": null,
+    "timestamp_precision": "date",
+    "source_stated_updated_at": "2026-10-06",
+    "retrieval_status": "read",
+    "http_status": null,
+    "retrieval_tool": {
+      "name": "curl",
+      "version": "8.7.1"
+    },
+    "method": {
+      "http_method": "GET",
+      "authentication": "none",
+      "redirects_followed": true,
+      "timeout_seconds": 25
+    },
+    "raw_capture": {
+      "hash_algorithm": "sha256",
+      "content_hash": "6c6616931e5365224bbdc2940dbc4f5230889b36ebbf4d42a72d0929037fea1a",
+      "byte_length": 12165,
+      "published": false,
+      "repository_path": null,
+      "redistribution_status": "not_established"
+    },
+    "public_summary": "The profit page describes a deadband, impact scaling and a fee on scaled gain; its launch base rate is not a universal fixed total deduction.",
+    "version_id": "VER-DOCS-20261021",
+    "source_dependency_ids": [],
+    "independence_note": "Primary publisher description; not independent deployment or transaction evidence.",
+    "privacy_review": "No user session, wallet identity, original chat, or authenticated request was collected.",
+    "limitations": [
+      "Raw bytes retained outside repository; published hash cannot recreate them.",
+      "Page date is self-reported, not a deployment or effective-change timestamp.",
+      "Tool outputs and descriptions do not establish contract correctness."
+    ]
+  },
+  {
+    "evidence_id": "EVD-DOC-S4",
+    "source_id": "S4",
+    "provenance_kind": "official_doc",
+    "url": "https://docs.papertrade.xyz/dev/contract-addresses/",
+    "collection_date": "2026-10-21",
+    "retrieval_started_at": "2026-10-21T04:01:49.124575+00:00",
+    "retrieval_finished_at": "2026-10-21T04:01:49.793544+00:00",
+    "timestamp_precision": "client_wall_clock",
+    "source_stated_updated_at": "2026-10-06",
+    "retrieval_status": "read",
+    "http_status": 200,
+    "retrieval_tool": {
+      "name": "curl",
+      "version": "8.7.1"
+    },
+    "method": {
+      "http_method": "GET",
+      "authentication": "none",
+      "redirects_followed": true,
+      "timeout_seconds": 25
+    },
+    "raw_capture": {
+      "hash_algorithm": "sha256",
+      "content_hash": "07fbb5c9d5b25abebc993eaf6d119683e7c01ee61c0ebea4c017dba28089c6d5",
+      "byte_length": 9918,
+      "published": false,
+      "repository_path": null,
+      "redistribution_status": "not_established"
+    },
+    "public_summary": "The address page identifies chain 999 and proxy contract entries, plus governance entries. Current implementations and roles have not been read from chain.",
+    "version_id": "VER-DOCS-20261021",
+    "source_dependency_ids": [],
+    "independence_note": "Primary publisher description; not independent deployment or transaction evidence.",
+    "privacy_review": "No user session, wallet identity, original chat, or authenticated request was collected.",
+    "limitations": [
+      "Raw bytes retained outside repository; published hash cannot recreate them.",
+      "Page date is self-reported, not a deployment or effective-change timestamp.",
+      "Tool outputs and descriptions do not establish contract correctness."
+    ]
+  },
+  {
+    "evidence_id": "EVD-DOC-S5",
+    "source_id": "S5",
+    "provenance_kind": "official_doc",
+    "url": "https://docs.papertrade.xyz/how/risk/",
+    "collection_date": "2026-10-21",
+    "retrieval_started_at": "2026-10-21T04:01:49.794144+00:00",
+    "retrieval_finished_at": "2026-10-21T04:01:50.649111+00:00",
+    "timestamp_precision": "client_wall_clock",
+    "source_stated_updated_at": "2026-10-06",
+    "retrieval_status": "read",
+    "http_status": 200,
+    "retrieval_tool": {
+      "name": "curl",
+      "version": "8.7.1"
+    },
+    "method": {
+      "http_method": "GET",
+      "authentication": "none",
+      "redirects_followed": true,
+      "timeout_seconds": 25
+    },
+    "raw_capture": {
+      "hash_algorithm": "sha256",
+      "content_hash": "fcb674ae25e0b390c4d40576433dc53a9167a90d9d171dd24712a4097c8418f1",
+      "byte_length": 13207,
+      "published": false,
+      "repository_path": null,
+      "redistribution_status": "not_established"
+    },
+    "public_summary": "The risk page describes separate long/short exposure caps, market retirement, a global opening gate, and distinct owner, guardian and keeper powers.",
+    "version_id": "VER-DOCS-20261021",
+    "source_dependency_ids": [],
+    "independence_note": "Primary publisher description; not independent deployment or transaction evidence.",
+    "privacy_review": "No user session, wallet identity, original chat, or authenticated request was collected.",
+    "limitations": [
+      "Raw bytes retained outside repository; published hash cannot recreate them.",
+      "Page date is self-reported, not a deployment or effective-change timestamp.",
+      "Tool outputs and descriptions do not establish contract correctness."
+    ]
+  },
+  {
+    "evidence_id": "EVD-DOC-S6",
+    "source_id": "S6",
+    "provenance_kind": "official_doc",
+    "url": "https://docs.papertrade.xyz/how/solvency-queue/",
+    "collection_date": "2026-10-21",
+    "retrieval_started_at": "2026-10-21T04:01:50.649833+00:00",
+    "retrieval_finished_at": "2026-10-21T04:01:51.265290+00:00",
+    "timestamp_precision": "client_wall_clock",
+    "source_stated_updated_at": "2026-10-06",
+    "retrieval_status": "read",
+    "http_status": 200,
+    "retrieval_tool": {
+      "name": "curl",
+      "version": "8.7.1"
+    },
+    "method": {
+      "http_method": "GET",
+      "authentication": "none",
+      "redirects_followed": true,
+      "timeout_seconds": 25
+    },
+    "raw_capture": {
+      "hash_algorithm": "sha256",
+      "content_hash": "06958b502fb5cf60ac893af8f1efa4c0bf1e2f58ba3f1fd960f4388b2d88beeb",
+      "byte_length": 19859,
+      "published": false,
+      "repository_path": null,
+      "redistribution_status": "not_established"
+    },
+    "public_summary": "The queue page distinguishes cash, parked loss proceeds and unpaid claims, including cash-funded and debt-funded settlement branches. Payment depends on available backing and execution.",
+    "version_id": "VER-DOCS-20261021",
+    "source_dependency_ids": [],
+    "independence_note": "Primary publisher description; not independent deployment or transaction evidence.",
+    "privacy_review": "No user session, wallet identity, original chat, or authenticated request was collected.",
+    "limitations": [
+      "Raw bytes retained outside repository; published hash cannot recreate them.",
+      "Page date is self-reported, not a deployment or effective-change timestamp.",
+      "Tool outputs and descriptions do not establish contract correctness."
+    ]
+  },
+  {
+    "evidence_id": "EVD-DOC-S7",
+    "source_id": "S7",
+    "provenance_kind": "official_doc",
+    "url": "https://docs.papertrade.xyz/how/mint-curve/",
+    "collection_date": "2026-10-21",
+    "retrieval_started_at": "2026-10-21T04:01:51.265829+00:00",
+    "retrieval_finished_at": "2026-10-21T04:01:52.016015+00:00",
+    "timestamp_precision": "client_wall_clock",
+    "source_stated_updated_at": "2026-10-06",
+    "retrieval_status": "read",
+    "http_status": 200,
+    "retrieval_tool": {
+      "name": "curl",
+      "version": "8.7.1"
+    },
+    "method": {
+      "http_method": "GET",
+      "authentication": "none",
+      "redirects_followed": true,
+      "timeout_seconds": 25
+    },
+    "raw_capture": {
+      "hash_algorithm": "sha256",
+      "content_hash": "60f25ff6ff4a8201f9bfe2fc98e3788f799608e6a9f4e14f09271e996bb349e3",
+      "byte_length": 14356,
+      "published": false,
+      "repository_path": null,
+      "redistribution_status": "not_established"
+    },
+    "public_summary": "The mint page distinguishes eligible loss basis, tracked LP and a high-water tail variable. It describes flat and decaying regions; actual average issuance needs interval evidence.",
+    "version_id": "VER-DOCS-20261021",
+    "source_dependency_ids": [],
+    "independence_note": "Primary publisher description; not independent deployment or transaction evidence.",
+    "privacy_review": "No user session, wallet identity, original chat, or authenticated request was collected.",
+    "limitations": [
+      "Raw bytes retained outside repository; published hash cannot recreate them.",
+      "Page date is self-reported, not a deployment or effective-change timestamp.",
+      "Tool outputs and descriptions do not establish contract correctness."
+    ]
+  }
+]
