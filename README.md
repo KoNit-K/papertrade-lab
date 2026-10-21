@@ -36,8 +36,8 @@ public transaction cases, and reproducible research tools.
 
 | Feature | How Papertrade works |
 |---|---|
-| **Settle with the PaperTrade LP** | Every trade settles directly with the PaperTrade protocol liquidity pool, which takes the other side of the PnL. |
-| **Hyperliquid prices, HyperEVM settlement** | Contracts read the HyperCore best-bid/ask midpoint. Positions and balances live on HyperEVM. |
+| 🤝 **Settle with the PaperTrade LP** | Every trade settles directly with the PaperTrade protocol liquidity pool, which takes the other side of the PnL. |
+| 📊 **Hyperliquid prices, HyperEVM settlement** | Contracts read the HyperCore best-bid/ask midpoint. Positions and balances live on HyperEVM. |
 | ⚡ **Up to 1000×, isolated per position** | Margin and leverage are fixed at open; each position closes in full. Separate long and short positions can coexist. |
 | 💸 **No opening fee or funding payments** | The trader's protocol charges come from profitable closes. The relayer pays gas for relayed trades. |
 | ⏳ **Watch the queue during busy periods** | The relayer receives, queues and batches market intents on chain. Opens and closes can wait, especially during busy periods; liquidation can beat a queued close. |
@@ -46,8 +46,8 @@ public transaction cases, and reproducible research tools.
 The current official product is <strong>web-based</strong>, with no standalone mobile app. It supports market orders only, without limit orders or automatic take-profit/stop-loss.
 Settlement uses the BBO midpoint at execution, without order-book-depth slippage. The reference price can still change while an intent waits.
 
-> <strong>A friendly reminder:</strong> Timing a manual exit means watching the page and pressing close yourself :-(.
-> You can leave it unattended, but the position stays exposed and can still be liquidated.
+> 🖥️ <strong>A friendly reminder:</strong> Papertrade currently offers web-based market orders without automatic take-profit/stop-loss. Actively managing a position means staying with the page, watching prices and closing manually.
+> This setup suits people with plenty of time who can stay at their computer xD.
 
 [Trading mechanics →](docs/mechanism-map.md)
 
@@ -61,7 +61,7 @@ At or above the threshold, the marginal rate is `r(H) = R × [S / (S + H)]²`, w
 <strong>Current LP and H are different variables.</strong> Distributions reduce LP without resetting H. The right panel fixes retained `H = $260.5M`, giving about <strong>9.9 PAPER/$</strong>,
 to illustrate the threshold step rather than a live point. Whole-trade issuance integrates over its interval; it is not simply loss times the displayed marginal rate.
 
-<strong>Parameters are adjustable:</strong> the contract owner can change the LP threshold, flat mint rate, decay scale and LP reward cap.
+⚙️ <strong>Parameters are adjustable:</strong> the contract owner can change the LP threshold, flat mint rate, decay scale and LP reward cap.
 [Mint formula and figure inputs](docs/readme-figures.md#mint-rate-illustration) · [Parameter authority](docs/readme-figures.md#parameter-authority)
 
 ## Trading costs
@@ -71,23 +71,13 @@ to illustrate the threshold step rather than a live point. Whole-trade issuance 
 | **Open a position** | **0 opening fee** |
 | **Keep a position open** | **0 funding payments** |
 | **Execute a relayed trade** | Gas is paid by the relayer |
-| **Close at a profit** | Deadband and nonlinear gain adjustment (see the scale below), then **2% of adjusted profit** |
-| **Close at a loss** | The realized loss; no additional fee on top of it |
+| **Close at a profit** | Deduct deadband, adjust the gain, then charge **2% of adjusted profit** |
+| **Close at a loss** | The realized loss, with no extra trading fee |
 
-<strong>Winning close:</strong> market gain → deadband → nonlinear gain adjustment → 2% win fee → net gain.
+💡 The deadband is approximately <strong>0.002%</strong> of entry price. In the documented examples, the nonlinear adjustment removes about <strong>10% to nearly 100%</strong> of the post-deadband gain; smaller favorable price moves lose more.
+The final 2% applies to adjusted profit, not position notional.
 
-This is not a flat 10% charge. With the documented `baseRate = 10%`, the nonlinear adjustment removes about <strong>10% to nearly 100%</strong> of the post-deadband gain;
-smaller moves lose more. The deadband is approximately <strong>0.2 basis points (0.002%)</strong> of entry price, applied before the adjustment and 2% fee.
-
-| Favorable underlying price move | BTC: approximate raw market gain retained | ETH: approximate raw market gain retained |
-|---|---:|---:|
-| **0.01%** | **21.0%** | **16.0%** |
-| **0.1%** | **72.4%** | **67.6%** |
-| **1%** | **86.4%** | **85.7%** |
-
-These examples include deadband, adjustment and the win fee; price moves are not margin returns. The example-parameter retention ceiling is about <strong>88.2%</strong>, not a fixed deduction.
-The 2% applies to adjusted gain, not notional. Loss-close and liquidation fee shares come from LP proceeds, without adding to the trader's existing loss.
-[Gain-adjustment formula and calculations](docs/readme-figures.md#profit-retention-examples)
+[See the gain formula and BTC/ETH examples →](docs/readme-figures.md#profit-retention-examples)
 
 ## Who pays whom?
 
@@ -130,9 +120,9 @@ flowchart TB
 | PAPER feature | What it means |
 |---|---|
 | **Earned through losses** | Emissions follow eligible loss basis and curve progress; PAPER per dollar is not fixed. |
-| **Stake to participate** | Holding alone does not earn dividends. Rewards accrue by staked share, with no documented lockup or cooldown. |
-| **Two reward sources** | Half of paid trading fees, plus sweepable tracked-LP excess above its configured cap, documented at **$5M**. |
-| **Claim, then withdraw** | Claiming credits the trading balance. Moving USDC to HyperCore is a separate withdrawal. |
+| 📥 **Stake to participate** | Holding alone does not earn dividends. Rewards accrue by staked share, with no documented lockup or cooldown. |
+| 💵 **Two reward sources** | Half of paid trading fees, plus sweepable tracked-LP excess above its configured cap, documented at **$5M**. |
+| ↗️ **Claim, then withdraw** | Claiming credits the trading balance. Moving USDC to HyperCore is a separate withdrawal. |
 
 [Mint curve & staking analysis](docs/research-notes/006-current-mechanisms.md) · [Dividend payment path](docs/research-notes/007-queue-and-dividend-payment.md)
 
