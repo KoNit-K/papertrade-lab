@@ -1,162 +1,115 @@
-# Papertrade Mechanics Lab
+<h1 align="center">Papertrade Mechanics Lab</h1>
 
-**研究 Papertrade 的交易、结算与 PAPER 机制。**
+<p align="center">
+  <strong>读懂 1000× 永续合约、亏损铸 PAPER 与质押分红。</strong>
+</p>
 
-这是一个独立开源研究项目。我们阅读官方资料、分析前端与合约字节码，并核对公开交易事件，
-解释交易怎样执行、亏损怎样铸币、收益怎样分配，以及余额和待赔付债权怎样变化。
+![Papertrade Mechanics Lab：观察、追踪与对账](docs/assets/readme-banner.svg)
 
-[English](README.md) · [机制地图](docs/mechanism-map.md) · [最新机制研究](docs/research-notes/008-core-credit-and-relayer-pressure.md) · [来源](docs/sources.md)
+<p align="center">
+  <a href="https://docs.papertrade.xyz/"><img alt="网络：HyperEVM 999" src="https://img.shields.io/badge/HyperEVM-999-b7f58b?style=flat-square&amp;labelColor=17251d" /></a>
+  <a href="STATUS.md"><img alt="状态：研究预览" src="https://img.shields.io/badge/status-research_preview-d8e5db?style=flat-square&amp;labelColor=17251d" /></a>
+  <a href="LICENSE"><img alt="许可证：Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-d8e5db?style=flat-square&amp;labelColor=17251d" /></a>
+</p>
 
-以下结论注明**官方说明、字节码支持、链上案例支持、独立复验通过**的区别。
-本轮有部分字节码和链上案例支持，完整历史结算尚未通过独立复验。参数和规则需要按版本核对。
+<p align="center">
+  <a href="README.md">English</a> ·
+  <a href="#机制速览">机制速览</a> ·
+  <a href="#沿着证据阅读">研究发现</a> ·
+  <a href="#探索研究仓库">仓库导航</a> ·
+  <a href="docs/sources.md">来源</a>
+</p>
 
-## 开仓和平仓为什么会等待？
+[Papertrade](https://docs.papertrade.xyz/) 是 HyperEVM 上最高支持 **1000× 杠杆**的永续合约协议。
+交易者与协议流动性池结算；已实现亏损铸出 **PAPER**，质押后可分享已支付交易费用和 LP 盈余带来的分红。
 
-**已确认前端存在交易意图排队状态和排队编号；后端的调度顺序、优先级和实际等待时长尚未证实。**
-官方架构要求开、平仓经 relayer 和 BatchExecutor 执行。前端收到接收确认后显示 `queued`，
-确认不明确时保留 `unconfirmed`，并在有排队意图时每两秒查询排队位置。
-这两秒是界面轮询间隔，不是成交期限。批处理交易成功，还需核对其中单条调用的结果。
+这个独立研究仓库通过前端与字节码分析、公开交易案例和可复用工具，拆解这些机制。
+
+## 机制速览
+
+| 机制 | 怎样运作 | 深入阅读 |
+|---|---|---|
+| **交易执行** | 签署的意图先在 relayer 等待，再作为批次中的独立调用执行。 | [排队与批处理](docs/research-notes/007-queue-and-dividend-payment.md) |
+| **仓位** | 逐仓保证金、固定杠杆、整仓平仓；同一账户可以分别持有多仓和空仓。 | [多空双开案例](docs/research-notes/006-current-mechanisms.md#case-005-opposite-positions-can-coexist-in-the-observed-case) |
+| **结算** | 盈利依次经过 deadband、非线性调整和费用计算；未支付部分进入另一条赔付队列。 | [PnL 与整数算术](docs/research-notes/004-economic-path-and-state-audit.md) |
+| **PAPER 与分红** | 符合条件的亏损沿衰减曲线铸币；质押 PAPER 后按份额累计分配的奖励。 | [铸币与质押](docs/research-notes/006-current-mechanisms.md) |
+| **清算** | 带缓冲的爆仓阈值触发清算，损失该仓位的全部逐仓保证金。 | [触发条件与取整](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold) |
+
+当前官方界面采用市价执行，没有限价单、止盈或止损单。
+
+## 从签署意图到交易结算
 
 ```mermaid
-flowchart LR
-    A[签署与提交意图] --> B[Relayer 接收与执行等待]
-    B --> C[BatchExecutor 单项执行]
-    C --> D[仓位与账本更新]
-    D --> E[界面确认]
-    D --> F[盈利可能形成待赔付债权]
+flowchart TB
+    Intent[签署交易意图] --> Relayer[Relayer]
+    Relayer --> Batch[BatchExecutor]
+    Batch --> Exchange[Exchange]
+    BBO[HyperCore BBO] --> Oracle[PriceOracle]
+    Oracle --> Exchange
+    Exchange --> Position[独立逐仓仓位]
+    Exchange <--> Pool[LP 与赔付队列]
+    Exchange -->|合格亏损基数| PAPER[铸出 PAPER]
 ```
 
-**执行等待和赔付等待是两件事。** 官方赔付机制将未付债权按 FIFO 排队，通过可用资金和后续 harvest 支付。
-现金保证金平仓时，返还保证金与未付盈利分别记账；债权保证金原本就是待赔付债权，平仓后整个剩余债权可能再次排队。
-开仓不因赔付队列存在而一概停止，但仍受余额、方向容量和债权处理限制。
-本轮未取得用户提交、接收、广播到成交的完整时间线，也未复验活跃赔付队列的完整账本。
+| 两条不同的队列 | 等待的是什么？ | 由什么推进？ |
+|---|---|---|
+| **执行队列** | 等待处理的签名操作 | Relayer 选取、提交，以及单项调用成功执行 |
+| **赔付队列** | 尚未支付的结算债权 | 可用背书资金与 harvest；官方机制按 FIFO 赔付 |
 
-**真实批次核查：** 原窗口的 438 个批次共记录 734 项结果，730 成功、4 失败；
-四个失败集中在一笔六项开仓批次，顺序为“成功、失败、失败、失败、失败、成功”。
-其错误码与取得字节码中的方向容量检查对应，说明等待后仍可能执行失败，且失败项没有中止该批次。
-这证明批内按提交数组顺序处理，不证明 relayer 跨用户按 FIFO 调度。
+## 从 PAPER 到质押分红
 
-**后台真实积压也已观察到。** 官网匿名实时频道自报来自 `relayer-postgres`：本轮 12 个快照中，
-排队意图为 **159–217 条**、已提交意图为 **0–59 条**。其中一个快照显示 **217 条排队、饱和度 0%**；
-该饱和度在样本中对应已提交 gas 与区块 gas 上限之比，不代表队列为空，也不能换算为等待时间。
-这些是多种操作的聚合数量，不能当作纯开平仓数量；跨用户 FIFO、优先级和重试算法仍未证实。
-当前客户端开／平仓默认签名截止时间为一小时；这不是成交期限。平仓会过滤已在关闭中的仓位 ID，按每组最多 12 个提交。
+**质押 PAPER → 累计奖励 → 领取至交易余额 → 提款至 HyperCore。**
 
-**证据：官方说明＋前端源码；批处理链上事件支持存在逐项成功／失败。**
-[真实后台积压与指标含义](docs/research-notes/008-core-credit-and-relayer-pressure.md#real-backend-observation-anonymous-relayer-pressure) ·
-[批内执行与客户端规则](docs/research-notes/007-queue-and-dividend-payment.md#execution-array-order-and-partial-failures-are-real-scheduler-fifo-is-unknown) ·
-[官方架构](https://docs.papertrade.xyz/how/architecture/) · [官方赔付队列](https://docs.papertrade.xyz/how/solvency-queue/)
+```mermaid
+flowchart TB
+    Fees[已支付交易费用的一半] --> Rewards[质押奖励分配]
+    Surplus[可划转 LP 盈余] --> Rewards
+    PAPER[已质押 PAPER] -.->|分配份额| Rewards
+    Rewards --> Claim[领取]
+    Claim --> Balance[交易余额]
+    Balance -->|提款 / CoreWriter| Core[HyperCore USDC]
+```
 
-## 仓位怎样运作？能否多空双开？
+仅持有 PAPER 不参与分红。官方列出的奖励来源是已支付交易费用的一半，以及超过设定上限后可划转的 LP 盈余。
 
-Papertrade 是与协议 LP 对手交易的合成杠杆仓位，引用 Hyperliquid 价格。
-文档描述每笔独立逐仓：开仓后保证金和杠杆固定，不能给原仓加仓、追加保证金或部分平仓；
-增加敞口需要另开一笔仓位，每笔整仓关闭。文档列出 BTC、ETH 和最高 1000× 杠杆，实际限制需核对部署参数。
+## 沿着证据阅读
 
-**当前官网没有限价单、止盈止损或其他计划／条件单。** 这一操作观察得到本轮前端交易表单和签名字段支持：
-开仓选择市场、方向、保证金与杠杆，平仓指定仓位 ID；取得的参数不含限价或触发价格。
-排队是在等待执行当前交易意图，不是在等用户设置的目标价格。该结论限于核查到的当前官网路径。
+| 问题 | 抽样案例得到的结果 | 研究记录 |
+|---|---|---|
+| 整笔批次成功，是否代表每项都成功？ | **734 项结果：730 成功、4 失败**；失败后仍有后续调用成功执行。 | [007 · 批次结果](docs/research-notes/007-queue-and-dividend-payment.md) |
+| 饱和度 0% 是否代表没有积压？ | 服务快照出现 **217 条意图排队、饱和度 0%**。 | [008 · 后台排队压力](docs/research-notes/008-core-credit-and-relayer-pressure.md) |
+| 同时做多做空，合起来也会亏钱吗？ | 一对已平仓仓位的事件合计交易 PnL 约 **−0.223207** 内部单位；亏损腿另铸约 **3.421797 PAPER**。 | [006 · 双开案例](docs/research-notes/006-current-mechanisms.md#case-005-opposite-positions-can-coexist-in-the-observed-case) |
+| 分红 reserve 的变化能否对账？ | **3 次分配与后续 33 次领取**，滚动计算匹配已捕获的官方 API reserve。 | [009 · 最新：奖励储备账本](docs/research-notes/009-distribution-reserve-ledger.md) |
+| 选定提款是否到达 HyperCore？ | **1115.251244 USDC** 与官方账本的入账记录匹配。 | [008 · 入账核对](docs/research-notes/008-core-credit-and-relayer-pressure.md#selected-withdrawal-one-exact-official-ledger-match) |
 
-**本轮链上案例支持同账户、同市场多空仓位同时存在。** 首组选出的样本有两个独立仓位 ID，
-方向相反、开仓价格和保证金相同，第二笔开仓前未见第一笔平仓／清算事件；交易输入与事件字段相符。
-这支持双开，不能推出所有账户、方向容量或 relayer 状态下都能接收新单。
-两个方向各自占用保证金和方向容量，互不提供跨仓保证金保护。
+**证据状态：**研究结合官方说明、取得的代码与服务商返回的链上事件。
+完整历史重放、后台调度规则及 LP 盈余／债权分支仍待补齐。[验证与进度 →](STATUS.md)
 
-**双开后的经济结果仍逐腿计算。** 盈利腿经历 deadband、收益调整和费用，亏损腿承担实际亏损，PAPER 另行计算。
-该真实样本两腿最终事件所示交易净盈亏合计约 **−0.223207** 个内部记账单位，亏损腿另铸出约 **3.421797 PAPER**。
-这不是完整账户余额变化，也未将 PAPER 的市场价值折算进盈亏。双开中的单边清算与债权保证金组合仍待核实。
+## 探索研究仓库
 
-**证据：字节码支持＋链上案例支持；完整历史结算尚未独立复验。**
-[双开案例与金额](docs/research-notes/006-current-mechanisms.md#case-005-opposite-positions-can-coexist-in-the-observed-case) ·
-[官方仓位规则](https://docs.papertrade.xyz/learn/trades-pricing/)
-
-## 盈利为什么减少？
-
-盈利路径包含 deadband、非线性收益调整，以及对调整后收益收取的费用。
-文档中的启动参数 `10%` 不代表每笔盈利都固定减少 `10%`，描述的 `2%` 费用也有独立计费基数。
-本项目已恢复一条盈利分支的逐步整数计算，并与 CASE-001 第 4 条候选金额吻合；
-其历史参数和实际价格输入仍缺证据，因此该结果属于同案一致性检查。
-
-**证据：官方说明＋局部字节码支持。** [盈利计算研究](docs/research-notes/004-economic-path-and-state-audit.md)
-
-## 亏损或爆仓后，PAPER 怎样铸造？
-
-**主动亏损平仓与强制清算的铸币基数可能不同，不能简单用“亏了多少 × 当前显示发行率”。**
-
-| 分支 | 官方描述的 PAPER 基数及资金去向 |
+| 从这里开始 | 可以找到什么 |
 |---|---|
-| 现金保证金亏损平仓、赔付队列为空 | 如收取 LP 侧亏损费用，铸币基数为亏损减该费用；费用不是额外加到交易者亏损上。 |
-| 现金保证金亏损平仓、队列非空 | 不收该费用，按完整亏损铸币；资金进入 sideBucket，优先支持排队赔付。 |
-| 现金保证金清算 | 按全部损失保证金铸币；LP 增量可能扣除费用，所以两者金额可以不同。 |
-| 债权保证金亏损／清算 | 基数来自被销毁的债权；亏损平仓需考虑适用费用，债权清算无清算费。 |
+| [机制地图](docs/mechanism-map.md) | 协议的 14 个研究方向 |
+| [研究笔记](docs/research-notes/) · [案例记录](research/cases/) | 机制解释、来源坐标与结构化结果 |
+| [离线算术](packages/research/mechanics.ts) | 铸币曲线、爆仓价格和待领取奖励的计算函数 |
+| [证据工具](docs/chain-evidence.md) | 记录验证与版本一致性检查 |
+| [只读采集](docs/readonly-collection.md) · [安全导出](docs/safe-export.md) | 有界公开读取与经审阅的元数据导出 |
+| [研究方法](docs/research-method.md) · [路线图](ROADMAP.md) | 工作方法与下一阶段目标 |
 
-本轮一笔亏损平仓的“亏损减费用”与 mint 基数吻合；一笔清算以 **20** 为完整保证金基数，
-LP 记账只增加 **19.6**，其余 **0.4** 为费用。两笔的 PAPER 铸币 Transfer 都与 tokenomics 事件金额相符。
-债权和队列活跃分支目前主要依据官方说明，尚未完成真实案例复验。
+<details>
+<summary><strong>运行本地检查</strong> · Node.js ≥ 24.12.0 / pnpm 11.25.0</summary>
 
-发行曲线先平坦、再衰减。本轮文档与参数响应显示：平坦阈值为 **200 万**，平坦率为每单位合格亏损 **100 PAPER**，
-尾段衰减尺度为 **1.2 亿**。尾段边际率可写为 `100 × (S / (S + H))²`，
-其中 `H` 是累计尾段进度。实际 mint 要跨整个亏损区间积分并逐步取整，不能直接乘一个边际率。
-LP 向质押者划出超额收益时，`H` 不随之回退；再次进入尾段会沿用保留的进度。
-这些采集时参数不作为任何旧交易的历史输入。
-
-**证据：官方说明＋字节码支持＋两笔铸币事件金额一致；独立历史铸币预期值仍缺失。**
-[分支、精确整数公式与案例](docs/research-notes/006-current-mechanisms.md#case-003-loss-basis-liquidation-basis-and-the-mint-curve) ·
-[官方发行曲线](https://docs.papertrade.xyz/how/mint-curve/)
-
-## PAPER 分红从哪里来，怎样拿到？
-
-**官方规则要求质押 PAPER 才参与分配，单纯持有不等于已参与分红。** 文档列出两条来源：
-已支付交易费用的一半，以及 tracked LP 超过当前描述的 **500 万**上限后的可划拨超额收益。
-费用支付仍受赔付队列和偿付条件约束，名义费用不等于当场分红。
-
-收益要经过这些阶段：
-
-`Exchange 累积费用／可划拨盈余 → 推送 → 签名分配 → 按质押份额累计 → claim 入交易余额 → 提款动作 → 核对最终到账`
-
-取得的质押字节码使用 `10^27` 精度累计器；用户待领奖励由已存奖励、质押量、累计器和 reward debt 共同计算。
-零质押时，新收到的收益先保持未分配；解除质押不会抹掉已经累计的奖励。
-文档说没有锁仓和冷却，但 app 的质押、解押和 claim 仍经签名与 relayer 提交，也会有执行等待。
-本轮 stake 与 PAPER 转入相符，claim 与 Exchange 余额入账事件相符；claim 后向外部账户提款是另一个步骤。
-首轮窗口没有分配事件，随后另行登记的单块定向样本核对了约 **131.938049** 的费用推送与分配金额一致。
-分配前的精确份额、LP 超额收益案例和真实解押仍未完成复验。
-
-后续找到真实“领取后提款”案例：约 **1115.251243442** 的 claim 与内部余额入账完全对应；
-同一链上账户随后执行约 **1115.251244** 的提款，回执含 Exchange 发往该账户的 CoreWriter spot-send 动作。
-**后续已在官方 HyperCore 账本找到唯一匹配入账：1115.251244 USDC，发送方、接收方和金额均与该提款动作一致。**
-这笔案例已完成到 HyperCore 收款账户的账本对账；不是所有提款成功的保证，也不是独立共识重放。
-提款来自共享余额，且与 claim 略有差额，不能声称全部提款都来自该次分红。若选择其他链，后续路由支付还需单独确认。
-
-**证据：官方说明＋字节码支持＋stake／claim／提款案例支持；该提款的官方 HyperCore 入账对账通过。**
-[HyperCore 入账确认与边界](docs/research-notes/008-core-credit-and-relayer-pressure.md#selected-withdrawal-one-exact-official-ledger-match) ·
-[累计器与分配](docs/research-notes/006-current-mechanisms.md#case-004-dividends-are-an-accumulator-and-a-claim-against-internal-balance) ·
-[官方质押机制](https://docs.papertrade.xyz/paper/staking/)
-
-## 爆仓价格和清算损失怎样计算？
-
-**取得的字节码显示：触发价包含 buffer，触发后按整笔逐仓保证金硬清算。**
-主动平仓仍有剩余权益，并不代表不能触发清算。对已恢复的计算路径，令入场价为 `E`、整数杠杆为 `l`、
-buffer 为以 `W = 10^18` 缩放的 `b`：
-
-```text
-d = floor(E / l)
-多头：z = E - d；清算触发价 = z + floor(z × b / W)
-空头：z = E + d；清算触发价 = z - floor(z × b / W)
+```sh
+pnpm install --frozen-lockfile
+pnpm test
+pnpm typecheck
+pnpm validate:records
 ```
 
-buffer 作用于零权益参考价 `z`，两步取整都要保留。多头价格 **≤** 触发价、空头价格 **≥** 触发价时，
-可通过代码中的清算价格检查；等于阈值也包含在内。价格来源还需核对 live BBO／退市冻结价格分支。
-合成输入已覆盖阈值两侧和相等情况；这不证明某笔历史交易的实际 bid/ask。
+测试与验证在本地运行；在线采集使用单独的显式命令。
 
-文档描述协议 keeper 监控清算，同时清算维护入口为公开路径。先成功执行的平仓或清算会关闭仓位，
-后续重复路径受 open 状态检查约束；用户平仓意图还在等待时，仓位并没有因此获得清算保护。
-keeper 的优先级描述不能保证所有真实交易的打包顺序。整仓损失、铸币基数和费用分账仍需一起核对。
-
-**证据：字节码支持＋一笔清算链上案例支持；真实竞态及完整历史结算尚未复验。**
-[清算公式、阈值与边界](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold) ·
-[官方清算说明](https://docs.papertrade.xyz/learn/liquidations/)
+</details>
 
 ---
 
-研究采用只读方式，不操作钱包或提交交易。项目非官方；原创代码与文档采用 [Apache-2.0](LICENSE)。
-[证据与进度](STATUS.md) · [研究方法](docs/research-method.md) · [贡献与数据边界](CONTRIBUTING.md) · [第三方声明](THIRD_PARTY_NOTICES.md)
+[参与贡献](CONTRIBUTING.md) · [数据政策](DATA_POLICY.md) · [Apache-2.0](LICENSE) · [第三方声明](THIRD_PARTY_NOTICES.md)
