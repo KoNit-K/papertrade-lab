@@ -221,3 +221,27 @@ not audit the server scheduler or establish source equivalence to the deployment
 Reader/connector digest metadata identifies retained tool responses; ordinary HTTP
 entries hash response bytes, while stream units share the corresponding private
 capture digest. No third-party search-result claim establishes FIFO or retry policy.
+
+## Distribution reserve follow-up (2026-10-21)
+
+[Note 009](research-notes/009-distribution-reserve-ledger.md) and its
+[structured outcome](../research/cases/006-event-ledger-outcome.json) record eight
+successful bounded official HTTP reads, eight search queries, and 25 RPC attempts
+(24 successful, one network failure). The independent source-led 500-block window
+49122484–49122983 was registered before the event scan; old windows are unchanged.
+The official [protocol summary](https://exchange.papertrade.xyz/query/protocol/summary)
+and [PAPER activity](https://exchange.papertrade.xyz/query/protocol/paper/activity)
+are mutable interfaces; their retained response digests and source heights, rather
+than their future contents, identify this observation. Original payloads remain private.
+The summary omits a source block hash, so block-height agreement is not an independent
+canonical-state proof.
+
+Three provider-reported distribution receipts, subsequent claim events and the
+captured summary reconcile the aggregate reserve. Acquired runtime interpretation
+and forty synthetic internal-routine checks support event-word meanings. Accumulator
+denominators are backsolved from the same API and event deltas, not authenticated
+historical stake snapshots. The current [FAQ](https://docs.papertrade.xyz/intro/faq/),
+[session-key page](https://docs.papertrade.xyz/learn/session-keys/) and sitemap do
+not provide a versioned server scheduler policy; third-party commentary was excluded.
+No real unstake, LP-surplus funding or active debt branch was established by this
+sample, and no complete per-user settlement or external payment is claimed.

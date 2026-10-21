@@ -1,0 +1,35 @@
+{
+  "schema_version": "bounded-event-ledger-plan-v1",
+  "registered_at": "2026-10-21T09:20:50.190705+00:00",
+  "case_id": "CASE-006",
+  "parent_plan": "002-004-ledger-followup-plan.json",
+  "chain_id": 999,
+  "block_from": "49122484",
+  "block_to": "49122983",
+  "basis": "500 inclusive blocks ending at the already captured public protocol summary source.block; source-led sample, not unbiased",
+  "distribution_lead": {
+    "blockNumber": "49122884",
+    "logIndex": 20,
+    "timestampMs": 1792574264000,
+    "txHash": "0xb7b44be334d0a46cf8b6738968c79a03e07b01b0d3cea7d42adb20a755001cde",
+    "amountRaw": "118120319303372570075"
+  },
+  "order": [
+    "block_number",
+    "transaction_index",
+    "log_index"
+  ],
+  "selection": "all PaperStaking events in fixed window; reconcile distribution anchors and claims to the captured summary; choose first actual Unstaked if present",
+  "rpc_budget": 60,
+  "source_access_budget": 30,
+  "search_query_budget": 8,
+  "budget_accounting": "Shared with parent round; not an additional 60/30/8 allocation",
+  "limits": [
+    "Current code interpretation is not historical deployment authentication",
+    "Event-reported reserve anchor and later API comparison are not independent state replay",
+    "No account query; privately compare protocol token transfer fields only",
+    "Preserve original CASE-001 and CASE-002-005 windows and data",
+    "Retain all missing and failed evidence"
+  ],
+  "raw_payload_published": false
+}

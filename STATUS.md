@@ -33,7 +33,7 @@ See the [publication review](docs/publication-review.md) for actual P0 checks an
 
 ## Next three tasks
 
-1. Complete actual intent submit/ack/execution timelines and missing queue/debt/distribution ledger cases identified in [note 008](docs/research-notes/008-core-credit-and-relayer-pressure.md).
+1. Obtain actual intent submit/ack/select/broadcast timelines and missing unstake/LP-surplus/debt cases; extend the bounded aggregate dividend ledger in [note 009](docs/research-notes/009-distribution-reserve-ledger.md) with authenticated historical and per-user inputs.
 2. Obtain archive/trace and recorded precompile evidence for CASE-001 and authenticate candidate 4 prestate, prices, parameters and ledger deltas.
 3. Preserve registered selection rules and implement M1 only after decisive historical inputs and independent expected results are available.
 
@@ -336,3 +336,55 @@ summaries, checked stream plans against captures, verified source/search/Core
 digests and counts, and independently reran the link/JSON/original-case/privacy
 checks. The review preserved the distinction between official-ledger credit,
 aggregate service observation and an unverified server scheduling algorithm.
+
+## Distribution reserve ledger follow-up
+
+[Note 009](docs/research-notes/009-distribution-reserve-ledger.md) registers independent
+CASE-006 at blocks 49122484–49122983, selected from an already captured official
+summary height before scanning. It observes 24 stakes, 53 claims, three distributions
+and 80 nonce-use events. Three distribution receipts match their Exchange fee pushes;
+none demonstrates additional LP-surplus funding. Starting at the first event's reserve,
+33 later claims and two later fundings reconcile exactly through both intermediate
+distributions and the previously captured source-block API reserve. Two accumulator
+increments match using denominators backsolved from that API and stake deltas.
+These are aggregate event/indexer consistency checks, not independent historical
+state, per-user entitlement or external-payment reproduction.
+
+The previously unassigned 40 events from note 006 match the recovered `NonceUsed`
+signature and bitmap/log path. Forty synthetic internal-routine checks support the
+four distribution word meanings, using controlled storage and mocked Exchange calls;
+they are not a full EVM, signed-entrypoint test or historical replay. No unstake
+event was returned in this window; real LP-surplus and active payout-debt cases
+remain unestablished.
+Versioned scheduler selection/priority/retry/expiry policy remains unavailable after
+bounded primary-source reads/searches; no repeated aggregate stream sample was used
+to infer it. All prior case windows and structured records remain unchanged; the
+completed Core credit lookup was not repeated and M1 remains unimplemented.
+
+Collection: **25/60 RPC attempts**, 24 successful and one chain-ID network failure,
+with one ordinary successful retry. One separate local plan-shape validation failure
+made zero network requests and was retained. **8/30 HTTP source reads** succeeded;
+**8/8 search queries** were used. Source/run digests, receipt/header/transaction
+identity, exact reserve arithmetic and API-dependent accumulator checks were verified
+offline. The API supplies a height without a block hash, so its canonical-state
+binding remains unverified.
+
+Local verification (Node.js 26.8.2 / pnpm 11.25.0): **152/152 tests passed**,
+strict TypeScript checking passed, and existing document-record validation accepted
+13 claims, six evidence records and one version. The first test run passed 151 and
+failed only the localhost HTTP transport test with `listen EPERM`; the unchanged
+suite passed with local-listen permission. These checks do not validate historical
+protocol state or the new research JSON as a chain packet. Separate JSON/link/privacy,
+source/run/search digest, plan-before-scan timing, bounded-log and arithmetic checks
+passed for the six-file publication subset. All 32 prior case records, including
+CASE-001's candidate ledger, remain byte-for-byte unchanged.
+
+Independent read-only review found no blocking or important issue. It independently
+recomputed source/run/search digests, registration order, log uniqueness/counts,
+three receipt/transaction/header identities (including header transaction positions),
+the reserve and API-dependent accumulator equations, and all forty synthetic field
+checks. It inspected the acquired bitmap/log and distribution branches, recovered
+signature preimages, unchanged old case records and the six-file public privacy
+subset. It did not make new network requests or authenticate historical state,
+API block-hash identity or individual rewards; request accounting is verifiable
+only against the retained captures.

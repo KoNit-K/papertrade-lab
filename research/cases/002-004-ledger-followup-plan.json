@@ -1,0 +1,34 @@
+{
+  "schema_version": "research-followup-plan-v1",
+  "registered_at": "2026-10-21T09:18:55.205949+00:00",
+  "baseline": "516855395ab10ee69c7a331d42c9fab16f5c20ef",
+  "cases": [
+    "CASE-002",
+    "CASE-004"
+  ],
+  "purpose": "Versioned scheduler-policy discovery and distribution/unstake/LP-surplus/debt ledger evidence",
+  "rpc_budget": 60,
+  "source_access_budget": 30,
+  "search_query_budget": 8,
+  "initial_log_window": null,
+  "selection": [
+    "Reuse retained captures and original fixed windows first",
+    "Read only primary docs and frontend-linked public aggregate endpoints; source-linked repositories must be attributable",
+    "If a captured aggregate activity response provides a new distribution or unstake lead, pre-register its exact block and choose first in block/transaction/log order",
+    "Any broader first scan requires a separate fixed <=500 block registration before event reads"
+  ],
+  "restrictions": [
+    "No account endpoint or new targeted account query",
+    "Do not repeat completed Core ledger request",
+    "No signing, production writes, credentials, paid services, deployment or outreach",
+    "No arbitrary RPC endpoint/method outside existing collector",
+    "Default latest-only state cannot establish historical prestate",
+    "Raw captures and addresses remain private; no user identity joins",
+    "Stop on denial/rate limit; failures and ordinary retries count",
+    "CASE-001 order/window and all old plans remain unchanged"
+  ],
+  "remaining_null_gates": [
+    "scheduler FIFO/priority/retry/expiry until actual attributable server evidence",
+    "full historical distribution/reserve ledger until authenticated pre/post state or trace"
+  ]
+}
