@@ -13,8 +13,12 @@
 </p>
 
 <p align="center">
-  <a href="README.zh-CN.md">简体中文</a> ·
-  <a href="#mechanisms-at-a-glance">Mechanisms</a> ·
+  <a href="README.zh-CN.md">中文</a> ｜ <strong>English</strong>
+</p>
+
+<p align="center">
+  <a href="#features">Features</a> ·
+  <a href="#paper-mint-curve">Mint curve</a> ·
   <a href="#trading-costs">Fees</a> ·
   <a href="#paper-the-dividend-token">PAPER</a> ·
   <a href="#explore-the-lab">Explore the lab</a> ·
@@ -28,19 +32,37 @@
 This independent lab explains those mechanics through frontend and bytecode analysis,
 public transaction cases, and reproducible research tools.
 
-## Mechanisms at a glance
+## Features
 
 | Feature | How Papertrade works |
 |---|---|
-| **The LP is your counterparty** | Every trade settles against the protocol's liquidity pool. Papertrade does not match you with another trader. |
+| **Settle with the PaperTrade LP** | Every trade settles directly with the PaperTrade protocol liquidity pool, which takes the other side of the PnL. |
 | **Hyperliquid prices, HyperEVM settlement** | Contracts read the HyperCore best-bid/ask midpoint. Positions and balances live on HyperEVM. |
 | **Up to 1000×, isolated per position** | Margin and leverage are fixed at open; each position closes in full. Separate long and short positions can coexist. |
 | **No opening fee or funding payments** | The trader's protocol charges come from profitable closes. The relayer pays gas for relayed trades. |
-| **Opens and closes can wait** | Signed market intents pass through the relayer's execution queue before on-chain processing. A queued close can still be liquidated first. |
+| **Watch the queue during busy periods** | The relayer receives, queues and batches market intents on chain. Opens and closes can wait, especially during busy periods; liquidation can beat a queued close. |
 | **Losses earn PAPER** | Eligible realized losses and liquidations mint PAPER along a decaying emission curve. Staking PAPER earns a share of USDC distributions. |
 
-The current official app uses market execution, without limit, take-profit or stop-loss orders.
+The current official product is <strong>web-based</strong>, with no standalone mobile app. It supports market orders only, without limit orders or automatic take-profit/stop-loss.
+Settlement uses the BBO midpoint at execution, without order-book-depth slippage. The reference price can still change while an intent waits.
+
+> <strong>A friendly reminder:</strong> Timing a manual exit means watching the page and pressing close yourself :-(.
+> You can leave it unattended, but the position stays exposed and can still be liquidated.
+
 [Official trading guide →](https://docs.papertrade.xyz/learn/trades-pricing/)
+
+## PAPER mint curve
+
+![PAPER mint curve: cumulative progress drives marginal decay; retained history can create a step at the LP threshold](docs/assets/paper-mint-curve.en.svg)
+
+Below the documented <strong>$2M tracked-LP threshold</strong>, the flat region mints <strong>100 PAPER per $1 of eligible loss basis</strong>.
+At or above the threshold, the marginal rate is `r(H) = R × [S / (S + H)]²`, with documented examples `R = 100`, `S = $120M`, and cumulative tail progress `H`.
+
+<strong>Current LP and H are different variables.</strong> Distributions reduce LP without resetting H. The right panel fixes retained `H = $260.5M`, giving about <strong>9.9 PAPER/$</strong>,
+to illustrate the threshold step rather than a live point. Whole-trade issuance integrates over its interval; it is not simply loss times the displayed marginal rate.
+
+<strong>Parameters are adjustable:</strong> the contract owner can change the LP threshold, flat mint rate, decay scale and LP reward cap.
+[Official formula](https://docs.papertrade.xyz/how/mint-curve/) · [Figure inputs, authority and reproduction](docs/readme-figures.md)
 
 ## Trading costs
 
@@ -49,14 +71,23 @@ The current official app uses market execution, without limit, take-profit or st
 | **Open a position** | **0 opening fee** |
 | **Keep a position open** | **0 funding payments** |
 | **Execute a relayed trade** | Gas is paid by the relayer |
-| **Close at a profit** | A deadband and nonlinear gain adjustment, then **2% of the adjusted profit** |
+| **Close at a profit** | Deadband and nonlinear gain adjustment (see the scale below), then **2% of adjusted profit** |
 | **Close at a loss** | The realized loss; no additional fee on top of it |
 
-**Winning close:** market gain → deadband / gain adjustment → 2% win fee → net gain.
-The 2% is charged on adjusted profit, not position notional: an adjusted gain of
-100 USDC incurs a 2 USDC win fee. Loss-close and liquidation fee shares can be
-carved from the LP's proceeds rather than added to the trader's loss.
-[Fee mechanics →](https://docs.papertrade.xyz/learn/wins-losses/)
+<strong>Winning close:</strong> market gain → deadband → nonlinear gain adjustment → 2% win fee → net gain.
+
+This is not a flat 10% charge. With the documented `baseRate = 10%`, the nonlinear adjustment removes about <strong>10% to nearly 100%</strong> of the post-deadband gain;
+smaller moves lose more. The deadband is approximately <strong>0.2 basis points (0.002%)</strong> of entry price, applied before the adjustment and 2% fee.
+
+| Favorable underlying price move | BTC: approximate raw market gain retained | ETH: approximate raw market gain retained |
+|---|---:|---:|
+| **0.01%** | **21.0%** | **16.0%** |
+| **0.1%** | **72.4%** | **67.6%** |
+| **1%** | **86.4%** | **85.7%** |
+
+These examples include deadband, adjustment and the win fee; price moves are not margin returns. The example-parameter retention ceiling is about <strong>88.2%</strong>, not a fixed deduction.
+The 2% applies to adjusted gain, not notional. Loss-close and liquidation fee shares come from LP proceeds, without adding to the trader's existing loss.
+[Official gain-adjustment formula](https://docs.papertrade.xyz/how/asymmetric-impact/) · [Parameters and calculations](docs/readme-figures.md#profit-retention-examples)
 
 ## Who pays whom?
 
@@ -112,7 +143,7 @@ buffer is about **5 basis points (0.05% of price)** toward entry. This is a pric
 buffer, not a promise to return the remaining margin: triggering liquidation
 consumes the position's **full isolated margin**.
 
-> **Illustrative 100× long:** entry 100 → theoretical zero-equity price 99 →
+> <strong>Illustrative 100× long:</strong> entry 100 → theoretical zero-equity price 99 →
 > liquidation trigger about **99.05**. A voluntary close just before the trigger
 > can still return equity; liquidation at the trigger consumes the whole margin.
 
