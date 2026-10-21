@@ -43,15 +43,17 @@ No installation or wallet connection is needed to read this release.
 M0 has begun with structured source/claim records and a documentation version identity.
 An offline validator now checks document/observation records and published capture integrity.
 Read the [validation guide](docs/evidence-records.md) for real commands and limits.
-Chain-case schemas and enforceable collection/export rules remain to be built.
+M0 now includes [historical chain snapshot checks](docs/chain-evidence.md),
+[bounded read-only collection](docs/readonly-collection.md) and
+[reviewed metadata export](docs/safe-export.md). Live case evidence and M1 replay remain unverified.
 Then M1 selects a bounded public settlement case and
 compares an independent integer model with independently sourced execution results.
 See the [roadmap](ROADMAP.md) for acceptance criteria and the [status](STATUS.md)
 for actual progress.
 
-Planned capabilities include read-only collection, optional REA (Reverse Engineer
-Anything) analysis, transaction explanations, and offline replay. These are not
-available commands or completed findings. There is no trading terminal or hosted service.
+Optional REA (Reverse Engineer Anything) analysis, transaction explanations and
+offline settlement replay remain planned. The implemented M0 commands are linked
+above; they do not establish protocol correctness. There is no trading terminal or hosted service.
 
 ## Participate
 

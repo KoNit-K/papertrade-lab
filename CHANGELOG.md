@@ -1,5 +1,13 @@
 # Changelog
 
+## M0 chain, collection and export increment — 2026-10-21
+
+- Validate historical block/proxy/implementation/parameter identities and conflicting evidence; distinguish Keccak-256 from SHA-256.
+- Add a fixed-endpoint read-only RPC collector with budgets, rate limits, body timeouts, bounded pagination and explicit missing/error states.
+- Add exact-byte-reviewed metadata export with strict projections, nested sensitive-field rejection and exclusive output paths.
+- Add synthetic snapshot fixtures, negative/CLI tests and a real loopback HTTP transport test.
+- Keep all mechanism claims unverified; no production transaction or settlement replay is performed.
+
 ## M0 validator increment — 2026-10-21
 
 - Add a strict offline TypeScript validator for documentation and unverified-observation records.

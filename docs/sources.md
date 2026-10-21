@@ -71,3 +71,15 @@ are in the [evidence records](../research/records/evidence.json).
 
 These are bounded source summaries. The original pages are not mirrored; current
 and historical deployed behavior remain unverified. See [record limitations](evidence-records.md).
+
+## M0 tooling sources — 2026-10-21
+
+- [HyperEVM endpoint and chain identity](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm): read through the web reader; used to constrain the collector to the documented mainnet RPC and chain 999.
+- [HyperEVM JSON-RPC](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/json-rpc): read through the web reader; documents a 50-block log range and lack of historical state on the default implementation. Live capabilities are still a separate check.
+- [EIP-1967](https://eips.ethereum.org/EIPS/eip-1967): read for the implementation-slot definition, not evidence that any particular proxy uses it.
+- [noble-hashes](https://github.com/paulmillr/noble-hashes): primary project documentation read; registry/package metadata pins 2.4.0, MIT, for Keccak. No upstream source is vendored.
+- S4 address page was re-read as HTML after one TLS failure and one normal retry. This confirms the current page content only; it does not establish historical deployments. Exact retrieval timestamps were not recorded for this documentation read. Raw HTML remains outside public history.
+
+No external page's statements upgrade the five historical reports or establish a
+settlement result. The default RPC's documented archival limitation must not be
+worked around by substituting current state.

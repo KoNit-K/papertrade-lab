@@ -53,3 +53,25 @@ authentication, dependency vulnerability audit, protocol test or proof of safety
 for arbitrary future records. All six original capture files remain unpublished
 and are not byte-verified by the distributed validator. Hosted CI, minimum-runtime
 and Windows compatibility remain untested.
+
+## M0 chain/collector/export review — 2026-10-21
+
+- Reviewed the 50-file public subset, local links, license digest, explicit new
+  file inventory and staged changes. Raw source HTML stays outside the repository;
+  future collector output is confined to ignored `data/private/`.
+- Checked private-path, private-key and token patterns; no findings. Repeated
+  numeric addresses in tests/fixtures are explicit synthetic values, not wallets.
+- Independent review found conflicting-history, inconsistent-log and input-byte
+  review defects. Regression cases reproduced them before fixes; follow-up review
+  confirmed the fixes. No unresolved blocking review finding remains.
+- The full 140 tests, strict type check, original record validation and synthetic
+  chain validation passed, including a real loopback-only HTTP test. A clean
+  temporary copy passed after offline frozen-lockfile installation.
+- The local-listen test initially failed with `EPERM` in the restricted sandbox;
+  the complete run passed with localhost listening permitted. No production RPC,
+  transaction, signing, cloud service or outreach was used during these checks.
+
+Snapshot `complete` means the declared metadata and supplied bytes are internally
+consistent; it does not verify provider truth, proxy behavior, finality, all
+parameters, pre-state or settlement. Export manifests omit raw content and do not
+replace manual disclosure review. Tests are synthetic, not on-chain findings.

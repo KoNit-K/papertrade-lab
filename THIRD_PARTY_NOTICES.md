@@ -27,3 +27,6 @@ from the registry, not vendored into this repository. Ajv 8.17.1 (MIT) supplies
 JSON Schema validation; TypeScript 5.9.3 (Apache-2.0) and @types/node 26.6.5
 (MIT) are development tools. Their transitive dependencies retain their respective
 package licenses; installing them does not relicense them under this project's license.
+
+The M0 chain validator uses @noble/hashes 2.4.0 (MIT) for Keccak-256. Its code is
+installed through the lockfile, not copied into this repository.

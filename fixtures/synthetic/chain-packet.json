@@ -1,0 +1,170 @@
+{
+  "schema_version": "chain-evidence-v1",
+  "fixture_kind": "synthetic",
+  "versions": [
+    {
+      "version_id": "VER-CHAIN-001",
+      "chain_id": "999",
+      "block_number": "16",
+      "block_hash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "proxy": "0x1111111111111111111111111111111111111111",
+      "proxy_type": "eip1967",
+      "proxy_type_evidence_id": "EVD-PROXY-CODE",
+      "implementation_address": "0x4444444444444444444444444444444444444444",
+      "implementation_code_hash": "0x07ad118d6cc8642c86c03827f276d8b791a65e5c99a3845faf186be720a1455d",
+      "parameter_snapshot_sha256": "bcc17acf00d45fbac7c3320a593a6227cb0ba8043b4818b0db2afa16bc521498",
+      "execution_context": "block_end",
+      "effective_from": null,
+      "effective_to": null,
+      "supersedes": null,
+      "needs_revalidation": false,
+      "binding_status": "complete"
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "EVD-BLOCK-001",
+      "version_id": "VER-CHAIN-001",
+      "provider": "hyperliquid-public-rpc",
+      "kind": "block",
+      "chain_id": "999",
+      "block_number": "16",
+      "block_hash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "proxy": "0x1111111111111111111111111111111111111111",
+      "transaction_hash": null,
+      "transaction_index": null,
+      "log_index": null,
+      "source_response_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "content_sha256": "54db481e7c56d4348275f58a7dbdd65a0f78bf6af865d6e95f93a9ef2819c123",
+      "dependency_ids": [],
+      "payload": {
+        "hash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+        "number": "16",
+        "parent_hash": "0x3333333333333333333333333333333333333333333333333333333333333333",
+        "timestamp": "100"
+      }
+    },
+    {
+      "evidence_id": "EVD-PROXY-CODE",
+      "version_id": "VER-CHAIN-001",
+      "provider": "hyperliquid-public-rpc",
+      "kind": "code",
+      "chain_id": "999",
+      "block_number": "16",
+      "block_hash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "proxy": "0x1111111111111111111111111111111111111111",
+      "transaction_hash": null,
+      "transaction_index": null,
+      "log_index": null,
+      "source_response_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "content_sha256": "bea2d7cb7298b01205aee3525b626eb9da334ce8e9a19a8d51cee598029bd7ed",
+      "dependency_ids": [],
+      "payload": {
+        "address": "0x1111111111111111111111111111111111111111",
+        "bytecode": "0x6000"
+      }
+    },
+    {
+      "evidence_id": "EVD-IMPL-CODE",
+      "version_id": "VER-CHAIN-001",
+      "provider": "hyperliquid-public-rpc",
+      "kind": "code",
+      "chain_id": "999",
+      "block_number": "16",
+      "block_hash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "proxy": "0x1111111111111111111111111111111111111111",
+      "transaction_hash": null,
+      "transaction_index": null,
+      "log_index": null,
+      "source_response_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "content_sha256": "2d55556914b2f33f94baab46fd41cef62d38faf604e12e214055132cb6e6e652",
+      "dependency_ids": [],
+      "payload": {
+        "address": "0x4444444444444444444444444444444444444444",
+        "bytecode": "0x6000"
+      }
+    },
+    {
+      "evidence_id": "EVD-IMPL-SLOT",
+      "version_id": "VER-CHAIN-001",
+      "provider": "hyperliquid-public-rpc",
+      "kind": "storage",
+      "chain_id": "999",
+      "block_number": "16",
+      "block_hash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "proxy": "0x1111111111111111111111111111111111111111",
+      "transaction_hash": null,
+      "transaction_index": null,
+      "log_index": null,
+      "source_response_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "content_sha256": "4898af91fbe78ddc6ea8648eabeacc01cc1ae8f90121fe39b4ead2a35c3f0b50",
+      "dependency_ids": [],
+      "payload": {
+        "slot": "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+        "value": "0x0000000000000000000000004444444444444444444444444444444444444444"
+      }
+    },
+    {
+      "evidence_id": "EVD-PARAM-STORAGE",
+      "version_id": "VER-CHAIN-001",
+      "provider": "hyperliquid-public-rpc",
+      "kind": "storage",
+      "chain_id": "999",
+      "block_number": "16",
+      "block_hash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "proxy": "0x1111111111111111111111111111111111111111",
+      "transaction_hash": null,
+      "transaction_index": null,
+      "log_index": null,
+      "source_response_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "content_sha256": "c364b6a4689945bc83cc9b3a3f71db20b1818e3767c64c2faf198d7025a0d5a8",
+      "dependency_ids": [],
+      "payload": {
+        "slot": "0x5555555555555555555555555555555555555555555555555555555555555555",
+        "value": "0x0000000000000000000000000000000000000000000000000000000000000001"
+      }
+    },
+    {
+      "evidence_id": "EVD-PARAMETERS",
+      "version_id": "VER-CHAIN-001",
+      "provider": "hyperliquid-public-rpc",
+      "kind": "parameters",
+      "chain_id": "999",
+      "block_number": "16",
+      "block_hash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "proxy": "0x1111111111111111111111111111111111111111",
+      "transaction_hash": null,
+      "transaction_index": null,
+      "log_index": null,
+      "source_response_sha256": null,
+      "content_sha256": "bcc17acf00d45fbac7c3320a593a6227cb0ba8043b4818b0db2afa16bc521498",
+      "dependency_ids": [
+        "EVD-PARAM-STORAGE"
+      ],
+      "payload": {
+        "values": [
+          {
+            "slot": "0x5555555555555555555555555555555555555555555555555555555555555555",
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000001"
+          }
+        ]
+      }
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "CLM-CHAIN-001",
+      "version_id": "VER-CHAIN-001",
+      "evidence_ids": [
+        "EVD-BLOCK-001"
+      ],
+      "support_status": "unverified",
+      "reproduction_status": "not_attempted",
+      "missing_inputs": [
+        "implementation",
+        "parameters",
+        "prestate"
+      ]
+    }
+  ]
+}

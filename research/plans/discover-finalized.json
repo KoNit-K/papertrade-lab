@@ -1,0 +1,7 @@
+{
+  "schema_version": "readonly-plan-v1",
+  "policy": { "max_requests": 2, "min_interval_ms": 1000, "timeout_ms": 15000 },
+  "steps": [
+    { "kind": "rpc", "request": { "method": "eth_getBlockByNumber", "params": ["finalized", false] } }
+  ]
+}

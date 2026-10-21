@@ -1,0 +1,996 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "chain-evidence-v1"
+      ]
+    },
+    "fixture_kind": {
+      "enum": [
+        "synthetic",
+        "public_chain"
+      ]
+    },
+    "versions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "version_id": {
+            "type": "string",
+            "pattern": "^VER-[A-Z0-9-]+$"
+          },
+          "chain_id": {
+            "enum": [
+              "999"
+            ]
+          },
+          "block_number": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})$"
+          },
+          "block_hash": {
+            "type": "string",
+            "pattern": "^0x[0-9a-f]{64}$"
+          },
+          "proxy": {
+            "type": "string",
+            "pattern": "^0x[0-9a-f]{40}$"
+          },
+          "proxy_type": {
+            "enum": [
+              "unknown",
+              "eip1967"
+            ]
+          },
+          "proxy_type_evidence_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^EVD-[A-Z0-9-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "implementation_address": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{40}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "implementation_code_hash": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "parameter_snapshot_sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "execution_context": {
+            "enum": [
+              "block_end"
+            ]
+          },
+          "effective_from": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "effective_to": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "supersedes": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^VER-[A-Z0-9-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "needs_revalidation": {
+            "type": "boolean"
+          },
+          "binding_status": {
+            "enum": [
+              "incomplete",
+              "complete"
+            ]
+          }
+        },
+        "required": [
+          "version_id",
+          "chain_id",
+          "block_number",
+          "block_hash",
+          "proxy",
+          "proxy_type",
+          "proxy_type_evidence_id",
+          "implementation_address",
+          "implementation_code_hash",
+          "parameter_snapshot_sha256",
+          "execution_context",
+          "effective_from",
+          "effective_to",
+          "supersedes",
+          "needs_revalidation",
+          "binding_status"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "evidence_id": {
+                "type": "string",
+                "pattern": "^EVD-[A-Z0-9-]+$"
+              },
+              "version_id": {
+                "type": "string",
+                "pattern": "^VER-[A-Z0-9-]+$"
+              },
+              "provider": {
+                "enum": [
+                  "hyperliquid-public-rpc"
+                ]
+              },
+              "kind": {
+                "enum": [
+                  "block"
+                ]
+              },
+              "chain_id": {
+                "enum": [
+                  "999"
+                ]
+              },
+              "block_number": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})$"
+              },
+              "block_hash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$"
+              },
+              "proxy": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{40}$"
+              },
+              "transaction_hash": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "transaction_index": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "log_index": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "source_response_sha256": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "content_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "dependency_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^EVD-[A-Z0-9-]+$"
+                },
+                "minItems": 0,
+                "maxItems": 1000,
+                "uniqueItems": true
+              },
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "hash": {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$"
+                  },
+                  "number": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  },
+                  "parent_hash": {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$"
+                  },
+                  "timestamp": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  }
+                },
+                "required": [
+                  "hash",
+                  "number",
+                  "parent_hash",
+                  "timestamp"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "evidence_id",
+              "version_id",
+              "provider",
+              "kind",
+              "chain_id",
+              "block_number",
+              "block_hash",
+              "proxy",
+              "transaction_hash",
+              "transaction_index",
+              "log_index",
+              "source_response_sha256",
+              "content_sha256",
+              "dependency_ids",
+              "payload"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "evidence_id": {
+                "type": "string",
+                "pattern": "^EVD-[A-Z0-9-]+$"
+              },
+              "version_id": {
+                "type": "string",
+                "pattern": "^VER-[A-Z0-9-]+$"
+              },
+              "provider": {
+                "enum": [
+                  "hyperliquid-public-rpc"
+                ]
+              },
+              "kind": {
+                "enum": [
+                  "receipt"
+                ]
+              },
+              "chain_id": {
+                "enum": [
+                  "999"
+                ]
+              },
+              "block_number": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})$"
+              },
+              "block_hash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$"
+              },
+              "proxy": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{40}$"
+              },
+              "transaction_hash": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "transaction_index": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "log_index": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "source_response_sha256": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "content_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "dependency_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^EVD-[A-Z0-9-]+$"
+                },
+                "minItems": 0,
+                "maxItems": 1000,
+                "uniqueItems": true
+              },
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "transaction_hash": {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$"
+                  },
+                  "transaction_index": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  },
+                  "status": {
+                    "enum": [
+                      "success",
+                      "failed"
+                    ]
+                  },
+                  "logs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "log_index": {
+                          "type": "string",
+                          "pattern": "^(0|[1-9][0-9]{0,19})$"
+                        },
+                        "address": {
+                          "type": "string",
+                          "pattern": "^0x[0-9a-f]{40}$"
+                        },
+                        "topic0": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "pattern": "^0x[0-9a-f]{64}$"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "data_sha256": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{64}$"
+                        }
+                      },
+                      "required": [
+                        "log_index",
+                        "address",
+                        "topic0",
+                        "data_sha256"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 0,
+                    "maxItems": 1000,
+                    "uniqueItems": true
+                  }
+                },
+                "required": [
+                  "transaction_hash",
+                  "transaction_index",
+                  "status",
+                  "logs"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "evidence_id",
+              "version_id",
+              "provider",
+              "kind",
+              "chain_id",
+              "block_number",
+              "block_hash",
+              "proxy",
+              "transaction_hash",
+              "transaction_index",
+              "log_index",
+              "source_response_sha256",
+              "content_sha256",
+              "dependency_ids",
+              "payload"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "evidence_id": {
+                "type": "string",
+                "pattern": "^EVD-[A-Z0-9-]+$"
+              },
+              "version_id": {
+                "type": "string",
+                "pattern": "^VER-[A-Z0-9-]+$"
+              },
+              "provider": {
+                "enum": [
+                  "hyperliquid-public-rpc"
+                ]
+              },
+              "kind": {
+                "enum": [
+                  "storage"
+                ]
+              },
+              "chain_id": {
+                "enum": [
+                  "999"
+                ]
+              },
+              "block_number": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})$"
+              },
+              "block_hash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$"
+              },
+              "proxy": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{40}$"
+              },
+              "transaction_hash": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "transaction_index": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "log_index": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "source_response_sha256": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "content_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "dependency_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^EVD-[A-Z0-9-]+$"
+                },
+                "minItems": 0,
+                "maxItems": 1000,
+                "uniqueItems": true
+              },
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "slot": {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$"
+                  },
+                  "value": {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$"
+                  }
+                },
+                "required": [
+                  "slot",
+                  "value"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "evidence_id",
+              "version_id",
+              "provider",
+              "kind",
+              "chain_id",
+              "block_number",
+              "block_hash",
+              "proxy",
+              "transaction_hash",
+              "transaction_index",
+              "log_index",
+              "source_response_sha256",
+              "content_sha256",
+              "dependency_ids",
+              "payload"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "evidence_id": {
+                "type": "string",
+                "pattern": "^EVD-[A-Z0-9-]+$"
+              },
+              "version_id": {
+                "type": "string",
+                "pattern": "^VER-[A-Z0-9-]+$"
+              },
+              "provider": {
+                "enum": [
+                  "hyperliquid-public-rpc"
+                ]
+              },
+              "kind": {
+                "enum": [
+                  "code"
+                ]
+              },
+              "chain_id": {
+                "enum": [
+                  "999"
+                ]
+              },
+              "block_number": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})$"
+              },
+              "block_hash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$"
+              },
+              "proxy": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{40}$"
+              },
+              "transaction_hash": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "transaction_index": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "log_index": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "source_response_sha256": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "content_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "dependency_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^EVD-[A-Z0-9-]+$"
+                },
+                "minItems": 0,
+                "maxItems": 1000,
+                "uniqueItems": true
+              },
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{40}$"
+                  },
+                  "bytecode": {
+                    "type": "string",
+                    "pattern": "^0x([0-9a-f]{2})+$"
+                  }
+                },
+                "required": [
+                  "address",
+                  "bytecode"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "evidence_id",
+              "version_id",
+              "provider",
+              "kind",
+              "chain_id",
+              "block_number",
+              "block_hash",
+              "proxy",
+              "transaction_hash",
+              "transaction_index",
+              "log_index",
+              "source_response_sha256",
+              "content_sha256",
+              "dependency_ids",
+              "payload"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "evidence_id": {
+                "type": "string",
+                "pattern": "^EVD-[A-Z0-9-]+$"
+              },
+              "version_id": {
+                "type": "string",
+                "pattern": "^VER-[A-Z0-9-]+$"
+              },
+              "provider": {
+                "enum": [
+                  "hyperliquid-public-rpc"
+                ]
+              },
+              "kind": {
+                "enum": [
+                  "parameters"
+                ]
+              },
+              "chain_id": {
+                "enum": [
+                  "999"
+                ]
+              },
+              "block_number": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})$"
+              },
+              "block_hash": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{64}$"
+              },
+              "proxy": {
+                "type": "string",
+                "pattern": "^0x[0-9a-f]{40}$"
+              },
+              "transaction_hash": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^0x[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "transaction_index": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "log_index": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]{0,19})$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "source_response_sha256": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "content_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "dependency_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^EVD-[A-Z0-9-]+$"
+                },
+                "minItems": 0,
+                "maxItems": 1000,
+                "uniqueItems": true
+              },
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "values": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "slot": {
+                          "type": "string",
+                          "pattern": "^0x[0-9a-f]{64}$"
+                        },
+                        "value": {
+                          "type": "string",
+                          "pattern": "^0x[0-9a-f]{64}$"
+                        }
+                      },
+                      "required": [
+                        "slot",
+                        "value"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "minItems": 1,
+                    "maxItems": 1000,
+                    "uniqueItems": true
+                  }
+                },
+                "required": [
+                  "values"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "evidence_id",
+              "version_id",
+              "provider",
+              "kind",
+              "chain_id",
+              "block_number",
+              "block_hash",
+              "proxy",
+              "transaction_hash",
+              "transaction_index",
+              "log_index",
+              "source_response_sha256",
+              "content_sha256",
+              "dependency_ids",
+              "payload"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "pattern": "^CLM-[A-Z0-9-]+$"
+          },
+          "version_id": {
+            "type": "string",
+            "pattern": "^VER-[A-Z0-9-]+$"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^EVD-[A-Z0-9-]+$"
+            },
+            "minItems": 1,
+            "maxItems": 1000,
+            "uniqueItems": true
+          },
+          "support_status": {
+            "enum": [
+              "unverified"
+            ]
+          },
+          "reproduction_status": {
+            "enum": [
+              "not_attempted",
+              "blocked"
+            ]
+          },
+          "missing_inputs": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "implementation",
+                "parameters",
+                "prestate",
+                "trace",
+                "price",
+                "intent_outcome",
+                "independent_result",
+                "proxy_type",
+                "archive_state",
+                "finality"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 1000,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "claim_id",
+          "version_id",
+          "evidence_ids",
+          "support_status",
+          "reproduction_status",
+          "missing_inputs"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 1000,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "fixture_kind",
+    "versions",
+    "evidence",
+    "claims"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -1,6 +1,6 @@
 # Current status
 
-Updated: 2026-10-21. **Research preview; documentation foundation.**
+Updated: 2026-10-21. **Research preview; M0 evidence tooling.**
 
 ## P0 scope
 
@@ -20,10 +20,10 @@ The current branch additionally contains the M0 records and validator increments
 | User observations | 5 reports; all unverified; no identifying records |
 | Source reading | Per-source status in [source index](docs/sources.md) |
 | Structured records | 6 document evidence entries; 13 atomic claims; 1 documentation version; see [records](docs/evidence-records.md) |
-| Evidence/version validator | Implemented for documentation and unidentified observations; schema, references, version scope and published capture integrity |
-| Read-only collector / safe export tooling | Not implemented |
+| Evidence/version validator | Document records plus separate chain snapshot profile; historical identity, dependency, conflict and hash checks |
+| Read-only collector / safe export tooling | Implemented for one public RPC and reviewed metadata-only export; see guides |
 | Integer model / transaction CLI / offline replay | Not implemented |
-| Real transaction reproduction | Not attempted; no case packet |
+| Real transaction reproduction | Not attempted; first-case intake follows the tooling push |
 | REA installation / outputs | Not performed / none |
 | Local validator tests / strict type check | Implemented and run; see checks below |
 | CI, model tests, document-site build | Not configured / not run |
@@ -33,14 +33,15 @@ See the [publication review](docs/publication-review.md) for actual P0 checks an
 
 ## Next three tasks
 
-1. Extend the record contract for version-bound chain evidence, with incomplete-identity and independent-output rejection tests.
-2. Enforce read-only collection and reviewed export boundaries; add negative tests before accepting raw evidence.
-3. Select a bounded public settlement case under the [intake plan](docs/first-case-intake.md) and inventory historical inputs.
+1. Execute the bounded finalized-block discovery plan, then persist an exact interval before reading candidate events.
+2. Inventory archival state, proxy classification, event ABI and transaction/intent ordering for the earliest eligible candidate.
+3. Build M1 only from decisive historical inputs and independent results; otherwise publish the missing-input report.
 
-M0 is partial: the document/observation validator is implemented; chain-case
-schemas, collection enforcement and safe export are outstanding. M1–M4 have not started implementation. All remain open.
-P0 publication does not imply any of these technical milestones
-are complete. See [ROADMAP.md](ROADMAP.md) for their acceptance criteria.
+M0 tools are implemented for the documented profile: official document records,
+chain-999 block-end snapshots (EIP-1967 or explicitly incomplete), bounded public
+RPC, and reviewed metadata export. This is not arbitrary HAR anonymization,
+a transaction-prestate decoder or independent reproduction. Live case intake is
+pending; M1–M4 remain unimplemented. No milestone is closed by test counts alone.
 
 ## Checks for the post-launch increment
 
@@ -68,3 +69,24 @@ The validator runs offline after dependencies are installed, does not execute
 record commands, and rejects unsupported chain/reproduction records. It does not
 perform redaction or grant permission to publish. No protocol/model tests,
 transaction replay, REA investigation or production operation was run.
+
+## Checks for the chain, collector and export increment
+
+The implementation and scope are documented in [chain evidence](docs/chain-evidence.md),
+[read-only collection](docs/readonly-collection.md), and [safe export](docs/safe-export.md).
+Tests cover synthetic complete/incomplete snapshots, conflicting historical evidence,
+Keccak versus SHA-256, unsupported reproduction, method/parameter rejection,
+budgets, limits, pagination conflicts, real CLI files, exact-byte review, invalid
+UTF-8, nested sensitive fields and exclusive output paths.
+
+The loopback HTTP transport test initially encountered `listen EPERM` in a sandbox
+that prohibits listening on localhost. It passed when run with local-listen access;
+no production provider was used for tests. Reviewer findings were fixed and
+regression-tested before push. All protocol claims remain unverified.
+
+Final checks for this increment (Node.js 26.8.2, pnpm 11.25.0): **140/140 tests
+passed**, strict TypeScript check passed, original records passed, and the
+synthetic chain packet passed while retaining `protocol_reproduced: false`.
+All checks also passed in a fresh temporary copy installed offline from the
+frozen lockfile and populated package cache. Minimum Node/Windows compatibility,
+hosted CI and a dependency vulnerability audit were not run.

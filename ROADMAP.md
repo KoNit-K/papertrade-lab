@@ -6,7 +6,7 @@ unverified. Updated: 2026-10-21.
 | Milestone | Deliverable | Completion criteria | Current state |
 |---|---|---|---|
 | P0 — Public foundation | Bilingual home, mechanism map, observations, payout note, method, sources, policies, prerelease | Real content, reviewed public files/history, correct license and actual public repository/release verified | Published as v0.1.0-alpha.1 |
-| M0 — Evidence foundation | Claim/evidence/version structures, source inventory, read-only boundary, safe export | Valid/invalid samples; references and hashes checked; evidence-free reproduction rejected; secret-bearing exports rejected | Partial: initial records and document/observation validator; chain-case schema, collection and export pending |
+| M0 — Evidence foundation | Claim/evidence/version structures, source inventory, read-only boundary, safe export | Valid/invalid samples; references and hashes checked; evidence-free reproduction rejected; secret-bearing exports rejected | Tooling implemented for the documented profile: records, historical snapshots, bounded RPC and metadata export; live intake pending |
 | M1 — First reproducible case | Version-bound public trade, independent integer model and offline explanation | Decisive historical inputs; independent output comparison; explicit mismatches/gaps; no-network replay of verified fields | Planned |
 | M2 — Trading mechanics | Fees, liquidation, directional limits, rejection and signature semantics | Separate interface/relayer/contract rules; boundaries, holdout cases, and integer behavior checked | Planned |
 | M3 — Ledger and PAPER | Cash/claim accounting, payout queue, issuance, staking, funding lifecycle | Conservation and state transitions tested; marginal/average issuance distinguished; no guaranteed future liquidity claims | Planned |
@@ -15,7 +15,7 @@ unverified. Updated: 2026-10-21.
 ## Immediate sequence after launch
 
 1. **Records:** define machine-readable claims, evidence and version identity;
-   extend the existing tested offline validator to chain-bound case records.
+   use the tested chain snapshot validator without upgrading unverified claims.
 2. **Sources:** capture a bounded set of primary pages with timestamps, hashes,
    version identifiers where available, and minimal publishable summaries.
 3. **Case:** state a deterministic selection rule, locate an already public

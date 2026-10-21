@@ -31,8 +31,10 @@ Ignored files are not automatically safe; `.gitignore` cannot remove history.
    actually performed and their limits; no scanner is a guarantee.
 5. Review new evidence again when combining records could reveal identity.
 
-Automated redaction/export tooling is planned, not implemented. Manual review is
-required now. No sensitive raw material is needed to contribute a research question.
+A [reviewed metadata exporter](docs/safe-export.md) now enforces byte-bound review,
+strict projections and sensitive-field rejection for supported records. Arbitrary
+HAR/chat imports remain unsupported; no general-purpose anonymization is claimed.
+Manual review is still required. No sensitive raw material is needed to contribute a research question.
 
 ## Collection boundaries
 

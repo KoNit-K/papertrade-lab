@@ -1,7 +1,9 @@
 # Evidence records and offline validation
 
-Updated: 2026-10-21. **M0 is partial.** The document/observation record validator
-is implemented; chain-case schemas, collection enforcement and safe export are not.
+Updated: 2026-10-21. The original document/observation validator described here
+is joined by [chain snapshot validation](chain-evidence.md),
+[bounded collection](readonly-collection.md) and [reviewed metadata export](safe-export.md).
+These are M0 tools; no protocol reproduction is claimed.
 
 ## Available records
 
@@ -55,9 +57,9 @@ independently checked against absent bytes by this command.
 
 This first schema accepts only official-document evidence and unidentified user
 observations. `reproduced`, `mismatch`, chain observations and deployment identities
-are rejected, even if someone supplies a URL or a verification command. Supporting
-those records requires a separately tested case/evidence contract with historical
-inputs and independent outputs. A documentation version cannot serve as one.
+are rejected, even if someone supplies a URL or a verification command. Chain snapshots now use the separate tested schema linked above. Reproduction
+still requires a future M1 contract with decisive historical inputs and independent
+outputs. A documentation version cannot serve as a chain version.
 
 A source description can be supported, unverified, conflicting or refuted with the
 corresponding evidence roles. A version marked `needs_revalidation` requires claims to remain `unverified`;
