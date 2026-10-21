@@ -22,7 +22,7 @@ The current branch additionally contains the M0 records and validator increments
 | Structured records | 6 document evidence entries; 13 atomic claims; 1 documentation version; see [records](docs/evidence-records.md) |
 | Evidence/version validator | Document records plus separate chain snapshot profile; historical identity, dependency, conflict and hash checks |
 | Read-only collector / safe export tooling | Implemented for one public RPC and reviewed metadata-only export; see guides |
-| Integer model / transaction CLI / offline replay | Not implemented |
+| Research arithmetic / full settlement replay | Three bounded offline helpers for mint integration, bust price and pending rewards; full settlement model and transaction CLI not implemented |
 | Real transaction reproduction | Blocked: candidate 4 has a same-case arithmetic match; historical state/price unavailable and old state temporal bindings withdrawn |
 | REA installation / outputs | Not performed / none |
 | Local validator tests / strict type check | Implemented and run; see checks below |
@@ -33,9 +33,9 @@ See the [publication review](docs/publication-review.md) for actual P0 checks an
 
 ## Next three tasks
 
-1. Obtain recorded block precompile inputs/results and actual-transaction archive traces for the same fixed interval; [note 005](docs/research-notes/005-historical-source-feasibility.md) identifies the source interface and access limits. No target record was acquired.
-2. Bind candidate 4 economics to actual execution pre-state, BBO/frozen price, parameters, authorization and ledger/queue deltas.
-3. Preserve the original candidate order and implement M1 only after a fully eligible case and independent expected results are available.
+1. Complete actual intent submit/ack/execution timelines and missing queue/debt/distribution ledger cases identified in [note 006](docs/research-notes/006-current-mechanisms.md).
+2. Obtain archive/trace and recorded precompile evidence for CASE-001 and authenticate candidate 4 prestate, prices, parameters and ledger deltas.
+3. Preserve registered selection rules and implement M1 only after decisive historical inputs and independent expected results are available.
 
 M0 tools are implemented for the documented profile: official document records,
 chain-999 block-end snapshots (EIP-1967 or explicitly incomplete), bounded public
@@ -199,3 +199,49 @@ the retained source digests and research boundaries, while noting that the parti
 local reader captures cannot independently prove every search/access execution.
 The source count conservatively includes two reader `find` operations; the
 original pre-read plan is retained without retrospective edits.
+
+## Current mechanism investigation: CASE-002–005
+
+[Note 006](docs/research-notes/006-current-mechanisms.md) covers frontend intent
+queue/rank behavior, losing-close versus liquidation mint bases, a separate
+585-byte mint integration library, staking reward precision and claims, a real
+opposite-position pair and its two closes, and exact liquidation buffer/threshold
+behavior in the acquired runtime. The bilingual homepages now explain all five
+questions with evidence boundaries and links to the detailed records.
+
+The first registered window remains 49115089–49115588, independent of CASE-001.
+Source text, runtime bytes and acquisition-time parameter responses were retained
+privately. Default-RPC state observations are latest-only and not transaction
+prestate. Provider-reported receipts support amount associations, not full
+settlement reproduction. Actual execution-queue discipline and user timing,
+active payout-queue/debt branches, and full ledger reconciliation remain missing.
+
+Three offline research helpers require explicit inputs and bounded integer domains;
+they do not implement a full protocol model or select historical parameters. Five
+focused tests passed after the calculation tests first failed on unimplemented
+behavior. A bounded research interpreter compared 720 synthetic inputs with the
+acquired bytes, and six synthetic oracle-price cases checked inclusive liquidation
+gates. Those scratch checks do not constitute an independent EVM or M1 replay.
+
+Collection: 118 new RPC attempts (116 successful, one log timeout, one chain
+handshake network error), charged as CASE-002 59, CASE-003 29, CASE-004 20,
+CASE-005 10. Thirty explicit source reads include one page connection failure and normal
+retry. The initial window is unchanged; a separately registered single-block
+CASE-004 follow-up checked the API-advertised distribution at 49114617. Its
+fee-push/distribution amounts agree, while exact prior reward shares, LP-excess
+funding and final external payment remain unreproduced. No search, credential,
+paid service, signing, broadcast or cloud deployment was used.
+
+Final implementation checks (Node.js 26.8.2, pnpm 11.25.0): **152/152 tests passed**,
+including local HTTP transport; strict type checking passed; the existing document
+record validator accepted 13 claims, six evidence entries and one version. The
+new mechanism case summaries use a separate research profile and were checked
+for JSON, links, budgets, byte hashes and missing-input boundaries; they are not
+new validated historical snapshots. The collector/validator/exporter behavior
+and all CASE-001 records are unchanged.
+
+Independent read-only review found no blocking or important issue across all 20
+public files. The reviewer reran the five arithmetic tests and 720 synthetic
+bytecode comparisons, recomputed request counts and event ordering from private
+captures, and checked receipt amounts and publication boundaries. A minor source
+error description was corrected from timeout to connection failure.

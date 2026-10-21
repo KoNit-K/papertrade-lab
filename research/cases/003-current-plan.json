@@ -1,0 +1,26 @@
+{
+  "registered_at": "2026-10-21T07:17:42.224371+00:00",
+  "chain_id": 999,
+  "version_target": "current_observed_deployment; historical binding must be independently established",
+  "window_policy": "After one shared finalized discovery, record the last 500 inclusive blocks ending at that returned height before any event reads; discovery errors leave window null. Never silently expand.",
+  "block_from": null,
+  "block_to": null,
+  "order": [
+    "block_number",
+    "transaction_index",
+    "log_index"
+  ],
+  "rpc_budget": 60,
+  "source_access_budget": 30,
+  "search_query_budget": 8,
+  "shared_reads_accounting": "Charge each shared read to CASE-002 only; other cases reference its ledger without duplicating reads or counts.",
+  "rules": [
+    "Read only; no credentials, paid services, signing, broadcast or cloud deployment",
+    "Preserve failed, missing and excluded candidates; choose first eligible in fixed order",
+    "Latest-only state is acquisition-time observation, not historical block or transaction prestate",
+    "No new M1 claims without decisive historical inputs and independent expected results"
+  ],
+  "case_id": "CASE-003",
+  "theme": "loss-liquidation-mint",
+  "selection_rule": "first ordinary losing close and first liquidation in fixed order, with cash/debt and queue branches classified only with evidence"
+}

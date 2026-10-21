@@ -1,0 +1,621 @@
+{
+  "schema_version": "current-mechanism-evidence-v1",
+  "date": "2026-10-21",
+  "window_record": "002-005-current-window.json",
+  "case001_unchanged": true,
+  "assurance": "Provider-reported blocks/receipts and acquisition-time latest-only code/storage; no transaction-point identity, independent finality or complete settlement proof. Research summaries are not new validated chain packets.",
+  "rpc_attempts_by_case": {
+    "CASE-002": 59,
+    "CASE-003": 29,
+    "CASE-004": 20,
+    "CASE-005": 10
+  },
+  "new_rpc_attempts": 118,
+  "case001_prior_rpc_attempts_unchanged": 85,
+  "runs": [
+    {
+      "run_id": "CURRENT-DISCOVERY",
+      "charged_to": "CASE-002",
+      "started_at": "2026-10-21T07:18:06.586Z",
+      "finished_at": "2026-10-21T07:18:08.117Z",
+      "status": "completed",
+      "attempts": 2,
+      "ok": 2,
+      "failures": [],
+      "private_run_file_sha256": "eea855bef048b9389cbcbb0ffb9afdf1679f9102c9694d70c9b3155bb7eddd3b"
+    },
+    {
+      "run_id": "CURRENT-IDENTITY",
+      "charged_to": "CASE-002",
+      "started_at": "2026-10-21T07:18:50.144Z",
+      "finished_at": "2026-10-21T07:18:56.556Z",
+      "status": "completed",
+      "attempts": 7,
+      "ok": 7,
+      "failures": [],
+      "private_run_file_sha256": "6a3911bdc47988362fdaddb40a38045460933997c5bc4f9a69a91384d792a2e3"
+    },
+    {
+      "run_id": "CURRENT-DEPENDENCIES",
+      "charged_to": "CASE-002",
+      "started_at": "2026-10-21T07:19:54.658Z",
+      "finished_at": "2026-10-21T07:20:05.903Z",
+      "status": "completed",
+      "attempts": 12,
+      "ok": 12,
+      "failures": [],
+      "private_run_file_sha256": "19fdc0f9fabbf1625fbfec1e25ba67d0f2312ccb258ab2658b45a0350295f22e"
+    },
+    {
+      "run_id": "CURRENT-IMPLEMENTATIONS",
+      "charged_to": "CASE-002",
+      "started_at": "2026-10-21T07:21:14.488Z",
+      "finished_at": "2026-10-21T07:21:18.654Z",
+      "status": "completed",
+      "attempts": 5,
+      "ok": 5,
+      "failures": [],
+      "private_run_file_sha256": "37a8ff0750c0d494e1e5005f61d763f24b61ee862344679f4378ec12d4c2f6e5"
+    },
+    {
+      "run_id": "CURRENT-PARAMETERS",
+      "charged_to": "CASE-002",
+      "started_at": "2026-10-21T07:23:04.864Z",
+      "finished_at": "2026-10-21T07:23:15.401Z",
+      "status": "blocked",
+      "attempts": 1,
+      "ok": 0,
+      "failures": [
+        {
+          "method": "eth_chainId",
+          "status": "network_error"
+        }
+      ],
+      "private_run_file_sha256": "6e613303608aaa5f668c86bdd664300c06ddef5983f8e5bf2498b9582c937fa9"
+    },
+    {
+      "run_id": "CURRENT-PARAMETERS-RETRY",
+      "charged_to": "CASE-002",
+      "started_at": "2026-10-21T07:23:55.232Z",
+      "finished_at": "2026-10-21T07:24:15.420Z",
+      "status": "completed",
+      "attempts": 21,
+      "ok": 21,
+      "failures": [],
+      "private_run_file_sha256": "ef89b750eb3178bb1603444463d241bf86c3e9f3933af8f4e28b871a0ba4af1d"
+    },
+    {
+      "run_id": "CURRENT-BATCH-SCAN",
+      "charged_to": "CASE-002",
+      "started_at": "2026-10-21T07:21:26.152Z",
+      "finished_at": "2026-10-21T07:21:36.558Z",
+      "status": "completed",
+      "attempts": 11,
+      "ok": 11,
+      "failures": [],
+      "private_run_file_sha256": "c2a0ca8e7320372462a6a5cf0e70b22a1d8ae010b82ef583080a46ef1dfa9100"
+    },
+    {
+      "run_id": "CURRENT-EXCHANGE-SCAN",
+      "charged_to": "CASE-003",
+      "started_at": "2026-10-21T07:20:19.971Z",
+      "finished_at": "2026-10-21T07:20:44.984Z",
+      "status": "partial",
+      "attempts": 6,
+      "ok": 5,
+      "failures": [
+        {
+          "method": "eth_getLogs",
+          "status": "timeout"
+        }
+      ],
+      "private_run_file_sha256": "cb07c67dfb4da17ac24dfbf8e52a9542df3577baa962407970cc9ad62ef208ef"
+    },
+    {
+      "run_id": "CURRENT-EXCHANGE-RETRY",
+      "charged_to": "CASE-003",
+      "started_at": "2026-10-21T07:21:19.093Z",
+      "finished_at": "2026-10-21T07:21:25.777Z",
+      "status": "completed",
+      "attempts": 7,
+      "ok": 7,
+      "failures": [],
+      "private_run_file_sha256": "afa88a977910348f9d8c6cae78c43682d4df7c7c67a75c9a3ad0b5fca2010be9"
+    },
+    {
+      "run_id": "CURRENT-TOKEN-SCAN",
+      "charged_to": "CASE-003",
+      "started_at": "2026-10-21T07:21:36.934Z",
+      "finished_at": "2026-10-21T07:21:47.104Z",
+      "status": "completed",
+      "attempts": 11,
+      "ok": 11,
+      "failures": [],
+      "private_run_file_sha256": "01e732396c24f3feefb4d8be9d9d6efeae9468e5c9aef1d7a84a2dbc1326da4b"
+    },
+    {
+      "run_id": "CURRENT-MINT-RECEIPTS",
+      "charged_to": "CASE-003",
+      "started_at": "2026-10-21T07:25:40.236Z",
+      "finished_at": "2026-10-21T07:25:44.407Z",
+      "status": "completed",
+      "attempts": 5,
+      "ok": 5,
+      "failures": [],
+      "private_run_file_sha256": "108f8a2ab8d222aee2bd80c1f9ced0de8d68dea3b34f996052b6a5524fff683e"
+    },
+    {
+      "run_id": "CURRENT-STAKING-SCAN",
+      "charged_to": "CASE-004",
+      "started_at": "2026-10-21T07:21:47.474Z",
+      "finished_at": "2026-10-21T07:21:57.654Z",
+      "status": "completed",
+      "attempts": 11,
+      "ok": 11,
+      "failures": [],
+      "private_run_file_sha256": "0ab068004abcf053b1a03c697e118e0df3c870b618a4c48e4eab7d6bd80434b5"
+    },
+    {
+      "run_id": "CURRENT-STAKING-RECEIPTS",
+      "charged_to": "CASE-004",
+      "started_at": "2026-10-21T07:25:49.331Z",
+      "finished_at": "2026-10-21T07:25:53.500Z",
+      "status": "completed",
+      "attempts": 5,
+      "ok": 5,
+      "failures": [],
+      "private_run_file_sha256": "53aac9cb6f968ad4b365745ac7bfb94aed246c2f9203d9c28f76d6bc09630909"
+    },
+    {
+      "run_id": "CURRENT-HEDGE-RECEIPTS",
+      "charged_to": "CASE-005",
+      "started_at": "2026-10-21T07:25:44.771Z",
+      "finished_at": "2026-10-21T07:25:48.973Z",
+      "status": "completed",
+      "attempts": 5,
+      "ok": 5,
+      "failures": [],
+      "private_run_file_sha256": "1ace31304b8e5b12075b0b7dd63244ed5fd89690555a8f81e36f9fd4a1e59280"
+    },
+    {
+      "run_id": "CURRENT-HEDGE-END",
+      "charged_to": "CASE-005",
+      "started_at": "2026-10-21T07:34:13.994Z",
+      "finished_at": "2026-10-21T07:34:18.255Z",
+      "status": "completed",
+      "attempts": 5,
+      "ok": 5,
+      "failures": [],
+      "private_run_file_sha256": "fb023daa0430fa3d54d7a33593270f5641124017fa64da4ed6d056889a5650dd"
+    },
+    {
+      "run_id": "CURRENT-DISTRIBUTION",
+      "charged_to": "CASE-004",
+      "started_at": "2026-10-21T07:39:21.726Z",
+      "finished_at": "2026-10-21T07:39:24.932Z",
+      "status": "completed",
+      "attempts": 4,
+      "ok": 4,
+      "failures": [],
+      "private_run_file_sha256": "83549ca632a307b573e10df7dbcc8e7fba519f351141a76dfadea96b131414cd",
+      "scope": "Single-block targeted follow-up at 49114617, separately registered; initial window unchanged"
+    }
+  ],
+  "source_accesses_charged_to_case002": 30,
+  "search_queries": 0,
+  "sources": [
+    {
+      "ordinal": 1,
+      "url": "https://docs.papertrade.xyz/how/architecture/",
+      "started_at": "2026-10-21T07:18:02.735556+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/how/architecture/",
+      "status": "ok",
+      "body_sha256": "ba32eb2d2cf834acd4ff9684dd7793b331affaf2476aa2070ce91fe8703bc40f",
+      "bytes": 17784,
+      "finished_at": "2026-10-21T07:18:03.924898+00:00"
+    },
+    {
+      "ordinal": 2,
+      "url": "https://docs.papertrade.xyz/how/solvency-queue/",
+      "started_at": "2026-10-21T07:18:04.930357+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/how/solvency-queue/",
+      "status": "ok",
+      "body_sha256": "1f17274c0eedacf5555e839018066ac5b68c3d1f99a0596484f27f88d762d236",
+      "bytes": 20220,
+      "finished_at": "2026-10-21T07:18:05.825803+00:00"
+    },
+    {
+      "ordinal": 3,
+      "url": "https://docs.papertrade.xyz/how/mint-curve/",
+      "started_at": "2026-10-21T07:18:06.826766+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/how/mint-curve/",
+      "status": "ok",
+      "body_sha256": "f263fecf03ae73a3e6922c0c944b14c8c9930d2646acec053ffd9cd0cd3ec66c",
+      "bytes": 14717,
+      "finished_at": "2026-10-21T07:18:07.426600+00:00"
+    },
+    {
+      "ordinal": 4,
+      "url": "https://docs.papertrade.xyz/paper/staking/",
+      "started_at": "2026-10-21T07:18:08.428832+00:00",
+      "status": "error",
+      "error_type": "RemoteDisconnected",
+      "finished_at": "2026-10-21T07:18:24.167574+00:00"
+    },
+    {
+      "ordinal": 5,
+      "url": "https://docs.papertrade.xyz/learn/staking-dividends/",
+      "started_at": "2026-10-21T07:18:25.169464+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/learn/staking-dividends/",
+      "status": "ok",
+      "body_sha256": "be15b4dda48ab7143d5b19014b6bd0bcb70fde8ff7b204b81ad38adb37f78e58",
+      "bytes": 8974,
+      "finished_at": "2026-10-21T07:18:25.675753+00:00"
+    },
+    {
+      "ordinal": 6,
+      "url": "https://docs.papertrade.xyz/learn/paper-emissions/",
+      "started_at": "2026-10-21T07:18:26.681034+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/learn/paper-emissions/",
+      "status": "ok",
+      "body_sha256": "123323f4b0c0cca96ba53afd281dfd7f8233c22893f5bd12f1b803a9f283343b",
+      "bytes": 12008,
+      "finished_at": "2026-10-21T07:18:27.205229+00:00"
+    },
+    {
+      "ordinal": 7,
+      "url": "https://docs.papertrade.xyz/learn/lp-queue/",
+      "started_at": "2026-10-21T07:18:28.208587+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/learn/lp-queue/",
+      "status": "ok",
+      "body_sha256": "b373fe4370f054c6de1697cd68cb61eb53bcb4bb06144b8862ee6acce19eb8e8",
+      "bytes": 14807,
+      "finished_at": "2026-10-21T07:18:29.095740+00:00"
+    },
+    {
+      "ordinal": 8,
+      "url": "https://docs.papertrade.xyz/learn/liquidations/",
+      "started_at": "2026-10-21T07:18:30.101874+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/learn/liquidations/",
+      "status": "ok",
+      "body_sha256": "eb717f765665dc95b1853d76eeb5d72a13d81682b2f679f83b74a1a5b57690f6",
+      "bytes": 10230,
+      "finished_at": "2026-10-21T07:18:30.665080+00:00"
+    },
+    {
+      "ordinal": 9,
+      "url": "https://docs.papertrade.xyz/learn/wins-losses/",
+      "started_at": "2026-10-21T07:18:31.670991+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/learn/wins-losses/",
+      "status": "ok",
+      "body_sha256": "0bfceac9097bc1b65241c6b2c2eb6c76ad4fedd340258744f2e89d45672b9218",
+      "bytes": 12144,
+      "finished_at": "2026-10-21T07:18:32.237464+00:00"
+    },
+    {
+      "ordinal": 10,
+      "url": "https://docs.papertrade.xyz/how/risk/",
+      "started_at": "2026-10-21T07:18:33.243203+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/how/risk/",
+      "status": "ok",
+      "body_sha256": "d6116689bce8b534b458370c2171bd66c739b6694c992a2982d9115fcc476c32",
+      "bytes": 13568,
+      "finished_at": "2026-10-21T07:18:33.809682+00:00"
+    },
+    {
+      "ordinal": 11,
+      "url": "https://docs.papertrade.xyz/dev/contract-addresses/",
+      "started_at": "2026-10-21T07:18:34.815325+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/dev/contract-addresses/",
+      "status": "ok",
+      "body_sha256": "4d37e86879a3800750be0e2a95446deb940adabe0df2e97565f9e630fbdaad04",
+      "bytes": 10279,
+      "finished_at": "2026-10-21T07:18:35.590381+00:00"
+    },
+    {
+      "ordinal": 12,
+      "url": "https://docs.papertrade.xyz/learn/trades-pricing/",
+      "started_at": "2026-10-21T07:18:36.596275+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/learn/trades-pricing/",
+      "status": "ok",
+      "body_sha256": "015915573a88c94fedeec9248f081b9ca72db4f4579642dadef1541b79a7d3a5",
+      "bytes": 9850,
+      "finished_at": "2026-10-21T07:18:37.361047+00:00"
+    },
+    {
+      "ordinal": 13,
+      "url": "https://exchange.papertrade.xyz/",
+      "started_at": "2026-10-21T07:18:38.362805+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/",
+      "status": "ok",
+      "body_sha256": "e5f1557161f7005f52a639742c2036f54de9c97fa2b0a44ee85e7559ed0ac918",
+      "bytes": 9501,
+      "finished_at": "2026-10-21T07:18:38.948425+00:00"
+    },
+    {
+      "ordinal": 14,
+      "url": "https://docs.papertrade.xyz/paper/staking/",
+      "started_at": "2026-10-21T07:19:14.124180+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/paper/staking/",
+      "status": "ok",
+      "body_sha256": "ac4a9f86ffd5de4eac596e0a67c7815b2bdc422a5de486f7d164e0d81ab91a64",
+      "bytes": 9952,
+      "finished_at": "2026-10-21T07:19:14.707084+00:00"
+    },
+    {
+      "ordinal": 15,
+      "url": "https://exchange.papertrade.xyz/assets/index-CDAp4ke1.js",
+      "started_at": "2026-10-21T07:19:15.712958+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/index-CDAp4ke1.js",
+      "status": "ok",
+      "body_sha256": "20a2766da33e1719e1f7a5f465505676acb6c8232102914be88d986f0b2d20dc",
+      "bytes": 6478,
+      "finished_at": "2026-10-21T07:19:16.275937+00:00"
+    },
+    {
+      "ordinal": 16,
+      "url": "https://exchange.papertrade.xyz/assets/app-DL1CQl0h.js",
+      "started_at": "2026-10-21T07:19:58.901499+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/app-DL1CQl0h.js",
+      "status": "ok",
+      "body_sha256": "15af5e1a6dd7dcb66f6fdd4f49cda02f8be9625f1f3e0745b47d27a1c50b5234",
+      "bytes": 581202,
+      "finished_at": "2026-10-21T07:20:00.420607+00:00"
+    },
+    {
+      "ordinal": 17,
+      "url": "https://exchange.papertrade.xyz/assets/query-api-client-DGxZQjmt.js",
+      "started_at": "2026-10-21T07:20:01.421729+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/query-api-client-DGxZQjmt.js",
+      "status": "ok",
+      "body_sha256": "82c86b9300bda6cda6d8beb1d512b315afa4a479288ed588a28c38dca2cb228b",
+      "bytes": 917,
+      "finished_at": "2026-10-21T07:20:01.936115+00:00"
+    },
+    {
+      "ordinal": 18,
+      "url": "https://exchange.papertrade.xyz/assets/QueuedIntentLabel-Dt5IEGE8.js",
+      "started_at": "2026-10-21T07:20:02.940507+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/QueuedIntentLabel-Dt5IEGE8.js",
+      "status": "ok",
+      "body_sha256": "903d4f79a2a597b44312ca301fb34a200561b370e420c7db767b2e6cff2cbef7",
+      "bytes": 335,
+      "finished_at": "2026-10-21T07:20:03.486387+00:00"
+    },
+    {
+      "ordinal": 19,
+      "url": "https://exchange.papertrade.xyz/assets/curve-B6R_lh-Q.js",
+      "started_at": "2026-10-21T07:20:04.492472+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/curve-B6R_lh-Q.js",
+      "status": "ok",
+      "body_sha256": "6874b45cee0ddaba63ca31b675dc61c48704a79aff78993580f1c43b7f16b41e",
+      "bytes": 17933,
+      "finished_at": "2026-10-21T07:20:05.131385+00:00"
+    },
+    {
+      "ordinal": 20,
+      "url": "https://exchange.papertrade.xyz/assets/account-Dgo7hBdJ.js",
+      "started_at": "2026-10-21T07:20:06.136397+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/account-Dgo7hBdJ.js",
+      "status": "ok",
+      "body_sha256": "f6b6656f2c99ce5747d900b81fff6843b9955c2762558f453ac8c02bf4fec286",
+      "bytes": 11210,
+      "finished_at": "2026-10-21T07:20:06.730019+00:00"
+    },
+    {
+      "ordinal": 21,
+      "url": "https://exchange.papertrade.xyz/assets/deployment-Dtroy0IQ.js",
+      "started_at": "2026-10-21T07:20:07.736021+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/deployment-Dtroy0IQ.js",
+      "status": "ok",
+      "body_sha256": "9046f2d09de18fd0b14eb984e0b9f71c12d3cafdb79665af726b33c8a4a30bad",
+      "bytes": 1289,
+      "finished_at": "2026-10-21T07:20:08.246234+00:00"
+    },
+    {
+      "ordinal": 22,
+      "url": "https://exchange.papertrade.xyz/assets/messages-DAIxGzEv.js",
+      "started_at": "2026-10-21T07:20:09.252831+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/messages-DAIxGzEv.js",
+      "status": "ok",
+      "body_sha256": "502e91fcd3e37ba0b347ec797cb2598a0c0325630c9025ad0b1ccfa72d497e79",
+      "bytes": 970,
+      "finished_at": "2026-10-21T07:20:09.753725+00:00"
+    },
+    {
+      "ordinal": 23,
+      "url": "https://exchange.papertrade.xyz/assets/useTradingNetwork-Bfx9Ehep.js",
+      "started_at": "2026-10-21T07:20:37.538604+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/useTradingNetwork-Bfx9Ehep.js",
+      "status": "ok",
+      "body_sha256": "8246f068c105d5aa02b4c74592d39add10b349656cd9a2df10e04a4d74e7b2c6",
+      "bytes": 2752,
+      "finished_at": "2026-10-21T07:20:38.155487+00:00"
+    },
+    {
+      "ordinal": 24,
+      "url": "https://exchange.papertrade.xyz/assets/emissions-BZPaNUNb.js",
+      "started_at": "2026-10-21T07:20:39.160250+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/emissions-BZPaNUNb.js",
+      "status": "ok",
+      "body_sha256": "38e32b3606cf1e25e7dfca12b6e37f716dfdb5538d57824b8497c91a38ce69a7",
+      "bytes": 1187,
+      "finished_at": "2026-10-21T07:20:39.863630+00:00"
+    },
+    {
+      "ordinal": 25,
+      "url": "https://exchange.papertrade.xyz/assets/staking-DqtEqWII.js",
+      "started_at": "2026-10-21T07:20:40.866781+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/staking-DqtEqWII.js",
+      "status": "ok",
+      "body_sha256": "1aeafeebea8222978e4a024bc21b3d39ff2aaeaa8d2bf4f4b12698e6f79b10fe",
+      "bytes": 18941,
+      "finished_at": "2026-10-21T07:20:42.445030+00:00"
+    },
+    {
+      "ordinal": 26,
+      "url": "https://exchange.papertrade.xyz/assets/trade._coin-Lf4I89vs.js",
+      "started_at": "2026-10-21T07:20:43.451076+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/trade._coin-Lf4I89vs.js",
+      "status": "ok",
+      "body_sha256": "1188be7a8b52b47ef2820e083f9f9072ef7e2b93abfba89174f8a077fc8b93b6",
+      "bytes": 83663,
+      "finished_at": "2026-10-21T07:20:44.383377+00:00"
+    },
+    {
+      "ordinal": 27,
+      "url": "https://exchange.papertrade.xyz/assets/hooks-a3qtukpN.js",
+      "started_at": "2026-10-21T07:21:17.527975+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/hooks-a3qtukpN.js",
+      "status": "ok",
+      "body_sha256": "8ff55c81aad69dc15ae8fb612b13f3fc55b03e6af528f3cea4310ff6b9f1af47",
+      "bytes": 76254,
+      "finished_at": "2026-10-21T07:21:18.018137+00:00"
+    },
+    {
+      "ordinal": 28,
+      "url": "https://exchange.papertrade.xyz/query/protocol/summary",
+      "started_at": "2026-10-21T07:21:59.917217+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/query/protocol/summary",
+      "status": "ok",
+      "body_sha256": "ab854911cbe4fdd9f0c90be1d07d86ff4e63f3ef602ba7a46a22e990b0fdbc52",
+      "bytes": 844,
+      "finished_at": "2026-10-21T07:22:00.236358+00:00"
+    },
+    {
+      "ordinal": 29,
+      "url": "https://exchange.papertrade.xyz/query/protocol/queue-summary",
+      "started_at": "2026-10-21T07:22:01.240304+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/query/protocol/queue-summary",
+      "status": "ok",
+      "body_sha256": "f38381616e65885818428d2e89d2a7910d68cc9fdb2719d7fefe231bc0033111",
+      "bytes": 110,
+      "finished_at": "2026-10-21T07:22:01.542308+00:00"
+    },
+    {
+      "ordinal": 30,
+      "url": "https://exchange.papertrade.xyz/query/protocol/paper/activity",
+      "started_at": "2026-10-21T07:22:02.543499+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/query/protocol/paper/activity",
+      "status": "ok",
+      "body_sha256": "ba11cf12da0e88459264c1c7cdbe4830638057b08d5316b9fa0fac52194ac733",
+      "bytes": 6639,
+      "finished_at": "2026-10-21T07:22:02.858999+00:00"
+    }
+  ],
+  "code_observations": [
+    {
+      "address": "0x6cd5661646289fb6e65ea5c032310fded797d0a2",
+      "bytes": 925,
+      "keccak256": "0x93076ef48e1d48172af505f739606cf1fa8425dbf9dbc6bee6743307bd4bd63b"
+    },
+    {
+      "address": "0x233ff29b239abc1d7748605da9b205c3e008626e",
+      "bytes": 925,
+      "keccak256": "0x93076ef48e1d48172af505f739606cf1fa8425dbf9dbc6bee6743307bd4bd63b"
+    },
+    {
+      "address": "0xa9b4c7b7ca5835652d81e25739c870d49f39cc2e",
+      "bytes": 925,
+      "keccak256": "0x93076ef48e1d48172af505f739606cf1fa8425dbf9dbc6bee6743307bd4bd63b"
+    },
+    {
+      "address": "0xe40f17915daa230324030003a197cdaef2261c0e",
+      "bytes": 925,
+      "keccak256": "0x93076ef48e1d48172af505f739606cf1fa8425dbf9dbc6bee6743307bd4bd63b"
+    },
+    {
+      "address": "0xaad6c7b0cc3014fc80ffedae0ed7ce5967b0f016",
+      "bytes": 925,
+      "keccak256": "0x93076ef48e1d48172af505f739606cf1fa8425dbf9dbc6bee6743307bd4bd63b"
+    },
+    {
+      "address": "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+      "bytes": 925,
+      "keccak256": "0x93076ef48e1d48172af505f739606cf1fa8425dbf9dbc6bee6743307bd4bd63b"
+    },
+    {
+      "address": "0x0f3febfc94876b0c895f7acecdc8f5c863b549ee",
+      "bytes": 23052,
+      "keccak256": "0x9d20287df886415035d53344a0dc8a1044949308cc3283ee0fe7ea5f3ea28d92"
+    },
+    {
+      "address": "0xe0bc9cc7b067060aafccbaa3e250700c9cdd7262",
+      "bytes": 3451,
+      "keccak256": "0xe926c659aca61daaaf9e68267817be4dae5152f11320a6ba970549dfdd15f62a"
+    },
+    {
+      "address": "0xcd617f984158a4f5d287ddee0e8eb0fed204916d",
+      "bytes": 5790,
+      "keccak256": "0x6dd521e90deaa283432285694770360cf42830025b2b1e6916a3c41799160792"
+    },
+    {
+      "address": "0x3997ffc8cbd281d4fc8d0548e505ae2fbbbd985a",
+      "bytes": 2475,
+      "keccak256": "0x75f094dab1fb771fc5ed5953a02be453a5d35dc4878b53a9e6a11c7d9e4e679c"
+    },
+    {
+      "address": "0x433bd418ec92818a960585f4d5fae563e735bb4a",
+      "bytes": 3528,
+      "keccak256": "0x087aaaf8472c1ca9bb313493a83fca6f5497d639ef46e6ca2ed0ef4cab85a590"
+    },
+    {
+      "address": "0xe6e3519455170913c5c3bfe541dd918a2d0cbb15",
+      "bytes": 6054,
+      "keccak256": "0x54573c497e5109e353cf5330343323915e0c0f26e1b410fd3cb2cd8d1460f154"
+    },
+    {
+      "address": "0x600d1b9653fd47fc1543d1cc87f33ba2d2fdf48f",
+      "bytes": 3324,
+      "keccak256": "0xd9fbc7091e10f4d56188f3097454bd8464ed4b77b5f44d1c6391be72b9362169"
+    },
+    {
+      "address": "0xe991817199363046da0a28da6fbad0284e4aa492",
+      "bytes": 585,
+      "keccak256": "0xa13304bc6fdad736a3ee6ad77d713c6077f1b130501d577be1bf9487d005388d"
+    }
+  ],
+  "temporal_binding": {
+    "historical_block": null,
+    "transaction_prestate": null,
+    "note": "Explicit request tags do not authenticate history on this provider. The latest-only parameter responses were collected over a time interval and are not an atomic snapshot. Current API summaries have separate later source blocks."
+  },
+  "synthetic_checks": {
+    "scratch_vm_limit": "Bounded opcode subset; synthetic oracle response for liquidation gate; not an audited EVM or historical replay",
+    "mint_helper_comparisons": 240,
+    "bust_getter_comparisons": 240,
+    "pending_reward_getter_comparisons": 240,
+    "liquidation_gate_boundary_comparisons": 6,
+    "pure_math_library_keccak256": "0xa13304bc6fdad736a3ee6ad77d713c6077f1b130501d577be1bf9487d005388d"
+  },
+  "frontend_collateral_address_conflict": "Official docs list native HyperEVM USDC; frontend deployment.collateral.address differs. Transport/custody path and historical applicability are not authenticated; no universal collateral-address claim inferred."
+}

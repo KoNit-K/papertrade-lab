@@ -1,0 +1,66 @@
+{
+  "schema_version": "current-mechanism-case-v1",
+  "case_id": "CASE-002",
+  "theme": "execution-waiting",
+  "date": "2026-10-21",
+  "chain_id": 999,
+  "window": {
+    "block_from": "49115089",
+    "block_to": "49115588",
+    "order": [
+      "block_number",
+      "transaction_index",
+      "log_index"
+    ]
+  },
+  "source_record": "002-005-current-evidence.json",
+  "independent_settlement_reproduced": false,
+  "m1_implemented": false,
+  "historical_transaction_code_identity": null,
+  "raw_payload_published": false,
+  "identity_join_to_user_reports": false,
+  "evidence_level": [
+    "official_description",
+    "frontend_static_support",
+    "provider_reported_batch_events"
+  ],
+  "rpc_attempts": 59,
+  "batch_logs": 1172,
+  "first_open_lead": {
+    "transaction_hash": "0xa80fa22eaa1b1ac48c0020229fb6fae4a5feca0cfbfdb085837680c69a18b7f8",
+    "block_number": "49115089",
+    "transaction_index": "1",
+    "log_index": "15"
+  },
+  "first_close_lead": {
+    "transaction_hash": "0x092a1f409240ebc5723ef76fa52909fbc8e07fe8daa3efa60ce58adfbb7061dd",
+    "block_number": "49115091",
+    "transaction_index": "0",
+    "log_index": "0"
+  },
+  "failed_call_event_leads": 4,
+  "first_failed_call_lead": {
+    "transaction_hash": "0x6f48d78e4e47973a09b4911eec21a7a6861151e882925b4b8a7a6775b1ac3765",
+    "block_number": "49115510",
+    "transaction_index": "3",
+    "log_index": "4"
+  },
+  "frontend_observations": [
+    "accepted acknowledgement changes local intent state to queued; unknown acknowledgement uses unconfirmed",
+    "queue rank keyed by intent ID; queue query polled every 2000 ms when any intent is queued",
+    "close submission handles groups of up to 12 position IDs",
+    "rendered acceptance time, outcome states and indexed state have different sources"
+  ],
+  "submission_timestamp": null,
+  "relayer_receipt_timestamp": null,
+  "broadcast_timestamp": null,
+  "measured_wait_ms": null,
+  "execution_queue_discipline": null,
+  "payout_queue_in_window": "not independently reconstructed",
+  "missing": [
+    "server scheduler/priority policy",
+    "actual submit/ack/broadcast timeline",
+    "individual failure receipts not reviewed in this round",
+    "pending/expired live samples"
+  ]
+}

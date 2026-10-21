@@ -1,0 +1,14 @@
+{
+  "case_id": "CASE-004",
+  "registered_at": "2026-10-21T07:39:21.141610+00:00",
+  "purpose": "Targeted distribution follow-up after no distribution event in initial fixed window",
+  "selection_rule": "Use the single latestDistribution explicitly returned by already captured official public activity response; targeted source-led case, not an unbiased sample",
+  "block_from": "49114617",
+  "block_to": "49114617",
+  "original_window_unchanged": true,
+  "source_read_ordinal": 30,
+  "rpc_attempts_before": 16,
+  "new_rpc_budget": 4,
+  "source_access_budget": 0,
+  "search_budget": 0
+}

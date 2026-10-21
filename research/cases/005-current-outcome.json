@@ -1,0 +1,91 @@
+{
+  "schema_version": "current-mechanism-case-v1",
+  "case_id": "CASE-005",
+  "theme": "opposite-positions",
+  "date": "2026-10-21",
+  "chain_id": 999,
+  "window": {
+    "block_from": "49115089",
+    "block_to": "49115588",
+    "order": [
+      "block_number",
+      "transaction_index",
+      "log_index"
+    ]
+  },
+  "source_record": "002-005-current-evidence.json",
+  "independent_settlement_reproduced": false,
+  "m1_implemented": false,
+  "historical_transaction_code_identity": null,
+  "raw_payload_published": false,
+  "identity_join_to_user_reports": false,
+  "evidence_level": [
+    "bytecode_storage_structure",
+    "provider_reported_input_event_association"
+  ],
+  "rpc_attempts": 10,
+  "overlap_screen": "Track opens encountered inside the fixed window and remove on observed close/liquidation topics. First later open sharing the private owner/instrument and opposite side is selected. This is event-derived, not an authenticated storage snapshot.",
+  "overlap_open_event_leads": 33,
+  "selected_pair": [
+    {
+      "transaction_hash": "0x4474cb8391c7ef67b9b0708d1f8b8b3a3810b9d6598e13651cddc931dd603132",
+      "block_number": "49115114",
+      "transaction_index": "1",
+      "log_index": "5",
+      "position_id": "1719299",
+      "is_long": false
+    },
+    {
+      "transaction_hash": "0xb98e058dff9ff7fa3190a9e0bd58e8245bed53cde0ec6dbe028e8a6e767c9810",
+      "block_number": "49115115",
+      "transaction_index": "0",
+      "log_index": "0",
+      "position_id": "1719300",
+      "is_long": true
+    }
+  ],
+  "same_owner_and_instrument_private_match": true,
+  "instrument_id": "0",
+  "input_numeric_fields_match_events": true,
+  "receipt_statuses": [
+    "success",
+    "success"
+  ],
+  "no_known_close_or_liquidation_of_first_before_second": true,
+  "independent_position_storage_model_supported": true,
+  "missing": [
+    "historical execution prices/state independently verified",
+    "complete account ledger and all intermediate internal effects",
+    "independent expected mint and full loss basis reconciliation",
+    "double-leg liquidation scenario not observed"
+  ],
+  "terminal_events": [
+    {
+      "position_id": "1719299",
+      "transaction_hash": "0xa54edeff0a049e3a3286890a1fd0321bbc6b5f51c885902aecdb12b1f24add17",
+      "block_number": "49115175",
+      "log_index": "10",
+      "exit_raw": "828125",
+      "post_deadband_pnl_raw": "-350414699719194420",
+      "adjusted_pnl_raw": "-350414699719194420",
+      "debt_flag": 0,
+      "fee_raw": "7008293994383888"
+    },
+    {
+      "position_id": "1719300",
+      "transaction_hash": "0x74cdb813b29a13a739070ec0efc83740d53317b1dfe8b4673b732769ed55686a",
+      "block_number": "49115183",
+      "log_index": "7",
+      "exit_raw": "828125",
+      "post_deadband_pnl_raw": "313037131749147015",
+      "adjusted_pnl_raw": "129804064407852451",
+      "debt_flag": 0,
+      "fee_raw": "2596081288157049"
+    }
+  ],
+  "combined_event_derived_trading_pnl_raw": "-223206716599499018",
+  "full_account_balance_delta_reproduced": false,
+  "losing_leg_minted_paper_raw": "3421796579212319468",
+  "terminal_receipts_success_and_block_match": true,
+  "losing_leg_transfer_to_privately_matched_owner": true
+}

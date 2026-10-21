@@ -1,0 +1,22 @@
+{
+  "case_ids": [
+    "CASE-002",
+    "CASE-003",
+    "CASE-004",
+    "CASE-005"
+  ],
+  "registered_after_discovery_at": "2026-10-21T07:18:49.633839+00:00",
+  "before_event_reads": true,
+  "discovery_ledger": "CURRENT-DISCOVERY",
+  "block_from": "49115089",
+  "block_to": "49115588",
+  "boundary_end_hash": "0x7066bb03e6580d5078b4042f8266989bf81aeba63aee746b56b2181570cfdc58",
+  "chain_id": 999,
+  "order": [
+    "block_number",
+    "transaction_index",
+    "log_index"
+  ],
+  "scope": "Shared initial window, no historical equivalence to CASE-001",
+  "shared_rpc_charged_to": "CASE-002"
+}

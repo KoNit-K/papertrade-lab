@@ -1,0 +1,86 @@
+{
+  "schema_version": "current-mechanism-case-v1",
+  "case_id": "CASE-003",
+  "theme": "loss-liquidation-mint",
+  "date": "2026-10-21",
+  "chain_id": 999,
+  "window": {
+    "block_from": "49115089",
+    "block_to": "49115588",
+    "order": [
+      "block_number",
+      "transaction_index",
+      "log_index"
+    ]
+  },
+  "source_record": "002-005-current-evidence.json",
+  "independent_settlement_reproduced": false,
+  "m1_implemented": false,
+  "historical_transaction_code_identity": null,
+  "raw_payload_published": false,
+  "identity_join_to_user_reports": false,
+  "evidence_level": [
+    "official_description",
+    "bytecode_support",
+    "provider_reported_receipt_consistency"
+  ],
+  "rpc_attempts": 29,
+  "exchange_logs": 1086,
+  "paper_transfer_logs": 104,
+  "zero_sender_mint_transfer_leads": 95,
+  "first_losing_close": {
+    "transaction_hash": "0x24776737d73b9880652a81e4a622f74ae9024c4ba9fd431ccf19394d609a4fd0",
+    "block_number": "49115099",
+    "transaction_index": "2",
+    "log_index": "3",
+    "realized_loss_raw": "374541263507595663",
+    "fee_raw": "7490825270151913",
+    "mint_basis_raw": "367050438237443750",
+    "tracked_lp_delta_raw": "367050438237443750",
+    "minted_paper_raw": "3657393757128285613",
+    "receipt_status": "success",
+    "loss_less_fee_matches_basis": true,
+    "zero_sender_transfer_matches_tokenomics_amount": true
+  },
+  "first_liquidation": {
+    "transaction_hash": "0xe36d933b3496824ff0c7a66edbe5c4b9b34c4bee37b651cf5770c5b3b4245bf3",
+    "block_number": "49115441",
+    "transaction_index": "0",
+    "log_index": "2",
+    "lost_margin_interpretation_raw": "20000000000000000000",
+    "fee_shares_raw": [
+      "200000000000000000",
+      "200000000000000000"
+    ],
+    "mint_basis_raw": "20000000000000000000",
+    "tracked_lp_delta_raw": "19600000000000000000",
+    "tail_advance_interpretation_raw": "20000000000000000000",
+    "minted_paper_raw": "199285237980903299820",
+    "receipt_status": "success",
+    "zero_sender_transfer_matches_tokenomics_amount": true,
+    "event_price_raw": "827725",
+    "event_bust_raw": "827730"
+  },
+  "mint_helper": {
+    "selector": "0x7aac24ba",
+    "input_order": [
+      "tracked_start",
+      "tail_progress",
+      "basis",
+      "flat_threshold",
+      "flat_rate",
+      "decay_scale"
+    ],
+    "result_order": [
+      "minted",
+      "tail_advance"
+    ],
+    "independent_historical_expected_mint": null
+  },
+  "missing": [
+    "historical curve inputs including exact prior tailProgress",
+    "transaction prestate and historical code versions",
+    "debt-funded loss/liquidation and active payout-queue branches",
+    "independently reconstructed total supply and all ledger deltas"
+  ]
+}

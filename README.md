@@ -2,103 +2,170 @@
 
 **Research into Papertrade trading, settlement and PAPER issuance.**
 
-An independent open-source project that studies official documentation, public
-frontend definitions, historical contract bytecode, transaction inputs and events.
-We turn observable rules into explanations with evidence and version boundaries:
-how a trade executes, how its result becomes a balance or unpaid claim, and how
-PAPER is issued.
+An independent open-source project reading official sources, inspecting frontend
+and contract bytecode, and checking public transaction events. We explain how trades
+execute, losses mint PAPER, rewards are allocated, and balances differ from unpaid claims.
 
-[简体中文](README.zh-CN.md) · [Mechanism map](docs/mechanism-map.md) · [Research notes](docs/research-notes/004-economic-path-and-state-audit.md) · [Sources](docs/sources.md)
+[简体中文](README.zh-CN.md) · [Mechanism map](docs/mechanism-map.md) · [Latest mechanism research](docs/research-notes/006-current-mechanisms.md) · [Sources](docs/sources.md)
 
-## How does Papertrade work?
+We distinguish **official description, bytecode support, chain case support, and
+independent reproduction passed**. Some paths now have bytecode and provider-reported
+case support; complete historical settlement has not passed independent reproduction.
+Rules and parameters need version-specific checks.
 
-The explanations below distinguish **official descriptions**, **user observations** and **bytecode/event research**. The documented economic rules have not yet passed an
-independent settlement replay. Current descriptions and individual block snapshots
-do not establish behavior for every historical trade.
+## Why do opens and closes wait?
 
-### From intent to contract execution
-
-The official architecture sends signed user intents through a relayer and a
-BatchExecutor to Exchange. Intent acceptance, transaction inclusion and success
-of an individual call are separate stages. Waiting for execution is also distinct
-from waiting for a payout. See the [architecture source](https://docs.papertrade.xyz/how/architecture/).
+**The current frontend has an intent queue state and rank display; server scheduling,
+priority and actual waiting times remain unverified.** Official architecture routes
+opens/closes through the relayer and BatchExecutor. An acknowledgement produces
+`queued`; an uncertain acknowledgement retains `unconfirmed`. With queued operations,
+the UI polls ranks every two seconds. That is a polling interval, not an execution
+deadline. A successful batch transaction still requires checking each item's result.
 
 ```mermaid
 flowchart LR
-    A[User trading intent] --> B[Relayer]
-    B --> C[BatchExecutor]
-    C --> D[Exchange positions and ledger]
-    D --> E[Balance or unpaid claim]
+    A[Sign and submit intent] --> B[Relayer acceptance and execution waiting]
+    B --> C[BatchExecutor item execution]
+    C --> D[Position and ledger update]
+    D --> E[UI confirmation]
+    D --> F[Gain may become unpaid claim]
 ```
 
-This is the documented path. In one historical candidate, we observed a close
-call within a batch whose position ID matches the close event. Complete intent
-authorization and economic results still require further evidence.
+**Execution waiting and payout waiting are separate.** The documented payout queue
+holds unpaid claims in FIFO order and pays them through available backing and later
+harvests. Cash-funded returned margin is credited separately from unpaid gains;
+claim-funded collateral was already debt, so the whole surviving claim may queue
+again. A payout queue does not itself halt all opens: balances, directional capacity
+and debt-processing limits still apply. We have no complete user submit/ack/broadcast
+execution timeline or independently reconstructed active payout-queue ledger.
 
-### Contract trading model: separate isolated positions, full closure
+**Evidence: official description and frontend source; batch events support individual
+success/failure outcomes.** [Queue research](docs/research-notes/006-current-mechanisms.md#case-002-execution-waiting-is-observable-separately-from-payout-waiting) ·
+[Architecture](https://docs.papertrade.xyz/how/architecture/) · [Payout queue](https://docs.papertrade.xyz/how/solvency-queue/)
 
-Trades are synthetic leveraged positions against the protocol LP. Referencing
-Hyperliquid prices does not open a Hyperliquid perpetual position for the trader.
-The table describes official product rules, not completed historical verification.
+## How do positions work? Can one account hold both long and short?
 
-| Feature | Rule and boundary |
+Papertrade offers synthetic leveraged positions against its LP, referencing
+Hyperliquid prices. Documented positions are isolated: margin and leverage are fixed
+at open, with no increase to an existing position, collateral top-up or partial close.
+Additional exposure requires another position; each closes in full. Documentation
+lists BTC/ETH and up to 1000× leverage; deployed parameters govern actual limits.
+
+**A sampled chain case supports simultaneous opposite positions on the same account
+and market.** The first selected pair has distinct IDs, opposite sides, equal entry
+and margin, and no known ending of the first before the second opens. Inputs match
+event fields. This supports coexistence without establishing universal admission
+across all accounts, directional caps or relayer states. Each leg consumes its own
+margin and side capacity; isolated positions do not cross-collateralize each other.
+
+**Economics are calculated per leg.** The winner faces deadband, gain adjustment
+and fees; the loser bears its realized loss, with PAPER accounted separately. The
+selected pair's eventual close events imply combined trading PnL of about
+**−0.223207 internal accounting units**, plus about **3.421797 PAPER** minted on the
+losing leg. This is not a complete account balance delta and assigns no collateral
+value to PAPER. Double-leg liquidation and claim-funded combinations remain unverified.
+
+**Evidence: bytecode support and chain case support; no complete historical replay.**
+[Opposite-position case](docs/research-notes/006-current-mechanisms.md#case-005-opposite-positions-can-coexist-in-the-observed-case) ·
+[Position rules](https://docs.papertrade.xyz/learn/trades-pricing/)
+
+## Why is credited profit smaller?
+
+A winning close applies a deadband, nonlinear gain adjustment, then a fee on adjusted
+gain. A documented launch parameter of `10%` does not mean every winner loses a flat
+`10%`; the described `2%` fee has its own basis. We recovered staged integer arithmetic
+for one winning branch and matched CASE-001 candidate 4's amounts. Its historical
+parameters and actual price inputs remain missing, so this is same-case consistency.
+
+**Evidence: official description and partial bytecode support.** [Profit research](docs/research-notes/004-economic-path-and-state-audit.md)
+
+## How do losses and liquidations mint PAPER?
+
+**A losing close and a liquidation can have different mint bases. Multiplying loss
+by the currently displayed emission rate is insufficient.**
+
+| Documented branch | PAPER basis and cash routing |
 |---|---|
-| Cross / isolated margin | Each position carries separate collateral; no cross-margin pool or mode switch. |
-| Increasing an existing position | Positions cannot be edited. Additional same-direction exposure requires another independent position. |
-| Adding / removing collateral | Neither is supported after opening. |
-| Changing leverage | Chosen at open and fixed for that position. |
-| Partial close | Not supported; each position closes in full. Separate positions can close independently. |
-| Markets and limits | Documentation lists BTC/ETH, up to 1000× leverage and $10M notional per position. These are not authenticated parameters for every historical block. |
-| Execution | Opens/closes settle at execution-time BBO mid against the LP. Additional limit or stop-order features have not been investigated here. |
-| Liquidation | Crossing the bust trigger permits hard liquidation of the entire isolated margin; voluntary close equity follows a different calculation. |
-| Costs | Documentation describes no funding, notional trading charge or user-paid gas. Winning PnL is adjusted and charged; loss-path fees can be carved from LP gains. |
+| Cash-funded losing close, empty payout queue | Loss less any charged LP-side loss fee; that fee is not an additional trader deduction. |
+| Cash-funded losing close, active queue | Full loss; fee waived, with sideBucket backing prioritized for queued payouts. |
+| Cash-funded liquidation | Full lost margin; tracked LP can advance by margin less fee, so the two bases differ. |
+| Claim-funded loss / liquidation | Destroyed claim, accounting for an applicable loss-close fee; full destroyed margin and no liquidation fee on debt liquidation. |
 
-Sources: [trades and margin](https://docs.papertrade.xyz/learn/trades-pricing/),
-[FAQ](https://docs.papertrade.xyz/intro/faq/), and
-[liquidations](https://docs.papertrade.xyz/learn/liquidations/), dated 2026-10-06
-and read on 2026-10-21. The anonymized interface observation—isolated positions,
-no increase to an existing position, full close only—is consistent with these
-pages; its frontend version and transaction context remain unknown.
+One reviewed loss has a mint basis matching loss less fee. A reviewed liquidation
+uses **20** as its full-margin basis while tracked LP advances **19.6** and fees total
+**0.4**. Both PAPER mint Transfers match tokenomics event amounts. Claim-funded and
+active-queue branches remain primarily official descriptions without real-case replay.
 
-Returned bytecode exposes position-specific margin, leverage and open-state
-fields, with close inputs listing position IDs. However, the default RPC supports
-only latest code/storage: a historical block tag in a successful request does not
-authenticate historical deployment or state. See the [state audit](docs/research-notes/004-economic-path-and-state-audit.md).
+The curve has a flat region followed by decay. This round's documentation and
+parameter responses give a **$2M** flat threshold, **100 PAPER per unit of eligible
+basis**, and **$120M** tail scale. The tail marginal rate is
+`100 × (S / (S + H))²`, with H the accumulated tail progress. Actual issuance integrates
+over the loss interval with staged integer rounding. A displayed marginal rate is
+not the whole trade's average rate. Distributing LP excess to stakers does not reset
+H; re-entering the tail uses retained progress. These acquisition-time parameters
+are not historical inputs for old transactions.
 
-### A winning payout is not a flat percentage deduction
+**Evidence: official description, bytecode support and two matching mint receipts;
+independent historical expected mint remains missing.**
+[Bases, integer formula and cases](docs/research-notes/006-current-mechanisms.md#case-003-loss-basis-liquidation-basis-and-the-mint-curve) ·
+[Official mint curve](https://docs.papertrade.xyz/how/mint-curve/)
 
-The official description applies a deadband and nonlinear gain adjustment before
-a fee on the adjusted gain. Its `10%` launch parameter does not mean every winning
-trade loses exactly `10%`; the described `2%` fee has its own basis. Explaining a
-payout requires separating price movement, adjusted PnL, fees, returned margin
-and spendable balance. See the [payout research note](docs/research-notes/001-winning-trade-payout.md).
+## Where do PAPER dividends come from, and how are they claimed?
 
-### Cash, claims and the payout queue are different accounting states
+**The documented entitlement requires staking PAPER; holding alone is insufficient.**
+The two stated sources are half of paid trading fees and sweepable tracked-LP excess
+above the currently described **$5M cap**. Queue and solvency conditions govern fee
+payment, so a nominal fee is not automatically an immediate dividend.
 
-The official solvency description separates available cash from unpaid claims,
-with queued payment when funds are insufficient and distinct claim-funded trading
-branches. An entitlement and an amount available to withdraw are different
-measurements. Ledger and later events are needed to establish payment; an eventual
-payment description is not a fixed deadline. See the [solvency source](https://docs.papertrade.xyz/how/solvency-queue/).
+`Exchange fee/excess accumulation → push → signed distribution → per-stake accrual → user claim → trading balance`
 
-### PAPER issuance depends on eligible losses and curve state
+The acquired staking runtime uses a **10^27 accumulator**, combining stored rewards,
+stake, accumulator and reward debt. With zero stake, newly received funds remain
+unallocated; unstaking preserves previously accrued rewards. Documentation describes
+no lockup/cooldown, while app stake, unstake and claim still use signatures and the
+relayer and can wait for execution. The reviewed stake matches a PAPER transfer in;
+the reviewed claim matches an Exchange credit event. External withdrawal is another
+step. The initial window has no distribution event; a separately registered targeted
+block then matched about **131.938049** in fee push and distribution amounts. Exact
+pre-distribution shares, LP-excess funding, external payment and real unstake remain
+unreproduced.
 
-The official mint description relates issuance to eligible loss, tracked LP and
-high-water progress. A marginal rate at one instant differs from the average rate
-across a loss interval. Comparing tokens per unit lost therefore requires the
-eligible basis, interval and units, rather than two displayed numbers alone.
-See the [mint-curve source](https://docs.papertrade.xyz/how/mint-curve/).
+**Evidence: official description, bytecode support and stake/claim chain cases.**
+[Distribution and claim research](docs/research-notes/006-current-mechanisms.md#case-004-dividends-are-an-accumulator-and-a-claim-against-internal-balance) ·
+[Official staking mechanics](https://docs.papertrade.xyz/paper/staking/)
 
-### Directional limits and liquidation have separate conditions
+## How are liquidation triggers and losses calculated?
 
-Official risk documentation describes directional open-interest capacity, market
-gates, leverage and position limits. Interface restrictions, relayer admission
-and contract checks are separate layers. Explaining a historical one-sided
-rejection still needs contemporaneous parameters, state and error evidence.
-See the [risk source](https://docs.papertrade.xyz/how/risk/) and [mechanism map](docs/mechanism-map.md).
+**The acquired runtime applies a buffer to the trigger and hard-liquidates the full
+isolated margin.** Positive remaining voluntary-close equity does not prevent a
+liquidation trigger. For the recovered path, with entry E, integer leverage l and
+W-scaled buffer b (`W = 10^18`):
+
+```text
+d = floor(E / l)
+long:  z = E - d; bust = z + floor(z * b / W)
+short: z = E + d; bust = z - floor(z * b / W)
+```
+
+The buffer applies to zero-equity reference z, preserving both rounding stages.
+The price gate is inclusive: **price ≤ bust for longs; price ≥ bust for shorts**.
+The live-BBO versus retired/frozen-price path must also be checked. Synthetic inputs
+cover either side of the threshold and equality; they do not authenticate historical
+bid/ask values.
+
+Documentation describes an operated keeper and public liquidation maintenance.
+A successful close or liquidation clears the position's open flag, guarding later
+repeated attempts. A waiting close intent does not itself protect the position from
+liquidation. Keeper priority descriptions do not guarantee actual transaction order.
+Full-margin loss, mint basis and fee routing must be reconciled together.
+
+**Evidence: bytecode support and one liquidation chain case; real races and complete
+historical settlement remain unreproduced.**
+[Exact formula and boundaries](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold) ·
+[Official liquidation description](https://docs.papertrade.xyz/learn/liquidations/)
 
 ---
 
 Research is read-only; this project does not operate wallets or submit trades.
 It is unofficial. Original code and documentation use [Apache-2.0](LICENSE).
-[Method](docs/research-method.md) · [Evidence and progress](STATUS.md) · [Contributing and disclosure](CONTRIBUTING.md) · [Third-party notices](THIRD_PARTY_NOTICES.md)
+[Evidence and progress](STATUS.md) · [Method](docs/research-method.md) · [Contributing and data boundaries](CONTRIBUTING.md) · [Third-party notices](THIRD_PARTY_NOTICES.md)

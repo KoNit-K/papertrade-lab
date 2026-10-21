@@ -1,0 +1,76 @@
+{
+  "schema_version": "current-mechanism-case-v1",
+  "case_id": "CASE-004",
+  "theme": "staking-dividends",
+  "date": "2026-10-21",
+  "chain_id": 999,
+  "window": {
+    "block_from": "49115089",
+    "block_to": "49115588",
+    "order": [
+      "block_number",
+      "transaction_index",
+      "log_index"
+    ]
+  },
+  "source_record": "002-005-current-evidence.json",
+  "independent_settlement_reproduced": false,
+  "m1_implemented": false,
+  "historical_transaction_code_identity": null,
+  "raw_payload_published": false,
+  "identity_join_to_user_reports": false,
+  "evidence_level": [
+    "official_description",
+    "bytecode_support",
+    "provider_reported_stake_and_claim_receipts"
+  ],
+  "rpc_attempts": 20,
+  "staking_logs": 80,
+  "stake_event_leads": 9,
+  "claim_event_leads": 31,
+  "other_event_leads_not_assigned_business_semantics": 40,
+  "distribution_event_in_registered_window": "none identified; latest official API distribution is outside window",
+  "first_stake": {
+    "transaction_hash": "0x1be146fccd9597fd1d1f3ca681904bd66f452f4eedc5c5e585073aa016a17aa4",
+    "block_number": "49115094",
+    "transaction_index": "3",
+    "log_index": "13",
+    "amount_raw": "15748500080935349468261",
+    "paper_transfer_to_staking_matches": true
+  },
+  "first_claim": {
+    "transaction_hash": "0xa4349ca3b244e9deb792384b7d9cb463272678f376f8f71574d9b54e4dbca1db",
+    "block_number": "49115100",
+    "transaction_index": "1",
+    "log_index": "5",
+    "amount_raw": "16507496179005009832",
+    "exchange_credit_event_matches_privately": true,
+    "external_withdrawal_verified": false
+  },
+  "reward_accumulator_precision": "1000000000000000000000000000",
+  "pending_formula": "accrued + floor(staked * accumulator / 1e27) - rewardDebt; earned-debt checked before addition",
+  "zero_stake_distribution": "inspected branch retains new funds in unallocatedRewards without advancing accumulator",
+  "direct_stake_unstake_claim_distribute": "returned implementation routes these direct methods to revert; signed entrypoints separate",
+  "missing": [
+    "initial-window distribution and any real unstake sample",
+    "LP-excess funding example and full before/after ledger",
+    "independent reserve/claim/payment reconciliation",
+    "historical keeper authorization state"
+  ],
+  "distribution_topic_from_returned_bytecode": "0xf7576d8c2653e9d07af5ef229acf59b339e327d4e0eaddb4a96615534cf148f8",
+  "distribution_followup": {
+    "plan": "004-distribution-followup-plan.json",
+    "sampling": "targeted from already captured official activity API; not initial-window or unbiased selection",
+    "block_number": "49114617",
+    "transaction_hash": "0xd625f18310617f150e4a4da234f98b08b7266fa8cef08583756eece55f67d10d",
+    "log_index": "12",
+    "receipt_status": "success",
+    "api_amount_matches_distribution_event": true,
+    "distribution_amount_raw": "131938049237073168703",
+    "exchange_push_amount_raw": "131938049237073168703",
+    "exchange_fee_component_raw": "131938049237073168703",
+    "accumulator_after_raw": "13855166686623322083430450",
+    "independent_expected_accumulator": null,
+    "same_transaction_later_trade_fee_excluded_from_earlier_distribution": true
+  }
+}

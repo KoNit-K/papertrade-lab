@@ -147,3 +147,24 @@ or historical EVM state. Raw source text stays private; only original summaries,
 URLs and digest metadata are published. This increment used 30 explicit source
 accesses and eight search queries; exact retrieval times and a complete local
 archive of web-reader responses were not recorded. No new production RPC ran.
+
+## Current mechanism sources — 2026-10-21
+
+[Note 006](research-notes/006-current-mechanisms.md) and the
+[shared evidence record](../research/cases/002-005-current-evidence.json) describe
+30 explicit official-page/module/API reads, including one connection failure and one normal
+retry of the staking page. Exact retrieval intervals and SHA-256 response-body
+hashes were recorded. No search queries or new credentialed/paid services were used.
+
+Primary descriptions include architecture, solvency/queue, mint curve, staking and
+claims, emissions, dividends, liquidation, risk, trading rules and contract addresses.
+Frontend modules were inspected only as text, including intent rank polling,
+acknowledgement uncertainty, user-state streams, and deployment definitions. Three
+unauthenticated protocol-summary endpoints were read; no account query or signed
+intent was submitted. API source blocks differ from the event sampling window.
+
+The main contract addresses agree across docs and the frontend, but a collateral
+address field differs; its custody/transport relationship is unverified. Current
+code/storage retrievals remain acquisition-time observations without historical
+transaction binding. Public records contain original explanations and digest
+metadata; raw bodies, signatures and private account joins are not redistributed.

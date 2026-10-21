@@ -1,8 +1,9 @@
 # Mechanism map
 
 Status: research agenda, not a verified protocol specification. Updated: 2026-10-21.
-Every row remains **unverified / not_attempted / not_started** for mechanism
-support, independent reproduction, and model implementation respectively.
+This map separates source descriptions, partial bytecode support, provider-reported
+cases and independent reproduction. No mechanism has a complete independently
+reproduced historical settlement; three bounded research arithmetic helpers exist.
 Source IDs resolve in the [source index](sources.md); an unread seed is a lead, not evidence.
 The [CASE-001 interface follow-up](research-notes/003-historical-interface-recovery.md)
 adds partial bytecode, storage and call/position observations without upgrading
@@ -57,3 +58,13 @@ execution price remain unavailable. Earlier default-RPC code/storage temporal
 bindings are withdrawn; returned bytecode analysis does not establish deployment
 at a historical block. The homepages separately summarize current official
 margin/position rules. No mechanism claim is promoted to reproduced.
+
+## Current partial results
+
+[Note 006](research-notes/006-current-mechanisms.md) adds registered CASE-002–005:
+frontend queue ranks and state transitions; loss/liquidation PAPER basis receipts;
+staking accumulator and claim support; a same-account opposite-position example
+with both terminal closes; and liquidation buffer/inequality recovery. Each
+result retains its source/version limits. Queue scheduling and full cash/claim,
+reward and supply reconciliation remain open. The homepages summarize practical
+mechanics; case records keep detailed coordinates and missing inputs.
