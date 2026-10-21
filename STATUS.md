@@ -24,7 +24,7 @@ The current branch additionally contains the M0 records and validator increments
 | Read-only collector / safe export tooling | Implemented for one public RPC and reviewed metadata-only export; see guides |
 | Research arithmetic / full settlement replay | Three bounded offline helpers for mint integration, bust price and pending rewards; full settlement model and transaction CLI not implemented |
 | Real transaction reproduction | Blocked: candidate 4 has a same-case arithmetic match; historical state/price unavailable and old state temporal bindings withdrawn |
-| REA installation / outputs | Not performed / none |
+| REA installation / outputs | REA 6.7.0 run: partial frontend graphs and selected traces; five offline EVM interface results; see [note 010](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md) |
 | Local validator tests / strict type check | Implemented and run; see checks below |
 | CI, model tests, document-site build | Not configured / not run |
 | Wallet operations / cloud deployment | None |
@@ -388,3 +388,43 @@ signature preimages, unchanged old case records and the six-file public privacy
 subset. It did not make new network requests or authenticate historical state,
 API block-hash identity or individual rewards; request accounting is verifiable
 only against the retained captures.
+
+## Actual REA frontend and EVM analysis
+
+[Note 010](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md) records
+REA 6.7.0 analysis of 22 retained public scripts and five acquired runtimes.
+Twenty-one scripts parsed; the main app exhausted both the default 1 GiB and a
+separate 4 GiB heap budget. Exact inert app/hooks excerpts produced selected local
+call traces without synthesizing missing dependencies. A captured PAPER ratio
+formatter computes minted PAPER divided by a record's eligible mint basis, locating
+an implementation of the earlier average-versus-marginal distinction. Its page
+consumer was not captured; this does not establish actual history-screen rendering.
+
+Five offline Linux x64 EVM inspections succeeded, returning 98 / 21 / 10 / 1 / 36
+interface candidates for Exchange, Tokenomics, accounting library, mint library and
+staking. All 42 compared known selectors appear; seven argument-string differences
+remain explicit. These are interface inferences, not verified ABI, source recovery,
+target execution or settlement replay. Local calls cross-support earlier client
+mechanisms; server scheduling and complete fee-preview reconstruction stay unknown.
+
+The [new record](research/cases/007-rea-analysis.json) publishes selected identities,
+timestamps, output digests, partial coverage and inference differences. Raw Evidence,
+third-party code and local paths remain private. New target/account/RPC reads and
+wallet operations were zero; all prior case records and windows are unchanged.
+M1 remains unimplemented. Existing formulas and historical samples are not relabeled
+as REA discoveries.
+
+For this documentation/metadata update, strict TypeScript checking and the existing
+document validator passed (13 claims, six evidence entries, one version; no public
+capture files checked, protocol_reproduced false). Separate publication checks cover
+the new JSON, source/output identities, local links, unchanged old cases and the
+explicit public file subset. Production code and dependencies are unchanged; the
+production test suite was not rerun for this documentation-only update. The new
+research profile is not validated as a historical chain packet by the old validator.
+
+Independent read-only review checked published input/excerpt identities, run/output
+digests, candidate counts, all seven argument differences and nested privacy fields.
+It caught unsupported attribution of the ratio formatter to a history screen; the
+text now explicitly leaves its page consumer and runtime use unknown. Final review
+found no remaining blocking or important issue. The reviewer did not rerun REA,
+authenticate installation/container configuration or perform historical execution.

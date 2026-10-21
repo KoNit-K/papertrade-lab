@@ -145,6 +145,11 @@ The tail expressions are skipped when tail is zero. The marginal rate
 uses both interval endpoints and staged rounding. It must not be replaced by a
 single final rational division or the UI's displayed rate times loss.
 
+The later [REA/frontend cross-check](010-rea-frontend-and-contract-crosscheck.md#captured-paper-ratio-formatter)
+locates a PAPER ratio formatter that computes minted PAPER divided by a record's
+eligible mint basis. This is a per-record average, not the current marginal rate.
+Its page consumer was not captured, and its guard does not verify the API fields.
+
 Acquisition-time slots and the official API separately report a $2M threshold,
 100 PAPER per unit basis, $120M decay scale and $5M reward cap. Tail progress is
 about $260M in these observations, even though tracked LP is about $4M. These

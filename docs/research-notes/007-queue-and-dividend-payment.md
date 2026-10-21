@@ -120,6 +120,11 @@ policy/source or authorized actual intake/ack/broadcast/outcome records with the
 clock definitions. Chain timestamps alone cannot supply them. No test intent,
 transaction or cancellation was submitted to manufacture a sample.
 
+The later [REA cross-check](010-rea-frontend-and-contract-crosscheck.md#client-requests-local-calls-and-manual-interpretation)
+adds actual static call traces for close grouping, shared PAPER/submission helpers
+and local tracking. The main app remains incompletely parsed; these traces do not
+establish backend scheduling or a historical user's waiting time.
+
 ## Official app order types
 
 The owner reports that the current official app has **no limit orders, take-profit,

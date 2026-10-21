@@ -1,0 +1,982 @@
+{
+  "schema_version": "rea-analysis-research-v1",
+  "investigation_id": "REA-001",
+  "date": "2026-10-21",
+  "baseline": "59503fde809dd239276d21b9ced0e79b3d2ea812",
+  "assurance": "Original metadata-only summary of offline REA runs. Not a validated chain packet, complete ABI, complete frontend graph or historical execution reproduction. Raw captures and full Evidence remain private.",
+  "tool": {
+    "package": "rea-agents",
+    "version": "6.7.0",
+    "repository": "https://github.com/morluto/rea",
+    "release_ref": "27dc42d10249f0410904a75c0997842eb03b931c",
+    "npm_tarball": "https://registry.npmjs.org/rea-agents/-/rea-agents-6.7.0.tgz",
+    "tarball_sha256": "20958a66dba1a011e50a486beb9463a343128ed368c984f94065362c13f51f90",
+    "registry_integrity": "sha512-yhIx2ioJYYT1C/tONfYeitC6LhnKmCh+ZwRUOgYuhSc733lGhkkt73zhug9WmLgxoMdKuqIYGCoBfD4fXkOhFw==",
+    "tarball_integrity_matched": true,
+    "installed_published_files_matched": 1775,
+    "registry_signature_or_attestation_verified": false,
+    "documentation": [
+      {
+        "url": "https://raw.githubusercontent.com/morluto/rea/27dc42d10249f0410904a75c0997842eb03b931c/docs/cli.md",
+        "error": "<urlopen error _ssl.c:1015: The handshake operation timed out>"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/morluto/rea/27dc42d10249f0410904a75c0997842eb03b931c/docs/javascript-artifact-reconstruction.md",
+        "started_at": "2026-10-21T12:23:54.484763+00:00",
+        "finished_at": "2026-10-21T12:23:55.134954+00:00",
+        "status": 200,
+        "sha256": "2293ff71884860bb81c05ce2dbcae8dae6cd3c882e97aa0804132aa1fa692e6d"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/morluto/rea/27dc42d10249f0410904a75c0997842eb03b931c/docs/javascript-application-workflows.md",
+        "started_at": "2026-10-21T12:23:55.135012+00:00",
+        "finished_at": "2026-10-21T12:23:55.851319+00:00",
+        "status": 200,
+        "sha256": "fcd8c589bd99a1f5401ce4740fcf2854fc34bebc4477dcfa84db79d40fccf825"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/morluto/rea/27dc42d10249f0410904a75c0997842eb03b931c/docs/evm-bytecode.md",
+        "started_at": "2026-10-21T12:23:55.851387+00:00",
+        "finished_at": "2026-10-21T12:23:56.376866+00:00",
+        "status": 200,
+        "sha256": "57d5af830bb67883cab98513ae043b56521378ce174d5b13036980ad1cfb7693"
+      }
+    ]
+  },
+  "environment": {
+    "frontend": {
+      "os": "Darwin",
+      "architecture": "arm64",
+      "node": "26.8.2"
+    },
+    "evm": {
+      "os": "Linux",
+      "architecture": "x86_64",
+      "node": "26.12.0",
+      "provider": "evmole@0.9.3",
+      "prlimit": "util-linux 2.38.1",
+      "ps": "procps-ng 4.0.2",
+      "image": "node@sha256:bfb78a64f53d36c691f27dceecc9d4e73b3526411e1cee6fdf8d981d06fb2eb7",
+      "network": "none",
+      "input_mounts": "read-only",
+      "rea_worker_limits_preserved": true
+    }
+  },
+  "scope": {
+    "new_target_rpc_requests": 0,
+    "new_target_http_or_account_requests": 0,
+    "target_code_execution": false,
+    "wallet_operations": 0,
+    "historical_block": null,
+    "transaction_prestate": null,
+    "independent_settlement_reproduced": false,
+    "original_case_windows_and_records_unchanged": true
+  },
+  "frontend": {
+    "selected_files": 22,
+    "selected_bytes": 939463,
+    "root_artifact_sha256": "68a794156a7319ff993ecc3ee4d7cfe68902979b2bfd92916530baa848053921",
+    "key_sources": [
+      {
+        "url": "https://exchange.papertrade.xyz/assets/app-DL1CQl0h.js",
+        "sha256": "15af5e1a6dd7dcb66f6fdd4f49cda02f8be9625f1f3e0745b47d27a1c50b5234",
+        "bytes": 581202,
+        "captured_from": "2026-10-21T07:19:58.901499+00:00",
+        "captured_to": "2026-10-21T07:20:00.420607+00:00"
+      },
+      {
+        "url": "https://exchange.papertrade.xyz/assets/emissions-BZPaNUNb.js",
+        "sha256": "38e32b3606cf1e25e7dfca12b6e37f716dfdb5538d57824b8497c91a38ce69a7",
+        "bytes": 1187,
+        "captured_from": "2026-10-21T07:20:39.160250+00:00",
+        "captured_to": "2026-10-21T07:20:39.863630+00:00"
+      },
+      {
+        "url": "https://exchange.papertrade.xyz/assets/staking-DqtEqWII.js",
+        "sha256": "1aeafeebea8222978e4a024bc21b3d39ff2aaeaa8d2bf4f4b12698e6f79b10fe",
+        "bytes": 18941,
+        "captured_from": "2026-10-21T07:20:40.866781+00:00",
+        "captured_to": "2026-10-21T07:20:42.445030+00:00"
+      },
+      {
+        "url": "https://exchange.papertrade.xyz/assets/trade._coin-Lf4I89vs.js",
+        "sha256": "1188be7a8b52b47ef2820e083f9f9072ef7e2b93abfba89174f8a077fc8b93b6",
+        "bytes": 83663,
+        "captured_from": "2026-10-21T07:20:43.451076+00:00",
+        "captured_to": "2026-10-21T07:20:44.383377+00:00"
+      },
+      {
+        "url": "https://exchange.papertrade.xyz/assets/hooks-a3qtukpN.js",
+        "sha256": "8ff55c81aad69dc15ae8fb612b13f3fc55b03e6af528f3cea4310ff6b9f1af47",
+        "bytes": 76254,
+        "captured_from": "2026-10-21T07:21:17.527975+00:00",
+        "captured_to": "2026-10-21T07:21:18.018137+00:00"
+      },
+      {
+        "url": "https://exchange.papertrade.xyz/assets/typed-data-B0hqt2-N.js",
+        "sha256": "ff04eb15141ecc5fd02bf9a2f7cf3a0440396b5e7d08bb6aed6d545e244213de",
+        "bytes": 2727,
+        "captured_from": "2026-10-21T08:05:56.881663+00:00",
+        "captured_to": "2026-10-21T08:05:57.191779+00:00"
+      },
+      {
+        "url": "https://exchange.papertrade.xyz/assets/useOrderInputs-CCSPWPTR.js",
+        "sha256": "ef860d8e9d6d19559793144e5495d1feadfa532a8ec9df5de49095224f7039cb",
+        "bytes": 7913,
+        "captured_from": "2026-10-21T08:06:52.116825+00:00",
+        "captured_to": "2026-10-21T08:06:52.425232+00:00"
+      }
+    ],
+    "derived_excerpts": [
+      {
+        "original_bundle": "app-DL1CQl0h.js",
+        "original_sha256": "15af5e1a6dd7dcb66f6fdd4f49cda02f8be9625f1f3e0745b47d27a1c50b5234",
+        "utf16_start": 549710,
+        "utf16_end_exclusive": 575530,
+        "utf8_start": 549750,
+        "utf8_end_exclusive": 575587,
+        "excerpt_sha256": "22eac972da462e2f384f8a2501c3117b26adb8e2cfbb9d47b0caa8fce5268bba",
+        "bytes": 25837,
+        "derivation": "Unmodified contiguous complete top-level statements; no wrapper, stub, imports or source map synthesized"
+      },
+      {
+        "original_bundle": "hooks-a3qtukpN.js",
+        "original_sha256": "8ff55c81aad69dc15ae8fb612b13f3fc55b03e6af528f3cea4310ff6b9f1af47",
+        "utf16_start": 8564,
+        "utf16_end_exclusive": 8657,
+        "utf8_start": 8564,
+        "utf8_end_exclusive": 8657,
+        "excerpt_sha256": "d49fd8d297e00de45c5e9aecaefd8747e7c524d1d7eaec24e3d0098a2c18d180",
+        "bytes": 93,
+        "derivation": "Unmodified contiguous complete top-level statements; no wrapper, stub, imports or source map synthesized"
+      },
+      {
+        "original_bundle": "hooks-a3qtukpN.js",
+        "original_sha256": "8ff55c81aad69dc15ae8fb612b13f3fc55b03e6af528f3cea4310ff6b9f1af47",
+        "utf16_start": 66080,
+        "utf16_end_exclusive": 75726,
+        "utf8_start": 66080,
+        "utf8_end_exclusive": 75726,
+        "excerpt_sha256": "e665e3a1ffb7c84870f8cf4060f717d56c2f68c22d6af904572350bed52e97b2",
+        "bytes": 9646,
+        "derivation": "Unmodified contiguous complete top-level statements; no wrapper, stub, imports or source map synthesized"
+      }
+    ],
+    "analyses": [
+      {
+        "run": "006-frontend-analysis",
+        "ok": false,
+        "evidence_id": "ev_e0fd4770998663edfa640aa6b95259b2623756d62128d9392cf220a54a6beb9a",
+        "statistics": {
+          "relevant_files": 22,
+          "nested_asar_containers": 0,
+          "text_bytes_read": 939463,
+          "invalid_utf8_files": 0,
+          "parsed_javascript_files": 0,
+          "skipped_javascript_files": 22,
+          "visited_ast_nodes": 0,
+          "findings": 0,
+          "modules": 0,
+          "parse_failures": 0
+        },
+        "structural_nodes": 45,
+        "structural_edges": 44,
+        "structural_coverage": "partial",
+        "semantic_nodes": 22,
+        "semantic_relations": 0,
+        "semantic_coverage": "partial",
+        "started_at": "2026-10-21T12:23:49.382483+00:00",
+        "finished_at": "2026-10-21T12:23:55.412138+00:00",
+        "exit_code": 1,
+        "private_output_sha256": "967a893b116e98237977339256f1ec21571d2669202e5104915db85868af7821",
+        "assessment": "Main bundle unavailable due to startup or heap constraint"
+      },
+      {
+        "run": "009-frontend-analysis-local-cache",
+        "ok": true,
+        "evidence_id": "ev_d361eeeeaf35d92d9cc8e5814971b92134d9d4f343abcbbf7e5e57b949a76e95",
+        "statistics": {
+          "relevant_files": 22,
+          "nested_asar_containers": 0,
+          "text_bytes_read": 939463,
+          "invalid_utf8_files": 0,
+          "parsed_javascript_files": 21,
+          "skipped_javascript_files": 1,
+          "visited_ast_nodes": 109387,
+          "findings": 1313,
+          "modules": 0,
+          "parse_failures": 0
+        },
+        "structural_nodes": 788,
+        "structural_edges": 1358,
+        "structural_coverage": "partial",
+        "semantic_nodes": 73126,
+        "semantic_relations": 79519,
+        "semantic_coverage": "partial",
+        "started_at": "2026-10-21T12:24:24.506543+00:00",
+        "finished_at": "2026-10-21T12:25:30.015419+00:00",
+        "exit_code": 0,
+        "private_output_sha256": "810ac698bb571aee3c110ea4d14804c142979a8ca517deab48a352e734492a1c",
+        "assessment": "Main bundle unavailable due to startup or heap constraint"
+      },
+      {
+        "run": "016-frontend-app-4g",
+        "ok": true,
+        "evidence_id": "ev_7100e79f132227aeddacd42ee48ef6fc28f561031e36ea37523f491138230b77",
+        "statistics": {
+          "relevant_files": 22,
+          "nested_asar_containers": 0,
+          "text_bytes_read": 581202,
+          "invalid_utf8_files": 0,
+          "parsed_javascript_files": 0,
+          "skipped_javascript_files": 1,
+          "visited_ast_nodes": 0,
+          "findings": 0,
+          "modules": 0,
+          "parse_failures": 0
+        },
+        "structural_nodes": 45,
+        "structural_edges": 44,
+        "structural_coverage": "partial",
+        "semantic_nodes": 22,
+        "semantic_relations": 0,
+        "semantic_coverage": "partial",
+        "started_at": "2026-10-21T12:26:25.871190+00:00",
+        "finished_at": "2026-10-21T12:27:14.439548+00:00",
+        "exit_code": 0,
+        "private_output_sha256": "daa762746520a041710b833dd11c0cb42f50045a6b390e2ce9ddc76bd12a0295",
+        "assessment": "Main bundle unavailable due to startup or heap constraint"
+      },
+      {
+        "run": "022-app-fragment-analysis",
+        "ok": true,
+        "evidence_id": "ev_c488eced848080facdf5bca85405904e64a5bee73c80bfd4b28f6b7902b7f1af",
+        "statistics": {
+          "relevant_files": 1,
+          "nested_asar_containers": 0,
+          "text_bytes_read": 25837,
+          "invalid_utf8_files": 0,
+          "parsed_javascript_files": 1,
+          "skipped_javascript_files": 0,
+          "visited_ast_nodes": 7552,
+          "findings": 1,
+          "modules": 0,
+          "parse_failures": 0
+        },
+        "structural_nodes": 4,
+        "structural_edges": 3,
+        "structural_coverage": "partial",
+        "semantic_nodes": 5389,
+        "semantic_relations": 6093,
+        "semantic_coverage": "unknown",
+        "started_at": "2026-10-21T12:28:26.714410+00:00",
+        "finished_at": "2026-10-21T12:28:31.668762+00:00",
+        "exit_code": 0,
+        "private_output_sha256": "f25265225a5b3469e81e2ee37619709f28a9aa4d517eaf7751a869754a1682b7",
+        "assessment": "Selected inert excerpts parsed; external relationships remain unknown"
+      },
+      {
+        "run": "039-hooks-fragments-analysis",
+        "ok": true,
+        "evidence_id": "ev_fa103c204ecdb7ec9ea83f9eff66d600da262fcf789a39ec69fbb2e8f9f788e1",
+        "statistics": {
+          "relevant_files": 2,
+          "nested_asar_containers": 0,
+          "text_bytes_read": 9739,
+          "invalid_utf8_files": 0,
+          "parsed_javascript_files": 2,
+          "skipped_javascript_files": 0,
+          "visited_ast_nodes": 2788,
+          "findings": 0,
+          "modules": 0,
+          "parse_failures": 0
+        },
+        "structural_nodes": 5,
+        "structural_edges": 4,
+        "structural_coverage": "complete",
+        "semantic_nodes": 1944,
+        "semantic_relations": 1810,
+        "semantic_coverage": "unknown",
+        "started_at": "2026-10-21T12:31:19.128256+00:00",
+        "finished_at": "2026-10-21T12:31:23.637277+00:00",
+        "exit_code": 0,
+        "private_output_sha256": "c17e5492eec7febf5c028851157c2ddbf6ef0521e678f756d0cd02b0b769fa8f",
+        "assessment": "Selected inert excerpts parsed; external relationships remain unknown"
+      }
+    ],
+    "traces": [
+      {
+        "run_id": "019-semantic-claim",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_f22126fc05dcd2487c1e36ac2fc9e663f683c4766f40bebb4d890de9695fdff6",
+        "source_evidence_id": "ev_d361eeeeaf35d92d9cc8e5814971b92134d9d4f343abcbbf7e5e57b949a76e95",
+        "started_at": "2026-10-21T12:27:59.205549+00:00",
+        "finished_at": "2026-10-21T12:28:10.912101+00:00",
+        "exit_code": 0,
+        "status": "found",
+        "summary": {
+          "total_seed_matches": 1,
+          "traversed_nodes": 1,
+          "traversed_relations": 0,
+          "traversed_functions": 1,
+          "traversed_modules": 1,
+          "relevant_unknowns": 0
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "bfdfea5797fabd27bf06b02171a206c82c51da8d90baf45a2efd64c437f00005"
+      },
+      {
+        "run_id": "020-feature-staking",
+        "operation": "trace_application_feature",
+        "evidence_id": "ev_30e3d32b54c8af4bbb8f0b21c31e192fa5649977b3e2c643a9b9f68b5211ef47",
+        "source_evidence_id": "ev_d361eeeeaf35d92d9cc8e5814971b92134d9d4f343abcbbf7e5e57b949a76e95",
+        "started_at": "2026-10-21T12:28:10.912318+00:00",
+        "finished_at": "2026-10-21T12:28:22.902067+00:00",
+        "exit_code": 0,
+        "status": null,
+        "summary": {
+          "matched_seeds": 2,
+          "traced_nodes": 377,
+          "traced_edges": 530,
+          "terminal_paths": 5,
+          "native_handoffs": 0,
+          "observed_facts": 182,
+          "inferred_facts": 920,
+          "unknown_facts": 0,
+          "unavailable_facts": 1
+        },
+        "coverage": {
+          "status": "partial",
+          "source_graph_status": "partial",
+          "total_seed_matches": 2
+        },
+        "private_output_sha256": "62d4b70731d9c745d9d6b4ee00bc0626a7b18236c1ca7553cd08483f29541951"
+      },
+      {
+        "run_id": "024-view-fragment",
+        "operation": "inspect_analysis_view",
+        "evidence_id": "ev_7bc5621ab6d70ddd89c2c4aed6f6245f0dc28e07d24418e01fb0c1cbd22fe5c8",
+        "source_evidence_id": "ev_c488eced848080facdf5bca85405904e64a5bee73c80bfd4b28f6b7902b7f1af",
+        "started_at": "2026-10-21T12:29:24.165694+00:00",
+        "finished_at": "2026-10-21T12:29:25.649955+00:00",
+        "exit_code": 0,
+        "status": null,
+        "summary": {},
+        "coverage": {
+          "status": "complete-within-view",
+          "examined": 3,
+          "total": 4,
+          "next_offset": null,
+          "exhausted": true
+        },
+        "private_output_sha256": "6b5f42c8f627f74c5bf7a613c84ad9f842f3fde51d5b8d7888c9508b54f0a43c"
+      },
+      {
+        "run_id": "025-semantic-intents",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_82fd80f1f0119bf0d45411c192b7e9b14e5e6540126e8f903b42acb5f0725db0",
+        "source_evidence_id": "ev_c488eced848080facdf5bca85405904e64a5bee73c80bfd4b28f6b7902b7f1af",
+        "started_at": "2026-10-21T12:29:25.650561+00:00",
+        "finished_at": "2026-10-21T12:29:27.300272+00:00",
+        "exit_code": 0,
+        "status": "partial",
+        "summary": {
+          "total_seed_matches": 0,
+          "traversed_nodes": 0,
+          "traversed_relations": 0,
+          "traversed_functions": 0,
+          "traversed_modules": 0,
+          "relevant_unknowns": 0
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "0c55c56c263e2cf025d562e6775b44319d81620da08be6dd4bd7c043dca0a29c"
+      },
+      {
+        "run_id": "026-semantic-open",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_f01be16b79e18c6ebf5cb88939fe7d8f3280ba8f727c4f30ab02635541815976",
+        "source_evidence_id": "ev_c488eced848080facdf5bca85405904e64a5bee73c80bfd4b28f6b7902b7f1af",
+        "started_at": "2026-10-21T12:29:27.300494+00:00",
+        "finished_at": "2026-10-21T12:29:28.786697+00:00",
+        "exit_code": 0,
+        "status": "partial",
+        "summary": {
+          "total_seed_matches": 0,
+          "traversed_nodes": 0,
+          "traversed_relations": 0,
+          "traversed_functions": 0,
+          "traversed_modules": 0,
+          "relevant_unknowns": 0
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "45f93b617ee26137354be9ebfec315bc3e1b510b8ee017766278a464fcd5d155"
+      },
+      {
+        "run_id": "027-semantic-claim",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_5541666296720b1d880c06d87f35309c2ef4de3443776b98f25f36f3e5acd681",
+        "source_evidence_id": "ev_c488eced848080facdf5bca85405904e64a5bee73c80bfd4b28f6b7902b7f1af",
+        "started_at": "2026-10-21T12:29:28.786900+00:00",
+        "finished_at": "2026-10-21T12:29:30.281816+00:00",
+        "exit_code": 0,
+        "status": "partial",
+        "summary": {
+          "total_seed_matches": 0,
+          "traversed_nodes": 0,
+          "traversed_relations": 0,
+          "traversed_functions": 0,
+          "traversed_modules": 0,
+          "relevant_unknowns": 0
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "87bc884e192e3e8befaf67a3735c755e890d9b213897e545a261152cd264b202"
+      },
+      {
+        "run_id": "028-close-callers",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_099ea7657c58b28d54ea4a0384e2bb858f3038c65c1818660ceadf1b6e0ea5f0",
+        "source_evidence_id": "ev_c488eced848080facdf5bca85405904e64a5bee73c80bfd4b28f6b7902b7f1af",
+        "started_at": "2026-10-21T12:29:45.650103+00:00",
+        "finished_at": "2026-10-21T12:29:47.136472+00:00",
+        "exit_code": 0,
+        "status": "found",
+        "summary": {
+          "total_seed_matches": 1,
+          "traversed_nodes": 2,
+          "traversed_relations": 1,
+          "traversed_functions": 2,
+          "traversed_modules": 1,
+          "relevant_unknowns": 11
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "22eb52fb25b1cbb23d2ba8326ef2c0a2cc66c621130b1b96b49b884d625516e1"
+      },
+      {
+        "run_id": "029-paper-callers",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_34182fb5fb7be08045714f3659128a46717b8070f1ec5cf5bbeb37f8e5ad06e7",
+        "source_evidence_id": "ev_c488eced848080facdf5bca85405904e64a5bee73c80bfd4b28f6b7902b7f1af",
+        "started_at": "2026-10-21T12:29:47.136669+00:00",
+        "finished_at": "2026-10-21T12:29:48.628606+00:00",
+        "exit_code": 0,
+        "status": "found",
+        "summary": {
+          "total_seed_matches": 1,
+          "traversed_nodes": 4,
+          "traversed_relations": 3,
+          "traversed_functions": 4,
+          "traversed_modules": 1,
+          "relevant_unknowns": 5
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "8efa5dc2dacb145974a6bcbc4fd2c508ecc4be5cb9df49b74b6ff43647975d45"
+      },
+      {
+        "run_id": "030-intent-tracker",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_b439216d931f81b4024310d749ccfc8d397b4ee57aab27ae411eb58cd631a8fc",
+        "source_evidence_id": "ev_c488eced848080facdf5bca85405904e64a5bee73c80bfd4b28f6b7902b7f1af",
+        "started_at": "2026-10-21T12:29:48.628813+00:00",
+        "finished_at": "2026-10-21T12:29:50.123758+00:00",
+        "exit_code": 0,
+        "status": "found",
+        "summary": {
+          "total_seed_matches": 1,
+          "traversed_nodes": 2,
+          "traversed_relations": 1,
+          "traversed_functions": 2,
+          "traversed_modules": 1,
+          "relevant_unknowns": 5
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "673b380926bf096e7490d572f4df655055923b929ceefac0de694c4ef16970bd"
+      },
+      {
+        "run_id": "031-http-submit",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_844c0ec98900f3638fbda688b6bd8c738e768c942f038b29f4402e13e69ce707",
+        "source_evidence_id": "ev_c488eced848080facdf5bca85405904e64a5bee73c80bfd4b28f6b7902b7f1af",
+        "started_at": "2026-10-21T12:29:50.123952+00:00",
+        "finished_at": "2026-10-21T12:29:51.603142+00:00",
+        "exit_code": 0,
+        "status": "found",
+        "summary": {
+          "total_seed_matches": 1,
+          "traversed_nodes": 4,
+          "traversed_relations": 3,
+          "traversed_functions": 4,
+          "traversed_modules": 1,
+          "relevant_unknowns": 11
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "3b84e90cd7f8667795b283f83a7bac709946c1f4d1685037f818b63bbda070a4"
+      },
+      {
+        "run_id": "033-submit-callers",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_5caad3be8960cfade430371e9f28dcc61f3c4a83ac90979e812fbaf049de55f1",
+        "source_evidence_id": "ev_c488eced848080facdf5bca85405904e64a5bee73c80bfd4b28f6b7902b7f1af",
+        "started_at": "2026-10-21T12:30:39.868176+00:00",
+        "finished_at": "2026-10-21T12:30:41.487636+00:00",
+        "exit_code": 0,
+        "status": "found",
+        "summary": {
+          "total_seed_matches": 1,
+          "traversed_nodes": 5,
+          "traversed_relations": 4,
+          "traversed_functions": 5,
+          "traversed_modules": 1,
+          "relevant_unknowns": 17
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "e10b165d923473eb61118a4ee007a799a5add493a627d2654774914d943b969e"
+      },
+      {
+        "run_id": "040-hooks-trace",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_61efc92f3f8fdbd38cd51bc2c4a3483d12cb89310a6e9a1def9a05d5a19b9dd1",
+        "source_evidence_id": "ev_fa103c204ecdb7ec9ea83f9eff66d600da262fcf789a39ec69fbb2e8f9f788e1",
+        "started_at": "2026-10-21T12:32:09.650516+00:00",
+        "finished_at": "2026-10-21T12:32:10.535470+00:00",
+        "exit_code": 0,
+        "status": "ambiguous",
+        "summary": {
+          "total_seed_matches": 1,
+          "traversed_nodes": 4,
+          "traversed_relations": 3,
+          "traversed_functions": 1,
+          "traversed_modules": 1,
+          "relevant_unknowns": 3
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "9701cd11bb5ea42624cb2afb51632a4e71dc83292b4ac0b16d918cb1f74c7fd1"
+      },
+      {
+        "run_id": "041-hooks-trace",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_f7969aa273b3b899887ce9b5697945498506c06a38ac60cc7247fd513c7df768",
+        "source_evidence_id": "ev_fa103c204ecdb7ec9ea83f9eff66d600da262fcf789a39ec69fbb2e8f9f788e1",
+        "started_at": "2026-10-21T12:32:10.537329+00:00",
+        "finished_at": "2026-10-21T12:32:11.428507+00:00",
+        "exit_code": 0,
+        "status": "partial",
+        "summary": {
+          "total_seed_matches": 0,
+          "traversed_nodes": 0,
+          "traversed_relations": 0,
+          "traversed_functions": 0,
+          "traversed_modules": 0,
+          "relevant_unknowns": 0
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "7b77d69179c3e2c7ffb119a8a01245058ce984c888917e138ae529d0cfa5dc98"
+      },
+      {
+        "run_id": "042-emission-display-callers",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_502ea998ecd7006488c4aee3cb638e1bc626f1e18358c932ae2addc9c17a0cdd",
+        "source_evidence_id": "ev_d361eeeeaf35d92d9cc8e5814971b92134d9d4f343abcbbf7e5e57b949a76e95",
+        "started_at": "2026-10-21T12:33:29.567692+00:00",
+        "finished_at": "2026-10-21T12:33:41.240052+00:00",
+        "exit_code": 0,
+        "status": "found",
+        "summary": {
+          "total_seed_matches": 1,
+          "traversed_nodes": 2,
+          "traversed_relations": 1,
+          "traversed_functions": 2,
+          "traversed_modules": 1,
+          "relevant_unknowns": 3
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "1c09435adcb070a2dd9465a767d3be4db46138cd17b1bca0c776d99a95bbf4b0"
+      },
+      {
+        "run_id": "043-bust-preview-callers",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_3d8a48deb329f175583b6ddb92f8653b1edc06c0b099dccd916609e69dd73ebf",
+        "source_evidence_id": "ev_d361eeeeaf35d92d9cc8e5814971b92134d9d4f343abcbbf7e5e57b949a76e95",
+        "started_at": "2026-10-21T12:33:41.240561+00:00",
+        "finished_at": "2026-10-21T12:33:53.146570+00:00",
+        "exit_code": 0,
+        "status": "found",
+        "summary": {
+          "total_seed_matches": 1,
+          "traversed_nodes": 2,
+          "traversed_relations": 1,
+          "traversed_functions": 2,
+          "traversed_modules": 1,
+          "relevant_unknowns": 1
+        },
+        "coverage": {
+          "status": "partial"
+        },
+        "private_output_sha256": "bba1ab5236e1a3357e8907580e05f9c3d26437769667a305702db2ac766fe35a"
+      },
+      {
+        "run_id": "044-view-hooks-references",
+        "operation": "inspect_analysis_view",
+        "evidence_id": "ev_3e13f39718fa6f9db5e3c8017e02d530f1eb0e03aa838ea91b8dd7ae94232819",
+        "source_evidence_id": "ev_d361eeeeaf35d92d9cc8e5814971b92134d9d4f343abcbbf7e5e57b949a76e95",
+        "started_at": "2026-10-21T12:33:53.146840+00:00",
+        "finished_at": "2026-10-21T12:34:03.843046+00:00",
+        "exit_code": 0,
+        "status": null,
+        "summary": null,
+        "coverage": {
+          "status": "page",
+          "examined": 16,
+          "total": 94,
+          "next_offset": 16,
+          "exhausted": false
+        },
+        "private_output_sha256": "a2e7a2f441a7636114032ed97e957132dc81a49acb3af1f37a5fec85c5216dd6"
+      }
+    ],
+    "missing_static_imports": {
+      "sites": 171,
+      "distinct_paths": 79,
+      "scope": "Literal top-level ESM imports/reexports only; dynamic dependencies not exhausted"
+    },
+    "inspect_view_references": {
+      "examined": 16,
+      "total": 94,
+      "next_offset": 16,
+      "exhausted": false
+    },
+    "limitations": [
+      "Full main app exhausted the default 1 GiB heap and a separate 4 GiB run.",
+      "Exact inert excerpts recovered key local calls; omitted bindings were not synthesized.",
+      "Cross-module joins and business meanings include manual source interpretation.",
+      "Partial or ambiguous traces do not prove execution or absence.",
+      "Missing valuation dependency prevents full fee-preview comparison."
+    ],
+    "paper_ratio_formatter": {
+      "module": "emissions-BZPaNUNb.js",
+      "formatter": "d",
+      "guard": "s",
+      "ratio": "paperMintedRaw / paperMintBasisRaw",
+      "meaning_source": "Manual inspection of captured source; REA trace 042 supports local d-to-s call",
+      "exported_as": "n",
+      "page_consumer_captured": false,
+      "actual_screen_binding": null,
+      "original_user_observation_binding": null,
+      "correction": "Earlier local explanation called this the history display; publication review limits the claim to an exported formatter whose UI consumer is unavailable."
+    }
+  },
+  "evm": [
+    {
+      "chain_id": 999,
+      "address": "0x0f3febfc94876b0c895f7acecdc8f5c863b549ee",
+      "carrier_sha256": "d7f8f6907270f0fb096e5bd22c65190ed53aad97533a0b7e1a5253c1828c7665",
+      "decoded_sha256": "2f2e20ca683b70511fe62178b8090c93df24208b13dbdfa6407f38946fcef0b1",
+      "decoded_keccak256": "0x9d20287df886415035d53344a0dc8a1044949308cc3283ee0fe7ea5f3ea28d92",
+      "decoded_bytes": 23052,
+      "historical_block": null,
+      "transaction_prestate": null,
+      "acquisitions": [
+        {
+          "started_at": "2026-10-21T07:20:03.666Z",
+          "finished_at": "2026-10-21T07:20:04.104Z",
+          "requested_tag": "0x2ed71c4",
+          "temporal_authority": "latest-only acquisition-time response; requested historical tag not binding"
+        }
+      ],
+      "run_id": "034-full-linux-evm-exchange",
+      "operation": "inspect_evm_interface",
+      "started_at": "2026-10-21T12:31:02.325383+00:00",
+      "finished_at": "2026-10-21T12:31:06.110430+00:00",
+      "exit_code": 0,
+      "evidence_id": "ev_b1d6904a2cae6f64a47d6950b6b5053e4e826e8360f9bb195a6d52e0d4f13b38",
+      "private_output_sha256": "442f4b59cb9a61f90b528e00bedd01f013a8350dea5429f1944cce032f5a0b89",
+      "inferred_functions": 98,
+      "discovery_completeness": "unknown",
+      "runtime_execution": "not-performed",
+      "compiler_metadata_candidate": {
+        "representation": "release-bytes",
+        "value": "0.8.24"
+      }
+    },
+    {
+      "chain_id": 999,
+      "address": "0x600d1b9653fd47fc1543d1cc87f33ba2d2fdf48f",
+      "carrier_sha256": "e6aee0d425a3bd2c6940f156422c8bce63c5ae155ed89c861a75b7dd9bc8be47",
+      "decoded_sha256": "ed9d18151a9365c347ac7a9da7e83b53ecedac235d9e67c4b2699503a6bd4a97",
+      "decoded_keccak256": "0xd9fbc7091e10f4d56188f3097454bd8464ed4b77b5f44d1c6391be72b9362169",
+      "decoded_bytes": 3324,
+      "historical_block": null,
+      "transaction_prestate": null,
+      "acquisitions": [
+        {
+          "started_at": "2026-10-21T07:21:18.495Z",
+          "finished_at": "2026-10-21T07:21:18.654Z",
+          "requested_tag": "0x2ed71c4",
+          "temporal_authority": "latest-only acquisition-time response; requested historical tag not binding"
+        }
+      ],
+      "run_id": "035-full-linux-evm-tokenomics",
+      "operation": "inspect_evm_interface",
+      "started_at": "2026-10-21T12:31:06.111224+00:00",
+      "finished_at": "2026-10-21T12:31:09.886392+00:00",
+      "exit_code": 0,
+      "evidence_id": "ev_485662a4b454cabcf6e43b11c7f430f10793788bdb65b641dfc9d97067a450e3",
+      "private_output_sha256": "e0af5ade77a37efa64a321521466c6d796fb59437b41bb42fcda22209960dca5",
+      "inferred_functions": 21,
+      "discovery_completeness": "unknown",
+      "runtime_execution": "not-performed",
+      "compiler_metadata_candidate": {
+        "representation": "release-bytes",
+        "value": "0.8.24"
+      }
+    },
+    {
+      "chain_id": 999,
+      "address": "0xcd617f984158a4f5d287ddee0e8eb0fed204916d",
+      "carrier_sha256": "95bddf21f52471ed51670c3b402002888bdb3dde685acdbd546ed121884e217f",
+      "decoded_sha256": "622ed31d6eeea7efb834d32e4f2199b718af1ece2280f4d22cdd1f8769aa4fe2",
+      "decoded_keccak256": "0x6dd521e90deaa283432285694770360cf42830025b2b1e6916a3c41799160792",
+      "decoded_bytes": 5790,
+      "historical_block": null,
+      "transaction_prestate": null,
+      "acquisitions": [
+        {
+          "started_at": "2026-10-21T07:20:05.669Z",
+          "finished_at": "2026-10-21T07:20:05.903Z",
+          "requested_tag": "0x2ed71c4",
+          "temporal_authority": "latest-only acquisition-time response; requested historical tag not binding"
+        }
+      ],
+      "run_id": "036-full-linux-evm-accounting-lib",
+      "operation": "inspect_evm_interface",
+      "started_at": "2026-10-21T12:31:09.886906+00:00",
+      "finished_at": "2026-10-21T12:31:13.470404+00:00",
+      "exit_code": 0,
+      "evidence_id": "ev_31d7c28e81ace6ba6169ea0b0764847f8d314b91de22ea0d7fd9d73f1308f4c8",
+      "private_output_sha256": "aa6c34dfb7bf92e5a64a9c17227fe1049472ed084de81fb871d401843473a6b3",
+      "inferred_functions": 10,
+      "discovery_completeness": "unknown",
+      "runtime_execution": "not-performed",
+      "compiler_metadata_candidate": {
+        "representation": "release-bytes",
+        "value": "0.8.24"
+      }
+    },
+    {
+      "chain_id": 999,
+      "address": "0xe991817199363046da0a28da6fbad0284e4aa492",
+      "carrier_sha256": "982e85d053347832349352ba9b7bc79cc939cf6f2bf8a7254531d662ed9a4bff",
+      "decoded_sha256": "8f1de6ca76cfd6f0186e9f4472dd53fab6dfa1a53a7c3a2a3700d641fec7c5da",
+      "decoded_keccak256": "0xa13304bc6fdad736a3ee6ad77d713c6077f1b130501d577be1bf9487d005388d",
+      "decoded_bytes": 585,
+      "historical_block": null,
+      "transaction_prestate": null,
+      "acquisitions": [
+        {
+          "started_at": "2026-10-21T07:24:14.254Z",
+          "finished_at": "2026-10-21T07:24:14.411Z",
+          "requested_tag": "0x2ed71c4",
+          "temporal_authority": "latest-only acquisition-time response; requested historical tag not binding"
+        }
+      ],
+      "run_id": "037-full-linux-evm-mint-lib",
+      "operation": "inspect_evm_interface",
+      "started_at": "2026-10-21T12:31:13.470695+00:00",
+      "finished_at": "2026-10-21T12:31:16.923296+00:00",
+      "exit_code": 0,
+      "evidence_id": "ev_586e6a428e34246e3217c8605eef0b06254a53f27e4a825663c3f5911edaf10f",
+      "private_output_sha256": "3c13e13027a3b9797196170e9711cb9e10e44751e5b04521829db934c1206497",
+      "inferred_functions": 1,
+      "discovery_completeness": "unknown",
+      "runtime_execution": "not-performed",
+      "compiler_metadata_candidate": {
+        "representation": "release-bytes",
+        "value": "0.8.24"
+      }
+    },
+    {
+      "chain_id": 999,
+      "address": "0xe6e3519455170913c5c3bfe541dd918a2d0cbb15",
+      "carrier_sha256": "ee82f336b36b47409f891d0d0ce253ec69d83c593ff07e9c4eab8eb4c202246a",
+      "decoded_sha256": "3e006d0daee1fcbaa71c160a72291374783da5f720a33db0a51c8f84bde3aa04",
+      "decoded_keccak256": "0x54573c497e5109e353cf5330343323915e0c0f26e1b410fd3cb2cd8d1460f154",
+      "decoded_bytes": 6054,
+      "historical_block": null,
+      "transaction_prestate": null,
+      "acquisitions": [
+        {
+          "started_at": "2026-10-21T07:21:17.493Z",
+          "finished_at": "2026-10-21T07:21:17.656Z",
+          "requested_tag": "0x2ed71c4",
+          "temporal_authority": "latest-only acquisition-time response; requested historical tag not binding"
+        }
+      ],
+      "run_id": "038-full-linux-evm-staking",
+      "operation": "inspect_evm_interface",
+      "started_at": "2026-10-21T12:31:16.923472+00:00",
+      "finished_at": "2026-10-21T12:31:20.965587+00:00",
+      "exit_code": 0,
+      "evidence_id": "ev_3f632593020f959006faf115b2274f3d2bc884eb0d292cd48c71e4c15ecfe3da",
+      "private_output_sha256": "3ec8a68b266f331a058a3109bccb18a350fc806cb09aa014bca7678af7563dc2",
+      "inferred_functions": 36,
+      "discovery_completeness": "unknown",
+      "runtime_execution": "not-performed",
+      "compiler_metadata_candidate": {
+        "representation": "release-bytes",
+        "value": "0.8.24"
+      }
+    }
+  ],
+  "selector_comparison": {
+    "candidate_name_origin": "Prior manually recovered preimages, rehashed with Ethereum Keccak-256; names were not recovered by REA",
+    "compared": 42,
+    "selectors_present": 42,
+    "argument_strings_equal": 35,
+    "argument_strings_different": 7,
+    "differences": [
+      {
+        "address": "0xe6e3519455170913c5c3bfe541dd918a2d0cbb15",
+        "signature": "stake(uint256)",
+        "selector": "0xa694fc3a",
+        "rea_evidence_id": "ev_3f632593020f959006faf115b2274f3d2bc884eb0d292cd48c71e4c15ecfe3da",
+        "rea_json_pointer": "/data/normalized_result/functions/23",
+        "rea": {
+          "selector": "0xa694fc3a",
+          "bytecode_offset": 1768,
+          "dispatch": "abi",
+          "inferred_arguments": "",
+          "inferred_state_mutability": "view"
+        },
+        "argument_count_prior": 1,
+        "argument_count_rea": 0
+      },
+      {
+        "address": "0xe6e3519455170913c5c3bfe541dd918a2d0cbb15",
+        "signature": "unstake(uint256)",
+        "selector": "0x2e17de78",
+        "rea_evidence_id": "ev_3f632593020f959006faf115b2274f3d2bc884eb0d292cd48c71e4c15ecfe3da",
+        "rea_json_pointer": "/data/normalized_result/functions/4",
+        "rea": {
+          "selector": "0x2e17de78",
+          "bytecode_offset": 1768,
+          "dispatch": "abi",
+          "inferred_arguments": "",
+          "inferred_state_mutability": "view"
+        },
+        "argument_count_prior": 1,
+        "argument_count_rea": 0
+      },
+      {
+        "address": "0xe6e3519455170913c5c3bfe541dd918a2d0cbb15",
+        "signature": "claimBySig(address,uint256,uint64,uint8,bytes32,bytes32)",
+        "selector": "0x9c96d4a1",
+        "rea_evidence_id": "ev_3f632593020f959006faf115b2274f3d2bc884eb0d292cd48c71e4c15ecfe3da",
+        "rea_json_pointer": "/data/normalized_result/functions/21",
+        "rea": {
+          "selector": "0x9c96d4a1",
+          "bytecode_offset": 2102,
+          "dispatch": "abi",
+          "inferred_arguments": "address,uint256,uint64,uint8,uint256,uint256",
+          "inferred_state_mutability": "nonpayable"
+        },
+        "argument_count_prior": 6,
+        "argument_count_rea": 6
+      },
+      {
+        "address": "0x0f3febfc94876b0c895f7acecdc8f5c863b549ee",
+        "signature": "openPositionBySig(address,uint32,bool,uint128,uint32,bool,uint256,uint64,uint8,bytes32,bytes32)",
+        "selector": "0xec6783f0",
+        "rea_evidence_id": "ev_b1d6904a2cae6f64a47d6950b6b5053e4e826e8360f9bb195a6d52e0d4f13b38",
+        "rea_json_pointer": "/data/normalized_result/functions/85",
+        "rea": {
+          "selector": "0xec6783f0",
+          "bytecode_offset": 1833,
+          "dispatch": "abi",
+          "inferred_arguments": "address,uint32,bool,uint128,uint32,bool,uint256,uint64,uint8,uint256,uint256",
+          "inferred_state_mutability": "nonpayable"
+        },
+        "argument_count_prior": 11,
+        "argument_count_rea": 11
+      },
+      {
+        "address": "0x0f3febfc94876b0c895f7acecdc8f5c863b549ee",
+        "signature": "closeBySig(address,uint256[],uint256,uint64,uint8,bytes32,bytes32)",
+        "selector": "0x2792e706",
+        "rea_evidence_id": "ev_b1d6904a2cae6f64a47d6950b6b5053e4e826e8360f9bb195a6d52e0d4f13b38",
+        "rea_json_pointer": "/data/normalized_result/functions/12",
+        "rea": {
+          "selector": "0x2792e706",
+          "bytecode_offset": 12606,
+          "dispatch": "abi",
+          "inferred_arguments": "address,uint256[],uint256,uint64,uint8,uint256,uint256",
+          "inferred_state_mutability": "nonpayable"
+        },
+        "argument_count_prior": 7,
+        "argument_count_rea": 7
+      },
+      {
+        "address": "0x0f3febfc94876b0c895f7acecdc8f5c863b549ee",
+        "signature": "withdrawToCoreBySig(address,uint256,uint256,uint64,uint8,bytes32,bytes32)",
+        "selector": "0x8d09f23f",
+        "rea_evidence_id": "ev_b1d6904a2cae6f64a47d6950b6b5053e4e826e8360f9bb195a6d52e0d4f13b38",
+        "rea_json_pointer": "/data/normalized_result/functions/51",
+        "rea": {
+          "selector": "0x8d09f23f",
+          "bytecode_offset": 7791,
+          "dispatch": "abi",
+          "inferred_arguments": "address,uint256,uint256,uint64,uint8",
+          "inferred_state_mutability": "nonpayable"
+        },
+        "argument_count_prior": 7,
+        "argument_count_rea": 5
+      },
+      {
+        "address": "0x600d1b9653fd47fc1543d1cc87f33ba2d2fdf48f",
+        "signature": "setMintParams(uint256,uint256,uint256,uint256)",
+        "selector": "0x12baae3b",
+        "rea_evidence_id": "ev_485662a4b454cabcf6e43b11c7f430f10793788bdb65b641dfc9d97067a450e3",
+        "rea_json_pointer": "/data/normalized_result/functions/1",
+        "rea": {
+          "selector": "0x12baae3b",
+          "bytecode_offset": 1431,
+          "dispatch": "abi",
+          "inferred_arguments": "bool,uint256,uint256,uint256",
+          "inferred_state_mutability": "nonpayable"
+        },
+        "argument_count_prior": 4,
+        "argument_count_rea": 4
+      }
+    ]
+  },
+  "run_accounting": {
+    "major_records": 44,
+    "successful_including_setup": 31,
+    "failed_preserved": 13,
+    "private_ledger_sha256": "272d2a8b83fae40d4e06aea48b94c47b67532a9d59b5c8d58f1150d6fefefe65",
+    "all_exploratory_shell_reads_recorded": false
+  },
+  "metadata_projection": "Explicit fields only; excludes local paths, source code, bytecode payloads, request material, wallet/account joins and raw diagnostics."
+}

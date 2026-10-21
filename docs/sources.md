@@ -46,11 +46,11 @@ No inherited blob hash is presented as a commit or a new verification.
 | S5 | [Risk](https://docs.papertrade.xyz/how/risk/) | Directional limits, pauses and roles |
 | S6 | [Solvency and queue](https://docs.papertrade.xyz/how/solvency-queue/) | Cash, claims, funding and payout branches |
 | S7 | [Mint curve](https://docs.papertrade.xyz/how/mint-curve/) | Eligible losses, marginal and average issuance |
-| S8 | [REA EVM bytecode](https://github.com/morluto/rea/blob/main/docs/evm-bytecode.md) | Actual tool scope, version and platform limits |
+| S8 | [REA EVM bytecode](https://github.com/morluto/rea/blob/main/docs/evm-bytecode.md) | Subsequently read at the pinned 6.7.0 release ref and actually run; see REA sources below |
 | S9 | [REA browser observation](https://github.com/morluto/rea/blob/main/docs/browser-observation.md) | Permitted observation and capture boundaries |
 | S10 | [Hyperliquid: Interacting with HyperCore](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/interacting-with-hypercore) | Precompile and system behavior needed for future simulation |
 | S11 | [Pricing: BBO precompile](https://docs.papertrade.xyz/how/pricing-bbo/) | Execution-price inputs and market state |
-| S12 | [REA](https://rea.tools/) | Tool identity and installation source; no installation performed |
+| S12 | [REA](https://rea.tools/) | Site not read; subsequent pinned npm installation is recorded below |
 
 The task brief is not mechanism evidence and is not redistributed. No SDK test
 suite, REA analysis, authenticated API capture, wallet session, archival node,
@@ -245,3 +245,29 @@ historical stake snapshots. The current [FAQ](https://docs.papertrade.xyz/intro/
 not provide a versioned server scheduler policy; third-party commentary was excluded.
 No real unstake, LP-surplus funding or active debt branch was established by this
 sample, and no complete per-user settlement or external payment is claimed.
+
+## Actual REA analysis (2026-10-21)
+
+[Note 010](research-notes/010-rea-frontend-and-contract-crosscheck.md) and its
+[metadata record](../research/cases/007-rea-analysis.json) retain actual REA 6.7.0
+analysis identities, execution times, output digests and partial coverage. The
+record reuses existing public frontend captures and five runtime byte identities;
+no new Papertrade page, account or RPC request was made.
+
+The [npm package](https://www.npmjs.com/package/rea-agents/v/6.7.0) was installed in
+a separate local directory. The downloaded tarball matches registry integrity and
+all 1,775 installed published regular files. These checks do not authenticate npm
+signatures, attestations or every dependency. Actual CLI help and the installed
+version's contracts guided invocation.
+
+The official
+[JavaScript reconstruction](https://github.com/morluto/rea/blob/27dc42d10249f0410904a75c0997842eb03b931c/docs/javascript-artifact-reconstruction.md),
+[application workflows](https://github.com/morluto/rea/blob/27dc42d10249f0410904a75c0997842eb03b931c/docs/javascript-application-workflows.md)
+and [EVM guide](https://github.com/morluto/rea/blob/27dc42d10249f0410904a75c0997842eb03b931c/docs/evm-bytecode.md)
+were downloaded at the release ref. A separate CLI-guide download timed out and
+was not treated as read. Five offline EVM results report EVMole 0.9.3 on local Linux
+x64; the frontend results retain main-bundle heap failures and exact-excerpt scope.
+Tool documentation describes capabilities; returned Evidence supports only the
+selected analysis. Original captures, code excerpts and complete REA payloads are
+not redistributed. Existing economics, user reports and historical-state gaps
+retain their earlier provenance.
