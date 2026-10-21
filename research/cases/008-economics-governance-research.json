@@ -1,0 +1,860 @@
+{
+  "schema_version": "economics-governance-research-v1",
+  "case_id": "CASE-008",
+  "date": "2026-10-21",
+  "baseline_commit": "8e0ba35baa563a6202f09c2af01f6735086e00a0",
+  "chain_id": 999,
+  "record_scope": "Reviewed metadata projection; not a validated historical chain packet",
+  "independent_settlement_reproduced": false,
+  "historical_transaction_implementation": null,
+  "account_identity_join_published": false,
+  "raw_payload_published": false,
+  "prior_cases_unchanged": true,
+  "collection": {
+    "A_B": {
+      "rpc_attempts": 58,
+      "rpc_budget": 60,
+      "rpc_results": 53,
+      "rpc_errors": 1,
+      "rpc_transport_failures": 4,
+      "http_attempts": 16,
+      "http_budget": 30,
+      "http_success": 14,
+      "http_failures": 2,
+      "searches": 0,
+      "search_budget": 8,
+      "started_at": "2026-10-21T13:06:22.032692+00:00",
+      "finished_at": "2026-10-21T13:14:35.434712+00:00",
+      "ledger_sha256": "0050de75f011f592530242eb95d4b31d715484ce1dac1f85c1a9a37c8cf62fd5"
+    },
+    "D_E_shared_with_C": {
+      "rpc_attempts": 39,
+      "rpc_budget": 60,
+      "rpc_success": 39,
+      "http_attempts": 6,
+      "http_budget": 30,
+      "http_success": 5,
+      "http_failures": 1,
+      "searches": 0,
+      "search_budget": 8,
+      "http_ledger_sha256": "6420e864ef075a2dc6ae953700eb491934bd9e26f2be6dd57fb2793f12e80002"
+    },
+    "independent_A_C_network_requests": 0,
+    "total_rpc_attempts": 97,
+    "total_http_attempts": 22,
+    "searches": 0,
+    "ledger_limit": "Two B reads share an ordinal; distinct response files and digests were retained. Identity uses request/time/digest rather than ordinal alone."
+  },
+  "sources": [
+    {
+      "id": "mint_document",
+      "url": "https://docs.papertrade.xyz/how/mint-curve/",
+      "started_at": "2026-10-21T07:18:06.826766+00:00",
+      "finished_at": "2026-10-21T07:18:07.426600+00:00",
+      "http_status": 200,
+      "body_sha256": "f263fecf03ae73a3e6922c0c944b14c8c9930d2646acec053ffd9cd0cd3ec66c",
+      "bytes": 14717
+    },
+    {
+      "id": "queue_document_retained",
+      "url": "https://docs.papertrade.xyz/how/solvency-queue/",
+      "started_at": "2026-10-21T07:18:04.930357+00:00",
+      "finished_at": "2026-10-21T07:18:05.825803+00:00",
+      "http_status": 200,
+      "body_sha256": "1f17274c0eedacf5555e839018066ac5b68c3d1f99a0596484f27f88d762d236",
+      "bytes": 20220
+    },
+    {
+      "id": "captured_ratio_formatter",
+      "url": "https://exchange.papertrade.xyz/assets/emissions-BZPaNUNb.js",
+      "sha256": "38e32b3606cf1e25e7dfca12b6e37f716dfdb5538d57824b8497c91a38ce69a7",
+      "bytes": 1187,
+      "captured_from": "2026-10-21T07:20:39.160250+00:00",
+      "captured_to": "2026-10-21T07:20:39.863630+00:00",
+      "page_consumer": null,
+      "runtime_reachability_verified": false
+    },
+    {
+      "id": "new_summary",
+      "url": "https://exchange.papertrade.xyz/query/protocol/summary",
+      "started_at": "2026-10-21T13:06:42.954201+00:00",
+      "finished_at": "2026-10-21T13:06:43.295574+00:00",
+      "status": "ok",
+      "http_status": 200,
+      "sha256": "6e3086857e3a79e589a2f368f75fae3823df7edc931b8e5fc535575788c4a071",
+      "bytes": 846
+    },
+    {
+      "id": "new_queue",
+      "url": "https://exchange.papertrade.xyz/query/protocol/queue-summary",
+      "started_at": "2026-10-21T13:06:44.297808+00:00",
+      "finished_at": "2026-10-21T13:06:44.576564+00:00",
+      "status": "ok",
+      "http_status": 200,
+      "sha256": "acf513db6bf7c7c8df45fe27987117f184608adeb25f66f70571f1bb11fd8fd5",
+      "bytes": 110
+    },
+    {
+      "id": "new_activity",
+      "url": "https://exchange.papertrade.xyz/query/protocol/paper/activity",
+      "started_at": "2026-10-21T13:06:45.581946+00:00",
+      "finished_at": "2026-10-21T13:06:46.015324+00:00",
+      "status": "ok",
+      "http_status": 200,
+      "sha256": "08f5647e00bb3b965e717a6f0d63d0a284141fe1ad9c42adfd9e8c22de08c493",
+      "bytes": 6669
+    },
+    {
+      "id": "new_solvency",
+      "url": "https://docs.papertrade.xyz/how/solvency-queue/",
+      "started_at": "2026-10-21T13:06:47.017348+00:00",
+      "finished_at": "2026-10-21T13:06:48.743082+00:00",
+      "status": "ok",
+      "http_status": 200,
+      "sha256": "1f17274c0eedacf5555e839018066ac5b68c3d1f99a0596484f27f88d762d236",
+      "bytes": 20220
+    },
+    {
+      "id": "new_dividends",
+      "url": "https://docs.papertrade.xyz/learn/staking-dividends/",
+      "started_at": "2026-10-21T13:06:49.744331+00:00",
+      "finished_at": "2026-10-21T13:06:50.364229+00:00",
+      "status": "ok",
+      "http_status": 200,
+      "sha256": "be15b4dda48ab7143d5b19014b6bd0bcb70fde8ff7b204b81ad38adb37f78e58",
+      "bytes": 8974
+    },
+    {
+      "id": "new_staking",
+      "url": "https://docs.papertrade.xyz/paper/staking/",
+      "started_at": "2026-10-21T13:06:51.369985+00:00",
+      "finished_at": "2026-10-21T13:07:06.635949+00:00",
+      "status": "error",
+      "http_status": null,
+      "sha256": null,
+      "bytes": null
+    },
+    {
+      "id": "retained_staking_source_5",
+      "url": "https://docs.papertrade.xyz/learn/staking-dividends/",
+      "started_at": "2026-10-21T07:18:25.169464+00:00",
+      "finished_at": "2026-10-21T07:18:25.675753+00:00",
+      "status": "ok",
+      "http_status": 200,
+      "body_sha256": "be15b4dda48ab7143d5b19014b6bd0bcb70fde8ff7b204b81ad38adb37f78e58",
+      "bytes": 8974
+    },
+    {
+      "id": "retained_staking_source_14",
+      "url": "https://docs.papertrade.xyz/paper/staking/",
+      "started_at": "2026-10-21T07:19:14.124180+00:00",
+      "finished_at": "2026-10-21T07:19:14.707084+00:00",
+      "status": "ok",
+      "http_status": 200,
+      "body_sha256": "ac4a9f86ffd5de4eac596e0a67c7815b2bdc422a5de486f7d164e0d81ab91a64",
+      "bytes": 9952
+    },
+    {
+      "id": "retained_staking_source_25",
+      "url": "https://exchange.papertrade.xyz/assets/staking-DqtEqWII.js",
+      "started_at": "2026-10-21T07:20:40.866781+00:00",
+      "finished_at": "2026-10-21T07:20:42.445030+00:00",
+      "status": "ok",
+      "http_status": 200,
+      "body_sha256": "1aeafeebea8222978e4a024bc21b3d39ff2aaeaa8d2bf4f4b12698e6f79b10fe",
+      "bytes": 18941
+    },
+    {
+      "id": "retained_governance_10",
+      "url": "https://docs.papertrade.xyz/how/risk/",
+      "started_at": "2026-10-21T07:18:33.243203+00:00",
+      "finished_at": "2026-10-21T07:18:33.809682+00:00",
+      "http_status": 200,
+      "body_sha256": "d6116689bce8b534b458370c2171bd66c739b6694c992a2982d9115fcc476c32",
+      "bytes": 13568
+    },
+    {
+      "id": "retained_governance_11",
+      "url": "https://docs.papertrade.xyz/dev/contract-addresses/",
+      "started_at": "2026-10-21T07:18:34.815325+00:00",
+      "finished_at": "2026-10-21T07:18:35.590381+00:00",
+      "http_status": 200,
+      "body_sha256": "4d37e86879a3800750be0e2a95446deb940adabe0df2e97565f9e630fbdaad04",
+      "bytes": 10279
+    }
+  ],
+  "loss_mint": {
+    "prior_case": "CASE-003",
+    "receipt_capture_sha256": "108f8a2ab8d222aee2bd80c1f9ced0de8d68dea3b34f996052b6a5524fff683e",
+    "capture_started_at": "2026-10-21T07:25:40.236Z",
+    "capture_finished_at": "2026-10-21T07:25:44.407Z",
+    "unit_scale": "1000000000000000000",
+    "receipt_checks": [
+      {
+        "kind": "close",
+        "transaction_hash": "0x24776737d73b9880652a81e4a622f74ae9024c4ba9fd431ccf19394d609a4fd0",
+        "block_number": 49115099,
+        "block_hash": "0x33b1aa78547cf36b479c06f1fe39560e91dc1d5952b0b2976de16fe0dd16ef2f",
+        "transaction_index": 2,
+        "capture_started": "2026-10-21T07:25:42.238Z",
+        "capture_finished": "2026-10-21T07:25:42.415Z",
+        "log_indices": {
+          "trade": 3,
+          "mint": 5,
+          "transfer": 4
+        },
+        "loss": "0.374541263507595663",
+        "fee": "0.007490825270151913",
+        "mint_basis": "0.367050438237443750",
+        "lp_before_event_reported": "4051462.126844546422866134",
+        "lp_after_event_reported": "4051462.493894984660309884",
+        "lp_delta": "0.367050438237443750",
+        "minted_paper": "3.657393757128285613",
+        "zero_sender": true
+      },
+      {
+        "kind": "liquidation",
+        "transaction_hash": "0xe36d933b3496824ff0c7a66edbe5c4b9b34c4bee37b651cf5770c5b3b4245bf3",
+        "block_number": 49115441,
+        "block_hash": "0x43207e4eedf655aabd4a14c78b2231100325358c86ce246dc2550255e75bbc15",
+        "transaction_index": 0,
+        "capture_started": "2026-10-21T07:25:44.240Z",
+        "capture_finished": "2026-10-21T07:25:44.407Z",
+        "log_indices": {
+          "trade": 2,
+          "mint": 1,
+          "transfer": 0
+        },
+        "loss": "20.000000000000000000",
+        "fee": "0.400000000000000000",
+        "mint_basis": "20.000000000000000000",
+        "lp_before_event_reported": "4050350.691944207699546910",
+        "lp_after_event_reported": "4050370.291944207699546910",
+        "lp_delta": "19.600000000000000000",
+        "minted_paper": "199.285237980903299820",
+        "zero_sender": true
+      }
+    ],
+    "conditional_scenarios": [
+      {
+        "name": "base_10",
+        "inputs_raw": {
+          "tracked": "4000000000000000000000000",
+          "tailProgress": "120000000000000000000000000",
+          "basis": "10000000000000000000",
+          "threshold": "2000000000000000000000000",
+          "rate": "100000000000000000000",
+          "decay": "120000000000000000000000000"
+        },
+        "results_raw": {
+          "minted": "249999989583333767000",
+          "tailAdvance": "10000000000000000000"
+        }
+      },
+      {
+        "name": "basis_9_8",
+        "inputs_raw": {
+          "tracked": "4000000000000000000000000",
+          "tailProgress": "120000000000000000000000000",
+          "basis": "9800000000000000000",
+          "threshold": "2000000000000000000000000",
+          "rate": "100000000000000000000",
+          "decay": "120000000000000000000000000"
+        },
+        "results_raw": {
+          "minted": "244999989995833741830",
+          "tailAdvance": "9800000000000000000"
+        }
+      },
+      {
+        "name": "H_zero",
+        "inputs_raw": {
+          "tracked": "4000000000000000000000000",
+          "tailProgress": "0",
+          "basis": "10000000000000000000",
+          "threshold": "2000000000000000000000000",
+          "rate": "100000000000000000000",
+          "decay": "120000000000000000000000000"
+        },
+        "results_raw": {
+          "minted": "999999916666673611000",
+          "tailAdvance": "10000000000000000000"
+        }
+      },
+      {
+        "name": "H_260M",
+        "inputs_raw": {
+          "tracked": "4000000000000000000000000",
+          "tailProgress": "260000000000000000000000000",
+          "basis": "10000000000000000000",
+          "threshold": "2000000000000000000000000",
+          "rate": "100000000000000000000",
+          "decay": "120000000000000000000000000"
+        },
+        "results_raw": {
+          "minted": "99722989065461506320",
+          "tailAdvance": "10000000000000000000"
+        }
+      },
+      {
+        "name": "L_below_threshold",
+        "inputs_raw": {
+          "tracked": "1000000000000000000000000",
+          "tailProgress": "120000000000000000000000000",
+          "basis": "10000000000000000000",
+          "threshold": "2000000000000000000000000",
+          "rate": "100000000000000000000",
+          "decay": "120000000000000000000000000"
+        },
+        "results_raw": {
+          "minted": "1000000000000000000000",
+          "tailAdvance": "0"
+        }
+      },
+      {
+        "name": "L_above_threshold_other",
+        "inputs_raw": {
+          "tracked": "3000000000000000000000000",
+          "tailProgress": "120000000000000000000000000",
+          "basis": "10000000000000000000",
+          "threshold": "2000000000000000000000000",
+          "rate": "100000000000000000000",
+          "decay": "120000000000000000000000000"
+        },
+        "results_raw": {
+          "minted": "249999989583333767000",
+          "tailAdvance": "10000000000000000000"
+        }
+      },
+      {
+        "name": "rate_50",
+        "inputs_raw": {
+          "tracked": "4000000000000000000000000",
+          "tailProgress": "120000000000000000000000000",
+          "basis": "10000000000000000000",
+          "threshold": "2000000000000000000000000",
+          "rate": "50000000000000000000",
+          "decay": "120000000000000000000000000"
+        },
+        "results_raw": {
+          "minted": "124999994791666883500",
+          "tailAdvance": "10000000000000000000"
+        }
+      },
+      {
+        "name": "decay_240M",
+        "inputs_raw": {
+          "tracked": "4000000000000000000000000",
+          "tailProgress": "120000000000000000000000000",
+          "basis": "10000000000000000000",
+          "threshold": "2000000000000000000000000",
+          "rate": "100000000000000000000",
+          "decay": "240000000000000000000000000"
+        },
+        "results_raw": {
+          "minted": "444444432098765774220",
+          "tailAdvance": "10000000000000000000"
+        }
+      },
+      {
+        "name": "threshold_5M",
+        "inputs_raw": {
+          "tracked": "4000000000000000000000000",
+          "tailProgress": "120000000000000000000000000",
+          "basis": "10000000000000000000",
+          "threshold": "5000000000000000000000000",
+          "rate": "100000000000000000000",
+          "decay": "120000000000000000000000000"
+        },
+        "results_raw": {
+          "minted": "1000000000000000000000",
+          "tailAdvance": "0"
+        }
+      },
+      {
+        "name": "cross_threshold",
+        "inputs_raw": {
+          "tracked": "1999995000000000000000000",
+          "tailProgress": "120000000000000000000000000",
+          "basis": "10000000000000000000",
+          "threshold": "2000000000000000000000000",
+          "rate": "100000000000000000000",
+          "decay": "120000000000000000000000000"
+        },
+        "results_raw": {
+          "minted": "624999997395833387500",
+          "tailAdvance": "5000000000000000000"
+        }
+      },
+      {
+        "name": "rounding_vector",
+        "inputs_raw": {
+          "tracked": "4000000000000000000000000",
+          "tailProgress": "100000000000000000000000000",
+          "basis": "10000000000000000000",
+          "threshold": "2000000000000000000000000",
+          "rate": "100000000000000000000",
+          "decay": "120000000000000000000000000"
+        },
+        "results_raw": {
+          "minted": "297520647633358991150",
+          "tailAdvance": "10000000000000000000"
+        }
+      }
+    ],
+    "rounding_comparison_raw": {
+      "staged": "297520647633358991150",
+      "single_division": "297520647633358991872",
+      "difference_raw": "722"
+    },
+    "limitations": [
+      "Event LP values are not authenticated transaction prestate.",
+      "Prior H, historical parameters and implementation identity are not established.",
+      "Debt-funded and active payout-queue branches lack independently exercised historical examples.",
+      "No formatter page consumer is established."
+    ]
+  },
+  "governance": {
+    "observed_between_utc": [
+      "2026-10-21T13:06:22.032692+00:00",
+      "2026-10-21T13:14:35.434712+00:00"
+    ],
+    "state_block_hash": null,
+    "temporal_authority": "Acquisition-time/latest-only observations; request block tags do not authenticate historical state. Not live publication-time status.",
+    "contract_roles": {
+      "multisig": "0x696292762fd5ac3677a45edbe54eaece4194d1f6",
+      "timelock": "0xb915fa41e824d6aa31bb833ee81220c0f2c8ea0f",
+      "proxy_admin": "0xe79c91cc682f1bb401a9cab74c900470190f0f8f",
+      "exchange_proxy": "0x6cd5661646289fb6e65ea5c032310fded797d0a2",
+      "tokenomics_proxy": "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+      "staking_proxy": "0xaad6c7b0cc3014fc80ffedae0ed7ce5967b0f016"
+    },
+    "multisig_required_confirmations": 2,
+    "multisig_distinct_signer_role_count": 3,
+    "business_owner_of_three_checked_proxies": "timelock",
+    "proxy_admin_owner": "timelock",
+    "pause_guardian": "multisig",
+    "batch_business_owner": null,
+    "observed_min_delay_seconds": 86400,
+    "previous_min_delay_seconds": null,
+    "historical_observations": [
+      {
+        "kind": "mint_parameters_scheduled",
+        "transaction": "0xad38ffd14ec3032301199d3af3388599c483c963b1ce478e9e78d3bb36ac2f3d",
+        "block": 48191335,
+        "block_hash": "0x36beefac4fffcada073a54499c788b049237bce4f971aa603d7284fad3c5afab",
+        "status": 1,
+        "events": [
+          {
+            "topic0": "0x78f3bc93d9f0e2beb7fc8fe3192b142c5e70b8813403674aff3f81fc83af5b39",
+            "log_index": 26,
+            "provider_timestamp": 1791657986,
+            "eta": 1792262786,
+            "delay_seconds": 604800
+          }
+        ],
+        "proposed_mint_parameters_raw": {
+          "threshold": "2000000000000000000000000",
+          "reward_cap": "10000000000000000000000000",
+          "rate": "100000000000000000000",
+          "decay": "120000000000000000000000000"
+        },
+        "applied_by_this_cancelled_operation": false
+      },
+      {
+        "kind": "min_delay_scheduled",
+        "transaction": "0x24519c5ccf89b6e194379e57ee8fc84a4171b953987d89dac1b969ce3233b2e7",
+        "block": 48378920,
+        "block_hash": "0xfd0ebaa0b42c866c3ad15bcb14d3ccfd38a2fe462628ba44b2a47f226a355641",
+        "status": 1,
+        "events": [
+          {
+            "topic0": "0x78f3bc93d9f0e2beb7fc8fe3192b142c5e70b8813403674aff3f81fc83af5b39",
+            "log_index": 17,
+            "provider_timestamp": 1791842496,
+            "eta": 1792447296,
+            "delay_seconds": 604800
+          }
+        ]
+      },
+      {
+        "kind": "min_delay_executed",
+        "transaction": "0x0432c2d3013bd958d935a9653cf2cb35253dfb61ca8f56cac4047d708dfd0072",
+        "block": 49050825,
+        "block_hash": "0x7e641a4dcbf07059ca5911cebeb041a734af31751e32f4dc364c9cea83c1ad4b",
+        "status": 1,
+        "events": [
+          {
+            "topic0": "0x25cd0ae91e995bc58ea33869249d0bcf40f2b2c8331ec976c96096bf7d27f464",
+            "log_index": 38,
+            "provider_timestamp": 1792503386
+          },
+          {
+            "topic0": "0x2a08801cf3674ab09756ae78a3a4833813465af6af958136b360eab6b71c8952",
+            "log_index": 39,
+            "provider_timestamp": 1792503386
+          }
+        ],
+        "new_min_delay_seconds": 86400,
+        "previous_min_delay_seconds": null
+      },
+      {
+        "kind": "mint_parameters_cancelled",
+        "transaction": "0x58809f64eafe8a327db24efeb130b661f85217355dc05f1a6e9ff6cf2d4e3dbe",
+        "block": 49079600,
+        "block_hash": "0x63cc45fd8e464820595e3dcf75511127db83a93a5ef05b91900705b5736a7cea",
+        "status": 1,
+        "events": [
+          {
+            "topic0": "0xcf0f63b97f3387253cbc0bde884f975df77e39184dc3280c2c81be495f58eef4",
+            "log_index": 46,
+            "provider_timestamp": 1792531689
+          }
+        ],
+        "proposed_mint_parameters_raw": {
+          "threshold": "2000000000000000000000000",
+          "reward_cap": "10000000000000000000000000",
+          "rate": "100000000000000000000",
+          "decay": "120000000000000000000000000"
+        },
+        "applied_by_this_cancelled_operation": false
+      },
+      {
+        "kind": "six_action_batch_scheduled",
+        "transaction": "0x0c7e7581647d2a4b1ba70dbdc256d515e5882baf3bd1b6da0f54c264b92c4d95",
+        "block": 49080037,
+        "block_hash": "0xb06736d00339a6dee51c22f4f2c6c011354b29fabf5030f664abe571e446790f",
+        "status": 1,
+        "events": [
+          {
+            "topic0": "0x0b9c64b5b18792c995334aa1e837673c5a9cdb8f004ab10fb652f4eecb8d551f",
+            "log_index": 7,
+            "provider_timestamp": 1792532119,
+            "eta": 1792618519,
+            "delay_seconds": 86400
+          }
+        ],
+        "earliest_execution": "2026-10-22T05:35:19+08:00",
+        "status_at_observation": "pending",
+        "automatic_execution_promised": false
+      }
+    ],
+    "synthetic_guard_checks": 11,
+    "new_implementation_business_analysis": false,
+    "exchange_runtime_matches_retained": true,
+    "tokenomics_runtime_matches_retained": true,
+    "scheduled_upgrades": [
+      {
+        "proxy": "0x8326eb8896e358717f10502ec73ce8d28e37b108",
+        "proposed_implementation": "0x04b5ea4cdd8d6de4bd6e0ef3865266947f043946",
+        "applied_at_observation": false
+      },
+      {
+        "proxy": "0x6cd5661646289fb6e65ea5c032310fded797d0a2",
+        "proposed_implementation": "0x0a44049dbbb6b4762a6ba37aa0f7548c0b4a3723",
+        "applied_at_observation": false
+      },
+      {
+        "proxy": "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+        "proposed_implementation": "0x7c0a72a788cff4d68cfe9586aecb98e21eb58a03",
+        "applied_at_observation": false
+      }
+    ],
+    "batch_action_count": 6,
+    "remaining_action_semantics": null,
+    "limits": [
+      "Only acquired address transaction lists and selected proposal/execution pages were investigated; not exhaustive history.",
+      "11 proposal pages: 10 successful, one connection failure; nine execution-entry receipts.",
+      "The earlier delay scheduling had a seven-day ETA gap; the later update event supplies only new value 86400.",
+      "Failed mint-parameter receipts do not establish failure reason.",
+      "Inspected upgrade paths do not emit standard upgrade/admin events; absence of those topics does not establish no upgrade."
+    ],
+    "historical_header_checks": [
+      {
+        "block": 48378920,
+        "hash": "0xfd0ebaa0b42c866c3ad15bcb14d3ccfd38a2fe462628ba44b2a47f226a355641",
+        "timestamp": 1791842496,
+        "receipt_matches": true
+      },
+      {
+        "block": 49050825,
+        "hash": "0x7e641a4dcbf07059ca5911cebeb041a734af31751e32f4dc364c9cea83c1ad4b",
+        "timestamp": 1792503386,
+        "receipt_matches": true
+      },
+      {
+        "block": 49080037,
+        "hash": "0xb06736d00339a6dee51c22f4f2c6c011354b29fabf5030f664abe571e446790f",
+        "timestamp": 1792532119,
+        "receipt_matches": true
+      }
+    ],
+    "failed_direct_mint_parameter_attempts": [
+      {
+        "transaction": "0xf27a1bacadb45e90d2f5650527ace36631a635ddb4ce6e0f675d78ec23cf3e4b",
+        "block": 49060051,
+        "block_hash": "0x698f20f976f151b789054c6a73cc0eb9f19b2334fce713f0222ae6da3970afbc",
+        "transaction_index": 7,
+        "receipt_status": 0,
+        "log_count": 0,
+        "failure_reason": null,
+        "captured_from": "2026-10-21T13:09:46.820312+00:00",
+        "captured_to": "2026-10-21T13:09:47.216127+00:00",
+        "response_sha256": "3596c53f97e63ed2b6c68f19c2236c6fb03a356e427cab4ff3e9dc981c9ecdb3"
+      },
+      {
+        "transaction": "0xb8c0f793a8000706b743199c134957a2761917e1a89a20e90b12d748f25ead4d",
+        "block": 49060093,
+        "block_hash": "0x4120cb1a8dabdba2912d3441d797a4609c68d067d5eb84ecd47dc70f44a75c87",
+        "transaction_index": 4,
+        "receipt_status": 0,
+        "log_count": 0,
+        "failure_reason": null,
+        "captured_from": "2026-10-21T13:09:49.589249+00:00",
+        "captured_to": "2026-10-21T13:09:49.995444+00:00",
+        "response_sha256": "99045b0382d4c3d9d4f9ba47efc36c59f69f2a9053920d98adc28044403b1cd8"
+      }
+    ]
+  },
+  "staking": {
+    "synthetic_scenarios": 7,
+    "simulation_scope": "Acquired runtime dispatch with synthetic initial state; ecrecover, PAPER transfers and Exchange calls mocked. Not a complete EVM or historical replay.",
+    "runtime": {
+      "address": "0xe6e3519455170913c5c3bfe541dd918a2d0cbb15",
+      "decoded_sha256": "3e006d0daee1fcbaa71c160a72291374783da5f720a33db0a51c8f84bde3aa04",
+      "decoded_keccak256": "0x54573c497e5109e353cf5330343323915e0c0f26e1b410fd3cb2cd8d1460f154",
+      "decoded_bytes": 6054,
+      "historical_block": null,
+      "transaction_prestate": null
+    },
+    "runtime_acquisitions": [
+      {
+        "started_at": "2026-10-21T07:21:17.493Z",
+        "finished_at": "2026-10-21T07:21:17.656Z",
+        "temporal_authority": "latest-only acquisition-time response; requested historical tag not binding"
+      }
+    ],
+    "actual_unstake": {
+      "transaction_hash": "0x6b9c3dbc795dc68eb3632c511e6e4f41f9680d7a318b92e7646f0a472519f2ec",
+      "block": 49136723,
+      "block_hash": "0x5b8f8b3e15ac4abcac7bbf40dcb3942e7dd3fd26af02824d945d14826158f8c1",
+      "transaction_index": 8,
+      "event_log_index": 46,
+      "transfer_log_index": 45,
+      "amount_raw": "762000000000000000000",
+      "amount_paper": "762",
+      "receipt_status": "success",
+      "header_response_count": 2,
+      "input_transfer_event_amount_match": true,
+      "distribution_event_count": 0,
+      "distribution_topic": "0xf7576d8c2653e9d07af5ef229acf59b339e327d4e0eaddb4a96615534cf148f8"
+    },
+    "personal_reward_history_reconstructed": false,
+    "timing_strategy_observed": false
+  },
+  "dividends": {
+    "window": {
+      "registered_at": "2026-10-21T13:07:25.033346+00:00",
+      "from": 49136352,
+      "to": 49136851,
+      "prior_windows_unchanged": true
+    },
+    "selection": "Source-led 500 inclusive blocks ending at previously captured summary height; all staking/Exchange logs, ordered first unstake and all identified distributions.",
+    "log_counts": {
+      "staking": 194,
+      "exchange": 1817,
+      "distributions": 5,
+      "unstaked": 3
+    },
+    "distributions": [
+      {
+        "block": 49136541,
+        "block_hash": "0xd3168c32352a3be22e09f7a2a555cded036302dfa6f43ce07dda973cae1bbc3e",
+        "tx": "0xab05fee58c68bb5177fe9a2caa8d18167a0ca1bc8867b6402182c18ca7ba7471",
+        "tx_index": 0,
+        "log_index": 2,
+        "reserve": "3178680464013951392896906",
+        "received": "250668277406815079555",
+        "allocated": "250668277406815079555",
+        "accumulator": "13856698685005493886479475",
+        "push_total": "250668277406815079555",
+        "push_fee": "250668277406815079555",
+        "extra_lp_component": "0",
+        "rollforward_checked": false
+      },
+      {
+        "block": 49136723,
+        "block_hash": "0x5b8f8b3e15ac4abcac7bbf40dcb3942e7dd3fd26af02824d945d14826158f8c1",
+        "tx": "0x669df2fa46b699aae976af7c07221596b7dcc317076411e15d3ffc6f0711bfd9",
+        "tx_index": 4,
+        "log_index": 13,
+        "reserve": "3178684959947583742652395",
+        "received": "126834746001541392684",
+        "allocated": "126834746001541392684",
+        "accumulator": "13856713062243448850534796",
+        "push_total": "126834746001541392684",
+        "push_fee": "126834746001541392684",
+        "extra_lp_component": "0",
+        "rollforward_checked": true
+      },
+      {
+        "block": 49136754,
+        "block_hash": "0xef7f3bb214f2c559667faad19ebae8267e80e29d6e2d529b762e59b21842aca1",
+        "tx": "0xad150ea93803305cd6194dbab365d66269a6a364816b488e3ca99a349e217e57",
+        "tx_index": 7,
+        "log_index": 24,
+        "reserve": "3179110988241125693463147",
+        "received": "507292854068373423103",
+        "allocated": "507292854068373423103",
+        "accumulator": "13856770565918369001982658",
+        "push_total": "507292854068373423103",
+        "push_fee": "507292854068373423103",
+        "extra_lp_component": "0",
+        "rollforward_checked": true
+      },
+      {
+        "block": 49136785,
+        "block_hash": "0x6efb13c4cb36ba5b1f3455c61818bb216c7e3b79ab548547ba8bf8d73d0cbb8a",
+        "tx": "0xa9972c78e9b206d1e362c53e30e9bac75f5d62184dbdce1678eb54dcae98fabf",
+        "tx_index": 3,
+        "log_index": 3,
+        "reserve": "3179368223006257261229750",
+        "received": "257234765131567766603",
+        "allocated": "257234765131567766603",
+        "accumulator": "13856799724508311003233337",
+        "push_total": "257234765131567766603",
+        "push_fee": "257234765131567766603",
+        "extra_lp_component": "0",
+        "rollforward_checked": true
+      },
+      {
+        "block": 49136817,
+        "block_hash": "0x58263db1b55ecf6dc5fe59475fe1a18bc2c355118f83edb8bf2df403e1662102",
+        "tx": "0x2db865255401e54cb6387ee18702b88a696d20abb377652fcb6aa789ed62b4fc",
+        "tx_index": 3,
+        "log_index": 28,
+        "reserve": "3179486186351889213993283",
+        "received": "186743521062250653217",
+        "allocated": "186743521062250653217",
+        "accumulator": "13856820892199840979990463",
+        "push_total": "186743521062250653217",
+        "push_fee": "186743521062250653217",
+        "extra_lp_component": "0",
+        "rollforward_checked": true
+      }
+    ],
+    "new_funding_total_raw": "1328774163670548315162",
+    "claims_after_first_anchor": 33,
+    "claim_total_after_anchor_raw": "272383548325912139230",
+    "final_reserve_raw": "3179486186351889213993283",
+    "summary_reserve_raw": "3179486186351889213993283",
+    "summary_source_block": 49136851,
+    "summary_block_hash": null,
+    "old_disjoint_window": {
+      "from": 49122484,
+      "to": 49122983,
+      "distribution_count": 3,
+      "claims_after_anchor": 33,
+      "claim_total_after_anchor": "1298156544911156986812",
+      "final_reserve": "3237899023676903550093053",
+      "raw_scan_sha256": "a7538cebc962f32476e8ac3c8c5f8027053f298d7f591a55596c7720b44107e0",
+      "summary_sha256": "7b87c405e1fa616c2ed465f0bc26e9448ac6ff6f46ea600a53746aa7fcfcdae8"
+    },
+    "external_payment_provenance_reconstructed": false,
+    "real_lp_surplus_case_established": false,
+    "limits": [
+      "Five successful receipts/log coordinates and headers checked; no separate transaction objects/inputs acquired for those distributions.",
+      "Historical transaction implementation identities remain unauthenticated.",
+      "API lacks source block hash; provider-internal agreement is not independent authentication.",
+      "The two windows are disjoint and cannot be combined into continuous cash flow."
+    ]
+  },
+  "payment": {
+    "summary_source_block": 49136851,
+    "queue_summary_source_block": 49136850,
+    "summary_queue_raw": "0",
+    "queue_summary_total_raw": "0",
+    "queue_summary_count": 0,
+    "api_source_block_hash": null,
+    "nonzero_queue_getter_checks": [
+      {
+        "queued": "1",
+        "returned": "0",
+        "external_calls": 0
+      },
+      {
+        "queued": "1000000000000000000",
+        "returned": "0",
+        "external_calls": 0
+      },
+      {
+        "queued": "1000000000000000000000",
+        "returned": "0",
+        "external_calls": 0
+      }
+    ],
+    "exchange_decoded_sha256": "2f2e20ca683b70511fe62178b8090c93df24208b13dbdfa6407f38946fcef0b1",
+    "conditional_partial_payment": {
+      "queue": [
+        "70",
+        "50"
+      ],
+      "budget": "90",
+      "paid": [
+        "70",
+        "20"
+      ],
+      "remaining": "30"
+    },
+    "actual_active_debt_case_established": false,
+    "full_queue_state_machine_executed": false,
+    "clearance_deadline": null,
+    "limits": [
+      "FIFO/partial-payment example is conditional arithmetic based on official rules, not observed execution.",
+      "Zero adjacent API snapshots do not exclude debt within the window or elsewhere.",
+      "No authenticated complete contemporaneous external asset/liability reconciliation."
+    ]
+  },
+  "retained_verification_digests": [
+    {
+      "id": "loss_verification",
+      "sha256": "9c44cb2ae7a83579fb6929a5f2112606ed2030d7dfa76d03b2e7b4facab0f10b"
+    },
+    {
+      "id": "governance_verification",
+      "sha256": "4a5e09a9274fb55dd0ae68ebdb5ec762bfcef18d88f988597b4ab36118b95eda"
+    },
+    {
+      "id": "governance_history",
+      "sha256": "7a7558289d204302207fd4342a381754c85fe60a85b70ace4f89aefb0c7e1bc7"
+    },
+    {
+      "id": "staking_provenance",
+      "sha256": "fb885fd680830120a0132092b560fd5779665524f9b8d8dc53bc9b32ba0be67a"
+    },
+    {
+      "id": "unstake_verification",
+      "sha256": "e55b6e2a287987318df2cc9d87dec9175d050daa909410f8c00379fa5c00799f"
+    },
+    {
+      "id": "dividend_payment_verification",
+      "sha256": "5ea3145739553d27d3b40e7ad01bccddb91a5e9cebb5354ae89e67fcf71bfe5a"
+    },
+    {
+      "id": "independent_review",
+      "sha256": "eddb373bbe4355283f05ffddf16b7828802a858a6ae1d94206613bf8ac5cd1bf"
+    }
+  ],
+  "checks": {
+    "loss_receipts": 2,
+    "loss_conditional_calculations": 11,
+    "governance_synthetic_guard_cases": 11,
+    "staking_synthetic_scenarios": 7,
+    "nonzero_queue_synthetic_cases": 3,
+    "review": "Independent read-only local review reran bounded checks and compared retained results. No outstanding blocking/high-priority findings in reviewed scope.",
+    "corrected_before_final_check": "Unstake distribution topic corrected; claim external-call and receipt/header coordinate assertions strengthened.",
+    "rea": "Existing REA 6.7.0 outputs reused; not reinstalled or rerun.",
+    "production_code_changed": false,
+    "production_test_suite_rerun_for_research": false
+  }
+}

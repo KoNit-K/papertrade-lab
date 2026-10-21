@@ -29,6 +29,18 @@
 
 🔎 这个仓库结合 [REA](https://github.com/morluto/rea) 与人工分析，研究它怎样收费、怎样清算，以及亏损和 PAPER 激励怎样连在一起。[研究进度](STATUS.md) · [来源](docs/sources.md)
 
+## 本轮发现：亏损换币、改规则与分红
+
+[五题详细研究](docs/research-notes/011-loss-governance-staking-and-payments.md)分别标明真实记录、取得代码的分析和条件算例。下表是 **2026-10-21 的采集观察**，不是实时状态。
+
+| 问题 | 发现与证据边界 |
+|---|---|
+| **同样亏损，为什么拿币不同？** | 合格基数、曲线进度和参数是不同原因。已核对清算例的发币基数为20，LP增量却为19.6；收据金额吻合不等于独立重现历史发币。 |
+| **谁能改规则？** | 已核对业务owner、代理管理权与治理合约的连接。真实成功交易把最小延迟设为 **1天**，但捕获的官网地址页写7天；guardian多签还能不经时间锁暂停新开仓。 |
+| **排期的改动已经生效了吗？** | 将LP盈余分红门槛设为1000万美元的方案已取消；三项实现升级最早可于 **2026-10-22 05:35:19（新加坡）** 执行，观察时尚未完成，新实现尚未分析。 |
+| **长期质押和临时加入有什么差别？** | 取得代码中，新加入的份额能分享此前尚未分配的钱；已分配收益归原持有人。7组原字节合成场景支持这个区别，未证明真实临时质押策略已经获利。 |
+| **分红和付款的钱从哪来？** | 新5笔分配与手续费来源、储备滚动核账相符；仍未取得实际LP盈余划转或活跃付款欠款案例。分配、内部入账和外部到账分别核对。 |
+
 ## 特性介绍
 
 | 特性 | 怎么运作 |
@@ -57,7 +69,7 @@
 H 是累计进度，分红减少 LP 不会重置 H。右图固定 H 展示阈值阶跃，使用示例参数；整笔铸币按区间计算。
 [公式与绘图输入](docs/readme-figures.md#mint-rate-illustration) · [参数权限](docs/readme-figures.md#parameter-authority)
 
-🔎 已采集的前端代码中，**PAPER 比例函数**按铸币数量 ÷ 合格亏损基数计算该笔平均比例。[REA 与前端复核](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md#captured-paper-ratio-formatter)
+🔎 已采集的前端代码中，**PAPER 比例函数**按铸币数量 ÷ 合格亏损基数计算该笔平均比例。页面调用方和实际运行时使用仍未确认。[REA 与前端复核](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md#captured-paper-ratio-formatter)
 
 ## 交易成本
 
@@ -114,7 +126,7 @@ flowchart TB
 | 环节 | 规则 |
 |---|---|
 | 🪙 **铸币** | 合格亏损基数与曲线进度决定数量。 |
-| 📥 **质押** | 按质押份额累计分红，仅持有不分红；文档无锁定期或冷却期。 |
+| 📥 **质押** | 按分配时份额累计分红，仅持有不分红；新加入可分享此前未分配的钱。文档无锁定期或冷却期。 |
 | 💵 **资金来源** | 已支付交易费用的一半，加上 tracked LP 超过上限的可划转盈余；文档示例上限为 500 万美元。 |
 | ↗️ **领取** | 先计入交易余额，再单独提款至 HyperCore。 |
 
@@ -137,6 +149,7 @@ flowchart TB
 |---|---|
 | [机制地图](docs/mechanism-map.md) | 协议的 14 个研究方向 |
 | [研究笔记](docs/research-notes/) · [案例记录](research/cases/) | 机制解释、来源坐标与结构化结果 |
+| [亏损、治理与质押时机](docs/research-notes/011-loss-governance-staking-and-payments.md) | 五题的真实记录、代码观察、条件算例与缺口 |
 | [REA 分析](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md) | 客户端提交路径、PAPER 比例显示与合约接口推断 |
 | [离线算术](packages/research/mechanics.ts) | 铸币曲线、清算价格和待领取奖励的计算函数 |
 | [证据工具](docs/chain-evidence.md) | 记录验证与版本一致性检查 |

@@ -29,6 +29,18 @@
 
 🔎 This repository uses [REA](https://github.com/morluto/rea) and manual analysis to examine its fees, liquidation rules and the link between losses and PAPER incentives. [Research status](STATUS.md) · [Sources](docs/sources.md)
 
+## Latest findings: losses, governance and dividends
+
+The [five-question investigation](docs/research-notes/011-loss-governance-staking-and-payments.md) separates public records, acquired-code analysis and conditional examples. Observations below are dated **2026-10-21**, not a live status feed.
+
+| Question | Finding and evidence boundary |
+|---|---|
+| **Why does the same loss mint different PAPER amounts?** | Eligible basis, curve progress and parameters are separate causes. A checked liquidation has basis 20 but tracked-LP increase 19.6; matching receipt amounts do not independently reproduce historical minting. |
+| **Who can change the rules?** | Business ownership and proxy administration connect to governance contracts. A successful transaction set the minimum delay to **one day**, while the captured address documentation says seven days. The guardian multisig can pause new opens without the timelock. |
+| **Have the pending changes happened?** | A $10M LP reward-cap proposal was cancelled. Three implementation upgrades were scheduled with earliest execution **2026-10-22 05:35:19 Asia/Singapore**; they were not completed at observation time. New implementations remain unanalyzed. |
+| **Does staking early earn more?** | In the acquired code, new stake shares previously accumulated but undistributed funds; already allocated rewards remain with earlier holders. Seven synthetic runtime scenarios support this distinction, not a demonstrated real timing strategy. |
+| **Where do dividends and payouts come from?** | Five new distributions reconcile to fee funding and the reserve ledger. No actual LP-surplus transfer or active payout-debt case was established. Allocation, internal credit and external payment remain separate. |
+
 ## Features
 
 | Feature | How it works |
@@ -57,7 +69,7 @@
 H is cumulative progress; LP distributions do not reset it. The right panel fixes H to show the threshold step using example parameters. Whole-trade minting integrates over an interval.
 [Formula and figure inputs](docs/readme-figures.md#mint-rate-illustration) · [Parameter authority](docs/readme-figures.md#parameter-authority)
 
-🔎 The captured frontend's **PAPER ratio formatter** computes minted PAPER ÷ eligible mint basis: a per-record average. [REA and frontend cross-check](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md#captured-paper-ratio-formatter)
+🔎 The captured frontend's **PAPER ratio formatter** computes minted PAPER ÷ eligible mint basis: a per-record average. Its page consumer and actual runtime use remain unconfirmed. [REA and frontend cross-check](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md#captured-paper-ratio-formatter)
 
 ## Trading costs
 
@@ -115,7 +127,7 @@ flowchart TB
 | Step | Rule |
 |---|---|
 | 🪙 **Minting** | Eligible loss basis and curve progress determine the amount. |
-| 📥 **Staking** | Distributions accrue by staked share; holding alone does not participate. No documented lockup or cooldown. |
+| 📥 **Staking** | Distributions accrue by share at allocation; holding alone does not participate. New stake can share earlier undistributed funds. No documented lockup or cooldown. |
 | 💵 **Funding** | Half of paid trading fees, plus sweepable tracked-LP excess above the cap; the documented example cap is $5M. |
 | ↗️ **Claiming** | Claim into trading balance, then withdraw separately to HyperCore. |
 
@@ -138,6 +150,7 @@ Higher leverage makes the buffer a larger fraction of margin. See [formula and r
 |---|---|
 | [Mechanism map](docs/mechanism-map.md) | A guide to the protocol's 14 research areas |
 | [Research notes](docs/research-notes/) · [Case records](research/cases/) | Explanations, source coordinates and structured outcomes |
+| [Losses, governance and staking timing](docs/research-notes/011-loss-governance-staking-and-payments.md) | Five questions with real records, code observations, conditional examples and remaining gaps |
 | [REA analysis](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md) | Client submission paths, PAPER ratio display and contract interface inferences |
 | [Offline arithmetic](packages/research/mechanics.ts) | Mint-curve, bust-price and pending-reward helpers |
 | [Evidence tooling](docs/chain-evidence.md) | Record validation and version consistency |

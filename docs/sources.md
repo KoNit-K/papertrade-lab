@@ -271,3 +271,43 @@ Tool documentation describes capabilities; returned Evidence supports only the
 selected analysis. Original captures, code excerpts and complete REA payloads are
 not redistributed. Existing economics, user reports and historical-state gaps
 retain their earlier provenance.
+
+## Losses, governance and allocation timing (2026-10-21)
+
+[Note 011](research-notes/011-loss-governance-staking-and-payments.md) and its
+[metadata record](../research/cases/008-economics-governance-research.json) combine
+retained mint receipts and acquired runtime bytes with new bounded public reads.
+REA 6.7.0 outputs were reused; no installation or new full-bundle analysis ran.
+
+The governance investigation used **58/60 RPC and 16/30 HTTP attempts**, with no
+searches. Targeted explorer lists and proposal pages supplied management-transaction
+leads; official RPC receipts, current justified storage slots and acquired code
+support the published distinctions between executed, cancelled, failed and scheduled
+operations. The captured official address page describes seven days, while the
+executed delay-update event sets 86400 seconds and acquisition-time state agrees.
+The earlier matching schedule has a seven-day ETA interval; its event does not
+authenticate every historical delay value. The scheduled upgrades' earliest time
+is not an execution observation or a guarantee. New implementations remain unanalyzed.
+
+A separate **39/60 RPC and 6/30 HTTP** investigation fixed blocks
+**49136352–49136851** from an already captured protocol-summary source height
+before log reads. Five distributions and 33 claims after the first reserve anchor
+reconcile the reserve; the first returned unstake has matching input, event and
+PAPER return-transfer quantities. The summary has no source block hash. One staking
+document GET disconnected; the earlier successful capture was reused. Newly read
+solvency and dividend-page bytes match the earlier captures. No account endpoint
+was queried, and the already reconciled HyperCore payment was not queried again.
+
+Acquired staking paths were exercised locally with synthetic storage and mocked
+signature recovery, token transfers and Exchange calls. These conditional checks
+support allocation timing; they are not real signatures, full EVM replay or a
+demonstrated timing strategy. Existing mint arithmetic was run with explicit inputs;
+the ratio formatter's page consumer remains unknown. No qualified LP-surplus or
+active payout-debt case was established, and historical mint prestate remains missing.
+
+Failed accesses are counted. Two early governance reads share an ordinal but retain
+distinct files and hashes; later reads were serialized, and identity uses request,
+time and capture digest. The public subset contains original summaries and selected
+metadata, excluding raw responses, complete calldata, signatures, signer identities,
+local paths and user-identity joins. This custom research record is not a newly
+validated historical chain packet or a general-purpose anonymization result.

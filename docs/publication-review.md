@@ -179,3 +179,47 @@ ordinal-4 structural lead, with no eligible-case selection or M1 implementation.
   address allowlisting, private-path/credential pattern checks, manifest digest
   checks and whitespace checks. These scoped checks are not a guarantee of anonymity
   or correctness of the underlying provider.
+
+## Losses, governance and staking publication — 2026-10-21
+
+- The owner authorized publishing the reviewed research summaries. The selected
+  eight-file subset is README.md, README.zh-CN.md, ROADMAP.md, STATUS.md,
+  docs/sources.md, this review, note 011 and the CASE-008 metadata projection.
+  No raw local report, handoff, capture, interpreter or REA output is included.
+- The new projection uses selected fields rather than whole local objects. Public
+  addresses identify eleven protocol governance/proxy/implementation contracts;
+  no governance signer, claimant or user address, account storage key, signature,
+  complete calldata, cookie, credential or private filesystem path is exported.
+  Public transaction links remain linkable blockchain coordinates, not anonymous
+  evidence or a general-purpose redaction guarantee.
+- The evidence checks distinguish successful delay setting, cancelled mint-cap
+  scheduling, failed direct setter attempts and upgrades pending at observation
+  time. The earliest upgrade time is not promised execution. Current storage is
+  acquisition-time evidence, not historical prestate; the seven-day source wording
+  comes from an earlier captured official page. The new implementations were not
+  analyzed, and no claim is made about their effects after execution.
+- Local checks cover two mint receipts, eleven conditional mint calculations,
+  eleven synthetic governance guards, seven staking scenarios, the first real
+  unstake and two separate reserve-ledger windows. Signature recovery and external
+  calls in the staking scenarios are mocked. Real active debt, LP-surplus funding
+  and complete individual entitlements remain missing. No full replay is claimed.
+- Independent read-only review compared the proposed public text and projected
+  identities, digests, amounts and operation states to retained local evidence.
+  No outstanding blocking or high-priority issue was found in that scope. The
+  earlier local unstake-topic typo was corrected and independently rechecked;
+  final text retains the unknown ratio-formatter page consumer.
+- On Node.js 26.8.2 with pnpm 11.25.0, strict type checking and the existing document
+  validator passed: 13 claims, six evidence records, one version, no public capture
+  bytes checked, protocol_reproduced false. Separate JSON/link/whitespace, explicit
+  protocol-address allowlist, private-path/token patterns and prior-record byte
+  comparisons passed. All 36 earlier case records are unchanged.
+- Production code/dependencies are unchanged; the production suite and REA were
+  not rerun for this publication. CASE-008 is a custom research profile, not a
+  historical chain packet accepted by the old validator. No new protocol or account
+  read, signing, production transaction, credential, paid service or cloud resource
+  was needed to prepare the public subset. The prior research's 97 RPC and 22 HTTP
+  attempts, including failures, remain separately identified in its metadata.
+
+These are scoped disclosure and consistency checks, not an audit of provider truth,
+complete protocol safety or future payment capacity. Git history and staging use
+the explicit subset; publication does not include the raw local evidence directory.

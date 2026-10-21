@@ -33,9 +33,13 @@ See the [publication review](docs/publication-review.md) for actual P0 checks an
 
 ## Next three tasks
 
-1. Obtain actual intent submit/ack/select/broadcast timelines and missing unstake/LP-surplus/debt cases; extend the bounded aggregate dividend ledger in [note 009](docs/research-notes/009-distribution-reserve-ledger.md) with authenticated historical and per-user inputs.
-2. Obtain archive/trace and recorded precompile evidence for CASE-001 and authenticate candidate 4 prestate, prices, parameters and ledger deltas.
-3. Preserve registered selection rules and implement M1 only after decisive historical inputs and independent expected results are available.
+1. Compare the scheduled implementation targets and initialization actions with the acquired versions; distinguish proposed behavior from actual execution and revalidate affected conclusions if the upgrades execute. See [note 011](docs/research-notes/011-loss-governance-staking-and-payments.md).
+2. Measure the real distribution-timing effect in a newly registered public event window: stake/unstake order, shares at allocation and already accrued versus undistributed rewards. One real unstake is now checked; complete individual historical entitlement remains missing.
+3. Seek actual LP-surplus and active-debt/partial-payment examples, then reconcile available backing and obligations. Repetition of zero-debt snapshots cannot establish payment capacity.
+
+CASE-001's historical state, recorded precompile and parameter inputs remain missing;
+its original window and candidate order are unchanged. M1 requires decisive inputs
+and independent expected results before implementation or a reproduction claim.
 
 M0 tools are implemented for the documented profile: official document records,
 chain-999 block-end snapshots (EIP-1967 or explicitly incomplete), bounded public
@@ -428,3 +432,48 @@ It caught unsupported attribution of the ratio formatter to a history screen; th
 text now explicitly leaves its page consumer and runtime use unknown. Final review
 found no remaining blocking or important issue. The reviewer did not rerun REA,
 authenticate installation/container configuration or perform historical execution.
+
+## Losses, governance and distribution timing
+
+[Note 011](docs/research-notes/011-loss-governance-staking-and-payments.md) adds
+five linked questions with separate official descriptions, acquired-code support,
+provider-reported records and conditional examples. Two losing-close/liquidation
+receipts were rechecked; eleven explicit-input mint calculations separate basis,
+progress, region and parameter effects. Historical H, parameters and transaction-point
+implementation identities remain incomplete. The ratio formatter's page consumer
+and actual runtime use remain unknown.
+
+Business ownership and proxy administration connect to the inspected governance
+contracts. A successful transaction set minimum delay to 86400 seconds; its earlier
+matching schedule had a seven-day ETA interval. A $10M reward-cap schedule was
+cancelled, and a six-action batch including three upgrades remained pending at
+observation time, with earliest execution 2026-10-22T05:35:19+08:00. New implementation
+semantics were not analyzed. The guardian can pause new opens without timelock
+scheduling; resumption requires owner authority. Eleven synthetic guard checks
+passed, without claiming complete security-path coverage.
+
+Seven synthetic signed-dispatch staking scenarios support sharing undistributed
+funds at allocation, while protecting already accrued rewards. Signature recovery
+and external calls were mocked. A real 762-PAPER unstake has matching input, event
+and token return, not a reconstructed individual earnings history. New window
+49136352–49136851 has five fee-supported distributions and 33 claims after the
+first reserve anchor; reserve rollforward matches the later API. The older
+three-distribution window also reconciles separately. Actual LP-surplus funding,
+active debt and complete cash/obligation conservation remain missing.
+
+The [metadata projection](research/cases/008-economics-governance-research.json)
+records 58 RPC / 16 HTTP governance attempts and 39 RPC / 6 HTTP funding attempts,
+including failures, with zero searches or account endpoints. Earlier REA 6.7.0
+results were reused, not rerun. Raw captures, complete transaction inputs, identity
+joins, local paths and interpreter scripts are excluded from public files. All
+36 prior case records are byte-for-byte unchanged; M1 stays unimplemented.
+
+For this documentation/metadata publication, strict type checking and existing
+document-record validation passed (13 claims, six evidence records, one version;
+no public capture files checked, protocol_reproduced false). Separate JSON, local
+link, source-digest, arithmetic, public-address allowlist and disclosure checks
+passed. An independent read-only review checked the proposed public subset against
+local evidence and found no outstanding blocking or high-priority issue in that
+scope. Production code and dependencies are unchanged; the production test suite,
+REA and historical execution were not rerun for publication. This custom JSON
+profile is not validated as a historical chain packet by the existing validator.
