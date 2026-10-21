@@ -71,5 +71,11 @@
     "../../evidence/public/CASE001-DETAIL.json",
     "../../evidence/public/CASE001-DETAIL-RETRY.json",
     "../../evidence/public/CASE001-CHAIN.json"
-  ]
+  ],
+  "subsequent_state_binding_audit": {
+    "record": "001-economic-recovery.json",
+    "date": "2026-10-21",
+    "historical_code_storage_binding": "withdrawn",
+    "reason": "Default RPC documents latest-only code/storage; successful explicit-block requests do not authenticate historical state. Old returned-byte hashes remain valid identifiers, not temporal proof."
+  }
 }

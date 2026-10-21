@@ -57,7 +57,11 @@ internal conflict. It is not an independent proof of completeness or finality.
 Pin and recheck boundary hashes when selecting a case; receipt, trace and archive
 capabilities must be assessed separately. The official default RPC documentation
 currently limits state reads to latest and does not promise historical state;
-this collector deliberately requests pinned state and records failures.
+this collector sends explicit block tags but cannot force the server to honor them.
+It records both errors and successful transport responses. A successful state read
+must **not** be promoted to a historical snapshot: [CASE-001](research-notes/004-economic-path-and-state-audit.md)
+found a closed-before-close inconsistency. The collector does not authenticate
+state age or deployment history.
 
 Each private outcome records the request, client start/end, HTTP status, response
 hash, result if successful, or a bounded failure category/error code. Upstream error

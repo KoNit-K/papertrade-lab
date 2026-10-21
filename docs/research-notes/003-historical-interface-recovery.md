@@ -1,5 +1,10 @@
 # CASE-001: historical interface, storage and call mapping
 
+> Superseding audit (2026-10-21): [note 004](004-economic-path-and-state-audit.md)
+> withdraws historical code/storage temporal bindings. Layouts and byte offsets
+> describe returned bytes only. The default provider documents latest-only state;
+> successful historical-tag requests did not authenticate historical deployment.
+
 Date: 2026-10-21. **Partial structural recovery; economic claims unverified;
 M1 blocked.** This continues the [original intake](002-first-case-intake.md) without
 expanding blocks **49105284–49105783** or changing the existing candidate order.

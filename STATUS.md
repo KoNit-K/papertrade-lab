@@ -23,7 +23,7 @@ The current branch additionally contains the M0 records and validator increments
 | Evidence/version validator | Document records plus separate chain snapshot profile; historical identity, dependency, conflict and hash checks |
 | Read-only collector / safe export tooling | Implemented for one public RPC and reviewed metadata-only export; see guides |
 | Integer model / transaction CLI / offline replay | Not implemented |
-| Real transaction reproduction | Blocked: CASE-001 intake completed, earliest event lead retained, decisive inputs missing |
+| Real transaction reproduction | Blocked: candidate 4 has a same-case arithmetic match; historical state/price unavailable and old state temporal bindings withdrawn |
 | REA installation / outputs | Not performed / none |
 | Local validator tests / strict type check | Implemented and run; see checks below |
 | CI, model tests, document-site build | Not configured / not run |
@@ -33,9 +33,9 @@ See the [publication review](docs/publication-review.md) for actual P0 checks an
 
 ## Next three tasks
 
-1. Authenticate the recovered interface candidates and complete economic parameter semantics/storage layout.
-2. Extend the observed call-to-position mapping with cryptographic intent identity and exact execution pre-state, parameters and prices.
-3. Select a fully eligible ordinary winning close and implement M1 only with independent expected results.
+1. Obtain authenticated archive/trace evidence for the same fixed interval; the default RPC is unsuitable for historical code/storage.
+2. Bind candidate 4 economics to actual execution pre-state, BBO/frozen price, parameters, authorization and ledger/queue deltas.
+3. Preserve the original candidate order and implement M1 only after a fully eligible case and independent expected results are available.
 
 M0 tools are implemented for the documented profile: official document records,
 chain-999 block-end snapshots (EIP-1967 or explicitly incomplete), bounded public
@@ -125,3 +125,38 @@ an automatic permission-review timeout, then the allowed retry succeeded.
 The homepages now explain project purpose and documented/observed mechanisms;
 implementation status and evidence limitations remain in dedicated documents.
 M1 remains blocked and unimplemented.
+
+## Economic path and historical-state audit
+
+[Note 004](docs/research-notes/004-economic-path-and-state-audit.md) traces the
+returned Exchange bytecode to a separate economic library, recovers eight packed
+instrument outputs, and matches candidate 4's post-deadband PnL, impact adjustment,
+fee, fee split and aggregate return with integer arithmetic. This is a same-case
+consistency result using the event exit, not independent execution reproduction.
+
+**Correction to prior phases:** the default RPC documents latest-only code and
+storage. The supposed predecessor state already marks candidate 4 closed; its
+code/storage/parameter temporal bindings, and those of earlier CASE-001 responses
+from this endpoint, are withdrawn. Returned byte hashes and old manifests remain
+an audit trail. The validator checks declared consistency, not provider state age.
+Actual historical BBO/frozen-price inputs, pre-state, authorization and ledger/queue
+results remain missing. Candidate 4 is blocked; none is selected; M1 remains
+unimplemented. The original order and 500-block window are unchanged.
+
+This increment used 42/60 RPC attempts: 40 successful, one timeout and one network
+failure, with one ordinary retry per stopped run. Five metadata-only exports were
+reviewed; source accesses were 10/20. Homepages now explain isolated margin,
+immutable positions, separate additional positions, full closure, leverage,
+liquidation and fees with official sources and explicit evidence boundaries.
+
+Strict type checking and document-record validation passed. Private research
+checks matched input/event/position identifiers and all displayed arithmetic;
+768 synthetic single-bit inputs exercised the returned instrument getter. These
+scratch checks do not establish historical semantics or M1 correctness.
+
+The unchanged production tooling suite passed **147/147** tests, including local
+HTTP transport; strict type checking and the 13-claim/6-evidence/1-version document
+record check passed. No new production model or CI was added in this increment.
+Independent review found no blocking or important issue; two non-blocking opcode
+references were corrected before publication. The public file/digest/link/privacy
+subset was checked again after those corrections.

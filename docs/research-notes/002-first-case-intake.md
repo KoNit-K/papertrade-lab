@@ -1,5 +1,11 @@
 # CASE-001: bounded public settlement intake
 
+> Superseding audit (2026-10-21): [note 004](004-economic-path-and-state-audit.md)
+> withdraws the historical temporal bindings of this note's default-RPC code and
+> storage responses. Requested block tags were not proof of historical state.
+> Receipt/header observations remain provider-reported; retained manifests are
+> an audit trail, not authenticated replay inputs.
+
 Date: 2026-10-21. Status: **unverified; reproduction blocked; no eligible
 settlement case established**. The earliest event lead is retained for follow-up,
 not promoted to an ordinary winning close. The subsequent [interface recovery](003-historical-interface-recovery.md)

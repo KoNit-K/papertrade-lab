@@ -59,8 +59,11 @@ version is marked incomplete.
   an old claim's evidence or reproduction result.
 
 Provider truth, finality, proxy classification, ABI semantics, pre-state and input
-completeness still need independent evidence. A successful validation is not M1
-completion. The public exporter intentionally removes payloads and addresses;
+completeness still need independent evidence. The validator checks declared bindings, not whether a provider honored a block
+tag. CASE-001 default-RPC code/storage temporal bindings have been withdrawn by
+[the state audit](research-notes/004-economic-path-and-state-audit.md). Passing
+the old incomplete packets never authenticated those states. A successful
+validation is not M1 completion. The public exporter intentionally removes payloads and addresses;
 its manifest is not a self-contained replay packet.
 
 Primary references: [EIP-1967](https://eips.ethereum.org/EIPS/eip-1967),

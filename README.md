@@ -8,12 +8,11 @@ We turn observable rules into explanations with evidence and version boundaries:
 how a trade executes, how its result becomes a balance or unpaid claim, and how
 PAPER is issued.
 
-[简体中文](README.zh-CN.md) · [Mechanism map](docs/mechanism-map.md) · [Research notes](docs/research-notes/003-historical-interface-recovery.md) · [Sources](docs/sources.md)
+[简体中文](README.zh-CN.md) · [Mechanism map](docs/mechanism-map.md) · [Research notes](docs/research-notes/004-economic-path-and-state-audit.md) · [Sources](docs/sources.md)
 
 ## How does Papertrade work?
 
-The explanations below distinguish **official descriptions** from **observed
-on-chain structure**. The documented economic rules have not yet passed an
+The explanations below distinguish **official descriptions**, **user observations** and **bytecode/event research**. The documented economic rules have not yet passed an
 independent settlement replay. Current descriptions and individual block snapshots
 do not establish behavior for every historical trade.
 
@@ -36,14 +35,35 @@ This is the documented path. In one historical candidate, we observed a close
 call within a batch whose position ID matches the close event. Complete intent
 authorization and economic results still require further evidence.
 
-### Positions and account balances have separate records
+### Contract trading model: separate isolated positions, full closure
 
-In the inspected historical implementation, bytecode exposes positions by ID
-and a separate balance mapping. The first candidate's close input specifies one
-position, whose record remains readable at block end. This helps distinguish a
-position result from an aggregate account change; business field meanings and
-execution pre-state still need verification. See the [historical interface and
-storage note](docs/research-notes/003-historical-interface-recovery.md).
+Trades are synthetic leveraged positions against the protocol LP. Referencing
+Hyperliquid prices does not open a Hyperliquid perpetual position for the trader.
+The table describes official product rules, not completed historical verification.
+
+| Feature | Rule and boundary |
+|---|---|
+| Cross / isolated margin | Each position carries separate collateral; no cross-margin pool or mode switch. |
+| Increasing an existing position | Positions cannot be edited. Additional same-direction exposure requires another independent position. |
+| Adding / removing collateral | Neither is supported after opening. |
+| Changing leverage | Chosen at open and fixed for that position. |
+| Partial close | Not supported; each position closes in full. Separate positions can close independently. |
+| Markets and limits | Documentation lists BTC/ETH, up to 1000× leverage and $10M notional per position. These are not authenticated parameters for every historical block. |
+| Execution | Opens/closes settle at execution-time BBO mid against the LP. Additional limit or stop-order features have not been investigated here. |
+| Liquidation | Crossing the bust trigger permits hard liquidation of the entire isolated margin; voluntary close equity follows a different calculation. |
+| Costs | Documentation describes no funding, notional trading charge or user-paid gas. Winning PnL is adjusted and charged; loss-path fees can be carved from LP gains. |
+
+Sources: [trades and margin](https://docs.papertrade.xyz/learn/trades-pricing/),
+[FAQ](https://docs.papertrade.xyz/intro/faq/), and
+[liquidations](https://docs.papertrade.xyz/learn/liquidations/), dated 2026-10-06
+and read on 2026-10-21. The anonymized interface observation—isolated positions,
+no increase to an existing position, full close only—is consistent with these
+pages; its frontend version and transaction context remain unknown.
+
+Returned bytecode exposes position-specific margin, leverage and open-state
+fields, with close inputs listing position IDs. However, the default RPC supports
+only latest code/storage: a historical block tag in a successful request does not
+authenticate historical deployment or state. See the [state audit](docs/research-notes/004-economic-path-and-state-audit.md).
 
 ### A winning payout is not a flat percentage deduction
 

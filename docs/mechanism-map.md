@@ -48,3 +48,12 @@ the relevant claim and version scope, rather than silently rewrite prior results
 
 Read the [first note](research-notes/001-winning-trade-payout.md) for one concrete
 investigation, or contribute a competing explanation via [the contribution guide](../CONTRIBUTING.md).
+
+## Economic-path evidence boundary
+
+[Candidate 4](research-notes/004-economic-path-and-state-audit.md) supplies a
+same-case match for deadband, impact and fee arithmetic. Historical state and
+execution price remain unavailable. Earlier default-RPC code/storage temporal
+bindings are withdrawn; returned bytecode analysis does not establish deployment
+at a historical block. The homepages separately summarize current official
+margin/position rules. No mechanism claim is promoted to reproduced.

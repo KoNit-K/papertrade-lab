@@ -1,5 +1,13 @@
 # Changelog
 
+## Economic path and historical-state audit — 2026-10-21
+
+- Trace candidate 4 PnL and accounting calls into the returned economic library; document integer deadband, impact and fee consistency.
+- Withdraw default-RPC code/storage temporal bindings after a closed-before-close inconsistency and the provider’s latest-only documentation.
+- Retain candidate order and the fixed window; candidate 4 remains ineligible and M1 blocked.
+- Explain isolated margin, immutable positions, additional independent positions, full closure, liquidation and costs on both homepages.
+- Publish five reviewed collection metadata manifests without calldata, signatures or account identifiers.
+
 ## Historical interface recovery and mechanism homepages — 2026-10-21
 
 - Recover candidate call/event signatures and partial storage roots from pinned runtime bytes.

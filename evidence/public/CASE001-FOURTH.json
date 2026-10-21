@@ -1,0 +1,59 @@
+{
+  "schema_version": "public-metadata-v1",
+  "scope": "collection_metadata",
+  "source_sha256": "c723d10aef84329c26a6fa8fac7c94677c4ed28f4d550d3e954b5c4300fecb3e",
+  "protocol_reproduced": false,
+  "raw_data_included": false,
+  "endpoint": "https://rpc.hyperliquid.xyz/evm",
+  "status": "completed",
+  "stop_reason": "none",
+  "started_at": "2026-10-21T05:10:54.270Z",
+  "finished_at": "2026-10-21T05:10:58.433Z",
+  "requests": [
+    {
+      "method": "eth_chainId",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "37047d9fa98f2102688f6d8f5163bbe33308161d4f482b3e5853043ce6c7163b",
+      "response_sha256": "430f684fbe48ec1e680bfacf8a2bea38f365e868bc8874eebe9e26e360983a9a",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getTransactionByHash",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "327c280a1d98bfebfc72e44f2656aa543d3964d4e591b6671255d7313397ddb5",
+      "response_sha256": "183de480ae5e143cfdcf99ed7440224be1c0259b38c38f0800b16b3c204edad5",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getTransactionReceipt",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "10ee2fa6e35af14f9914795b0f2ff1c3635a1175115a70942a8055b331f2971c",
+      "response_sha256": "50df5b2529164f2446ba23e6531dfb24801c9297e43fe7bed2fb25b43f1427a8",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getBlockByNumber",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "722232ae6f46953d48d0a74c86228a9a2426199c7ce8b0c1c39e85a67ab5d8df",
+      "response_sha256": "5066b0704742a9e269b226d2d92d9bf9208dee4718ef74e2f36e7908f00210ef",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getBlockByNumber",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "6cc896f4d329b93af52850a3908f6c4bd5d53cd52e0ed7cc49ab355332530bd5",
+      "response_sha256": "9b78679506382e91e5ad924b55de4003cc6c09d5b83405a0e1768a85341b70ff",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    }
+  ]
+}

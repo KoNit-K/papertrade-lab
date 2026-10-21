@@ -1,0 +1,23 @@
+{
+  "schema_version": "public-metadata-v1",
+  "scope": "collection_metadata",
+  "source_sha256": "e56dba354ba1647e8f085d835596ae8914ed1e20985b7047dd61740fa8c3dd02",
+  "protocol_reproduced": false,
+  "raw_data_included": false,
+  "endpoint": "https://rpc.hyperliquid.xyz/evm",
+  "status": "blocked",
+  "stop_reason": "chain_identity",
+  "started_at": "2026-10-21T05:14:31.528Z",
+  "finished_at": "2026-10-21T05:14:41.659Z",
+  "requests": [
+    {
+      "method": "eth_chainId",
+      "status": "network_error",
+      "http_status": null,
+      "request_sha256": "37047d9fa98f2102688f6d8f5163bbe33308161d4f482b3e5853043ce6c7163b",
+      "response_sha256": null,
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    }
+  ]
+}

@@ -317,5 +317,11 @@
     "independent_integer_settlement_and_ledger_result"
   ],
   "m1_implemented": false,
-  "raw_calldata_or_signature_published": false
+  "raw_calldata_or_signature_published": false,
+  "subsequent_state_binding_audit": {
+    "record": "001-economic-recovery.json",
+    "date": "2026-10-21",
+    "historical_code_storage_binding": "withdrawn",
+    "reason": "Default RPC documents latest-only code/storage; successful explicit-block requests do not authenticate historical state. Old returned-byte hashes remain valid identifiers, not temporal proof."
+  }
 }

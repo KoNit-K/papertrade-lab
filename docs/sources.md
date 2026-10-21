@@ -96,8 +96,9 @@ worked around by substituting current state.
   validation results remain source claims; they are not this project's findings.
 - Explorer source retrieval was unsuccessful. No verified source or ABI obtained.
 
-Pinned historical code/storage responses were observed despite the documented
-default archival limitation; general archival/trace capability remains unestablished.
+Code/storage responses to historical-tag requests were observed. The subsequent
+[state audit](research-notes/004-economic-path-and-state-audit.md) withdraws their
+historical temporal bindings: the default provider supports latest-only state.
 
 ## Historical interface follow-up — 2026-10-21
 
@@ -110,3 +111,21 @@ timestamps and source-access accounting are in the [recovery record](../research
 No third-party runtime, frontend module or ABI file is redistributed. Candidate
 signatures, storage extraction descriptions and summaries were independently
 written from hash comparisons and manual historical bytecode inspection.
+
+## Economic path and product rules — 2026-10-21
+
+Read official [trades/margin](https://docs.papertrade.xyz/learn/trades-pricing/),
+[FAQ](https://docs.papertrade.xyz/intro/faq/),
+[liquidation](https://docs.papertrade.xyz/learn/liquidations/),
+[risk](https://docs.papertrade.xyz/how/risk/),
+[BBO](https://docs.papertrade.xyz/how/pricing-bbo/) and
+[impact](https://docs.papertrade.xyz/how/asymmetric-impact/) pages. All six display
+2026-10-06 as their update date; successful direct GET capture times and body
+hashes are in [the economic record](../research/cases/001-economic-recovery.json).
+Three preceding web opens failed. Re-read the official HyperEVM JSON-RPC page:
+its latest-only code/storage limitation is now an explicit historical-input blocker.
+These current documentation descriptions do not authenticate historical parameters.
+
+Returned economic-library bytes and event amounts support a same-case integer
+consistency check, not an independent settlement result. The new source accounting
+is 10/20 explicit accesses; no third-party runtime/source body is redistributed.

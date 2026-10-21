@@ -144,3 +144,38 @@ source timestamps are null where not recorded; block-end state cannot silently
 become execution pre-state. A same-case arithmetic sanity check is not an
 independent model or holdout result. The first positive signed pair remains an
 ordinal-4 structural lead, with no eligible-case selection or M1 implementation.
+
+## Economic-path and state-binding review — 2026-10-21
+
+- The public subset includes the candidate-4 coordinate/position pointer, minimal
+  economic integers, bytecode hashes/offsets, source descriptions, and five
+  metadata-only manifests. This is authorized research publication; no wallet is
+  linked to a person/report. Public transaction pointers are not anonymous.
+- Raw calldata, signatures, owners, account storage keys, source/code bodies,
+  private local paths and byte-bound review declarations remain private. Export
+  digests were checked against the exact retained bytes. No new historical chain
+  snapshot is asserted from the latest-only provider.
+- The research plan predates this increment's network reads. Counts are 42/60 RPC
+  attempts (40 successful, one timeout, one network failure), 10/20 source accesses,
+  five exported ledgers, and 85 cumulative RPC attempts. Retry/stop outcomes remain
+  visible. Original sampling boundaries and candidate ordering are preserved.
+- Private checks compared the candidate input, position and event association,
+  requested before/after state, block/receipt identity and re-read block hashes.
+  The returned instrument getter matched 768 synthetic single-bit inputs. A
+  bounded scratch interpreter and a separate integer calculation matched the
+  candidate's PnL/fee/return values. Neither is a historical replay or independent
+  expected settlement; scratch tools are not an audited EVM or a production model.
+- Existing production tooling tests passed **147/147**; strict TypeScript and
+  original record validation passed. There is no new production code, model test,
+  hosted CI, archive-backed trace or real settlement reproduction in this change.
+- Historical interpretation of earlier state captures is explicitly superseded
+  in both human and machine-readable case records, while original capture hashes
+  remain intact. Candidate 4 remains blocked and no transaction is selected.
+- Independent review found no blocking or important issue after checking integer
+  results against receipt words, packed fields, bytecode hashes/opcodes, source
+  captures, counts, original candidate order and homepage claims. Two opcode
+  references were refined to the actual DIV/SHR locations; conclusions were unchanged.
+- The final 22-file subset passed JSON parsing, local-link checks, explicit contract
+  address allowlisting, private-path/credential pattern checks, manifest digest
+  checks and whitespace checks. These scoped checks are not a guarantee of anonymity
+  or correctness of the underlying provider.

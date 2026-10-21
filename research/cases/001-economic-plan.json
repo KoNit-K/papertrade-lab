@@ -1,0 +1,25 @@
+{
+  "case_id": "CASE-001",
+  "phase": "economic-path-and-candidate-4",
+  "registered_at": "2026-10-21T05:10:46.256720+00:00",
+  "block_from": "49105284",
+  "block_to": "49105783",
+  "candidate_order": [
+    "block_number",
+    "transaction_index",
+    "log_index"
+  ],
+  "target_candidate_ordinal": 4,
+  "new_rpc_budget": 60,
+  "public_source_access_budget": 20,
+  "source_budget_unit": "Each explicit URL access through web, connector, or HTTP counts once, including failures and retries. Internal web-reader HTTP retries are unknown.",
+  "previous_rpc_attempts": 43,
+  "range_expansion": false,
+  "rules": [
+    "Read-only public data; no signing or broadcast",
+    "Preserve earlier leads and original order",
+    "Block-end state is not transaction prestate",
+    "Only implement M1 when decisive historical inputs and independent expected results are available",
+    "Keep raw signatures, calldata and account joins private"
+  ]
+}

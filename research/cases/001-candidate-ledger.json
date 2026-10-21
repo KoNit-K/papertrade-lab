@@ -13,7 +13,7 @@
     "historical_parameters_and_prices",
     "independent_expected_settlement"
   ],
-  "review_depth": "First event receipt checked; remaining 293 leads rejected at the shared evidence gate without individual receipt/position review",
+  "review_depth": "Initial intake checked the first receipt. Follow-ups checked candidate 1 structurally and candidate 4 individually; other 292 leads retain the common input gate without individual receipt/position review.",
   "unclassified_log_count": 745,
   "unclassified_disposition": "Not decoded; cannot rule out additional settlement candidates",
   "candidate_events": [
@@ -43,7 +43,8 @@
       "block_number": "49105287",
       "transaction_index": "2",
       "log_index": "5",
-      "disposition": "blocked_by_shared_missing_inputs"
+      "disposition": "blocked_by_unavailable_historical_prestate_and_price",
+      "review_record": "001-economic-recovery.json"
     },
     {
       "ordinal": 5,
@@ -2075,5 +2076,6 @@
       "log_index": "3",
       "disposition": "blocked_by_shared_missing_inputs"
     }
-  ]
+  ],
+  "latest_followup": "001-economic-recovery.json"
 }
