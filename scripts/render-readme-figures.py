@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render documented continuous mint-rate illustrations; no network or live state.
+"""Render documented mint-rate illustrations and liquidation formulas offline.
 
 Requires matplotlib. See docs/readme-figures.md for inputs and interpretation.
 The marginal curve is not an integer settlement or a whole-trade mint estimate.
@@ -134,12 +134,76 @@ def render(output: Path, language: str, font: str | None) -> None:
              color=muted, fontsize=10)
     output.mkdir(parents=True, exist_ok=True)
     stem = output / f'paper-mint-curve.{language}'
-    metadata = {'Date': None, 'Creator': 'Papertrade Mechanics Lab / matplotlib',
+    metadata = {'Date': None, 'Creator': 'papertrade-research / matplotlib',
                 'Description': 'Documented marginal mint-rate illustration; fixed illustrative H, not live state.'}
-    fig.savefig(stem.with_suffix(stem.suffix + '.svg'), facecolor=bg, metadata=metadata)
+    svg_path = stem.with_suffix(stem.suffix + '.svg')
+    fig.savefig(svg_path, facecolor=bg, metadata=metadata)
+    svg_path.write_text('\n'.join(line.rstrip() for line in svg_path.read_text().splitlines()) + '\n')
     fig.savefig(stem.with_suffix(stem.suffix + '.png'), facecolor=bg, dpi=160)
     plt.close(fig)
     print(f'Rendered {language} SVG/PNG')
+
+
+def render_liquidation(output: Path, language: str, font: str | None) -> None:
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    from matplotlib import font_manager
+    from matplotlib.patches import FancyBboxPatch
+
+    if font:
+        prop = font_manager.FontProperties(fname=font)
+        font_manager.fontManager.addfont(font)
+        family = prop.get_name()
+    else:
+        family = 'DejaVu Sans'
+    plt.rcParams.update({'font.family': family, 'svg.fonttype': 'path',
+                         'text.parse_math': False, 'svg.hashsalt': 'papertrade-liquidation-v1'})
+    zh = language == 'zh-CN'
+    bg, panel, text, muted = '#0e1713', '#15241c', '#eff6ee', '#adc1b2'
+    mint, amber = '#b7f58b', '#f2bc72'
+    fig = plt.figure(figsize=(12, 6.3), facecolor=bg)
+    fig.text(.055, .90, '清算价格 · 缓冲与触发条件' if zh else 'LIQUIDATION · BUFFER & TRIGGER',
+             color=text, fontsize=24, weight='bold')
+    fig.text(.055, .835, '先计算理论归零价，再朝开仓价方向加入缓冲。' if zh
+             else 'Find the zero-equity reference, then buffer it toward entry.',
+             color=muted, fontsize=13)
+    fig.text(.055, .735, r'$d=\left\lfloor\frac{E}{\ell}\right\rfloor$',
+             parse_math=True, color=text, fontsize=23)
+    fig.text(.30, .735, r'$\frac{b}{W}\approx 0.0005=0.05\%$',
+             parse_math=True, color=muted, fontsize=21)
+    for x, is_long in [(.055, True), (.535, False)]:
+        color = mint if is_long else amber
+        card = FancyBboxPatch((x, .24), .41, .43, boxstyle='round,pad=0.015,rounding_size=0.018',
+                              transform=fig.transFigure, facecolor=panel, edgecolor='#34483b')
+        fig.add_artist(card)
+        fig.text(x + .015, .615, ('多仓 LONG' if zh else 'LONG') if is_long
+                 else ('空仓 SHORT' if zh else 'SHORT'), color=color, fontsize=16, weight='bold')
+        formulas = ([r'$z_L=E-d$',
+                     r'$P_{\mathrm{liq},L}=z_L+\left\lfloor\frac{z_L b}{W}\right\rfloor$',
+                     r'$P_t\leq P_{\mathrm{liq},L}$'] if is_long else
+                    [r'$z_S=E+d$',
+                     r'$P_{\mathrm{liq},S}=z_S-\left\lfloor\frac{z_S b}{W}\right\rfloor$',
+                     r'$P_t\geq P_{\mathrm{liq},S}$'])
+        for y, formula in zip([.53, .425, .32], formulas):
+            fig.text(x + .015, y, formula, parse_math=True, color=text if y > .32 else color,
+                     fontsize=23)
+    fig.text(.055, .15, 'E：开仓价   ℓ：杠杆倍数   b / W：缓冲比例   P(t)：执行时参考价   ⌊·⌋：向下取整' if zh
+             else 'E: entry   ℓ: leverage   b / W: buffer ratio   P(t): execution reference price   ⌊·⌋: floor',
+             color=muted, fontsize=11)
+    fig.text(.055, .075, '价格按合约整数单位计算 · 约 5 bps 为文档描述，非实时参数 · 触发后损失全部逐仓保证金' if zh
+             else 'Use contract integer price units · Approx. 5 bps is documented, not live · Full isolated margin is lost',
+             color=muted, fontsize=10)
+    output.mkdir(parents=True, exist_ok=True)
+    stem = output / f'liquidation-formula.{language}'
+    svg_path = stem.with_suffix(stem.suffix + '.svg')
+    fig.savefig(svg_path, facecolor=bg, metadata={
+        'Date': None, 'Creator': 'papertrade-research / matplotlib',
+        'Description': 'Liquidation formula: integer rounding, zero-equity-price buffer, inclusive long/short triggers.'})
+    svg_path.write_text('\n'.join(line.rstrip() for line in svg_path.read_text().splitlines()) + '\n')
+    fig.savefig(stem.with_suffix(stem.suffix + '.png'), facecolor=bg, dpi=160)
+    plt.close(fig)
+    print(f'Rendered liquidation {language} SVG/PNG')
 
 
 def main() -> None:
@@ -151,8 +215,10 @@ def main() -> None:
     check_values()
     if not args.check_only:
         render(args.output_dir, 'en', None)
+        render_liquidation(args.output_dir, 'en', None)
         if args.cjk_font:
             render(args.output_dir, 'zh-CN', args.cjk_font)
+            render_liquidation(args.output_dir, 'zh-CN', args.cjk_font)
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 # Project instructions
 
-- This is Papertrade Mechanics Lab, an independent public research project.
+- This is papertrade-research, an independent public research project.
 - Keep communication with the requesting owner in Simplified Chinese; public
   documentation, commits, release notes and Issues use English, with a Chinese README.
 - Read STATUS.md, DATA_POLICY.md and the relevant source before editing.

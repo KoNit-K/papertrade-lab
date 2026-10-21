@@ -1,6 +1,6 @@
 # Third-party notices
 
-Copyright 2026 Papertrade Mechanics Lab contributors.
+Copyright 2026 papertrade-research contributors.
 Original project documentation and original code are licensed under
 Apache-2.0; see [LICENSE](LICENSE).
 

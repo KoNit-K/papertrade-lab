@@ -1,13 +1,13 @@
-<h1 align="center">Papertrade Mechanics Lab</h1>
+<h1 align="center">papertrade-research</h1>
 
 <p align="center">
   <strong>读懂 1000× 永续合约、亏损铸 PAPER 与质押分红。</strong>
 </p>
 
-![Papertrade Mechanics Lab：观察、追踪与对账](docs/assets/readme-banner.svg)
+![papertrade-research：观察、追踪与对账](docs/assets/readme-banner.svg)
 
 <p align="center">
-  <a href="https://docs.papertrade.xyz/"><img alt="网络：HyperEVM 999" src="https://img.shields.io/badge/HyperEVM-999-b7f58b?style=flat-square&amp;labelColor=17251d" /></a>
+  <a href="docs/mechanism-map.md"><img alt="网络：HyperEVM 999" src="https://img.shields.io/badge/HyperEVM-999-b7f58b?style=flat-square&amp;labelColor=17251d" /></a>
   <a href="STATUS.md"><img alt="状态：研究预览" src="https://img.shields.io/badge/status-research_preview-d8e5db?style=flat-square&amp;labelColor=17251d" /></a>
   <a href="LICENSE"><img alt="许可证：Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-d8e5db?style=flat-square&amp;labelColor=17251d" /></a>
 </p>
@@ -28,7 +28,7 @@
 [Papertrade](https://docs.papertrade.xyz/) 是 HyperEVM 上最高支持 **1000× 杠杆**的永续合约协议。
 交易者与协议流动性池结算；已实现亏损铸出 **PAPER**，质押后可分享已支付交易费用和 LP 盈余带来的分红。
 
-这个独立研究仓库通过前端与字节码分析、公开交易案例和可复用工具，拆解这些机制。
+🔎 这个独立研究仓库通过前端与字节码分析、公开交易案例和可复用工具，拆解这些机制。
 
 ## 特性介绍
 
@@ -36,10 +36,10 @@
 |---|---|
 | **与 PaperTrade 协议 LP 结算** | 每笔交易直接与 PaperTrade 协议流动性池结算，盈亏由该 LP 承接。 |
 | **Hyperliquid 定价，HyperEVM 结算** | 合约读取 HyperCore 最优买卖价的中间价；仓位和余额记在 HyperEVM。 |
-| **最高 1000×，逐仓隔离** | 保证金和杠杆开仓时固定，每个仓位整仓平仓；可以分别持有多仓和空仓。 |
-| **无开仓费、无资金费率** | 交易者的额外协议成本发生在盈利平仓；经 relayer 执行的交易由其支付 gas。 |
-| **高峰期注意开／平仓排队** | 市价交易意图由 relayer 接收、排队并批量上链；高峰期尤其要留意等待，排队中的平仓仍可能先被清算。 |
-| **亏损铸 PAPER，质押分 USDC** | 符合条件的已实现亏损和清算沿衰减曲线铸币；质押 PAPER 后按份额参与分红。 |
+| ⚡ **最高 1000×，逐仓隔离** | 保证金和杠杆开仓时固定，每个仓位整仓平仓；可以分别持有多仓和空仓。 |
+| 💸 **无开仓费、无资金费率** | 交易者的额外协议成本发生在盈利平仓；经 relayer 执行的交易由其支付 gas。 |
+| ⏳ **高峰期注意开／平仓排队** | 市价交易意图由 relayer 接收、排队并批量上链；高峰期尤其要留意等待，排队中的平仓仍可能先被清算。 |
+| 🪙 **亏损铸 PAPER，质押分 USDC** | 符合条件的已实现亏损和清算沿衰减曲线铸币；质押 PAPER 后按份额参与分红。 |
 
 当前官方产品通过<strong>网页</strong>使用，暂无独立手机 App；只有市价单，没有限价单或自动止盈／止损。
 合约按执行时的 BBO 中间价结算，不经过订单簿撮合，因此没有订单簿深度带来的成交滑点；排队期间参考价格仍会变化。
@@ -47,7 +47,7 @@
 > <strong>友情提示：</strong> 想手动择时平仓，就得自己守着网页看盘、点平仓 :-(。
 > 也可以不盯盘，但仓位不会暂停，仍可能被清算。
 
-[官方交易说明 →](https://docs.papertrade.xyz/learn/trades-pricing/)
+[交易机制导览 →](docs/mechanism-map.md)
 
 ## PAPER 铸币曲线
 
@@ -60,7 +60,7 @@
 用于说明阈值处的阶跃，不是实时点位。一次亏损的实际铸币量需要沿区间计算，不是简单用图上的边际值乘亏损。
 
 <strong>参数可以调整：</strong>合约 owner 可修改 LP 阈值、平坦铸币率、衰减尺度与 LP 分红上限。
-[官方公式](https://docs.papertrade.xyz/how/mint-curve/) · [绘图输入、权限与复算](docs/readme-figures.md)
+[铸币公式与绘图输入](docs/readme-figures.md#mint-rate-illustration) · [参数调整权限](docs/readme-figures.md#parameter-authority)
 
 ## 交易成本
 
@@ -85,7 +85,7 @@
 
 表中已包含 deadband、盈利调整和 2% 手续费；价格变动不是保证金收益率。示例参数下最终保留比例上限约 <strong>88.2%</strong>，不是固定扣减比例。
 2% 按调整后盈利计算，不按仓位名义本金计算。亏损平仓与清算的费用分账来自 LP 所得，不会在交易者已有亏损之外再扣一次。
-[官方盈利调整公式](https://docs.papertrade.xyz/how/asymmetric-impact/) · [示例参数与复算](docs/readme-figures.md#profit-retention-examples)
+[盈利调整公式、示例参数与复算](docs/readme-figures.md#profit-retention-examples)
 
 ## 盈亏由谁承担？
 
@@ -105,7 +105,7 @@ flowchart TB
 | **赔付排队** | 已结算债权等待可用 LP 背书资金与 harvest；官方赔付顺序为 FIFO。 |
 
 现金开仓的保证金返还与未付盈利分开记账；债权保证金的亏损销毁相应债权，不形成新增现金。
-[执行队列](docs/research-notes/007-queue-and-dividend-payment.md) · [赔付机制](https://docs.papertrade.xyz/how/solvency-queue/)
+[执行队列与赔付机制](docs/research-notes/007-queue-and-dividend-payment.md)
 
 ## PAPER：分红代币怎样运作？
 
@@ -131,7 +131,7 @@ flowchart TB
 | **两条分红来源** | 已支付交易费用的一半，以及 tracked LP 超过设定上限后可划转的盈余；官方列出的上限为 **500 万美元**。 |
 | **领取与提款分两步** | 领取先计入交易余额，再通过单独的提款操作把 USDC 转到 HyperCore。 |
 
-[官方分红说明](https://docs.papertrade.xyz/learn/staking-dividends/) · [铸币与质押机制分析](docs/research-notes/006-current-mechanisms.md)
+[铸币与质押机制分析](docs/research-notes/006-current-mechanisms.md) · [分红支付路径](docs/research-notes/007-queue-and-dividend-payment.md)
 
 ## 清算：为什么缓冲很重要？
 
@@ -141,8 +141,11 @@ flowchart TB
 > <strong>100× 多仓示意：</strong> 开仓价 100 → 理论归零价 99 → 清算触发价约 **99.05**。
 > 在触发前主动平仓仍可能返还部分权益；触发清算则损失整笔保证金。
 
+![清算公式：保留整数取整顺序的多空清算价格，以及包含等号的触发条件](docs/assets/liquidation-formula.zh-CN.svg)
+
+缓冲作用于理论归零价。开仓价 100、100× 杠杆、缓冲比例 0.05% 时，多仓连续计算结果为 **99.0495 ≈ 99.05**；合约按整数价格单位逐步取整。
 杠杆越高，同样的小幅价格缓冲，占保证金的比例越大。
-[官方清算说明](https://docs.papertrade.xyz/learn/liquidations/) · [精确公式与取整](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold)
+[精确公式与取整](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold)
 
 ## 探索研究仓库
 

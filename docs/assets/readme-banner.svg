@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="336" viewBox="0 0 1200 336" role="img" aria-labelledby="title desc">
-  <title id="title">Papertrade Mechanics Lab</title>
+  <title id="title">papertrade-research</title>
   <desc id="desc">Independent research into trading, settlement and PAPER. Three connected stages: observe, trace and reconcile.</desc>
   <defs>
     <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
@@ -17,10 +17,10 @@
   <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif">
     <rect x="48" y="40" width="8" height="8" rx="2" fill="#b7f58b"/>
     <text x="68" y="49" fill="#b7f58b" font-size="12" font-weight="600" letter-spacing="2">INDEPENDENT RESEARCH · HYPEREVM 999</text>
-    <text x="48" y="130" fill="#f4f8f3" font-size="63" font-weight="700" letter-spacing="-2">Papertrade</text>
-    <text x="48" y="198" fill="#b7f58b" font-size="63" font-weight="700" letter-spacing="-2">Mechanics Lab</text>
+    <text x="48" y="130" fill="#f4f8f3" font-size="63" font-weight="700" letter-spacing="-2">papertrade</text>
+    <text x="48" y="198" fill="#b7f58b" font-size="63" font-weight="700" letter-spacing="-2">research</text>
     <text x="51" y="246" fill="#b4c5ba" font-size="20">Trading, settlement &amp; PAPER, explained.</text>
-    <text x="51" y="294" fill="#91a69a" font-size="12" letter-spacing="2">READ THE MECHANISM. FOLLOW THE EVIDENCE.</text>
+    <text x="51" y="294" fill="#91a69a" font-size="12" letter-spacing="2">TRADING MECHANICS · TOKENOMICS · REPRODUCIBLE MODELS</text>
     <path d="M 831 99 V 237" stroke="#5c7a62" stroke-width="2"/>
     <g fill="#b7f58b">
       <circle cx="831" cy="99" r="7"/>

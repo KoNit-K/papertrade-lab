@@ -8,7 +8,7 @@ The initial release contains bilingual entry pages, a 14-area mechanism map,
 five anonymized unverified reports, one exploratory payout note, research method,
 source pointers, roadmap, contribution/data/security policies, and licensing.
 P0 was published and read back through GitHub on 2026-10-21 as
-[v0.1.0-alpha.1](https://github.com/KoNit-K/papertrade-lab/releases/tag/v0.1.0-alpha.1),
+[v0.1.0-alpha.1](https://github.com/KoNit-K/papertrade-research/releases/tag/v0.1.0-alpha.1),
 a public, non-draft prerelease bound to commit `54a5340215d1846709fc115d37e9f0c83a0d6f83`.
 The current branch additionally contains the M0 records and validator increments below.
 

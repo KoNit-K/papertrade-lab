@@ -33,11 +33,11 @@ services, and trading operations are outside this roadmap's automatic authorizat
 
 ## Public tracking
 
-[Milestones](https://github.com/KoNit-K/papertrade-lab/milestones?state=all) and
-six summary Issues are available: [P0](https://github.com/KoNit-K/papertrade-lab/issues/1),
-[M0](https://github.com/KoNit-K/papertrade-lab/issues/2),
-[M1](https://github.com/KoNit-K/papertrade-lab/issues/3),
-[M2](https://github.com/KoNit-K/papertrade-lab/issues/4),
-[M3](https://github.com/KoNit-K/papertrade-lab/issues/5), and
-[M4](https://github.com/KoNit-K/papertrade-lab/issues/6).
+[Milestones](https://github.com/KoNit-K/papertrade-research/milestones?state=all) and
+six summary Issues are available: [P0](https://github.com/KoNit-K/papertrade-research/issues/1),
+[M0](https://github.com/KoNit-K/papertrade-research/issues/2),
+[M1](https://github.com/KoNit-K/papertrade-research/issues/3),
+[M2](https://github.com/KoNit-K/papertrade-research/issues/4),
+[M3](https://github.com/KoNit-K/papertrade-research/issues/5), and
+[M4](https://github.com/KoNit-K/papertrade-research/issues/6).
 P0 is closed after verified publication. M0–M4 remain open without promised deadlines.

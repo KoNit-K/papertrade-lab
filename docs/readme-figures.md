@@ -95,10 +95,29 @@ win fee, the net retention asymptote is `0.9 × 0.98 = 88.2%`. It is not a fixed
 11.8% deduction. Market-specific parameters can change; these numbers do not
 establish current or historical execution parameters for an individual trade.
 
+## Liquidation formula illustration
+
+The bilingual formula cards reproduce the arithmetic described in
+[note 006](research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold)
+and implemented by [`bustPrice`](../packages/research/mechanics.ts).
+
+E is entry price in contract integer units, ℓ is integer leverage, W is 10¹⁸,
+and b is the W-scaled buffer. First compute d = floor(E / ℓ). For a long,
+z = E − d and the trigger is z + floor(z × b / W); for a short, z = E + d
+and the trigger is z − floor(z × b / W). The buffer is based on z, not E.
+The execution reference price triggers at or below the long threshold, or at
+or above the short threshold, including equality.
+
+The approximately five-basis-point buffer is a documented description, not a
+current parameter lookup. At the illustrative exact ratio 0.0005, entry 100 and
+100× leverage give continuous reference/trigger pairs 99 / 99.0495 for a long
+and 101 / 100.9495 for a short. The contract stages integer rounding; the cards
+retain both floor operations. Liquidation consumes full isolated margin.
+
 ## Reproduce the figures
 
 Use Python with matplotlib (the published figures were rendered with 3.11.2).
-No package, lockfile or production model dependency was changed for this edit.
+Rendering adds no project dependency and does not change the lockfile.
 
 ```sh
 python scripts/render-readme-figures.py --check-only
@@ -109,8 +128,9 @@ python scripts/render-readme-figures.py --output-dir docs/assets --cjk-font /pat
 
 The script performs no network access. It checks documented rate anchors, monotonic
 tail decay, the deadband, all six displayed gain-retention values and the limiting
-retention bound before plotting. SVG text is outlined for portable font rendering;
-README alt text and this page provide the textual interpretation. PNG copies are
+retention bound before plotting. SVG text is outlined for portable font rendering.
+The same command also renders the long/short liquidation formula cards with
+mathematical typesetting. README alt text and this page provide the textual interpretation. PNG copies are
 also produced for local visual inspection; only the SVGs are published.
 
 ## Source scope

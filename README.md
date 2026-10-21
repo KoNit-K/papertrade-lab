@@ -1,13 +1,13 @@
-<h1 align="center">Papertrade Mechanics Lab</h1>
+<h1 align="center">papertrade-research</h1>
 
 <p align="center">
   <strong>Inside 1000× perpetuals, loss-to-PAPER emissions, and staking dividends.</strong>
 </p>
 
-![Papertrade Mechanics Lab — observe, trace and reconcile](docs/assets/readme-banner.svg)
+![papertrade-research — observe, trace and reconcile](docs/assets/readme-banner.svg)
 
 <p align="center">
-  <a href="https://docs.papertrade.xyz/"><img alt="Network: HyperEVM 999" src="https://img.shields.io/badge/HyperEVM-999-b7f58b?style=flat-square&amp;labelColor=17251d" /></a>
+  <a href="docs/mechanism-map.md"><img alt="Network: HyperEVM 999" src="https://img.shields.io/badge/HyperEVM-999-b7f58b?style=flat-square&amp;labelColor=17251d" /></a>
   <a href="STATUS.md"><img alt="Status: research preview" src="https://img.shields.io/badge/status-research_preview-d8e5db?style=flat-square&amp;labelColor=17251d" /></a>
   <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-d8e5db?style=flat-square&amp;labelColor=17251d" /></a>
 </p>
@@ -21,7 +21,7 @@
   <a href="#paper-mint-curve">Mint curve</a> ·
   <a href="#trading-costs">Fees</a> ·
   <a href="#paper-the-dividend-token">PAPER</a> ·
-  <a href="#explore-the-lab">Explore the lab</a> ·
+  <a href="#explore-the-research">Explore the research</a> ·
   <a href="docs/sources.md">Sources</a>
 </p>
 
@@ -29,7 +29,7 @@
 **1000× leverage**. Traders settle against its liquidity pool; realized losses mint
 **PAPER**, which can be staked for dividends from paid trading fees and LP surplus.
 
-This independent lab explains those mechanics through frontend and bytecode analysis,
+🔎 This independent research project explains those mechanics through frontend and bytecode analysis,
 public transaction cases, and reproducible research tools.
 
 ## Features
@@ -38,10 +38,10 @@ public transaction cases, and reproducible research tools.
 |---|---|
 | **Settle with the PaperTrade LP** | Every trade settles directly with the PaperTrade protocol liquidity pool, which takes the other side of the PnL. |
 | **Hyperliquid prices, HyperEVM settlement** | Contracts read the HyperCore best-bid/ask midpoint. Positions and balances live on HyperEVM. |
-| **Up to 1000×, isolated per position** | Margin and leverage are fixed at open; each position closes in full. Separate long and short positions can coexist. |
-| **No opening fee or funding payments** | The trader's protocol charges come from profitable closes. The relayer pays gas for relayed trades. |
-| **Watch the queue during busy periods** | The relayer receives, queues and batches market intents on chain. Opens and closes can wait, especially during busy periods; liquidation can beat a queued close. |
-| **Losses earn PAPER** | Eligible realized losses and liquidations mint PAPER along a decaying emission curve. Staking PAPER earns a share of USDC distributions. |
+| ⚡ **Up to 1000×, isolated per position** | Margin and leverage are fixed at open; each position closes in full. Separate long and short positions can coexist. |
+| 💸 **No opening fee or funding payments** | The trader's protocol charges come from profitable closes. The relayer pays gas for relayed trades. |
+| ⏳ **Watch the queue during busy periods** | The relayer receives, queues and batches market intents on chain. Opens and closes can wait, especially during busy periods; liquidation can beat a queued close. |
+| 🪙 **Losses earn PAPER** | Eligible realized losses and liquidations mint PAPER along a decaying emission curve. Staking PAPER earns a share of USDC distributions. |
 
 The current official product is <strong>web-based</strong>, with no standalone mobile app. It supports market orders only, without limit orders or automatic take-profit/stop-loss.
 Settlement uses the BBO midpoint at execution, without order-book-depth slippage. The reference price can still change while an intent waits.
@@ -49,7 +49,7 @@ Settlement uses the BBO midpoint at execution, without order-book-depth slippage
 > <strong>A friendly reminder:</strong> Timing a manual exit means watching the page and pressing close yourself :-(.
 > You can leave it unattended, but the position stays exposed and can still be liquidated.
 
-[Official trading guide →](https://docs.papertrade.xyz/learn/trades-pricing/)
+[Trading mechanics →](docs/mechanism-map.md)
 
 ## PAPER mint curve
 
@@ -62,7 +62,7 @@ At or above the threshold, the marginal rate is `r(H) = R × [S / (S + H)]²`, w
 to illustrate the threshold step rather than a live point. Whole-trade issuance integrates over its interval; it is not simply loss times the displayed marginal rate.
 
 <strong>Parameters are adjustable:</strong> the contract owner can change the LP threshold, flat mint rate, decay scale and LP reward cap.
-[Official formula](https://docs.papertrade.xyz/how/mint-curve/) · [Figure inputs, authority and reproduction](docs/readme-figures.md)
+[Mint formula and figure inputs](docs/readme-figures.md#mint-rate-illustration) · [Parameter authority](docs/readme-figures.md#parameter-authority)
 
 ## Trading costs
 
@@ -87,7 +87,7 @@ smaller moves lose more. The deadband is approximately <strong>0.2 basis points 
 
 These examples include deadband, adjustment and the win fee; price moves are not margin returns. The example-parameter retention ceiling is about <strong>88.2%</strong>, not a fixed deduction.
 The 2% applies to adjusted gain, not notional. Loss-close and liquidation fee shares come from LP proceeds, without adding to the trader's existing loss.
-[Official gain-adjustment formula](https://docs.papertrade.xyz/how/asymmetric-impact/) · [Parameters and calculations](docs/readme-figures.md#profit-retention-examples)
+[Gain-adjustment formula and calculations](docs/readme-figures.md#profit-retention-examples)
 
 ## Who pays whom?
 
@@ -108,7 +108,7 @@ flowchart TB
 
 With cash-funded positions, returned margin is credited separately from unpaid gains.
 Debt-funded losses cancel the corresponding claim rather than bring in new cash.
-[Execution queue](docs/research-notes/007-queue-and-dividend-payment.md) · [Payout mechanics](https://docs.papertrade.xyz/how/solvency-queue/)
+[Execution queue and payout mechanics](docs/research-notes/007-queue-and-dividend-payment.md)
 
 ## PAPER: the dividend token
 
@@ -134,7 +134,7 @@ flowchart TB
 | **Two reward sources** | Half of paid trading fees, plus sweepable tracked-LP excess above its configured cap, documented at **$5M**. |
 | **Claim, then withdraw** | Claiming credits the trading balance. Moving USDC to HyperCore is a separate withdrawal. |
 
-[Official dividends](https://docs.papertrade.xyz/learn/staking-dividends/) · [Mint curve & staking analysis](docs/research-notes/006-current-mechanisms.md)
+[Mint curve & staking analysis](docs/research-notes/006-current-mechanisms.md) · [Dividend payment path](docs/research-notes/007-queue-and-dividend-payment.md)
 
 ## Liquidation: the buffer matters
 
@@ -147,10 +147,13 @@ consumes the position's **full isolated margin**.
 > liquidation trigger about **99.05**. A voluntary close just before the trigger
 > can still return equity; liquidation at the trigger consumes the whole margin.
 
-Higher leverage makes the same small price buffer a larger fraction of margin.
-[Liquidation guide](https://docs.papertrade.xyz/learn/liquidations/) · [Exact formula & rounding](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold)
+![Liquidation formula: integer-rounded long and short bust prices, with inclusive price triggers](docs/assets/liquidation-formula.en.svg)
 
-## Explore the lab
+The buffer applies to the zero-equity reference price. At entry 100, 100× leverage and a 0.05% buffer, the continuous long-side result is **99.0495 ≈ 99.05**; the contract rounds in integer price units.
+Higher leverage makes the same small price buffer a larger fraction of margin.
+[Exact formula & rounding](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold)
+
+## Explore the research
 
 | Start here | What you will find |
 |---|---|
