@@ -1,7 +1,7 @@
 <h1 align="center">papertrade-research</h1>
 
 <p align="center">
-  <strong>Papertrade 机制研究：交易、清算与 PAPER 分红。</strong>
+  <strong>REA 辅助逆向：Papertrade 交易、清算与 PAPER 分红。</strong>
 </p>
 
 ![papertrade-research：观察、追踪与对账](docs/assets/readme-banner.svg)
@@ -27,7 +27,7 @@
 
 [Papertrade](https://docs.papertrade.xyz/) 是 HyperEVM 上的永续合约协议：与协议 LP 交易，亏损可产生 PAPER，质押参与 USDC 分红。
 
-🔎 这个仓库研究它怎样收费、怎样清算，以及亏损和 PAPER 激励怎样连在一起。[研究进度](STATUS.md) · [来源](docs/sources.md)
+🔎 这个仓库结合 [REA](https://github.com/morluto/rea) 与人工分析，研究它怎样收费、怎样清算，以及亏损和 PAPER 激励怎样连在一起。[研究进度](STATUS.md) · [来源](docs/sources.md)
 
 ## 特性介绍
 

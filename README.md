@@ -1,7 +1,7 @@
 <h1 align="center">papertrade-research</h1>
 
 <p align="center">
-  <strong>Papertrade mechanics: trading, liquidation and PAPER dividends.</strong>
+  <strong>REA-assisted reverse engineering of Papertrade trading, liquidation and PAPER dividends.</strong>
 </p>
 
 ![papertrade-research — observe, trace and reconcile](docs/assets/readme-banner.svg)
@@ -27,7 +27,7 @@
 
 [Papertrade](https://docs.papertrade.xyz/) is a perpetuals protocol on HyperEVM: trades settle against the protocol LP, losses can generate PAPER, and staked PAPER participates in USDC distributions.
 
-🔎 This repository examines its fees, liquidation rules and the link between losses and PAPER incentives. [Research status](STATUS.md) · [Sources](docs/sources.md)
+🔎 This repository uses [REA](https://github.com/morluto/rea) and manual analysis to examine its fees, liquidation rules and the link between losses and PAPER incentives. [Research status](STATUS.md) · [Sources](docs/sources.md)
 
 ## Features
 
