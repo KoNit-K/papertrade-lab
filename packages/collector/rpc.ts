@@ -32,7 +32,7 @@ export function validateRequest(input: unknown): asserts input is RpcRequest {
       policy(params.length===2 && (isQ(params[0]) || params[0]==='finalized') && params[1]===false); break;
     case 'eth_getCode': policy(params.length===2 && isA(params[0]) && isQ(params[1])); break;
     case 'eth_getStorageAt': policy(params.length===3 && isA(params[0]) && isH(params[1]) && isQ(params[2])); break;
-    case 'eth_getTransactionReceipt': policy(params.length===1 && isH(params[0])); break;
+    case 'eth_getTransactionReceipt': case 'eth_getTransactionByHash': policy(params.length===1 && isH(params[0])); break;
     case 'eth_getLogs': {
       policy(params.length===1 && !!params[0] && typeof params[0]==='object' && keys(params[0],['address','topics','fromBlock','toBlock']));
       const q=params[0] as {address:unknown;topics:unknown;fromBlock:unknown;toBlock:unknown};

@@ -33,8 +33,8 @@ See the [publication review](docs/publication-review.md) for actual P0 checks an
 
 ## Next three tasks
 
-1. Obtain an authenticated ABI/storage layout for the observed historical implementation.
-2. Establish intent-to-position mapping and exact execution pre-state, parameters and prices for the ordered CASE-001 leads.
+1. Authenticate the recovered interface candidates and complete economic parameter semantics/storage layout.
+2. Extend the observed call-to-position mapping with cryptographic intent identity and exact execution pre-state, parameters and prices.
 3. Select a fully eligible ordinary winning close and implement M1 only with independent expected results.
 
 M0 tools are implemented for the documented profile: official document records,
@@ -103,3 +103,25 @@ nor a continuous unchanged interval is established. Two incomplete versions, nin
 evidence items and two blocked claims passed the chain validator. Seven reviewed
 metadata exports omit raw payloads. All mechanism claims remain unverified;
 there is no integer settlement replay or eligible winning-case selection yet.
+
+## Historical interface follow-up
+
+[The follow-up](docs/research-notes/003-historical-interface-recovery.md) recovered
+selector/topic preimages, three partial mapping roots, and a structural link from
+batch item 0 to close position 1712506 and its emitted call result. These are
+partial bytecode/layout observations, not authenticated full ABI, business-field
+semantics, signature authorization or settlement reproduction. The first positive
+signed-word pair is an ordinal-4 structural lead; the original ledger is unchanged.
+
+Four additional bounded runs used 14/30 new RPC attempts at the same candidate
+block; five metadata manifests were exported. The expanded private chain packet
+passed with two incomplete versions, 14 evidence items (five reused), and two
+blocked claims. Source lookup failures and a one-access post-plan source-budget
+accounting overrun are disclosed in the note. No sampling-window expansion occurred.
+
+The transaction lookup whitelist extension has seven new regressions; the full
+**147/147** tests and strict type check passed. Full-test launch first encountered
+an automatic permission-review timeout, then the allowed retry succeeded.
+The homepages now explain project purpose and documented/observed mechanisms;
+implementation status and evidence limitations remain in dedicated documents.
+M1 remains blocked and unimplemented.

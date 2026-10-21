@@ -1,0 +1,144 @@
+{
+  "schema_version": "public-metadata-v1",
+  "scope": "chain_metadata",
+  "source_sha256": "8dee507b15b536f057e53d49a13a78ef0a8802dcb2611fbd16541ff2e396d005",
+  "protocol_reproduced": false,
+  "raw_data_included": false,
+  "fixture_kind": "public_chain",
+  "versions": [
+    {
+      "version_id": "VER-CASE001-START",
+      "chain_id": "999",
+      "block_number": "49105284",
+      "block_hash": "0x55dddd125ad9a841a332fddc992eb4a927a72e1a07f7cce73850a6ecc3c57901",
+      "binding_status": "incomplete",
+      "needs_revalidation": true
+    },
+    {
+      "version_id": "VER-CASE001-BATCH-START",
+      "chain_id": "999",
+      "block_number": "49105284",
+      "block_hash": "0x55dddd125ad9a841a332fddc992eb4a927a72e1a07f7cce73850a6ecc3c57901",
+      "binding_status": "incomplete",
+      "needs_revalidation": true
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "EVD-CASE001-START-BLOCK",
+      "version_id": "VER-CASE001-START",
+      "kind": "block",
+      "content_sha256": "c59651208474ad4cd5389e484de8a7e0a9d722287338484e55701718bf9c87a6"
+    },
+    {
+      "evidence_id": "EVD-CASE001-START-PROXY",
+      "version_id": "VER-CASE001-START",
+      "kind": "code",
+      "content_sha256": "725c1639c5120be2ea9a7efd9b9de1a06c525e7c1b6ed7133ed4e24f1a4fb518"
+    },
+    {
+      "evidence_id": "EVD-CASE001-START-SLOT",
+      "version_id": "VER-CASE001-START",
+      "kind": "storage",
+      "content_sha256": "9f1bc11929f116b35f0bcf4d24ee756f4c2589d8990e34c5a7332eecbe041bdc"
+    },
+    {
+      "evidence_id": "EVD-CASE001-START-IMPL",
+      "version_id": "VER-CASE001-START",
+      "kind": "code",
+      "content_sha256": "b835a9a2a98fece9fdba4a7beccc8726a23e828d63d3aebf4ddb57934f48cba1"
+    },
+    {
+      "evidence_id": "EVD-CASE001-START-RECEIPT",
+      "version_id": "VER-CASE001-START",
+      "kind": "receipt",
+      "content_sha256": "b053a6357e31a8a60e52e3a0e9a2009cb3ec50a64f56ec75fa7229bde602eb62"
+    },
+    {
+      "evidence_id": "EVD-CASE001-RECOVERY-SLOT-2",
+      "version_id": "VER-CASE001-START",
+      "kind": "storage",
+      "content_sha256": "a86f0c1705254625526aa38a3134d82909787c3c3b777509e5de29dd2327731d"
+    },
+    {
+      "evidence_id": "EVD-CASE001-RECOVERY-SLOT-3",
+      "version_id": "VER-CASE001-START",
+      "kind": "storage",
+      "content_sha256": "69e212aa05298a33f06b65259152e804e85d7848ffa36f84533e60bda599c241"
+    },
+    {
+      "evidence_id": "EVD-CASE001-RECOVERY-SLOT-4",
+      "version_id": "VER-CASE001-START",
+      "kind": "storage",
+      "content_sha256": "27d1a2331cd7e9003519c7794d6773790ffef5c9b08b304c70a1a3df903cbe40"
+    },
+    {
+      "evidence_id": "EVD-CASE001-RECOVERY-SLOT-5",
+      "version_id": "VER-CASE001-START",
+      "kind": "storage",
+      "content_sha256": "dc8ff7dcf3fa20e8f636711810a3d3ee8b1cd07f2670273d99e784d5d69dda65"
+    },
+    {
+      "evidence_id": "EVD-CASE001-RECOVERY-SLOT-6",
+      "version_id": "VER-CASE001-START",
+      "kind": "storage",
+      "content_sha256": "94d67e4a1e2795e797e440ecf0ef8cd7b012aceeeccb1b5bda32195474a71cd2"
+    },
+    {
+      "evidence_id": "EVD-CASE001-BATCH-BLOCK",
+      "version_id": "VER-CASE001-BATCH-START",
+      "kind": "block",
+      "content_sha256": "c59651208474ad4cd5389e484de8a7e0a9d722287338484e55701718bf9c87a6"
+    },
+    {
+      "evidence_id": "EVD-CASE001-BATCH-PROXY",
+      "version_id": "VER-CASE001-BATCH-START",
+      "kind": "code",
+      "content_sha256": "01f9ba931d99ce009d335a49f36011ce76d30e43f69fd72d6bb71bb097e6acb1"
+    },
+    {
+      "evidence_id": "EVD-CASE001-BATCH-SLOT",
+      "version_id": "VER-CASE001-BATCH-START",
+      "kind": "storage",
+      "content_sha256": "853189881044afa773cb9fd5d72bd4240ecfb8f435c919d7d83049bc397fb9a4"
+    },
+    {
+      "evidence_id": "EVD-CASE001-BATCH-IMPL",
+      "version_id": "VER-CASE001-BATCH-START",
+      "kind": "code",
+      "content_sha256": "765ee535e752fda364a52ff267b2fc23d6566fa8531ffa127a265c161dff52a9"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "CLM-CASE001-START",
+      "version_id": "VER-CASE001-START",
+      "support_status": "unverified",
+      "reproduction_status": "blocked",
+      "missing_inputs": [
+        "parameters",
+        "prestate",
+        "trace",
+        "price",
+        "intent_outcome",
+        "independent_result",
+        "finality"
+      ]
+    },
+    {
+      "claim_id": "CLM-CASE001-BATCH-START",
+      "version_id": "VER-CASE001-BATCH-START",
+      "support_status": "unverified",
+      "reproduction_status": "blocked",
+      "missing_inputs": [
+        "parameters",
+        "prestate",
+        "trace",
+        "price",
+        "intent_outcome",
+        "independent_result",
+        "finality"
+      ]
+    }
+  ]
+}

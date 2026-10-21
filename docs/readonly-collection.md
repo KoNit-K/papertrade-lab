@@ -27,7 +27,7 @@ following JSON-RPC methods with validated parameters:
 | `eth_getBlockByNumber` | Explicit block quantity or `finalized`; transactions disabled |
 | `eth_getCode` | Contract address and explicit block quantity |
 | `eth_getStorageAt` | Contract, 32-byte slot, explicit block quantity |
-| `eth_getTransactionReceipt` | One transaction hash |
+| `eth_getTransactionReceipt`, `eth_getTransactionByHash` | One complete 32-byte transaction hash |
 | `eth_getLogs` | One contract, up to four exact topics, explicit range of at most 50 blocks |
 
 Signing, broadcasting, transaction submission/cancellation, account unlocking,
@@ -68,3 +68,9 @@ not instructions, and are not automatically public. See [safe export](safe-expor
 Tests use synthetic responses and a local HTTP server for actual POST/redirect
 behavior. The loopback test needs permission to listen on `127.0.0.1`; it never
 contacts the endpoint above. No successful test demonstrates live archival support.
+
+Transaction lookup `ok` means the JSON-RPC envelope and transport checks passed.
+It does not authenticate the returned transaction, its block/index, input semantics
+or finality. Research must cross-check the requested hash, receipt identity, chain
+and pinned block. Transaction inputs may contain signature material: retain raw
+responses privately and publish only reviewed summaries or metadata projections.

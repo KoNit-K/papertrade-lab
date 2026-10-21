@@ -1,75 +1,84 @@
 # Papertrade Mechanics Lab
 
-**Understand Papertrade—from trade intent to final settlement.**
+**Research into Papertrade trading, settlement and PAPER issuance.**
 
-An independent, open research project investigating Papertrade through user
-observations, source analysis, and, in future milestones, REA-assisted investigations
-and reproducible models.
+An independent open-source project that studies official documentation, public
+frontend definitions, historical contract bytecode, transaction inputs and events.
+We turn observable rules into explanations with evidence and version boundaries:
+how a trade executes, how its result becomes a balance or unpaid claim, and how
+PAPER is issued.
 
-[简体中文](README.zh-CN.md) · [Mechanism map](docs/mechanism-map.md) ·
-[First research note](docs/research-notes/001-winning-trade-payout.md) ·
-[Status](STATUS.md) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md)
+[简体中文](README.zh-CN.md) · [Mechanism map](docs/mechanism-map.md) · [Research notes](docs/research-notes/003-historical-interface-recovery.md) · [Sources](docs/sources.md)
 
-> **Research preview — building in public.** This documentation release contains
-> research questions, methods, and an exploratory payout analysis. It contains no
-> independently reproduced on-chain results, working model suite, or completed
-> REA investigation. Publication is not verification of protocol correctness.
+## How does Papertrade work?
 
-## Questions we are investigating
+The explanations below distinguish **official descriptions** from **observed
+on-chain structure**. The documented economic rules have not yet passed an
+independent settlement replay. Current descriptions and individual block snapshots
+do not establish behavior for every historical trade.
 
-- Why might BTC accept shorts while longs are unavailable?
-- Where does opening or closing an order wait, and how does that differ from waiting for a payout?
-- How does a displayed profit become a balance change or an unpaid claim?
-- Why might the reported PAPER received per loss change over time?
-- Which leverage, margin, and close-size rules belong to the interface, relayer, or contracts?
+### From intent to contract execution
 
-## Available now
+The official architecture sends signed user intents through a relayer and a
+BatchExecutor to Exchange. Intent acceptance, transaction inclusion and success
+of an individual call are separate stages. Waiting for execution is also distinct
+from waiting for a payout. See the [architecture source](https://docs.papertrade.xyz/how/architecture/).
 
-| Resource | What you can read |
-|---|---|
-| [Mechanism map](docs/mechanism-map.md) | Questions, observable boundaries, source pointers, unknowns, and next checks across 14 areas |
-| [Five user observations](research/observations.md) | Anonymized reports, competing explanations, and missing inputs; all unverified |
-| [Why did a winning trade pay less than expected?](docs/research-notes/001-winning-trade-payout.md) | Candidate payout stages and a plan to distinguish deductions from delayed availability |
-| [Research method](docs/research-method.md) | Separate provenance, support, reproduction, implementation, and version scope |
-| [Source index](docs/sources.md) | Actual retrieval status distinguished from unread source seeds |
-| [Initial evidence records](docs/evidence-records.md) | Six source readings, thirteen atomic claims and an offline document/observation validator |
-| [Data policy](DATA_POLICY.md) | What may be contributed and what must stay out of public history |
+```mermaid
+flowchart LR
+    A[User trading intent] --> B[Relayer]
+    B --> C[BatchExecutor]
+    C --> D[Exchange positions and ledger]
+    D --> E[Balance or unpaid claim]
+```
 
-Start with the mechanism map, then the payout note and its evidence gaps.
-No installation or wallet connection is needed to read this release.
+This is the documented path. In one historical candidate, we observed a close
+call within a batch whose position ID matches the close event. Complete intent
+authorization and economic results still require further evidence.
 
-## Next milestone
+### Positions and account balances have separate records
 
-M0 has begun with structured source/claim records and a documentation version identity.
-An offline validator now checks document/observation records and published capture integrity.
-Read the [validation guide](docs/evidence-records.md) for real commands and limits.
-M0 now includes [historical chain snapshot checks](docs/chain-evidence.md),
-[bounded read-only collection](docs/readonly-collection.md) and
-[reviewed metadata export](docs/safe-export.md). The [first bounded live intake](docs/research-notes/002-first-case-intake.md) retained an earliest event lead,
-but decisive historical inputs are missing; no eligible winning settlement or M1 replay is established.
-Then M1 selects a bounded public settlement case and
-compares an independent integer model with independently sourced execution results.
-See the [roadmap](ROADMAP.md) for acceptance criteria and the [status](STATUS.md)
-for actual progress.
+In the inspected historical implementation, bytecode exposes positions by ID
+and a separate balance mapping. The first candidate's close input specifies one
+position, whose record remains readable at block end. This helps distinguish a
+position result from an aggregate account change; business field meanings and
+execution pre-state still need verification. See the [historical interface and
+storage note](docs/research-notes/003-historical-interface-recovery.md).
 
-Optional REA (Reverse Engineer Anything) analysis, transaction explanations and
-offline settlement replay remain planned. The implemented M0 commands are linked
-above; they do not establish protocol correctness. There is no trading terminal or hosted service.
+### A winning payout is not a flat percentage deduction
 
-## Participate
+The official description applies a deadband and nonlinear gain adjustment before
+a fee on the adjusted gain. Its `10%` launch parameter does not mean every winning
+trade loses exactly `10%`; the described `2%` fee has its own basis. Explaining a
+payout requires separating price movement, adjusted PnL, fees, returned margin
+and spendable balance. See the [payout research note](docs/research-notes/001-winning-trade-payout.md).
 
-Contribute corrections, alternative explanations, or carefully redacted evidence
-through this repository's Issues or pull requests. Start with
-[CONTRIBUTING.md](CONTRIBUTING.md), especially the disclosure rules. Public chain
-data can still identify a person when linked to a report. Do not post credentials,
-session secrets, active signatures, raw authenticated captures, or identifying
-wallet records without explicit permission for the specific disclosure.
+### Cash, claims and the payout queue are different accounting states
 
-## Independence and license
+The official solvency description separates available cash from unpaid claims,
+with queued payment when funds are insufficient and distinct claim-funded trading
+branches. An entitlement and an amount available to withdraw are different
+measurements. Ledger and later events are needed to establish payment; an eventual
+payment description is not a fixed deadline. See the [solvency source](https://docs.papertrade.xyz/how/solvency-queue/).
 
-Unofficial; not affiliated with Papertrade or the REA team. This is research,
-not a security audit, production trading client, or investment advice. This
-release performs no wallet operations and submits no transactions.
+### PAPER issuance depends on eligible losses and curve state
 
-Original project code and documentation are licensed under [Apache-2.0](LICENSE).
-Third-party material retains its own terms; see [Third-party notices](THIRD_PARTY_NOTICES.md).
+The official mint description relates issuance to eligible loss, tracked LP and
+high-water progress. A marginal rate at one instant differs from the average rate
+across a loss interval. Comparing tokens per unit lost therefore requires the
+eligible basis, interval and units, rather than two displayed numbers alone.
+See the [mint-curve source](https://docs.papertrade.xyz/how/mint-curve/).
+
+### Directional limits and liquidation have separate conditions
+
+Official risk documentation describes directional open-interest capacity, market
+gates, leverage and position limits. Interface restrictions, relayer admission
+and contract checks are separate layers. Explaining a historical one-sided
+rejection still needs contemporaneous parameters, state and error evidence.
+See the [risk source](https://docs.papertrade.xyz/how/risk/) and [mechanism map](docs/mechanism-map.md).
+
+---
+
+Research is read-only; this project does not operate wallets or submit trades.
+It is unofficial. Original code and documentation use [Apache-2.0](LICENSE).
+[Method](docs/research-method.md) · [Evidence and progress](STATUS.md) · [Contributing and disclosure](CONTRIBUTING.md) · [Third-party notices](THIRD_PARTY_NOTICES.md)

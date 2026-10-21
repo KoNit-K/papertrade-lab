@@ -98,3 +98,15 @@ worked around by substituting current state.
 
 Pinned historical code/storage responses were observed despite the documented
 default archival limitation; general archival/trace capability remains unestablished.
+
+## Historical interface follow-up — 2026-10-21
+
+The [follow-up note](research-notes/003-historical-interface-recovery.md) records
+Sourcify's no-match response, an unverified implementation explorer page, an IPFS
+metadata timeout, the official frontend entry and three inspected static modules,
+and a public event-signature dictionary. Current frontend definitions are leads,
+not authenticated historical ABI. Body hashes, failed attempts, null retrieval
+timestamps and source-access accounting are in the [recovery record](../research/cases/001-interface-recovery.json).
+No third-party runtime, frontend module or ABI file is redistributed. Candidate
+signatures, storage extraction descriptions and summaries were independently
+written from hash comparisons and manual historical bytecode inspection.

@@ -127,3 +127,29 @@ for(const variant of ['block hash','log index','transaction hash'])test('rejects
  const client=new ReadonlyCollector(settings,transport([a,b]));
  assert.equal((await client.logs(address,[hash],'0x10','0x11')).status,'invalid_response');
 });
+
+// Synthetic hashes and calldata; no real signature material.
+test('collects a hash-addressed transaction through the plan and response pipeline', async () => {
+ const { runPlan }=await import('../packages/collector/run.ts');
+ const plan={schema_version:'readonly-plan-v1',policy:settings,steps:[{kind:'rpc',request:{method:'eth_getTransactionByHash',params:[hash]}}]};
+ const out=await runPlan(plan,async(url,init)=>{
+  assert.equal(url,'https://rpc.hyperliquid.xyz/evm');
+  const req=JSON.parse(String(init?.body));
+  assert.ok(['eth_chainId','eth_getTransactionByHash'].includes(req.method));
+  if(req.method==='eth_getTransactionByHash')assert.deepEqual(req.params,[hash]);
+  return transport(req.method==='eth_chainId'?'0x3e7':{hash,blockNumber:'0x10',blockHash:hash,transactionIndex:'0x0',input:'0x12345678'})(url,init);
+ });
+ assert.equal(out.status,'completed');
+ assert.equal(out.outcomes[1].request.method,'eth_getTransactionByHash');
+ assert.equal((out.outcomes[1].result as {input:string}).input,'0x12345678');
+ assert.match(out.outcomes[1].response_sha256!,/^[0-9a-f]{64}$/);
+});
+for(const params of [[],['latest'],['0x1234'],[hash,'extra'],[{hash}]])test('rejects malformed transaction lookup '+JSON.stringify(params),async()=>{
+ let calls=0;const client=new ReadonlyCollector(settings,async()=>{calls++;throw Error('unexpected transport');});
+ await assert.rejects(client.read({method:'eth_getTransactionByHash',params}),/policy/);assert.equal(calls,0);
+});
+test('missing hash-addressed transaction remains missing',async()=>{
+ const client=new ReadonlyCollector(settings,transport(null));
+ const result=await client.read({method:'eth_getTransactionByHash',params:[hash]});
+ assert.equal(result.status,'missing');assert.equal(Object.hasOwn(result,'result'),false);
+});

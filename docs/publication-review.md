@@ -109,3 +109,38 @@ checks. It does not claim a new protocol test, independent finality check, archi
 execution trace or settlement replay. Private payloads and original wire bytes are
 not distributed, so these public manifests alone cannot verify the provider or
 replay the case. M1 case selection remains blocked by missing decisive inputs.
+
+## Historical interface and homepage review — 2026-10-21
+
+- Reviewed the 19-file public increment: the hash-only transaction lookup change
+  and tests, mechanism-focused English/Chinese homepages, research/status/source
+  updates, two case JSON files and five metadata manifests. Original candidate
+  ordering and the original interval plan remain unchanged.
+- Seven new tests cover the actual plan/collector path and malformed/missing
+  transaction reads. The two new supported-result paths failed before the one-line
+  implementation; all seven then passed. Full tests passed **147/147**, including
+  loopback HTTP, and strict type checking passed. An initial automatic approval
+  review timeout prevented the first full-test launch; its allowed retry succeeded.
+- Private chain evidence validates as two incomplete versions, 14 evidence items
+  (five reused) and two blocked claims. Original documentation records still pass.
+  Five exact-source-byte export digests and their metadata-only fields were checked.
+- Checked all 14 new RPC attempts: successful responses, original candidate block,
+  fixed endpoint and private outputs. These are collection results, not proof of
+  provider truth or M1 settlement. The separate source-access accounting overrun
+  is disclosed rather than retroactively changing the issued plan.
+- Independent review verified selector/topic preimages, byte offsets, storage keys,
+  call/position associations and exported digests. A bounded offline interpreter
+  exercised the actual position getter extraction with 512 synthetic single-bit
+  inputs; all nine output extractions matched. This verifies bit extraction, not
+  economic field meanings or settlement. No blocking review finding remained.
+- Checked JSON, links, sensitive patterns and whitespace across the outgoing
+  files. Read-only source bodies, calldata, signatures, user addresses, approvals
+  and storage/code payloads remain private. Original summaries, hash preimages,
+  numbered storage extraction fields and limited case values are published under
+  the authorized research scope without a person/report association.
+
+The interface/field reconstruction remains partial. Selector matches can collide;
+source timestamps are null where not recorded; block-end state cannot silently
+become execution pre-state. A same-case arithmetic sanity check is not an
+independent model or holdout result. The first positive signed pair remains an
+ordinal-4 structural lead, with no eligible-case selection or M1 implementation.

@@ -1,0 +1,23 @@
+{
+  "case_id": "CASE-001",
+  "phase": "historical-input-followup",
+  "registered_at": "2026-10-21T04:50:43.619101+00:00",
+  "block_from": "49105284",
+  "block_to": "49105783",
+  "candidate_order": [
+    "block_number",
+    "transaction_index",
+    "log_index"
+  ],
+  "new_rpc_budget": 30,
+  "public_source_get_budget": 12,
+  "original_intake_rpc_attempts": 29,
+  "range_expansion": false,
+  "rules": [
+    "Preserve earlier candidates; no profit-based reranking",
+    "Read public sources only; no credentialed data",
+    "No transaction submission or signing",
+    "Use missing-input gates; do not promote inferred ABI to verified source"
+  ],
+  "historical_metadata_cid": "QmX46b3W8qXKJWqiheKCwQaeyY1AhJK88ct7FQwezQiGyE"
+}

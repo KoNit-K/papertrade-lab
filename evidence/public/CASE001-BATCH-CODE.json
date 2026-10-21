@@ -1,0 +1,41 @@
+{
+  "schema_version": "public-metadata-v1",
+  "scope": "collection_metadata",
+  "source_sha256": "071336ccca8cdb92b34a0ca215147a338c7cc68967e8a6df3c939f28e3321b50",
+  "protocol_reproduced": false,
+  "raw_data_included": false,
+  "endpoint": "https://rpc.hyperliquid.xyz/evm",
+  "status": "completed",
+  "stop_reason": "none",
+  "started_at": "2026-10-21T04:58:15.327Z",
+  "finished_at": "2026-10-21T04:58:17.491Z",
+  "requests": [
+    {
+      "method": "eth_chainId",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "37047d9fa98f2102688f6d8f5163bbe33308161d4f482b3e5853043ce6c7163b",
+      "response_sha256": "430f684fbe48ec1e680bfacf8a2bea38f365e868bc8874eebe9e26e360983a9a",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getCode",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "9b0bbc8ba015eec8947995fc0ca458b310465263cc2d7e85fc4a78b57cadc7e8",
+      "response_sha256": "664fe765ed35a93f0466e7189ff9ceb68f87ab7a2da092217118a8aaae351251",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getBlockByNumber",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "e642affabcaf30242f724f4f6d724be95be52adfba65021bc376a24d2879b12c",
+      "response_sha256": "9282927238f4e170781aefb08b35b8725904321d981d5eca95049a51e2f70cb0",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    }
+  ]
+}

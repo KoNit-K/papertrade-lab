@@ -4,6 +4,9 @@ Status: research agenda, not a verified protocol specification. Updated: 2026-10
 Every row remains **unverified / not_attempted / not_started** for mechanism
 support, independent reproduction, and model implementation respectively.
 Source IDs resolve in the [source index](sources.md); an unread seed is a lead, not evidence.
+The [CASE-001 interface follow-up](research-notes/003-historical-interface-recovery.md)
+adds partial bytecode, storage and call/position observations without upgrading
+any economic mechanism to independently reproduced.
 
 ## A proposed investigation path
 

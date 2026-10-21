@@ -1,0 +1,321 @@
+{
+  "schema_version": "case-interface-recovery-v1",
+  "case_id": "CASE-001",
+  "date": "2026-10-21",
+  "support_status": "unverified",
+  "reproduction_status": "blocked",
+  "selection_status": "no_eligible_case_established",
+  "selected_transaction": null,
+  "scope": {
+    "block_from": "49105284",
+    "block_to": "49105783",
+    "analyzed_transaction_ordinal": 1,
+    "analyzed_block": "49105284",
+    "analyzed_transaction_index": "0",
+    "candidate_order_changed": false
+  },
+  "collection": {
+    "new_rpc_attempts": 14,
+    "new_rpc_ok": 14,
+    "new_rpc_budget": 30,
+    "previous_rpc_attempts": 29,
+    "total_rpc_attempts": 43,
+    "source_artifact_attempts": 12,
+    "web_reader_accesses": 5,
+    "source_budget_accounting": "Four initial source accesses preceded the local follow-up plan. After registration: ten direct artifact GET attempts plus three web-reader accesses. Counting both exceeds the stated 12-access budget by one; no further source access was made. Tool-level counts do not reveal internal web-reader HTTP retries.",
+    "sources": [
+      {
+        "id": "SOURCIFY",
+        "status": "not_found",
+        "body_sha256": "81e215e1e6653e1680d0f7575f564e4b63296400f7a24c484f8f3516324f0015",
+        "http_status": 404,
+        "retrieved_at": null
+      },
+      {
+        "id": "IMPL-EXPLORER",
+        "status": "retrieved",
+        "body_sha256": "36f03895eb46c94aebd0d4879abf2f343dff7603ebe801c22b7290f37679caeb",
+        "http_status": 200,
+        "retrieved_at": null
+      },
+      {
+        "id": "IPFS",
+        "status": "timeout_no_body",
+        "body_sha256": null,
+        "http_status": null,
+        "retrieved_at": null
+      },
+      {
+        "id": "FRONTEND",
+        "status": "retrieved",
+        "body_sha256": "4c79fa22bbe7e3463f5ec0625ab9f721131d029f0e1b22108175271db0550683",
+        "http_status": 200,
+        "retrieved_at": null
+      },
+      {
+        "id": "EVENT-LOOKUP",
+        "status": "tls_failure",
+        "body_sha256": null,
+        "http_status": null,
+        "retrieved_at": null
+      },
+      {
+        "id": "EXCHANGE-FRONTEND",
+        "status": "retrieved",
+        "body_sha256": "b1985750f77f7d3248b1943faf54cc4770f633b847fb08026422e23ef3ce89c7",
+        "http_status": 200,
+        "retrieved_at": null
+      },
+      {
+        "id": "FRONTEND-JS",
+        "status": "retrieved",
+        "body_sha256": "20a2766da33e1719e1f7a5f465505676acb6c8232102914be88d986f0b2d20dc",
+        "http_status": 200,
+        "retrieved_at": null
+      },
+      {
+        "id": "EVENT-LOOKUP-RETRY",
+        "status": "retrieved",
+        "body_sha256": "b9ce91d3d03f609c362b1a9f128c11d8e57e3e3230f008d61390971768f3d971",
+        "http_status": 200,
+        "retrieved_at": null
+      },
+      {
+        "id": "DEPLOYMENT",
+        "status": "http2_framing_failure",
+        "body_sha256": null,
+        "http_status": null,
+        "retrieved_at": null
+      },
+      {
+        "id": "SCHEMAS",
+        "status": "retrieved",
+        "body_sha256": "a6fa950ba5466dd37475370291ecede2b97c1aecb618fa9453641982a54bfd6c",
+        "http_status": 200,
+        "retrieved_at": null
+      },
+      {
+        "id": "TYPED-DATA",
+        "status": "retrieved",
+        "body_sha256": "ff04eb15141ecc5fd02bf9a2f7cf3a0440396b5e7d08bb6aed6d545e244213de",
+        "http_status": 200,
+        "retrieved_at": null
+      },
+      {
+        "id": "WIRE",
+        "status": "retrieved",
+        "body_sha256": "52fb71cc8b47c2c118b56fff2a91780e57c07e4cedab1233c92b3cd7f7c9406c",
+        "http_status": 200,
+        "retrieved_at": null
+      }
+    ]
+  },
+  "historical_source": {
+    "verified_source_available": false,
+    "verified_full_abi_available": false,
+    "compiler_storage_layout_available": false,
+    "metadata_compiler_version": "0.8.24",
+    "metadata_ipfs_cid": "QmX46b3W8qXKJWqiheKCwQaeyY1AhJK88ct7FQwezQiGyE",
+    "metadata_payload_retrieved": false
+  },
+  "implementations": [
+    {
+      "role": "Exchange",
+      "address": "0x0f3febfc94876b0c895f7acecdc8f5c863b549ee",
+      "code_keccak256": "0x9d20287df886415035d53344a0dc8a1044949308cc3283ee0fe7ea5f3ea28d92"
+    },
+    {
+      "role": "BatchExecutor",
+      "address": "0xe0bc9cc7b067060aafccbaa3e250700c9cdd7262",
+      "code_keccak256": "0xe926c659aca61daaaf9e68267817be4dae5152f11320a6ba970549dfdd15f62a"
+    }
+  ],
+  "interface_candidates": [
+    {
+      "kind": "function",
+      "role": "BatchExecutor",
+      "canonical": "execute((address,bytes,bool,bytes32,bytes32)[])",
+      "selector": "0x251fb27d",
+      "selector_push_offset": 49,
+      "assurance": "selector preimage plus exact observed tuple layout; 4-byte collisions not excluded; tuple business names unknown"
+    },
+    {
+      "kind": "function",
+      "role": "Exchange",
+      "canonical": "closeBySig(address,uint256[],uint256,uint64,uint8,bytes32,bytes32)",
+      "selector": "0x2792e706",
+      "selector_push_offset": 157,
+      "assurance": "selector preimage, dispatcher match and exact observed ABI shape; authorization not replayed"
+    },
+    {
+      "kind": "event",
+      "role": "Exchange",
+      "canonical": "PositionClosed(uint256,address,uint64,int256,int256,bool,uint256)",
+      "topic0": "0x87902ed2451849f465fc4d36a01d7f5c67b53af12f63ee85d2814a2d582f89bf",
+      "constant_offset": 14761,
+      "indexed_parameters": [
+        0,
+        1
+      ],
+      "assurance": "full Keccak preimage, runtime constant and log shape; parameter business names remain hypotheses"
+    },
+    {
+      "kind": "event",
+      "role": "BatchExecutor",
+      "canonical": "CallExecuted(bytes32,uint256,bytes32,bool,bytes)",
+      "topic0": "0x8a23ef1120f3e42e722a0c0a599a66d55ab2650ecc39716f57e625684e349cad",
+      "constant_offset": 3334,
+      "indexed_parameters": [
+        0,
+        1,
+        2
+      ],
+      "assurance": "full Keccak preimage, code-copy constant and observed log layout; semantic outcome interpretation provisional"
+    }
+  ],
+  "storage_candidates": [
+    {
+      "signature": "positions(uint256)",
+      "selector": "0x99fbab88",
+      "getter_offset": 7511,
+      "mapping_root": "10",
+      "value_slots": 2,
+      "assurance": "manual getter control-flow inspection at pinned runtime, not compiler storageLayout",
+      "outputs": [
+        {
+          "index": 0,
+          "slot_offset": 0,
+          "bit_offset": 0,
+          "width": 160,
+          "encoding": "address"
+        },
+        {
+          "index": 1,
+          "slot_offset": 0,
+          "bit_offset": 160,
+          "width": 32,
+          "encoding": "uint"
+        },
+        {
+          "index": 2,
+          "slot_offset": 0,
+          "bit_offset": 192,
+          "width": 64,
+          "encoding": "uint"
+        },
+        {
+          "index": 3,
+          "slot_offset": 1,
+          "bit_offset": 0,
+          "width": 128,
+          "encoding": "uint"
+        },
+        {
+          "index": 4,
+          "slot_offset": 1,
+          "bit_offset": 128,
+          "width": 32,
+          "encoding": "uint"
+        },
+        {
+          "index": 5,
+          "slot_offset": 1,
+          "bit_offset": 160,
+          "width": 64,
+          "encoding": "uint"
+        },
+        {
+          "index": 6,
+          "slot_offset": 1,
+          "bit_offset": 224,
+          "width": 8,
+          "encoding": "nonzero_bool"
+        },
+        {
+          "index": 7,
+          "slot_offset": 1,
+          "bit_offset": 232,
+          "width": 8,
+          "encoding": "nonzero_bool"
+        },
+        {
+          "index": 8,
+          "slot_offset": 1,
+          "bit_offset": 240,
+          "width": 8,
+          "encoding": "nonzero_bool"
+        }
+      ]
+    },
+    {
+      "signature": "instruments(uint32)",
+      "selector": "0xdc8a47ef",
+      "getter_offset": 4567,
+      "mapping_root": "7",
+      "value_slots": 3,
+      "assurance": "mapping root and slot-read range identified; business parameter layout not recovered"
+    },
+    {
+      "signature": "balances(address)",
+      "selector": "0x27e235e3",
+      "getter_offset": 12549,
+      "mapping_root": "9",
+      "value_slots": 1,
+      "assurance": "getter root identified; account ledger semantics not established"
+    }
+  ],
+  "first_candidate_mapping": {
+    "batch_item_count": 3,
+    "close_item_index": 0,
+    "close_position_ids": [
+      "1712506"
+    ],
+    "position_event_id_matches": true,
+    "private_user_fields_match": true,
+    "emitted_call_id_matches_tuple_field_4": true,
+    "emitted_batch_id_matches_batch_summary": true,
+    "call_event_bool": true,
+    "call_event_return_bytes": 0,
+    "cryptographic_intent_id_verified": false,
+    "signature_authorization_verified": false,
+    "position_state_context": "block_end",
+    "position_business_fields_verified": false,
+    "position_price_and_size_hypothesis": {
+      "entry_price_raw": "828065",
+      "exit_price_raw": "827905",
+      "margin_raw": "57600000000000000000",
+      "leverage": "500",
+      "long": true
+    },
+    "observed_signed_event_words": [
+      "-5564780542590255595",
+      "-5564780542590255595"
+    ],
+    "ordinary_winning_close": null
+  },
+  "full_window_structural_scan": {
+    "individual_close_topic_matches": 310,
+    "both_signed_words_negative": 142,
+    "both_signed_words_positive": 139,
+    "other_sign_pairs": 29,
+    "first_positive_pair_aggregate_lead_ordinal": 4,
+    "first_positive_pair_coordinate": {
+      "block_number": "49105287",
+      "transaction_index": "2",
+      "individual_log_index": "3",
+      "aggregate_log_index": "5"
+    },
+    "first_positive_pair_status": "structural lead only; not selected or individually replayed"
+  },
+  "missing_inputs": [
+    "validated_relevant_historical_abi_and_execution_semantics",
+    "business_parameter_layout_and_units",
+    "execution_prestate_and_intra_batch_dependencies",
+    "exact_execution_price_source_context",
+    "signature_authorization_and_intent_identity",
+    "transaction_point_implementation_identity",
+    "independent_integer_settlement_and_ledger_result"
+  ],
+  "m1_implemented": false,
+  "raw_calldata_or_signature_published": false
+}

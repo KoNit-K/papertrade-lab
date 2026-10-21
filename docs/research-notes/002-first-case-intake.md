@@ -2,7 +2,8 @@
 
 Date: 2026-10-21. Status: **unverified; reproduction blocked; no eligible
 settlement case established**. The earliest event lead is retained for follow-up,
-not promoted to an ordinary winning close. This note does not connect a transaction
+not promoted to an ordinary winning close. The subsequent [interface recovery](003-historical-interface-recovery.md)
+adds structural call/position mapping without completing M1. This note does not connect a transaction
 to any of the five anonymous reports.
 
 ## Selection and actual reads

@@ -1,5 +1,13 @@
 # Changelog
 
+## Historical interface recovery and mechanism homepages — 2026-10-21
+
+- Recover candidate call/event signatures and partial storage roots from pinned runtime bytes.
+- Link the earliest batch item, single position ID and emitted call result without claiming authorization or settlement replay.
+- Add strictly hash-addressed read-only transaction collection and seven regressions; publish five reviewed metadata exports.
+- Preserve the original window, candidate ordering and blocked M1 gate; record source retrieval failures and budget accounting limits.
+- Rewrite both homepages around project purpose and mechanisms, separating official descriptions from observed structure.
+
 ## First bounded case intake — 2026-10-21
 
 - Fix a 500-block interval before log reads and record 29 bounded read-only RPC attempts.
