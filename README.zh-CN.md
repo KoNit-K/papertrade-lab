@@ -5,7 +5,7 @@
 这是一个独立开源研究项目。我们阅读官方资料、分析前端与合约字节码，并核对公开交易事件，
 解释交易怎样执行、亏损怎样铸币、收益怎样分配，以及余额和待赔付债权怎样变化。
 
-[English](README.md) · [机制地图](docs/mechanism-map.md) · [最新机制研究](docs/research-notes/006-current-mechanisms.md) · [来源](docs/sources.md)
+[English](README.md) · [机制地图](docs/mechanism-map.md) · [最新机制研究](docs/research-notes/007-queue-and-dividend-payment.md) · [来源](docs/sources.md)
 
 以下结论注明**官方说明、字节码支持、链上案例支持、独立复验通过**的区别。
 本轮有部分字节码和链上案例支持，完整历史结算尚未通过独立复验。参数和规则需要按版本核对。
@@ -31,8 +31,14 @@ flowchart LR
 开仓不因赔付队列存在而一概停止，但仍受余额、方向容量和债权处理限制。
 本轮未取得用户提交、接收、广播到成交的完整时间线，也未复验活跃赔付队列的完整账本。
 
+**真实批次核查：** 原窗口的 438 个批次共记录 734 项结果，730 成功、4 失败；
+四个失败集中在一笔六项开仓批次，顺序为“成功、失败、失败、失败、失败、成功”。
+其错误码与取得字节码中的方向容量检查对应，说明等待后仍可能执行失败，且失败项没有中止该批次。
+这证明批内按提交数组顺序处理，不证明 relayer 跨用户按 FIFO 调度。
+当前客户端开／平仓默认签名截止时间为一小时；这不是成交期限。平仓会过滤已在关闭中的仓位 ID，按每组最多 12 个提交。
+
 **证据：官方说明＋前端源码；批处理链上事件支持存在逐项成功／失败。**
-[详细排队研究](docs/research-notes/006-current-mechanisms.md#case-002-execution-waiting-is-observable-separately-from-payout-waiting) ·
+[真实批次与前端等待规则](docs/research-notes/007-queue-and-dividend-payment.md#execution-array-order-and-partial-failures-are-real-scheduler-fifo-is-unknown) ·
 [官方架构](https://docs.papertrade.xyz/how/architecture/) · [官方赔付队列](https://docs.papertrade.xyz/how/solvency-queue/)
 
 ## 仓位怎样运作？能否多空双开？
@@ -40,6 +46,10 @@ flowchart LR
 Papertrade 是与协议 LP 对手交易的合成杠杆仓位，引用 Hyperliquid 价格。
 文档描述每笔独立逐仓：开仓后保证金和杠杆固定，不能给原仓加仓、追加保证金或部分平仓；
 增加敞口需要另开一笔仓位，每笔整仓关闭。文档列出 BTC、ETH 和最高 1000× 杠杆，实际限制需核对部署参数。
+
+**当前官网没有限价单、止盈止损或其他计划／条件单。** 这一操作观察得到本轮前端交易表单和签名字段支持：
+开仓选择市场、方向、保证金与杠杆，平仓指定仓位 ID；取得的参数不含限价或触发价格。
+排队是在等待执行当前交易意图，不是在等用户设置的目标价格。该结论限于核查到的当前官网路径。
 
 **本轮链上案例支持同账户、同市场多空仓位同时存在。** 首组选出的样本有两个独立仓位 ID，
 方向相反、开仓价格和保证金相同，第二笔开仓前未见第一笔平仓／清算事件；交易输入与事件字段相符。
@@ -96,17 +106,23 @@ LP 向质押者划出超额收益时，`H` 不随之回退；再次进入尾段�
 
 收益要经过这些阶段：
 
-`Exchange 累积费用／可划拨盈余 → 推送 → 签名分配 → 按质押份额累计 → 用户 claim → 交易余额`
+`Exchange 累积费用／可划拨盈余 → 推送 → 签名分配 → 按质押份额累计 → claim 入交易余额 → 提款动作 → 核对最终到账`
 
 取得的质押字节码使用 `10^27` 精度累计器；用户待领奖励由已存奖励、质押量、累计器和 reward debt 共同计算。
 零质押时，新收到的收益先保持未分配；解除质押不会抹掉已经累计的奖励。
 文档说没有锁仓和冷却，但 app 的质押、解押和 claim 仍经签名与 relayer 提交，也会有执行等待。
 本轮 stake 与 PAPER 转入相符，claim 与 Exchange 余额入账事件相符；claim 后向外部账户提款是另一个步骤。
 首轮窗口没有分配事件，随后另行登记的单块定向样本核对了约 **131.938049** 的费用推送与分配金额一致。
-分配前的精确份额、LP 超额收益案例、外部支付和真实解押仍未完成复验。
+分配前的精确份额、LP 超额收益案例和真实解押仍未完成复验。
+
+后续找到真实“领取后提款”案例：约 **1115.251243442** 的 claim 与内部余额入账完全对应；
+同一链上账户随后执行约 **1115.251244** 的提款，回执含 Exchange 发往该账户的 CoreWriter spot-send 动作。
+**这一步已核对到跨向 HyperCore 的转账动作，尚未取得 HyperCore 最终入账记录。**
+提款来自共享余额，且与 claim 略有差额，不能声称全部提款都来自该次分红。若选择其他链，后续路由支付还需单独确认。
 
 **证据：官方说明＋字节码支持＋stake／claim 链上案例支持。**
-[累计器、分配与领取研究](docs/research-notes/006-current-mechanisms.md#case-004-dividends-are-an-accumulator-and-a-claim-against-internal-balance) ·
+[真实领取、提款与支付边界](docs/research-notes/007-queue-and-dividend-payment.md#dividend-a-real-claim-followed-by-a-withdrawal-action) ·
+[累计器与分配](docs/research-notes/006-current-mechanisms.md#case-004-dividends-are-an-accumulator-and-a-claim-against-internal-balance) ·
 [官方质押机制](https://docs.papertrade.xyz/paper/staking/)
 
 ## 爆仓价格和清算损失怎样计算？

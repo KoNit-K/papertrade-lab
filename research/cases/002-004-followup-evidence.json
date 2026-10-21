@@ -1,0 +1,398 @@
+{
+  "schema_version": "queue-payment-followup-v1",
+  "date": "2026-10-21",
+  "baseline": "4707147296e552d11ed6cd8dbab4fb72a73a7e31",
+  "plan": "002-004-followup-plan.json",
+  "reference": "002-004-followup-reference.json",
+  "chain_id": 999,
+  "reused_window": [
+    49115089,
+    49115588
+  ],
+  "new_log_window": null,
+  "case_001_unchanged": true,
+  "independent_historical_settlement_reproduced": false,
+  "rpc_totals": {
+    "CASE-002": {
+      "attempts": 19,
+      "ok": 18,
+      "failed": 1,
+      "budget": 60
+    },
+    "CASE-004": {
+      "attempts": 7,
+      "ok": 7,
+      "failed": 0,
+      "budget": 60
+    }
+  },
+  "rpc_runs": [
+    {
+      "case_id": "CASE-002",
+      "run_id": "QP-FAILURES",
+      "sha256": "81f5d08b96a20362a3de830b0f70a3275371b6d2525c6b4c1f7a104001d1f28d",
+      "started_at": "2026-10-21T08:05:21.591Z",
+      "finished_at": "2026-10-21T08:05:25.751Z",
+      "status": "completed",
+      "attempts": 4,
+      "ok": 4,
+      "failed": 0
+    },
+    {
+      "case_id": "CASE-002",
+      "run_id": "QP-OPEN-CLOSE",
+      "sha256": "08b4e60706e0dda4e13817ab1afad492b3368fce2765f97f05f03dd210e8e2b3",
+      "started_at": "2026-10-21T08:09:45.580Z",
+      "finished_at": "2026-10-21T08:09:56.115Z",
+      "status": "blocked",
+      "attempts": 1,
+      "ok": 0,
+      "failed": 1
+    },
+    {
+      "case_id": "CASE-002",
+      "run_id": "QP-OPEN-CLOSE-RETRY",
+      "sha256": "611fdad014738fec04a13a18cc34522084e5a35624c2a62eed223b4b6ee6d0b8",
+      "started_at": "2026-10-21T08:10:26.462Z",
+      "finished_at": "2026-10-21T08:10:30.636Z",
+      "status": "completed",
+      "attempts": 5,
+      "ok": 5,
+      "failed": 0
+    },
+    {
+      "case_id": "CASE-002",
+      "run_id": "QP-DISCOVERY",
+      "sha256": "9ad025d5a8458ab7f2e06e0f722738d2d451a9c5fccee9b09bb2345e4eaeec4c",
+      "started_at": "2026-10-21T08:10:13.718Z",
+      "finished_at": "2026-10-21T08:10:15.547Z",
+      "status": "completed",
+      "attempts": 2,
+      "ok": 2,
+      "failed": 0
+    },
+    {
+      "case_id": "CASE-002",
+      "run_id": "QP-IDENTITY",
+      "sha256": "5c1aece21e0e181497dfe9a6627be423cf7ae30c5ca1515d14a9e299850c15bc",
+      "started_at": "2026-10-21T08:10:49.389Z",
+      "finished_at": "2026-10-21T08:10:55.561Z",
+      "status": "completed",
+      "attempts": 7,
+      "ok": 7,
+      "failed": 0
+    },
+    {
+      "case_id": "CASE-004",
+      "run_id": "QP-WITHDRAW",
+      "sha256": "3643041e10558d9e63cfaff3d43fe28719104d158087dd906b22eae35dd7a2a5",
+      "started_at": "2026-10-21T08:06:45.638Z",
+      "finished_at": "2026-10-21T08:06:48.973Z",
+      "status": "completed",
+      "attempts": 3,
+      "ok": 3,
+      "failed": 0
+    },
+    {
+      "case_id": "CASE-004",
+      "run_id": "QP-CLAIM",
+      "sha256": "3c516f65ae011c3ad856f05bce0b9628c480705304e52824f7b5e7c0982ff2d7",
+      "started_at": "2026-10-21T08:07:21.678Z",
+      "finished_at": "2026-10-21T08:07:28.971Z",
+      "status": "completed",
+      "attempts": 4,
+      "ok": 4,
+      "failed": 0
+    }
+  ],
+  "source_access_count": 22,
+  "source_access_budget": 30,
+  "source_ok": 19,
+  "source_failed": 3,
+  "source_accesses": [
+    {
+      "ordinal": 1,
+      "url": "https://exchange.papertrade.xyz/",
+      "started_at": "2026-10-21T08:04:53.391465+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/",
+      "status": "ok",
+      "body_sha256": "e5f1557161f7005f52a639742c2036f54de9c97fa2b0a44ee85e7559ed0ac918",
+      "bytes": 9501,
+      "finished_at": "2026-10-21T08:04:53.756163+00:00"
+    },
+    {
+      "ordinal": 2,
+      "url": "https://exchange.papertrade.xyz/assets/funding-routes-DLkn3OFl.js",
+      "started_at": "2026-10-21T08:04:54.761512+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/funding-routes-DLkn3OFl.js",
+      "status": "ok",
+      "body_sha256": "591f4d2831711e50dabbf2c36f5a4460e034716c3eaef8a4203781e5bc0cc6bf",
+      "bytes": 20665,
+      "finished_at": "2026-10-21T08:04:55.202052+00:00"
+    },
+    {
+      "ordinal": 3,
+      "url": "https://docs.papertrade.xyz/how/architecture/",
+      "started_at": "2026-10-21T08:04:56.207641+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/how/architecture/",
+      "status": "ok",
+      "body_sha256": "ba32eb2d2cf834acd4ff9684dd7793b331affaf2476aa2070ce91fe8703bc40f",
+      "bytes": 17784,
+      "finished_at": "2026-10-21T08:04:56.575412+00:00"
+    },
+    {
+      "ordinal": 4,
+      "url": "https://docs.papertrade.xyz/sitemap.xml",
+      "started_at": "2026-10-21T08:04:57.577611+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/sitemap.xml",
+      "status": "ok",
+      "body_sha256": "eae0324c9ca244883ae794f7cba8d906e72b6e2d6516671ca8012d304127013b",
+      "bytes": 1724,
+      "finished_at": "2026-10-21T08:04:58.061399+00:00"
+    },
+    {
+      "ordinal": 5,
+      "url": "https://exchange.papertrade.xyz/assets/app-DL1CQl0h.js",
+      "started_at": "2026-10-21T08:05:36.253636+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/app-DL1CQl0h.js",
+      "status": "ok",
+      "body_sha256": "15af5e1a6dd7dcb66f6fdd4f49cda02f8be9625f1f3e0745b47d27a1c50b5234",
+      "bytes": 581202,
+      "finished_at": "2026-10-21T08:05:36.861198+00:00"
+    },
+    {
+      "ordinal": 6,
+      "url": "https://exchange.papertrade.xyz/assets/hooks-a3qtukpN.js",
+      "started_at": "2026-10-21T08:05:37.867081+00:00",
+      "status": "error",
+      "error_type": "URLError",
+      "finished_at": "2026-10-21T08:05:53.098877+00:00"
+    },
+    {
+      "ordinal": 7,
+      "url": "https://exchange.papertrade.xyz/assets/wire-DrIQETwf.js",
+      "started_at": "2026-10-21T08:05:54.105233+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/wire-DrIQETwf.js",
+      "status": "ok",
+      "body_sha256": "52fb71cc8b47c2c118b56fff2a91780e57c07e4cedab1233c92b3cd7f7c9406c",
+      "bytes": 400,
+      "finished_at": "2026-10-21T08:05:54.448471+00:00"
+    },
+    {
+      "ordinal": 8,
+      "url": "https://exchange.papertrade.xyz/assets/schemas-JfCRYkNm.js",
+      "started_at": "2026-10-21T08:05:55.454185+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/schemas-JfCRYkNm.js",
+      "status": "ok",
+      "body_sha256": "a6fa950ba5466dd37475370291ecede2b97c1aecb618fa9453641982a54bfd6c",
+      "bytes": 83641,
+      "finished_at": "2026-10-21T08:05:55.878702+00:00"
+    },
+    {
+      "ordinal": 9,
+      "url": "https://exchange.papertrade.xyz/assets/typed-data-B0hqt2-N.js",
+      "started_at": "2026-10-21T08:05:56.881663+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/typed-data-B0hqt2-N.js",
+      "status": "ok",
+      "body_sha256": "ff04eb15141ecc5fd02bf9a2f7cf3a0440396b5e7d08bb6aed6d545e244213de",
+      "bytes": 2727,
+      "finished_at": "2026-10-21T08:05:57.191779+00:00"
+    },
+    {
+      "ordinal": 10,
+      "url": "https://docs.papertrade.xyz/learn/deposits-withdrawals/",
+      "started_at": "2026-10-21T08:05:58.195420+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/learn/deposits-withdrawals/",
+      "status": "ok",
+      "body_sha256": "9e91f608c28b466d3d650d91f4f0368143e58d125b1f8dbca14d90d0865f523a",
+      "bytes": 8573,
+      "finished_at": "2026-10-21T08:05:58.670235+00:00"
+    },
+    {
+      "ordinal": 11,
+      "url": "https://docs.papertrade.xyz/intro/faq/",
+      "started_at": "2026-10-21T08:05:59.675913+00:00",
+      "http_status": 200,
+      "final_url": "https://docs.papertrade.xyz/intro/faq/",
+      "status": "ok",
+      "body_sha256": "136e1916d84815817eba9e39801e8dfa3af72f3c84d145bf90cfea2234af2334",
+      "bytes": 12627,
+      "finished_at": "2026-10-21T08:06:00.034272+00:00"
+    },
+    {
+      "ordinal": 12,
+      "url": "https://exchange.papertrade.xyz/assets/hooks-a3qtukpN.js",
+      "started_at": "2026-10-21T08:06:48.876530+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/hooks-a3qtukpN.js",
+      "status": "ok",
+      "body_sha256": "8ff55c81aad69dc15ae8fb612b13f3fc55b03e6af528f3cea4310ff6b9f1af47",
+      "bytes": 76254,
+      "finished_at": "2026-10-21T08:06:49.551242+00:00"
+    },
+    {
+      "ordinal": 13,
+      "url": "https://exchange.papertrade.xyz/assets/trade._coin-Lf4I89vs.js",
+      "started_at": "2026-10-21T08:06:50.557067+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/trade._coin-Lf4I89vs.js",
+      "status": "ok",
+      "body_sha256": "1188be7a8b52b47ef2820e083f9f9072ef7e2b93abfba89174f8a077fc8b93b6",
+      "bytes": 83663,
+      "finished_at": "2026-10-21T08:06:51.114324+00:00"
+    },
+    {
+      "ordinal": 14,
+      "url": "https://exchange.papertrade.xyz/assets/useOrderInputs-CCSPWPTR.js",
+      "started_at": "2026-10-21T08:06:52.116825+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/useOrderInputs-CCSPWPTR.js",
+      "status": "ok",
+      "body_sha256": "ef860d8e9d6d19559793144e5495d1feadfa532a8ec9df5de49095224f7039cb",
+      "bytes": 7913,
+      "finished_at": "2026-10-21T08:06:52.425232+00:00"
+    },
+    {
+      "ordinal": 15,
+      "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/interacting-with-hypercore",
+      "started_at": "2026-10-21T08:07:47.397919+00:00",
+      "status": "error",
+      "error_type": "URLError",
+      "finished_at": "2026-10-21T08:07:57.532197+00:00"
+    },
+    {
+      "ordinal": 16,
+      "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint/perpetuals",
+      "started_at": "2026-10-21T08:07:58.538692+00:00",
+      "http_status": 200,
+      "final_url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint/perpetuals",
+      "status": "ok",
+      "body_sha256": "8c83fce3258c014d846416dd2dbbb59a15d9473bdaf7961cbcdb89c5a9c7bc3d",
+      "bytes": 1432880,
+      "finished_at": "2026-10-21T08:07:59.692748+00:00"
+    },
+    {
+      "ordinal": 17,
+      "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/interaction-timings",
+      "started_at": "2026-10-21T08:08:00.698272+00:00",
+      "http_status": 200,
+      "final_url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/interaction-timings",
+      "status": "ok",
+      "body_sha256": "53258cf71e7fb4e57f0a6f6128ce6b6e03b14440ec10a69f874b6f5d43a4719c",
+      "bytes": 392629,
+      "finished_at": "2026-10-21T08:08:01.588296+00:00"
+    },
+    {
+      "ordinal": 18,
+      "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/interacting-with-hypercore.md",
+      "started_at": "2026-10-21T08:09:11.978413+00:00",
+      "status": "error",
+      "error_type": "RemoteDisconnected",
+      "finished_at": "2026-10-21T08:09:27.310584+00:00"
+    },
+    {
+      "ordinal": 19,
+      "url": "https://exchange.papertrade.xyz/assets/useTradingNetwork-Bfx9Ehep.js",
+      "started_at": "2026-10-21T08:09:28.316513+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/assets/useTradingNetwork-Bfx9Ehep.js",
+      "status": "ok",
+      "body_sha256": "8246f068c105d5aa02b4c74592d39add10b349656cd9a2df10e04a4d74e7b2c6",
+      "bytes": 2752,
+      "finished_at": "2026-10-21T08:09:28.620240+00:00"
+    },
+    {
+      "ordinal": 20,
+      "url": "https://exchange.papertrade.xyz/query/protocol/queue-summary",
+      "started_at": "2026-10-21T08:09:29.626151+00:00",
+      "http_status": 200,
+      "final_url": "https://exchange.papertrade.xyz/query/protocol/queue-summary",
+      "status": "ok",
+      "body_sha256": "2680fdc425a6db9c73e2be6007abce7de3e4b666df9deb961961f29955cbd7d1",
+      "bytes": 110,
+      "finished_at": "2026-10-21T08:09:30.041190+00:00"
+    },
+    {
+      "ordinal": 21,
+      "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/interacting-with-hypercore",
+      "status": "ok",
+      "access_kind": "web_reader_open",
+      "capture_sha256": "f1a1a017b11022fb565d6e16f43d4db30bc6c3bc3f627fdc6b4033eb037ee446",
+      "capture_bytes": 17154,
+      "timestamp_recorded_at": "2026-10-21T08:10:11.098539+00:00",
+      "exact_request_start_end": null,
+      "upstream_body_sha256": null
+    },
+    {
+      "ordinal": 22,
+      "url": "https://api.hyperliquid.xyz/info",
+      "method": "POST",
+      "readonly_type": "spotMeta",
+      "request_sha256": "c5bdaddac39f07c467e5046e8c514a1dcbcc2bd3582689faa29f1119d8613d9f",
+      "started_at": "2026-10-21T08:16:38.799073+00:00",
+      "http_status": 200,
+      "status": "ok",
+      "bytes": 138719,
+      "body_sha256": "6469a5239b20c4ce494ba55879c2df71ed906fb3f2ca601165f3fada53863c6b",
+      "finished_at": "2026-10-21T08:16:42.493111+00:00"
+    }
+  ],
+  "search_queries": {
+    "date": "2026-10-21T08:10:13.387089+00:00",
+    "queries": [
+      "site:docs.papertrade.xyz relayer queue priority intent expired",
+      "site:github.com papertrade BatchExecutor relayer",
+      "site:hyperliquid.gitbook.io CoreWriter spotSend action events userNonFundingLedgerUpdates EVM",
+      "site:hyperliquid.gitbook.io \"userNonFundingLedgerUpdates\""
+    ],
+    "count": 4,
+    "first_two_result": "no primary server scheduler source identified; third-party dashboards not relied on",
+    "last_two_result": "official Hyperliquid API/CoreWriter docs identified",
+    "exact_query_timestamps": null
+  },
+  "implementations": [
+    {
+      "proxy": "0x6cd5661646289fb6e65ea5c032310fded797d0a2",
+      "implementation": "0x0f3febfc94876b0c895f7acecdc8f5c863b549ee",
+      "runtime_bytes": 23052,
+      "same_as_previously_retained_bytes": true,
+      "temporal_binding": "latest-only acquisition-time observation"
+    },
+    {
+      "proxy": "0x233ff29b239abc1d7748605da9b205c3e008626e",
+      "implementation": "0xe0bc9cc7b067060aafccbaa3e250700c9cdd7262",
+      "runtime_bytes": 3451,
+      "same_as_previously_retained_bytes": true,
+      "temporal_binding": "latest-only acquisition-time observation"
+    },
+    {
+      "proxy": "0xaad6c7b0cc3014fc80ffedae0ed7ce5967b0f016",
+      "implementation": "0xe6e3519455170913c5c3bfe541dd918a2d0cbb15",
+      "runtime_bytes": 6054,
+      "same_as_previously_retained_bytes": true,
+      "temporal_binding": "latest-only acquisition-time observation"
+    }
+  ],
+  "reused_evidence": "002-005-current-evidence.json; original private logs and runtime bytes",
+  "raw_payload_published": false,
+  "chain_account_addresses_published": false,
+  "identity_join_to_user_reports": false,
+  "core_payment_lookup": "blocked by automatic approval review before execution; explicit user approval pending; zero HTTP attempts",
+  "limits": [
+    "No server scheduler source or actual submit/ack/broadcast clocks",
+    "No observed expired/cancelled/pending real intent in the retained chain window",
+    "Batch execution order is not relayer FIFO",
+    "No authenticated transaction prestate or historical capacity value",
+    "No final HyperCore ledger receipt or external-route receipt",
+    "A shared balance withdrawal does not establish reward-only provenance"
+  ]
+}

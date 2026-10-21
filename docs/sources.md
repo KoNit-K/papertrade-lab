@@ -168,3 +168,32 @@ address field differs; its custody/transport relationship is unverified. Current
 code/storage retrievals remain acquisition-time observations without historical
 transaction binding. Public records contain original explanations and digest
 metadata; raw bodies, signatures and private account joins are not redistributed.
+
+## Queue and payment follow-up sources — 2026-10-21
+
+[Note 007](research-notes/007-queue-and-dividend-payment.md) and its
+[evidence ledger](../research/cases/002-004-followup-evidence.json) record 22 source
+accesses (19 successful, three connection failures) and four search queries.
+Fetched app, hooks and trade bytes match the prior captures; the new order-input,
+typed-data and funding-route modules were inspected as text. No frontend code
+was executed, signed intent sent or wallet connected. The owner's observation of
+no limit/TP/SL/scheduled orders is distinguished from the supporting current UI
+and signed-schema inspection; it is not inherited as a universal protocol rule.
+
+A registered aggregate `spotMeta` request (no account fields) identifies token 0
+as USDC with eight wei decimals at acquisition time. This verifies denomination,
+not the recipient's final balance.
+
+Official Hyperliquid CoreWriter encoding, interaction timing and read-only ledger
+API documentation explain the spot-send action and its confirmation boundary.
+One CoreWriter document access used the web reader after direct connection
+failures. Its digest identifies the retained reader result, not an upstream HTTP
+body, and precise request start/end times are unavailable. Scheduler searches
+did not locate primary backend scheduling evidence; third-party dashboard search
+results were not used to assert server policy.
+
+A narrowly registered, derived-chain-account ledger query was rejected by automatic
+approval review before execution; it has zero HTTP attempts and awaits explicit
+permission. No alternative account lookup bypassed that refusal. Real receipts
+prove a claim credit and a later CoreWriter withdrawal action, not final HyperCore
+credit, complete reward provenance or a subsequent bridge payment.

@@ -1,0 +1,32 @@
+{
+  "registered_at": "2026-10-21T08:04:34.772594+00:00",
+  "baseline": "4707147296e552d11ed6cd8dbab4fb72a73a7e31",
+  "chain_id": 999,
+  "case_ids": [
+    "CASE-002",
+    "CASE-004"
+  ],
+  "purpose": [
+    "actual batch order, per-item failure/expiry/replay semantics and frontend admission rules",
+    "staking reward credit to withdrawal and final payment evidence"
+  ],
+  "reuse_window": {
+    "block_from": 49115089,
+    "block_to": 49115588,
+    "unchanged": true
+  },
+  "new_window_policy": "Only if reused window lacks target: discover finalized and register the last 500 inclusive blocks before new logs; separately register targeted single-block followups before reads. No retrospective change.",
+  "selection": "fixed block/transaction/log order; first batch with a failed item, all failures in reused window; first claim and any observed withdrawal for same chain account, no link to user reports; otherwise first withdrawal event in registered window",
+  "rpc_budget_per_case": 60,
+  "source_access_budget_shared": 30,
+  "search_budget_shared": 8,
+  "rules": [
+    "read only; existing public endpoints only; no new credentials/cost",
+    "all errors/retries count; stop on denial or rate limit",
+    "no signed/user-intent submission, no transactions",
+    "no account API interrogation beyond public aggregate sources; any chain addresses kept private",
+    "latest-only state is acquisition-time only",
+    "distinguish internally credited, withdrawal action and externally confirmed receipt",
+    "retain missing stages and avoid time/funds provenance inference"
+  ]
+}

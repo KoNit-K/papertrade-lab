@@ -1,0 +1,11 @@
+{
+  "registered_at": "2026-10-21T08:10:49.059402+00:00",
+  "reference_block": "49118768",
+  "reference_block_hash": "0xe426436d41860ebfc5efc182d31189208c1639ee1b139602381b90f4671ca82a",
+  "new_log_sampling_window": null,
+  "reused_window_unchanged": [
+    49115089,
+    49115588
+  ],
+  "state_reads": "latest-only acquisition-time observations, not reference-block or sampled-transaction state"
+}

@@ -33,7 +33,7 @@ See the [publication review](docs/publication-review.md) for actual P0 checks an
 
 ## Next three tasks
 
-1. Complete actual intent submit/ack/execution timelines and missing queue/debt/distribution ledger cases identified in [note 006](docs/research-notes/006-current-mechanisms.md).
+1. Complete actual intent submit/ack/execution timelines and missing queue/debt/distribution ledger cases identified in [note 007](docs/research-notes/007-queue-and-dividend-payment.md).
 2. Obtain archive/trace and recorded precompile evidence for CASE-001 and authenticate candidate 4 prestate, prices, parameters and ledger deltas.
 3. Preserve registered selection rules and implement M1 only after decisive historical inputs and independent expected results are available.
 
@@ -245,3 +245,50 @@ public files. The reviewer reran the five arithmetic tests and 720 synthetic
 bytecode comparisons, recomputed request counts and event ordering from private
 captures, and checked receipt amounts and publication boundaries. A minor source
 error description was corrected from timeout to connection failure.
+
+## Queue and dividend payment follow-up
+
+[Note 007](docs/research-notes/007-queue-and-dividend-payment.md) reuses the original
+CASE-002/004 window. All 438 batch summaries were reconciled with 734 result
+indices; 730 succeed and four fail. The six-item failure batch has successful
+items before and after four matching reverts. The acquired Exchange bytes map
+that selector to a direction-cap check, without reproducing historical capacity.
+First open/close receipts were checked; actual intake clocks, server FIFO/priority,
+server retries and real expired/cancelled/pending examples remain unavailable.
+Client deduplication, one-hour default signed deadline, single-pending action
+choices and UI/index reconciliation are now explained separately from server rules.
+The current official app's lack of limit/TP/SL/scheduled orders is recorded as an
+owner observation supported by the current form and signed schema.
+
+The original window's first withdrawal has an earlier same-chain-account claim.
+Claim and Exchange credit match at approximately 1115.251243442. The later
+1115.251244 withdrawal matches input scaling, Exchange accounting and a CoreWriter
+spot-send payload. The slight difference and unknown preclaim balance prevent
+reward-only attribution. The prior 131.938049 distribution is a separate example,
+not asserted as the source of this claim. Final Core credit and onward payment
+remain unverified. A separately registered account-free `spotMeta` read confirms
+current token 0 is USDC with eight wei decimals; it does not confirm payment.
+An explicit-account public-ledger lookup was rejected by
+automatic approval review before network execution; permission is pending.
+
+This follow-up used 26 RPC attempts (25 successful, one failed chain handshake
+and one successful ordinary retry): CASE-002 19/60, CASE-004 7/60. Source reads
+were 22/30 (19 successful, three connection failures); searches 4/8. Finalized
+reference 49118768 and re-observed implementation bytes do not supply historical
+prestate. All CASE-001 files, original windows, production code and dependencies
+are unchanged. Private raw responses and chain-account joins are excluded.
+
+This increment reran the full offline suite: **152/152 passed**, strict type check
+passed, and the existing document validator accepted 13 claims, six evidence
+entries and one version. A separate offline receipt check passed for the six-item
+batch, first open/close receipts, claim-credit identity and amount, and withdrawal
+unit conversion/CoreWriter fields. JSON, local links/anchors, source/run digests,
+request counts, original-record immutability and public sensitive-pattern checks
+passed. These checks do not authenticate historical state or final Core payment.
+
+Independent read-only review found no blocking or important issue across all 12
+public files. The reviewer independently recomputed batch ordering/counts, checked
+receipt identities and unit conversions, checked all 22 source accesses, the successful captures, and seven
+RPC run digests/counts, and confirmed frontend rules, bilingual consistency and
+publication boundaries. The account-ledger lookup remains unexecuted pending
+explicit permission; review did not bypass that restriction.

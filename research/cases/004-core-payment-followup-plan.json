@@ -1,0 +1,18 @@
+{
+  "registered_at": "2026-10-21T08:07:47.068795+00:00",
+  "parent": "002-004-followup-plan.json",
+  "case_id": "CASE-004",
+  "reason": "The reused-window first withdrawal has a prior staking credit for the same chain account. To test final HyperCore receipt, a bounded public chain-account ledger read is necessary. This is a forward additional access registration, not a modification of the parent no-account-API rule.",
+  "endpoint": "https://api.hyperliquid.xyz/info",
+  "allowed_type": "userNonFundingLedgerUpdates",
+  "selection": "recipient derived only from first CoreWithdrawal log in original fixed window; no association with user reports or owner identity",
+  "start_time_rule": "withdrawal EVM block timestamp * 1000 - 60000",
+  "end_time_rule": "withdrawal EVM block timestamp * 1000 + 60000",
+  "max_requests": 2,
+  "retry": "one ordinary retry only on transport failure; denied/rate limited stops",
+  "response_limit_bytes": 2097152,
+  "timeout_seconds": 25,
+  "source_access_budget": "charged within shared 30, not extra",
+  "no_signing_or_exchange_endpoint": true,
+  "public_fields": "matched type, asset, amount, clock source and explicit match limits; account addresses/raw payload private"
+}

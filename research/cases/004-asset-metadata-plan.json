@@ -1,0 +1,16 @@
+{
+  "registered_at": "2026-10-21T08:16:38.556059+00:00",
+  "case_id": "CASE-004",
+  "purpose": "Authenticate token index 0 and its denomination for the observed CoreWriter payload, using public aggregate token metadata only",
+  "url": "https://api.hyperliquid.xyz/info",
+  "method": "POST",
+  "body": {
+    "type": "spotMeta"
+  },
+  "max_attempts": 1,
+  "response_limit_bytes": 2097152,
+  "timeout_seconds": 25,
+  "source_budget": "within the shared 30-access budget",
+  "not_an_account_lookup": true,
+  "final_account_payment_confirmed": false
+}

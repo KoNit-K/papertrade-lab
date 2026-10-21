@@ -6,7 +6,7 @@ An independent open-source project reading official sources, inspecting frontend
 and contract bytecode, and checking public transaction events. We explain how trades
 execute, losses mint PAPER, rewards are allocated, and balances differ from unpaid claims.
 
-[简体中文](README.zh-CN.md) · [Mechanism map](docs/mechanism-map.md) · [Latest mechanism research](docs/research-notes/006-current-mechanisms.md) · [Sources](docs/sources.md)
+[简体中文](README.zh-CN.md) · [Mechanism map](docs/mechanism-map.md) · [Latest mechanism research](docs/research-notes/007-queue-and-dividend-payment.md) · [Sources](docs/sources.md)
 
 We distinguish **official description, bytecode support, chain case support, and
 independent reproduction passed**. Some paths now have bytecode and provider-reported
@@ -39,8 +39,16 @@ again. A payout queue does not itself halt all opens: balances, directional capa
 and debt-processing limits still apply. We have no complete user submit/ack/broadcast
 execution timeline or independently reconstructed active payout-queue ledger.
 
+**Real batch checks:** the retained window has 438 batches and 734 item results:
+730 successes and four failures. All four failures occur in one six-open batch,
+ordered success/failure/failure/failure/failure/success. The error selector maps
+to the acquired runtime's directional-cap check, and failures did not abort that
+batch. Submitted array order is supported; cross-user relayer FIFO is not. Current
+open/close signatures default to a one-hour deadline, which is not a fill promise.
+The client filters IDs already being closed and submits closes in groups of up to 12.
+
 **Evidence: official description and frontend source; batch events support individual
-success/failure outcomes.** [Queue research](docs/research-notes/006-current-mechanisms.md#case-002-execution-waiting-is-observable-separately-from-payout-waiting) ·
+success/failure outcomes.** [Real batches and client waiting rules](docs/research-notes/007-queue-and-dividend-payment.md#execution-array-order-and-partial-failures-are-real-scheduler-fifo-is-unknown) ·
 [Architecture](https://docs.papertrade.xyz/how/architecture/) · [Payout queue](https://docs.papertrade.xyz/how/solvency-queue/)
 
 ## How do positions work? Can one account hold both long and short?
@@ -50,6 +58,13 @@ Hyperliquid prices. Documented positions are isolated: margin and leverage are f
 at open, with no increase to an existing position, collateral top-up or partial close.
 Additional exposure requires another position; each closes in full. Documentation
 lists BTC/ETH and up to 1000× leverage; deployed parameters govern actual limits.
+
+**The current official app has no limit, take-profit, stop-loss or other scheduled/conditional orders.**
+The owner's operation observation is supported by the fetched trade form and signed
+schemas: opens specify market, side, margin and leverage; closes specify position IDs.
+There is no limit/trigger-price field in those inspected paths. Queuing waits for
+intent execution, not a user-selected target price. This conclusion is scoped to
+the inspected current official app.
 
 **A sampled chain case supports simultaneous opposite positions on the same account
 and market.** The first selected pair has distinct IDs, opposite sides, equal entry
@@ -117,7 +132,7 @@ The two stated sources are half of paid trading fees and sweepable tracked-LP ex
 above the currently described **$5M cap**. Queue and solvency conditions govern fee
 payment, so a nominal fee is not automatically an immediate dividend.
 
-`Exchange fee/excess accumulation → push → signed distribution → per-stake accrual → user claim → trading balance`
+`Exchange fee/excess accumulation → push → signed distribution → per-stake accrual → claim to trading balance → withdrawal action → verify final credit`
 
 The acquired staking runtime uses a **10^27 accumulator**, combining stored rewards,
 stake, accumulator and reward debt. With zero stake, newly received funds remain
@@ -127,11 +142,19 @@ relayer and can wait for execution. The reviewed stake matches a PAPER transfer 
 the reviewed claim matches an Exchange credit event. External withdrawal is another
 step. The initial window has no distribution event; a separately registered targeted
 block then matched about **131.938049** in fee push and distribution amounts. Exact
-pre-distribution shares, LP-excess funding, external payment and real unstake remain
-unreproduced.
+pre-distribution shares, LP-excess funding and real unstake remain unreproduced.
+
+A follow-up real claim of about **1115.251243442** exactly matches internal balance
+credit. The same chain account later executes a withdrawal of about **1115.251244**,
+with an Exchange-to-recipient CoreWriter spot-send action in its receipt. **The
+transfer action toward HyperCore is checked; final HyperCore credit has not been
+obtained.** This shared-balance withdrawal differs slightly from the claim and
+cannot be wholly attributed to that dividend. An onward route to another chain
+requires a separate destination receipt.
 
 **Evidence: official description, bytecode support and stake/claim chain cases.**
-[Distribution and claim research](docs/research-notes/006-current-mechanisms.md#case-004-dividends-are-an-accumulator-and-a-claim-against-internal-balance) ·
+[Real claim, withdrawal and payment boundary](docs/research-notes/007-queue-and-dividend-payment.md#dividend-a-real-claim-followed-by-a-withdrawal-action) ·
+[Accumulator and distribution](docs/research-notes/006-current-mechanisms.md#case-004-dividends-are-an-accumulator-and-a-claim-against-internal-balance) ·
 [Official staking mechanics](https://docs.papertrade.xyz/paper/staking/)
 
 ## How are liquidation triggers and losses calculated?

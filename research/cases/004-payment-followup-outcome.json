@@ -1,0 +1,53 @@
+{
+  "schema_version": "queue-payment-outcome-v1",
+  "case_id": "CASE-004",
+  "evidence": "002-004-followup-evidence.json",
+  "selection": "first CoreWithdrawal in reused fixed window; same chain-account prior claim found without changing selection",
+  "window": [
+    49115089,
+    49115588
+  ],
+  "claim_transaction": "0x045dd012d9e5900d4f7adc1705f9ae45c410d8926279675803172b897484fe36",
+  "claim_block": 49115113,
+  "claim_raw": "1115251243441981349132",
+  "withdraw_transaction": "0xa0124e620089b846de7a6d0719b6687d94a1f8c44f1502d3dc50cebc0ca545f1",
+  "withdraw_block": 49115156,
+  "withdraw_block_hash": "0x0e4392f976424c84e0140981381f62f5604514d096777af0512bf03eeeae340c",
+  "withdraw_block_timestamp_seconds": 1792566662,
+  "input_amount_six_decimals_raw": "1115251244",
+  "withdraw_internal_eighteen_decimals_raw": "1115251244000000000000",
+  "core_token_zero_eight_decimals_raw": "111525124400",
+  "withdraw_minus_claim_raw": "558018650868",
+  "same_chain_account_matches_privately": true,
+  "core_writer_sender_exchange_matches": true,
+  "core_writer_destination_claimant_matches_privately": true,
+  "core_writer_action": 6,
+  "external_core_ledger_receipt": null,
+  "reward_only_funds_provenance": null,
+  "stages": {
+    "claim_event": "provider-reported receipt checked",
+    "exchange_credit": "same amount and chain account checked privately",
+    "withdraw_input": "withdrawToCoreBySig amount uses six-decimal units in this case",
+    "core_writer_action": "version 1, action 6 spot send; sender Exchange, recipient claimant, token index 0 and amount checked",
+    "hypercore_receipt": "not obtained; approval review blocked query before execution",
+    "onward_route": "not established; frontend supports optional subsequent route signatures, not a receipt"
+  },
+  "account_preclaim_balance": null,
+  "complete_reward_distribution_reconciliation": false,
+  "external_payment_verified": false,
+  "missing": [
+    "HyperCore actual credit/result and its independent timestamp/hash",
+    "reward-only provenance and account cash before claim",
+    "full distribution/claim reserve ledger",
+    "onward bridge/destination receipts when applicable"
+  ],
+  "asset_metadata_observation": {
+    "index": 0,
+    "name": "USDC",
+    "szDecimals": 8,
+    "weiDecimals": 8,
+    "tokenId": "0x6d1e7cde53ba9467b783cb7c530ce054",
+    "source_access_ordinal": 22,
+    "temporal_binding": "current aggregate metadata; not final account credit or historical state"
+  }
+}

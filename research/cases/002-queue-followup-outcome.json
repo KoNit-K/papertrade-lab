@@ -1,0 +1,105 @@
+{
+  "schema_version": "queue-payment-outcome-v1",
+  "case_id": "CASE-002",
+  "evidence": "002-004-followup-evidence.json",
+  "window": [
+    49115089,
+    49115588
+  ],
+  "batch_summaries": 438,
+  "batch_call_events": 734,
+  "successful_calls": 730,
+  "failed_calls": 4,
+  "skipped_summary_word_total": 0,
+  "call_indices_match_array_order_for_every_observed_batch": true,
+  "observed_batch_size_histogram": {
+    "1": 284,
+    "2": 84,
+    "3": 39,
+    "4": 12,
+    "5": 6,
+    "6": 7,
+    "7": 3,
+    "8": 3
+  },
+  "failure_case": {
+    "transaction_hash": "0x6f48d78e4e47973a09b4911eec21a7a6861151e882925b4b8a7a6775b1ac3765",
+    "block_number": 49115510,
+    "block_hash": "0x914f3b7f2f67ce11fad39f284913066b5936f9548706f33d5e5e7e508cd852e0",
+    "block_timestamp_seconds": 1792567011,
+    "deadline_seconds": "1792570601",
+    "deadline_remaining_seconds_at_execution": 3590,
+    "items": [
+      {
+        "index": 0,
+        "success": true,
+        "margin_raw": "100000000000000000000",
+        "leverage": 500,
+        "error_selector": null,
+        "event_log_index": 3
+      },
+      {
+        "index": 1,
+        "success": false,
+        "margin_raw": "100000000000000000000",
+        "leverage": 500,
+        "error_selector": "0x40f92143",
+        "event_log_index": 4
+      },
+      {
+        "index": 2,
+        "success": false,
+        "margin_raw": "100000000000000000000",
+        "leverage": 500,
+        "error_selector": "0x40f92143",
+        "event_log_index": 5
+      },
+      {
+        "index": 3,
+        "success": false,
+        "margin_raw": "89000000000000000000",
+        "leverage": 500,
+        "error_selector": "0x40f92143",
+        "event_log_index": 6
+      },
+      {
+        "index": 4,
+        "success": false,
+        "margin_raw": "60000000000000000000",
+        "leverage": 500,
+        "error_selector": "0x40f92143",
+        "event_log_index": 7
+      },
+      {
+        "index": 5,
+        "success": true,
+        "margin_raw": "35600000000000000000",
+        "leverage": 500,
+        "error_selector": null,
+        "event_log_index": 9
+      }
+    ]
+  },
+  "error_path": "0x40f92143 at Exchange 0x0ea4; directional aggregate OI plus proposed notional compared with direction cap (0x09fc\u20130x0a48, 0x0eb6\u20130x0ee0)",
+  "historical_capacity_prestate": null,
+  "first_open_close_receipts_checked": true,
+  "frontend_default_deadline_seconds": 3600,
+  "deadline_clock": "client Date.now, not acceptance or chain block time",
+  "frontend_close_group_max": 12,
+  "same_position_close_deduplication": "filters positions absent in current snapshot and IDs already in local/streamed close operations",
+  "single_pending_frontend_actions": [
+    "withdrawToCore",
+    "registerSessionKey",
+    "paperUnstake",
+    "paperClaim"
+  ],
+  "open_close_single_pending": false,
+  "frontend_uncertain_ack": "unconfirmed; await indexed stream/revision/terminal outcome, not a proven failure",
+  "scheduler_fifo": null,
+  "scheduler_priority": null,
+  "scheduler_batch_interval": null,
+  "scheduler_retries": null,
+  "real_submit_ack_broadcast_times": null,
+  "real_expired_cancelled_pending_examples": null,
+  "synthetic_or_historical_full_replay": false
+}
