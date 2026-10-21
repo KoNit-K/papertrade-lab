@@ -1,0 +1,1087 @@
+{
+  "record_kind": "independent-client-orders-bridges-research-v1",
+  "date_asia_singapore": "2026-10-22",
+  "baseline": "2759cc3c4c8ed945111fc3ba9071db851f5b5609",
+  "frontend_build": "38f2c40c4112",
+  "version": {
+    "chain_id": 999,
+    "reference_header": {
+      "number": 49152877,
+      "hash": "0x3111037769b0baa5cf32bbb0ea84c2bc65adc70422f28a91934ce7cfe07a89a9",
+      "timestamp": 1792603765
+    },
+    "state_binding": "Separate latest requests at acquisition time; not atomic, historical or transaction-prestate evidence.",
+    "exchange_proxy": "0x6cd5661646289fb6e65ea5c032310fded797d0a2",
+    "exchange_implementation": "0x0f3febfc94876b0c895f7acecdc8f5c863b549ee",
+    "batch_proxy": "0x233ff29b239abc1d7748605da9b205c3e008626e",
+    "batch_implementation": "0xe0bc9cc7b067060aafccbaa3e250700c9cdd7262",
+    "session_implementation": "0x8a5069fe303e8f81e91825436e956d595032e558",
+    "tokenomics_fresh_implementation": null,
+    "timelock_eta": 1792618519,
+    "eta_asia_singapore": "2026-10-22T05:35:19+08:00",
+    "upgrade_after_window": null
+  },
+  "sources": [
+    {
+      "id": "app-entry",
+      "url": "https://exchange.papertrade.xyz/",
+      "sha256": "e1ec7f5b2484db119082b5e743e2cc7c0dde2a128c4ef38fcf827956976067cf",
+      "bytes": 9582,
+      "captured_from_utc": "2026-10-21T17:29:23.295004+00:00",
+      "captured_to_utc": "2026-10-21T17:29:23.655329+00:00"
+    },
+    {
+      "id": "app",
+      "url": "https://exchange.papertrade.xyz/assets/app-BvG5ndLw.js",
+      "sha256": "7bdda7709eada9d7ba021a9b6a606331ca13511f866c029065fc94d8d19be1f3",
+      "bytes": 585167,
+      "captured_from_utc": "2026-10-21T17:30:09.981165+00:00",
+      "captured_to_utc": "2026-10-21T17:30:10.551312+00:00"
+    },
+    {
+      "id": "hooks",
+      "url": "https://exchange.papertrade.xyz/assets/hooks-CqUf1JMj.js",
+      "sha256": "654ad5623423b1f890baae953b08a669e4822c7c395b1df2750937e49fa01595",
+      "bytes": 76498,
+      "captured_from_utc": "2026-10-21T17:30:10.986220+00:00",
+      "captured_to_utc": "2026-10-21T17:30:11.475835+00:00"
+    },
+    {
+      "id": "funding",
+      "url": "https://exchange.papertrade.xyz/assets/funding-routes-DLkn3OFl.js",
+      "sha256": "591f4d2831711e50dabbf2c36f5a4460e034716c3eaef8a4203781e5bc0cc6bf",
+      "bytes": 20665,
+      "captured_from_utc": "2026-10-21T17:30:11.991295+00:00",
+      "captured_to_utc": "2026-10-21T17:30:12.351650+00:00"
+    },
+    {
+      "id": "typed",
+      "url": "https://exchange.papertrade.xyz/assets/typed-data-B0hqt2-N.js",
+      "sha256": "ff04eb15141ecc5fd02bf9a2f7cf3a0440396b5e7d08bb6aed6d545e244213de",
+      "bytes": 2727,
+      "captured_from_utc": "2026-10-21T17:30:50.496868+00:00",
+      "captured_to_utc": "2026-10-21T17:30:51.235567+00:00"
+    },
+    {
+      "id": "deployment",
+      "url": "https://exchange.papertrade.xyz/assets/deployment-eO5T69Wd.js",
+      "sha256": "60e940580f15d8796ea04d6c43e8bc6b52327e27dddff526c894f3ee70bbb543",
+      "bytes": 2331,
+      "captured_from_utc": "2026-10-21T17:30:51.500016+00:00",
+      "captured_to_utc": "2026-10-21T17:30:51.980033+00:00"
+    },
+    {
+      "id": "http-retry",
+      "url": "https://exchange.papertrade.xyz/assets/http-DzwWne3j.js",
+      "sha256": "acd84cc84d466b3d587ccd00d3a81ec670fa389e89904cc72bd53ca376ead50f",
+      "bytes": 1407,
+      "captured_from_utc": "2026-10-21T17:31:45.998546+00:00",
+      "captured_to_utc": "2026-10-21T17:31:46.377681+00:00"
+    },
+    {
+      "id": "build",
+      "url": "https://exchange.papertrade.xyz/assets/build-DaC4w5xz.js",
+      "sha256": "c9656fe0a7d492982b8afc10c7473ce0af2975a8736cc256085080376f7bcd7b",
+      "bytes": 122,
+      "captured_from_utc": "2026-10-21T17:31:46.998909+00:00",
+      "captured_to_utc": "2026-10-21T17:31:47.304973+00:00"
+    },
+    {
+      "id": "funding-panel-loader",
+      "url": "https://exchange.papertrade.xyz/assets/panel-BQxjhpR_.js",
+      "sha256": "f8b9b4bb27310d4067aa48766d2190f47b71094d78826cf4cce48a33fef6296f",
+      "bytes": 3899,
+      "captured_from_utc": "2026-10-21T17:31:48.003227+00:00",
+      "captured_to_utc": "2026-10-21T17:31:48.358154+00:00"
+    },
+    {
+      "id": "funding-sheet",
+      "url": "https://exchange.papertrade.xyz/assets/FundingSheet-Bd6z9rjB.js",
+      "sha256": "8e5668c73020d2627f06e74bcf76caf26a0e1d0db6f35006befb0ae358c510ef",
+      "bytes": 54433,
+      "captured_from_utc": "2026-10-21T17:32:18.885171+00:00",
+      "captured_to_utc": "2026-10-21T17:32:19.271167+00:00"
+    },
+    {
+      "id": "deposit-client",
+      "url": "https://exchange.papertrade.xyz/assets/deposit-DmJffinx.js",
+      "sha256": "0d38d1b2695b500f2ae11332563c6ae74ae8ed210958845001d07a09e18ad0e3",
+      "bytes": 95828,
+      "captured_from_utc": "2026-10-21T17:32:19.887989+00:00",
+      "captured_to_utc": "2026-10-21T17:32:20.418784+00:00"
+    },
+    {
+      "id": "trade-form",
+      "url": "https://exchange.papertrade.xyz/assets/trade._coin-BI74NhUZ.js",
+      "sha256": "b62efefdbc5a8dbc9270e92de81c75fe223b983313363d9e0d9be7b54bf749c9",
+      "bytes": 85758,
+      "captured_from_utc": "2026-10-21T17:35:25.266754+00:00",
+      "captured_to_utc": "2026-10-21T17:35:26.128681+00:00"
+    },
+    {
+      "id": "positions-ui",
+      "url": "https://exchange.papertrade.xyz/assets/positions--RBZ4uau.js",
+      "sha256": "a8f76af6e41790608191b0106b0e42188d38eab95ef0dbdb92bc5c3809b96217",
+      "bytes": 3242,
+      "captured_from_utc": "2026-10-21T17:35:26.267370+00:00",
+      "captured_to_utc": "2026-10-21T17:35:26.766586+00:00"
+    },
+    {
+      "id": "close-selection",
+      "url": "https://exchange.papertrade.xyz/assets/useClosePositions-R-QZdSlU.js",
+      "sha256": "b867e23a649e753e35dd9c370fb41baeabe2487b894d387023a4ccfd1482007f",
+      "bytes": 3705,
+      "captured_from_utc": "2026-10-21T17:35:27.271191+00:00",
+      "captured_to_utc": "2026-10-21T17:35:27.779641+00:00"
+    },
+    {
+      "id": "funding-client",
+      "url": "https://exchange.papertrade.xyz/assets/client-CIoROjGJ.js",
+      "sha256": "319cb039e1aca1df5073aac7f56febb9765dd0a0cc8124c340691770d872eb65",
+      "bytes": 11166,
+      "captured_from_utc": "2026-10-21T17:37:20.071676+00:00",
+      "captured_to_utc": "2026-10-21T17:37:20.461289+00:00"
+    },
+    {
+      "id": "solana-funding",
+      "url": "https://exchange.papertrade.xyz/assets/solana-dO69wuLk.js",
+      "sha256": "553572b858c8cc7b063ed1018321b5b40e95eddb8447ea74ab3443b3f534ce04",
+      "bytes": 10319,
+      "captured_from_utc": "2026-10-21T17:37:47.867838+00:00",
+      "captured_to_utc": "2026-10-21T17:37:48.183235+00:00"
+    },
+    {
+      "id": "solana-deposit",
+      "url": "https://exchange.papertrade.xyz/assets/solana-deposit-bOyZ4tlB.js",
+      "sha256": "7461bcf1451f67a703c4d30ff57538119bb82545db7f3b1617d7b9f481d76181",
+      "bytes": 213049,
+      "captured_from_utc": "2026-10-21T17:38:11.416263+00:00",
+      "captured_to_utc": "2026-10-21T17:38:12.090811+00:00"
+    }
+  ],
+  "source_locators": [
+    {
+      "meaning": "exchange-domain",
+      "source_id": "app",
+      "needle": "function bb(",
+      "unicode_codepoint_offset": 543839,
+      "utf16_offset": 543839,
+      "utf8_byte_offset": 543873,
+      "occurrences": 1
+    },
+    {
+      "meaning": "wire-encoder",
+      "source_id": "app",
+      "needle": "function wb(",
+      "unicode_codepoint_offset": 544149,
+      "utf16_offset": 544149,
+      "utf8_byte_offset": 544183,
+      "occurrences": 1
+    },
+    {
+      "meaning": "typed-signature-boundary",
+      "source_id": "app",
+      "needle": "function Tb(",
+      "unicode_codepoint_offset": 544323,
+      "utf16_offset": 544323,
+      "utf8_byte_offset": 544357,
+      "occurrences": 1
+    },
+    {
+      "meaning": "intent-id",
+      "source_id": "app",
+      "needle": "function kb(",
+      "unicode_codepoint_offset": 544772,
+      "utf16_offset": 544772,
+      "utf8_byte_offset": 544806,
+      "occurrences": 1
+    },
+    {
+      "meaning": "general-http",
+      "source_id": "app",
+      "needle": "function Jb(",
+      "unicode_codepoint_offset": 554590,
+      "utf16_offset": 554590,
+      "utf8_byte_offset": 554624,
+      "occurrences": 1
+    },
+    {
+      "meaning": "registration-http",
+      "source_id": "app",
+      "needle": "function Zb(",
+      "unicode_codepoint_offset": 555412,
+      "utf16_offset": 555412,
+      "utf8_byte_offset": 555446,
+      "occurrences": 1
+    },
+    {
+      "meaning": "submit-and-ack",
+      "source_id": "app",
+      "needle": "async function ce(",
+      "unicode_codepoint_offset": 567285,
+      "utf16_offset": 567285,
+      "utf8_byte_offset": 567336,
+      "occurrences": 1
+    },
+    {
+      "meaning": "session-registration",
+      "source_id": "app",
+      "needle": "feeAddress:at",
+      "unicode_codepoint_offset": 550524,
+      "utf16_offset": 550524,
+      "utf8_byte_offset": 550558,
+      "occurrences": 1
+    },
+    {
+      "meaning": "open-position",
+      "source_id": "app",
+      "needle": "async openPosition(",
+      "unicode_codepoint_offset": 576225,
+      "utf16_offset": 576225,
+      "utf8_byte_offset": 576276,
+      "occurrences": 1
+    },
+    {
+      "meaning": "close-grouping",
+      "source_id": "app",
+      "needle": "async closePositions(",
+      "unicode_codepoint_offset": 578342,
+      "utf16_offset": 578342,
+      "utf8_byte_offset": 578393,
+      "occurrences": 1
+    },
+    {
+      "meaning": "withdrawal-and-onward",
+      "source_id": "app",
+      "needle": "async withdraw(",
+      "unicode_codepoint_offset": 573367,
+      "utf16_offset": 573367,
+      "utf8_byte_offset": 573418,
+      "occurrences": 1
+    },
+    {
+      "meaning": "withdrawal-onward-builder",
+      "source_id": "funding",
+      "needle": "Ge=(e,t)=>",
+      "unicode_codepoint_offset": 14973,
+      "utf16_offset": 14973,
+      "utf8_byte_offset": 14973,
+      "occurrences": 1
+    },
+    {
+      "meaning": "core-deposit-builder",
+      "source_id": "funding",
+      "needle": "qe=(e,t)=>",
+      "unicode_codepoint_offset": 15730,
+      "utf16_offset": 15730,
+      "utf8_byte_offset": 15730,
+      "occurrences": 1
+    },
+    {
+      "meaning": "circle-burn-target",
+      "source_id": "funding",
+      "needle": "Je=`0x28b5",
+      "unicode_codepoint_offset": 16239,
+      "utf16_offset": 16239,
+      "utf8_byte_offset": 16239,
+      "occurrences": 1
+    },
+    {
+      "meaning": "circle-forward-hook",
+      "source_id": "funding",
+      "needle": "ct=e=>",
+      "unicode_codepoint_offset": 17386,
+      "utf16_offset": 17386,
+      "utf8_byte_offset": 17386,
+      "occurrences": 1
+    },
+    {
+      "meaning": "circle-evm-builder",
+      "source_id": "funding",
+      "needle": "lt=(n,r)=>",
+      "unicode_codepoint_offset": 17434,
+      "utf16_offset": 17434,
+      "utf8_byte_offset": 17434,
+      "occurrences": 1
+    },
+    {
+      "meaning": "across-spokepool",
+      "source_id": "funding",
+      "needle": "dt=`0xd29",
+      "unicode_codepoint_offset": 17940,
+      "utf16_offset": 17940,
+      "utf8_byte_offset": 17940,
+      "occurrences": 1
+    },
+    {
+      "meaning": "across-message",
+      "source_id": "funding",
+      "needle": "xt=",
+      "unicode_codepoint_offset": 18669,
+      "utf16_offset": 18669,
+      "utf8_byte_offset": 18669,
+      "occurrences": 1
+    },
+    {
+      "meaning": "across-deposit",
+      "source_id": "funding",
+      "needle": "St=e=>",
+      "unicode_codepoint_offset": 18839,
+      "utf16_offset": 18839,
+      "utf8_byte_offset": 18839,
+      "occurrences": 1
+    },
+    {
+      "meaning": "deposit-route-dispatch",
+      "source_id": "funding-sheet",
+      "needle": "switch(i.route)",
+      "unicode_codepoint_offset": 14497,
+      "utf16_offset": 14497,
+      "utf8_byte_offset": 14497,
+      "occurrences": 1
+    },
+    {
+      "meaning": "withdraw-fee-read",
+      "source_id": "funding-sheet",
+      "needle": "async function hn(",
+      "unicode_codepoint_offset": 6289,
+      "utf16_offset": 6289,
+      "utf8_byte_offset": 6289,
+      "occurrences": 1
+    },
+    {
+      "meaning": "withdraw-net-preview",
+      "source_id": "funding-sheet",
+      "needle": "function _n(",
+      "unicode_codepoint_offset": 6837,
+      "utf16_offset": 6837,
+      "utf8_byte_offset": 6837,
+      "occurrences": 1
+    },
+    {
+      "meaning": "withdraw-status-render",
+      "source_id": "funding-sheet",
+      "needle": "burnTxHash",
+      "unicode_codepoint_offset": 53151,
+      "utf16_offset": 53151,
+      "utf8_byte_offset": 53202,
+      "occurrences": 2
+    },
+    {
+      "meaning": "across-fetch",
+      "source_id": "deposit-client",
+      "needle": "async function Fs(",
+      "unicode_codepoint_offset": 86815,
+      "utf16_offset": 86815,
+      "utf8_byte_offset": 86815,
+      "occurrences": 1
+    },
+    {
+      "meaning": "across-fees",
+      "source_id": "deposit-client",
+      "needle": "async function Bs(",
+      "unicode_codepoint_offset": 87491,
+      "utf16_offset": 87491,
+      "utf8_byte_offset": 87491,
+      "occurrences": 1
+    },
+    {
+      "meaning": "across-status",
+      "source_id": "deposit-client",
+      "needle": "function Ws(",
+      "unicode_codepoint_offset": 88692,
+      "utf16_offset": 88692,
+      "utf8_byte_offset": 88692,
+      "occurrences": 1
+    },
+    {
+      "meaning": "circle-fetch",
+      "source_id": "deposit-client",
+      "needle": "async function Gs(",
+      "unicode_codepoint_offset": 89272,
+      "utf16_offset": 89272,
+      "utf8_byte_offset": 89272,
+      "occurrences": 1
+    },
+    {
+      "meaning": "circle-fees",
+      "source_id": "deposit-client",
+      "needle": "async function Js(",
+      "unicode_codepoint_offset": 89732,
+      "utf16_offset": 89732,
+      "utf8_byte_offset": 89732,
+      "occurrences": 1
+    },
+    {
+      "meaning": "circle-status",
+      "source_id": "deposit-client",
+      "needle": "function Xs(",
+      "unicode_codepoint_offset": 90014,
+      "utf16_offset": 90014,
+      "utf8_byte_offset": 90014,
+      "occurrences": 1
+    },
+    {
+      "meaning": "proxy-derive",
+      "source_id": "deposit-client",
+      "needle": "function computeProxyAddress",
+      "unicode_codepoint_offset": 91057,
+      "utf16_offset": 91057,
+      "utf8_byte_offset": 91057,
+      "occurrences": 1
+    },
+    {
+      "meaning": "deposit-spender",
+      "source_id": "deposit-client",
+      "needle": "function rc(",
+      "unicode_codepoint_offset": 91758,
+      "utf16_offset": 91758,
+      "utf8_byte_offset": 91758,
+      "occurrences": 1
+    },
+    {
+      "meaning": "deposit-preview",
+      "source_id": "deposit-client",
+      "needle": "function fc(",
+      "unicode_codepoint_offset": 92882,
+      "utf16_offset": 92882,
+      "utf8_byte_offset": 92882,
+      "occurrences": 1
+    },
+    {
+      "meaning": "across-target",
+      "source_id": "deposit-client",
+      "needle": "async function pc(",
+      "unicode_codepoint_offset": 93484,
+      "utf16_offset": 93484,
+      "utf8_byte_offset": 93484,
+      "occurrences": 1
+    },
+    {
+      "meaning": "across-quote-consumer",
+      "source_id": "deposit-client",
+      "needle": "async function mc(",
+      "unicode_codepoint_offset": 93673,
+      "utf16_offset": 93673,
+      "utf8_byte_offset": 93673,
+      "occurrences": 1
+    },
+    {
+      "meaning": "deposit-reconcile",
+      "source_id": "deposit-client",
+      "needle": "async function _c(",
+      "unicode_codepoint_offset": 94307,
+      "utf16_offset": 94307,
+      "utf8_byte_offset": 94307,
+      "occurrences": 1
+    },
+    {
+      "meaning": "new-form-margin-control",
+      "source_id": "trade-form",
+      "needle": "adjustMargin:(0,W.useCallback)",
+      "unicode_codepoint_offset": 77287,
+      "utf16_offset": 77287,
+      "utf8_byte_offset": 77301,
+      "occurrences": 1
+    },
+    {
+      "meaning": "selected-close",
+      "source_id": "close-selection",
+      "needle": "close:G,closeAll:K",
+      "unicode_codepoint_offset": 3553,
+      "utf16_offset": 3553,
+      "utf8_byte_offset": 3553,
+      "occurrences": 1
+    },
+    {
+      "meaning": "funding-coordinator",
+      "source_id": "funding-client",
+      "needle": "/funding/deposits/check",
+      "unicode_codepoint_offset": 10528,
+      "utf16_offset": 10528,
+      "utf8_byte_offset": 10528,
+      "occurrences": 1
+    },
+    {
+      "meaning": "funding-transfer-status",
+      "source_id": "funding-client",
+      "needle": "signed`,`submitted`,`in_transit",
+      "unicode_codepoint_offset": 3380,
+      "utf16_offset": 3380,
+      "utf8_byte_offset": 3380,
+      "occurrences": 1
+    },
+    {
+      "meaning": "core-api-submit",
+      "source_id": "funding-client",
+      "needle": "new URL(`exchange`",
+      "unicode_codepoint_offset": 6079,
+      "utf16_offset": 6079,
+      "utf8_byte_offset": 6079,
+      "occurrences": 1
+    },
+    {
+      "meaning": "underlying-token",
+      "source_id": "funding-client",
+      "needle": "function token()",
+      "unicode_codepoint_offset": 7132,
+      "utf16_offset": 7132,
+      "utf8_byte_offset": 7132,
+      "occurrences": 1
+    },
+    {
+      "meaning": "solana-lazy-consumer",
+      "source_id": "solana-funding",
+      "needle": "async function U(",
+      "unicode_codepoint_offset": 9977,
+      "utf16_offset": 9977,
+      "utf8_byte_offset": 10011,
+      "occurrences": 1
+    },
+    {
+      "meaning": "solana-circle-instruction",
+      "source_id": "solana-deposit",
+      "needle": "function Io(",
+      "unicode_codepoint_offset": 210110,
+      "utf16_offset": 210110,
+      "utf8_byte_offset": 210110,
+      "occurrences": 1
+    },
+    {
+      "meaning": "solana-deposit-consumer",
+      "source_id": "solana-deposit",
+      "needle": "async function Vo(",
+      "unicode_codepoint_offset": 211189,
+      "utf16_offset": 211189,
+      "utf8_byte_offset": 211189,
+      "occurrences": 1
+    }
+  ],
+  "reused_api_source_map_checks": [
+    {
+      "source_id": "app",
+      "reused_locator_count": 24,
+      "all_offsets_rechecked": true
+    },
+    {
+      "source_id": "hooks",
+      "reused_locator_count": 5,
+      "all_offsets_rechecked": true
+    },
+    {
+      "source_id": "http-retry",
+      "reused_locator_count": 2,
+      "all_offsets_rechecked": true
+    },
+    {
+      "source_id": "typed",
+      "reused_locator_count": 5,
+      "all_offsets_rechecked": true
+    },
+    {
+      "source_id": "deployment",
+      "reused_locator_count": 4,
+      "all_offsets_rechecked": true
+    }
+  ],
+  "rpc_metadata": [
+    {
+      "label": "chain-id",
+      "method": "eth_chainId",
+      "protocol_address": null,
+      "slot": null,
+      "requested_tag": null,
+      "status": "ok",
+      "captured_from_utc": "2026-10-21T17:29:24.298088+00:00",
+      "captured_to_utc": "2026-10-21T17:29:24.755444+00:00",
+      "response_sha256": "430f684fbe48ec1e680bfacf8a2bea38f365e868bc8874eebe9e26e360983a9a"
+    },
+    {
+      "label": "latest-header",
+      "method": "eth_getBlockByNumber",
+      "protocol_address": null,
+      "slot": null,
+      "requested_tag": null,
+      "status": "ok",
+      "captured_from_utc": "2026-10-21T17:29:25.302242+00:00",
+      "captured_to_utc": "2026-10-21T17:29:25.813603+00:00",
+      "response_sha256": "e309372b76cb133ba604479b935634830cee6a5d2b954998e458cebf60aeeffb"
+    },
+    {
+      "label": "exchange-implementation",
+      "method": "eth_getStorageAt",
+      "protocol_address": "0x6cd5661646289fb6e65ea5c032310fded797d0a2",
+      "slot": "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+      "requested_tag": "latest",
+      "status": "ok",
+      "captured_from_utc": "2026-10-21T17:30:53.660972+00:00",
+      "captured_to_utc": "2026-10-21T17:30:54.247154+00:00",
+      "response_sha256": "63d95e9009e759be0ed58c784e9bcc8aadb8d0ff28c654668367145baaf97213"
+    },
+    {
+      "label": "session-implementation",
+      "method": "eth_getStorageAt",
+      "protocol_address": "0x8326eb8896e358717f10502ec73ce8d28e37b108",
+      "slot": "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+      "requested_tag": "latest",
+      "status": "ok",
+      "captured_from_utc": "2026-10-21T17:30:54.663987+00:00",
+      "captured_to_utc": "2026-10-21T17:30:55.293799+00:00",
+      "response_sha256": "9f80ee374d0faefae373495e2d7db19d7fa28b860e41c66077737f61fffa3a13"
+    },
+    {
+      "label": "tokenomics-implementation",
+      "method": "eth_getStorageAt",
+      "protocol_address": "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+      "slot": "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+      "requested_tag": "latest",
+      "status": "error",
+      "captured_from_utc": "2026-10-21T17:30:55.669081+00:00",
+      "captured_to_utc": "2026-10-21T17:31:16.004850+00:00",
+      "response_sha256": null
+    },
+    {
+      "label": "batch-implementation",
+      "method": "eth_getStorageAt",
+      "protocol_address": "0x233ff29b239abc1d7748605da9b205c3e008626e",
+      "slot": "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+      "requested_tag": "latest",
+      "status": "ok",
+      "captured_from_utc": "2026-10-21T17:33:54.332667+00:00",
+      "captured_to_utc": "2026-10-21T17:33:54.795434+00:00",
+      "response_sha256": "7ac4067c2b08374d3344c00bc092731082bcbe3b073b19b30db3cc495166a308"
+    },
+    {
+      "label": "exchange-code",
+      "method": "eth_getCode",
+      "protocol_address": "0x0f3febfc94876b0c895f7acecdc8f5c863b549ee",
+      "slot": null,
+      "requested_tag": "latest",
+      "status": "ok",
+      "captured_from_utc": "2026-10-21T17:33:55.335178+00:00",
+      "captured_to_utc": "2026-10-21T17:33:55.841779+00:00",
+      "response_sha256": "f20724bb44b09449597af40bdc6d721b721ff00b08ef52fb47ecad37910cd51d"
+    },
+    {
+      "label": "upgrade-operation",
+      "method": "eth_getStorageAt",
+      "protocol_address": "0xb915fa41e824d6aa31bb833ee81220c0f2c8ea0f",
+      "slot": "0xbc7c059d74b21b5796f5267c660e05824ea6dbf40ca8eb74935a2ead78061f0c",
+      "requested_tag": "latest",
+      "status": "ok",
+      "captured_from_utc": "2026-10-21T17:33:56.340273+00:00",
+      "captured_to_utc": "2026-10-21T17:33:56.728677+00:00",
+      "response_sha256": "a3148ba6a0db26f48d6aa37982557de7aee6f05d417c7b492e3f1d724599c24b"
+    },
+    {
+      "label": "exchange-executor-slot",
+      "method": "eth_getStorageAt",
+      "protocol_address": "0x6cd5661646289fb6e65ea5c032310fded797d0a2",
+      "slot": "0x58",
+      "requested_tag": "latest",
+      "status": "ok",
+      "captured_from_utc": "2026-10-21T17:34:21.734509+00:00",
+      "captured_to_utc": "2026-10-21T17:34:22.226608+00:00",
+      "response_sha256": "910597433162ca76257b01b62c44275daaa6e9f748a1e8ce5d6a8c1d9b041a15"
+    },
+    {
+      "label": "batch-code",
+      "method": "eth_getCode",
+      "protocol_address": "0xe0bc9cc7b067060aafccbaa3e250700c9cdd7262",
+      "slot": null,
+      "requested_tag": "latest",
+      "status": "ok",
+      "captured_from_utc": "2026-10-21T17:34:22.736805+00:00",
+      "captured_to_utc": "2026-10-21T17:34:23.281235+00:00",
+      "response_sha256": "6071f62b571e5b7e8d277489246adc787f4e1ad3902ce96e78824b7c690f9751"
+    }
+  ],
+  "runtime_checks": [
+    {
+      "capture": "21-exchange-code.body",
+      "decoded_bytes": 23052,
+      "decoded_sha256": "2f2e20ca683b70511fe62178b8090c93df24208b13dbdfa6407f38946fcef0b1",
+      "matches_prior_runtime": true
+    },
+    {
+      "capture": "24-batch-code.body",
+      "decoded_bytes": 3451,
+      "decoded_sha256": "480375f798fccf20fd79fd4fedefdd3377dd44af4dd559a3310a87c5bc048ae8",
+      "matches_prior_runtime": true
+    }
+  ],
+  "rea": {
+    "version": "6.7.0",
+    "target_javascript_execution": false,
+    "inputs": [
+      {
+        "input": "app-BvG5ndLw.range-543839-579480.js",
+        "sourceSha256": "7bdda7709eada9d7ba021a9b6a606331ca13511f866c029065fc94d8d19be1f3",
+        "utf16Range": [
+          543839,
+          579480
+        ],
+        "utf8Range": [
+          543873,
+          579531
+        ],
+        "inputSha256": "bce9ae29ba416151764dbbd7dc39b83cfb1ec0a0bff2f9a41c3ca68db0e22755",
+        "bytes": 35658,
+        "limitations": "Exact contiguous source fragment; missing original imports and out-of-range dependencies."
+      },
+      {
+        "input": "funding-routes-DLkn3OFl.js",
+        "sourceSha256": "591f4d2831711e50dabbf2c36f5a4460e034716c3eaef8a4203781e5bc0cc6bf",
+        "utf16Range": [
+          0,
+          20665
+        ],
+        "utf8Range": [
+          0,
+          20665
+        ],
+        "inputSha256": "591f4d2831711e50dabbf2c36f5a4460e034716c3eaef8a4203781e5bc0cc6bf",
+        "bytes": 20665,
+        "limitations": "Selected complete module; dependencies not all included."
+      },
+      {
+        "input": "typed-data-B0hqt2-N.js",
+        "sourceSha256": "ff04eb15141ecc5fd02bf9a2f7cf3a0440396b5e7d08bb6aed6d545e244213de",
+        "utf16Range": [
+          0,
+          2727
+        ],
+        "utf8Range": [
+          0,
+          2727
+        ],
+        "inputSha256": "ff04eb15141ecc5fd02bf9a2f7cf3a0440396b5e7d08bb6aed6d545e244213de",
+        "bytes": 2727,
+        "limitations": "Selected complete module; dependencies not all included."
+      },
+      {
+        "input": "hooks-CqUf1JMj.js",
+        "sourceSha256": "654ad5623423b1f890baae953b08a669e4822c7c395b1df2750937e49fa01595",
+        "utf16Range": [
+          0,
+          76498
+        ],
+        "utf8Range": [
+          0,
+          76498
+        ],
+        "inputSha256": "654ad5623423b1f890baae953b08a669e4822c7c395b1df2750937e49fa01595",
+        "bytes": 76498,
+        "limitations": "Selected complete module; dependencies not all included."
+      },
+      {
+        "input": "FundingSheet-Bd6z9rjB.js",
+        "sourceSha256": "8e5668c73020d2627f06e74bcf76caf26a0e1d0db6f35006befb0ae358c510ef",
+        "utf16Range": [
+          0,
+          54382
+        ],
+        "utf8Range": [
+          0,
+          54433
+        ],
+        "inputSha256": "8e5668c73020d2627f06e74bcf76caf26a0e1d0db6f35006befb0ae358c510ef",
+        "bytes": 54433,
+        "limitations": "Complete selected module; other imports may be missing."
+      },
+      {
+        "input": "deposit-DmJffinx.local-range.js",
+        "sourceSha256": "0d38d1b2695b500f2ae11332563c6ae74ae8ed210958845001d07a09e18ad0e3",
+        "utf16Range": [
+          86708,
+          95636
+        ],
+        "utf8Range": [
+          86708,
+          95636
+        ],
+        "inputSha256": "ba4663dc24b5fbecf19a8fb5718d224aeabf32426ad12798b3e618405522c2c3",
+        "bytes": 8928,
+        "limitations": "Contiguous original local deposit helper fragment; original imports/exports and generic SDK excluded; FundingSheet import remains unresolved."
+      },
+      {
+        "input": "funding-routes-DLkn3OFl.js",
+        "sourceSha256": "591f4d2831711e50dabbf2c36f5a4460e034716c3eaef8a4203781e5bc0cc6bf",
+        "utf16Range": [
+          0,
+          20665
+        ],
+        "utf8Range": [
+          0,
+          20665
+        ],
+        "inputSha256": "591f4d2831711e50dabbf2c36f5a4460e034716c3eaef8a4203781e5bc0cc6bf",
+        "bytes": 20665,
+        "limitations": "Complete selected module; other imports may be missing."
+      },
+      {
+        "input": "typed-data-B0hqt2-N.js",
+        "sourceSha256": "ff04eb15141ecc5fd02bf9a2f7cf3a0440396b5e7d08bb6aed6d545e244213de",
+        "utf16Range": [
+          0,
+          2727
+        ],
+        "utf8Range": [
+          0,
+          2727
+        ],
+        "inputSha256": "ff04eb15141ecc5fd02bf9a2f7cf3a0440396b5e7d08bb6aed6d545e244213de",
+        "bytes": 2727,
+        "limitations": "Complete selected module; other imports may be missing."
+      }
+    ],
+    "successful_runs": [
+      {
+        "run": "003-client-funding-psallowed",
+        "operation": "analyze_javascript_application",
+        "evidence_id": "ev_a3dda331fc081d1fc5f140b388455536c2a1d6eb524075ceaef653b556c94284",
+        "complete_output_sha256": "15240e3264924e89320ac2e06f247fecf60f6682b54e46e3ac9170a256f5cb0a",
+        "statistics": {
+          "relevant_files": 4,
+          "nested_asar_containers": 0,
+          "text_bytes_read": 135548,
+          "invalid_utf8_files": 0,
+          "parsed_javascript_files": 4,
+          "skipped_javascript_files": 0,
+          "visited_ast_nodes": 42061,
+          "findings": 191,
+          "modules": 0,
+          "parse_failures": 0
+        },
+        "semantic_nodes": 30424,
+        "semantic_relations": 32430,
+        "coverage": "unknown",
+        "trace_summary": null,
+        "selected_calls": []
+      },
+      {
+        "run": "004-funding-consumers",
+        "operation": "analyze_javascript_application",
+        "evidence_id": "ev_30fb8b52d4bf7e543cf9ee59dfc16cd6d78e0ac3b7a7235dbd4d8adfb2c0fa6f",
+        "complete_output_sha256": "887409ea6760173d476175d10bc4c5b333c56f350859138fb6722eb5fea80c91",
+        "statistics": {
+          "relevant_files": 4,
+          "nested_asar_containers": 0,
+          "text_bytes_read": 86753,
+          "invalid_utf8_files": 0,
+          "parsed_javascript_files": 4,
+          "skipped_javascript_files": 0,
+          "visited_ast_nodes": 22919,
+          "findings": 261,
+          "modules": 0,
+          "parse_failures": 0
+        },
+        "semantic_nodes": 15772,
+        "semantic_relations": 19022,
+        "coverage": "unknown",
+        "trace_summary": null,
+        "selected_calls": []
+      },
+      {
+        "run": "005-submit-callers",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_14a8d7d322a214d4d676f2fc1808df60851846b459c06dfdc86cec7879ebece0",
+        "complete_output_sha256": "c6222a42f0d84e06245c2211cb233e21ac0bf78bf7704ccd822afd9c64efc373",
+        "statistics": null,
+        "semantic_nodes": null,
+        "semantic_relations": null,
+        "coverage": "partial",
+        "trace_summary": {
+          "total_seed_matches": 1,
+          "traversed_nodes": 5,
+          "traversed_relations": 4,
+          "traversed_functions": 5,
+          "traversed_modules": 1,
+          "relevant_unknowns": 15
+        },
+        "selected_calls": [
+          {
+            "relation_id": "jsrg_relation_4e9baa7c874e42b57ecb59036de96902b4bdcef75fedb12be4357be6133ee98b",
+            "relation": "calls",
+            "resolution": "resolved",
+            "source_node_id": "jsrg_node_f0c3ed62eb27a87b196a41657f2dbffacfeacd75bd574ff6daf0be41f8d08caa",
+            "target_node_id": "jsrg_node_1463440ed239502113bfbb474bab1e8bbbb8254903ae88282f4e0ec1eeebebea",
+            "source": "app-BvG5ndLw.range-543839-579480.js",
+            "start": {
+              "line": 1,
+              "column": 30546
+            },
+            "end": {
+              "line": 1,
+              "column": 30605
+            }
+          },
+          {
+            "relation_id": "jsrg_relation_69198b6121496501f3f80f0aafaefd70a9d3c6fae0ee78d039a9b621046d2386",
+            "relation": "calls",
+            "resolution": "resolved",
+            "source_node_id": "jsrg_node_b5ce1163e13d8abcc3e519aae0a99aabc460901f9b4f1435de9ea3d5880ccab0",
+            "target_node_id": "jsrg_node_1463440ed239502113bfbb474bab1e8bbbb8254903ae88282f4e0ec1eeebebea",
+            "source": "app-BvG5ndLw.range-543839-579480.js",
+            "start": {
+              "line": 1,
+              "column": 28815
+            },
+            "end": {
+              "line": 1,
+              "column": 28984
+            }
+          },
+          {
+            "relation_id": "jsrg_relation_7a46ce41ff5cebb0c29783cf4048c2a2f129b0808a7e0026d3a619ce38ce5d40",
+            "relation": "calls",
+            "resolution": "resolved",
+            "source_node_id": "jsrg_node_64bf5ca96113d1c1d5667689abd2c8d8d3f0b2c91a7f9e12b711f7650b9370c6",
+            "target_node_id": "jsrg_node_1463440ed239502113bfbb474bab1e8bbbb8254903ae88282f4e0ec1eeebebea",
+            "source": "app-BvG5ndLw.range-543839-579480.js",
+            "start": {
+              "line": 1,
+              "column": 27522
+            },
+            "end": {
+              "line": 1,
+              "column": 27568
+            }
+          },
+          {
+            "relation_id": "jsrg_relation_94bf9bdde6ceb64de70a6686d0024573a32e915cc384e7bdf168f8879747cd66",
+            "relation": "calls",
+            "resolution": "resolved",
+            "source_node_id": "jsrg_node_d174336cbff2ad9225ca033f6e142279ee35637f1880928c51d3544c40f7a782",
+            "target_node_id": "jsrg_node_1463440ed239502113bfbb474bab1e8bbbb8254903ae88282f4e0ec1eeebebea",
+            "source": "app-BvG5ndLw.range-543839-579480.js",
+            "start": {
+              "line": 1,
+              "column": 34182
+            },
+            "end": {
+              "line": 1,
+              "column": 34349
+            }
+          }
+        ]
+      },
+      {
+        "run": "006-across-callers",
+        "operation": "trace_javascript_semantics",
+        "evidence_id": "ev_515242dd78eec29a93a4fe25b9b8393aa7981864645cf4d424f955e7e101c88e",
+        "complete_output_sha256": "1785da976cda50d3f4cd0049eff5633f852b3f888700e910fd177daaa39ff3cc",
+        "statistics": null,
+        "semantic_nodes": null,
+        "semantic_relations": null,
+        "coverage": "partial",
+        "trace_summary": {
+          "total_seed_matches": 1,
+          "traversed_nodes": 3,
+          "traversed_relations": 2,
+          "traversed_functions": 3,
+          "traversed_modules": 1,
+          "relevant_unknowns": 6
+        },
+        "selected_calls": [
+          {
+            "relation_id": "jsrg_relation_84982ae6e81ead830239fefdf6ddc5ad5da5d185be91abced3946163911437c7",
+            "relation": "calls",
+            "resolution": "resolved",
+            "source_node_id": "jsrg_node_a85c7df2f35557489712cbb9f6be7c1de3392c9604b4f4383cd8483bf6317386",
+            "target_node_id": "jsrg_node_85363394826350b3846492f199395de314c78cf2ca1f0e080444c6e0647635e3",
+            "source": "deposit-DmJffinx.local-range.js",
+            "start": {
+              "line": 1,
+              "column": 2120
+            },
+            "end": {
+              "line": 1,
+              "column": 2196
+            }
+          },
+          {
+            "relation_id": "jsrg_relation_a235c2bc386468b4c1265365f552126ae4febdeb5b569e92922b4e4bc0637047",
+            "relation": "calls",
+            "resolution": "resolved",
+            "source_node_id": "jsrg_node_f0fed10beef7ce423ae5db9d88197f083cc3e41ea9732898c7d797c1ae7769ac",
+            "target_node_id": "jsrg_node_85363394826350b3846492f199395de314c78cf2ca1f0e080444c6e0647635e3",
+            "source": "deposit-DmJffinx.local-range.js",
+            "start": {
+              "line": 1,
+              "column": 820
+            },
+            "end": {
+              "line": 1,
+              "column": 1043
+            }
+          }
+        ]
+      }
+    ],
+    "failed_runs": [
+      {
+        "run": "001-client-funding",
+        "reason": "ownership helper compiler-cache permissions",
+        "exit_code": 1
+      },
+      {
+        "run": "002-client-funding-localcache",
+        "reason": "process inspection EPERM; worker later confirmed absent, owned temporary directory empty",
+        "exit_code": 1
+      }
+    ]
+  },
+  "verification": {
+    "capture_sha256_and_lengths_checked": 26,
+    "unsigned_encoding_mock_tests": 9,
+    "caller_gate_cases": 6,
+    "collector_tests": 3,
+    "collector_envelope_subcases": 4,
+    "production_signatures": 0,
+    "production_intent_requests": 0,
+    "transactions": 0,
+    "personal_account_reads": 0,
+    "stream_connections": 0,
+    "bridge_quotes": 0,
+    "intent_id_crypto_vector": null,
+    "full_evm_replay": false
+  },
+  "collection": {
+    "direct_http_attempts": 20,
+    "direct_http_successes": 17,
+    "rpc_attempts": 10,
+    "rpc_successes": 9,
+    "vendor_page_opens": 2,
+    "search_queries": 3,
+    "preflight_page_attempts": 7,
+    "counted_http_page_attempts_including_preflight": 29,
+    "minimum_direct_request_start_interval_seconds": 1.000363,
+    "web_upstream_request_timestamps": null,
+    "documentation_host_stopped_after_403": true,
+    "deviation": "Two asynchronous processes overlapped; ledger ordinal11 duplicated with distinct labels and paths; raw records retained. No successful capture overwrite. Whole-read advisory lock added, regression-tested, subsequent collection serialized."
+  },
+  "vendor_documents": [
+    {
+      "url": "https://exclusive.docs.across.to/chains-and-contracts",
+      "source_kind": "web-reader",
+      "claim": "Lists Robinhood4663 and HyperEVM999; shown contract suffixes align with captured route config."
+    },
+    {
+      "url": "https://docs.across.to/api-reference/suggested-fees/get",
+      "source_kind": "web-reader",
+      "claim": "Suggested Fees is legacy; new integrations directed to Swap API; API-key authorization shown. Captured app.across.to admission not tested."
+    }
+  ],
+  "unknowns": [
+    "current inaccessible Papertrade deposit/builder documentation",
+    "server admission, Origin/CORS/cookie/build policy",
+    "master-signed open/close acceptance",
+    "complete ABI and all conditional/margin paths",
+    "full authorization for direct withdrawal/revocation/maintenance",
+    "bridge quotes, end-to-end funds movement and refunds",
+    "builder eligibility/validation/attribution/fees",
+    "after-window upgrade state",
+    "independent historical settlement reproduction"
+  ]
+}

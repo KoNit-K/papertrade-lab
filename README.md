@@ -21,6 +21,7 @@
   <a href="#paper-mint-curve">Mint curve</a> ·
   <a href="#trading-costs">Fees</a> ·
   <a href="#paper-the-dividend-token">PAPER</a> ·
+  <a href="#independent-clients-and-api-access">API access</a> ·
   <a href="#explore-the-research">Explore the research</a> ·
   <a href="docs/sources.md">Sources</a>
 </p>
@@ -149,6 +150,22 @@ Eight checked distributions across two separate windows match fee funding; none 
 > A voluntary close before the trigger can return remaining equity; liquidation consumes the full margin.
 
 Higher leverage makes the buffer a larger fraction of margin. See [formula and rounding](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold).
+
+## Independent clients and API access
+
+🛠️ A replacement client can use the recovered intent interface through the official
+relayer. Opens and closes remain gated by the configured BatchExecutor and relayer
+allowlist; broadcasting your own transaction does not grant those roles.
+
+| Topic | Research entry |
+|---|---|
+| API, signatures and confirmation | [Independent client guide](docs/independent-client-guide.md): exact message types, margin units, nonce groups and uncertain acknowledgements |
+| Position management | [Order capabilities](docs/research-notes/012-independent-clients-orders-and-bridges.md#position-management-and-order-types): selected whole-position closes, separate added positions, and unestablished partial-close/conditional/margin-update paths |
+| Deposits and withdrawals | [Funding routes](docs/research-notes/012-independent-clients-orders-and-bridges.md#funding-providers-and-actual-client-branches): Circle-related forwarding, Across from Robinhood, internal Core/EVM transfers and remaining completion/refund gaps |
+
+Findings are bound to build `38f2c40c4112` and the recorded 2026-10-22 observations.
+New REA traces and offline checks support the guide; no production order or bridge
+transfer was executed. Builder-code integration remains unverified.
 
 ## Explore the research
 

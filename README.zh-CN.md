@@ -21,6 +21,7 @@
   <a href="#paper-铸币曲线">铸币曲线</a> ·
   <a href="#交易成本">交易费用</a> ·
   <a href="#paper分红代币怎样运作">PAPER 分红</a> ·
+  <a href="#独立客户端与-api-接入">API 接入</a> ·
   <a href="#探索研究仓库">仓库导航</a> ·
   <a href="docs/sources.md">来源</a>
 </p>
@@ -148,6 +149,20 @@ flowchart TB
 > 触发前主动平仓可返还剩余权益；触发清算则损失整笔保证金。
 
 杠杆越高，缓冲占保证金的比例越大。具体取整见[公式与计算](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold)。
+
+## 独立客户端与 API 接入
+
+🛠️ 自写客户端已有经官方 relayer 接单的具体接口路线。开平仓仍受配置的
+BatchExecutor 和 relayer 白名单约束；自行广播交易不会获得这些执行权限。
+
+| 主题 | 研究入口 |
+|---|---|
+| API、签名与确认 | [独立客户端指南](docs/independent-client-guide.md)：精确消息类型、保证金单位、nonce 分组及确认未知的处理 |
+| 仓位管理 | [订单能力核对](docs/research-notes/012-independent-clients-orders-and-bridges.md#position-management-and-order-types)：选定仓位全平、另开仓位，以及尚未证实的单仓部分平仓、条件单和旧仓保证金调整入口 |
+| 充值与提款 | [资金路线](docs/research-notes/012-independent-clients-orders-and-bridges.md#funding-providers-and-actual-client-branches)：Circle 相关转发、Robinhood 的 Across 路线、Core/EVM 内部通道及到账/退款缺口 |
+
+结论绑定 build `38f2c40c4112` 和记录中的 2026-10-22 观察。新增 REA 追踪与
+离线检查支持指南；没有执行生产订单或跨链转账。Builder codes 接入仍未验证。
 
 ## 探索研究仓库
 

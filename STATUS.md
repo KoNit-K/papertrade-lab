@@ -1,6 +1,6 @@
 # Current status
 
-Updated: 2026-10-21. **Research preview; M0 evidence tooling.**
+Updated: 2026-10-22. **Research preview; M0 evidence tooling.**
 
 ## P0 scope
 
@@ -46,6 +46,34 @@ chain-999 block-end snapshots (EIP-1967 or explicitly incomplete), bounded publi
 RPC, and reviewed metadata export. This is not arbitrary HAR anonymization,
 a transaction-prestate decoder or independent reproduction. The first bounded live intake is complete, with no eligible settlement established;
 M1–M4 remain unimplemented. No milestone is closed by test counts alone.
+
+## Independent client, orders and funding increment
+
+[The integration guide](docs/independent-client-guide.md) and
+[note 012](docs/research-notes/012-independent-clients-orders-and-bridges.md) recover
+the official intent route, exact open/close encoding and acknowledgement boundaries,
+and cross-check Exchange/BatchExecutor caller gates. The bounded order inspection
+distinguishes selected whole-position closes, separate additional positions and
+unestablished conditional/partial-close/existing-margin-update interfaces.
+Funding consumers identify Circle-related forwarding and an Across Robinhood
+branch, alongside internal HyperCore/HyperEVM routes. Builder codes, bridge
+completion/refunds and production admission remain unverified.
+
+Two new REA 6.7.0 analyses each parsed four selected inputs; two semantic traces
+found four submit callers and two Across-wrapper callers with partial coverage.
+Nine private unsigned encoding/mock tests, six narrow synthetic caller-gate cases,
+and three collector tests passed. These are not signature recovery, complete EVM
+replay, production order acceptance or end-to-end cross-chain verification.
+
+[Metadata](research/cases/009-client-orders-bridges.json) records exact source
+digests, offsets, runtime identities and limits. All 26 successful captures passed
+byte-length/SHA-256 checks. Collection: 20 direct HTTP attempts (17 successful),
+10 RPC (nine successful), two vendor-page opens and three searches; seven prior
+preflight attempts give 29/30 counted HTTP/page attempts. Documentation access was
+stopped after HTTP403. Two asynchronous collector processes briefly overlapped,
+duplicating one ordinal without overwriting successful captures; the raw ledger
+was retained, a serial lock added and its regression tested. No signatures,
+intents, transactions, personal-account queries or bridge quotes were used.
 
 ## Checks for the post-launch increment
 
