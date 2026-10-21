@@ -1,5 +1,11 @@
 # Loss rewards, governance, staking timing and payment capacity
 
+**Later observation (2026-10-22):** the scheduled Exchange, SessionKeyManager and
+Tokenomics targets are installed at reference block 49175395. See the
+[executed-upgrade follow-up](013-market-state-funding-and-upgrade-followup.md#1-the-scheduled-implementations-are-now-installed).
+The implementation identities, pending state and byte ranges below remain dated
+observations; they are not silently carried forward to the new implementations.
+
 Research date: 2026-10-21. Baseline: `8e0ba35`. [Metadata record](../../research/cases/008-economics-governance-research.json).
 This combines retained evidence with new bounded public reads. **Governance status
 is as observed during 13:06–13:14 UTC, not a live publication-time status.**

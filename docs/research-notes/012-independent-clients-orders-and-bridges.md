@@ -1,5 +1,11 @@
 # Independent clients, order capabilities and funding routes
 
+**Later observation (2026-10-22):** the scheduled Exchange, SessionKeyManager and
+Tokenomics targets are installed at reference block 49175395. See the
+[executed-upgrade follow-up](013-market-state-funding-and-upgrade-followup.md#1-the-scheduled-implementations-are-now-installed).
+The implementation identities, pending state and byte ranges below remain dated
+observations; they are not silently carried forward to the new implementations.
+
 Date: 2026-10-22, Asia/Singapore. Baseline: `2759cc3`.
 [Developer guide](../independent-client-guide.md) ·
 [Reviewed source/REA metadata](../../research/cases/009-client-orders-bridges.json).

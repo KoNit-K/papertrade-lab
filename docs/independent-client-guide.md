@@ -1,6 +1,10 @@
 # Independent client integration guide
 
-Observed: 2026-10-22, Asia/Singapore. Frontend build: `38f2c40c4112`.
+Initial recovery: 2026-10-22, Asia/Singapore, build `38f2c40c4112`.
+The [upgrade/data-flow follow-up](research-notes/013-market-state-funding-and-upgrade-followup.md)
+checks build `2b8e2c45a33e` and confirms installation of the scheduled implementations.
+Exact signing details below retain their original recovery scope unless explicitly
+rechecked; a new frontend build does not certify backend compatibility.
 This is a recovered compatibility guide, not an official SDK or a tested production
 order client. [Research, permission checks and funding routes](research-notes/012-independent-clients-orders-and-bridges.md)
 · [Versioned source coordinates](../research/cases/009-client-orders-bridges.json).
@@ -63,6 +67,9 @@ They are recovered client interfaces, not a public availability/SLA commitment.
 | Purpose | Method / path | Captured transport and verification |
 |---|---|---|
 | Protocol aggregate | `GET /query/protocol/summary` | Prior anonymous public read succeeded; not requested again in this increment. |
+| Quote / candle updates | Hyperliquid `wss://api.hyperliquid.xyz/ws`, `bbo` / `candle` | Current consumer and instrument scaling recovered statically; not connected in this follow-up. |
+| Fine price history | `GET /query/markets/{instrumentId}/price-history` with time/interval parameters | Current consumer validates series, alignment, gaps and coverage; not called. |
+| Candle history | Hyperliquid `POST /info`, read type `candleSnapshot` | Separate historical OHLC source; located statically, not called. |
 | Public trading rules | `wss://stream.papertrade.xyz/connection/websocket`, channel `trading:current` | Static subscription path recovered; no new stream connection in this increment. |
 | Session registration | `POST /intents`, action `registerSessionKey` | Separate wrapper: JSON, `credentials: include`, 5-second timeout; no build header in this wrapper. Not called. |
 | Open / close | `POST /intents`, action `openPosition` / `closePositions` | JSON, `Accept`, `X-Papertrade-Build`, `credentials: same-origin`, 35-second timeout. Not called. |
@@ -74,6 +81,12 @@ No API-key injection was found in the captured submission wrapper. Server-side
 cookie, Origin/CORS, build admission, rate limits and long-term compatibility
 remain untested. `credentials: same-origin` describes browser behavior; it does
 not define how a different-origin client is admitted.
+
+Quotes, rules and account state have separate clocks/revisions. Use deployment
+instrument identity and scale to join them; recover history and a full account
+snapshot after the relevant stream reconnects. A quote timestamp, history revision
+or HTTP acknowledgement is not an execution confirmation. See the
+[data-plane and reconciliation details](research-notes/013-market-state-funding-and-upgrade-followup.md#2-assemble-three-independent-data-planes).
 
 ## 4. Exact open/close message contract
 

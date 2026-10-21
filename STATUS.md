@@ -33,7 +33,7 @@ See the [publication review](docs/publication-review.md) for actual P0 checks an
 
 ## Next three tasks
 
-1. Compare the scheduled implementation targets and initialization actions with the acquired versions; distinguish proposed behavior from actual execution and revalidate affected conclusions if the upgrades execute. See [note 011](docs/research-notes/011-loss-governance-staking-and-payments.md).
+1. Finish semantic revalidation of the installed Exchange/SessionKeyManager/Tokenomics targets and reconstruct the exact upgrade execution/initialization effects. Installation and Timelock completion are now confirmed at reference block 49175395; see [note 013](docs/research-notes/013-market-state-funding-and-upgrade-followup.md).
 2. Measure the real distribution-timing effect in a newly registered public event window: stake/unstake order, shares at allocation and already accrued versus undistributed rewards. One real unstake is now checked; complete individual historical entitlement remains missing.
 3. Seek actual LP-surplus and active-debt/partial-payment examples, then reconcile available backing and obligations. Repetition of zero-debt snapshots cannot establish payment capacity.
 
@@ -74,6 +74,39 @@ stopped after HTTP403. Two asynchronous collector processes briefly overlapped,
 duplicating one ordinal without overwriting successful captures; the raw ledger
 was retained, a serial lock added and its regression tested. No signatures,
 intents, transactions, personal-account queries or bridge quotes were used.
+
+## Market, funding and executed-upgrade follow-up
+
+[Note 013](docs/research-notes/013-market-state-funding-and-upgrade-followup.md)
+and [metadata](research/cases/010-market-funding-upgrade.json) bind the next
+observations to build `2b8e2c45a33e` and chain-999 block 49175395. The scheduled
+Exchange, SessionKeyManager and Tokenomics implementations are installed; the
+retained Timelock operation slot is the completed sentinel. Exact execution and
+all new implementation semantics remain incomplete.
+
+Current consumers distinguish Hyperliquid quote/candle streams, Papertrade fine
+price history, trading rules and credential-bearing wallet reconciliation. Funding
+analysis identifies the aggregate deposit-credit heuristic, onward renewal via
+`/intents/{id}/onward`, and the extra Circle completion boundary. Vendor sources
+clarify forwarding domains/fees and Across authentication, embedded actions and
+refund processing; the exact legacy Robinhood migration remains untested.
+New Session bytes expose a protocol fee-registry dependency and no automatic
+master-signature bypass of the inspected session-record checks. Builder fee base,
+payout and registration policy remain unestablished.
+
+Actual checks: the private empty-RPC classification regression failed before the
+fix, then three collector tests passed (five envelope subcases); independent
+review checked budget accounting; two new-window wrapper boundary checks passed.
+Fourteen narrow synthetic code-path cases
+passed with mocked recovery/external calls. Six small offline EVM interface
+inspections succeeded using existing REA 6.7.0 and its retained image; no install
+or whole-app retry. Thirty-seven successful captures passed digest/length checks,
+with 51 source locators recorded. Collection used 20 direct HTTP attempts, 21 RPC,
+seven vendor-page opens and six search queries, including four direct transport
+failures and one page-reader error. Prior ledgers and results remain intact.
+No signing, intents, transactions, account reads, live feed, bridge quote or
+end-to-end bridge/production execution occurred. The READMEs retain their concise
+business entry format; version/evidence detail stays in the guide and notes.
 
 ## Checks for the post-launch increment
 

@@ -1,0 +1,2958 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "CASE-010-MARKET-FUNDING-UPGRADE",
+  "date": "2026-10-22",
+  "baseline_commit": "18f683aa33f5866b4fa323eaf5c7c5e59f81cd0b",
+  "chain_id": 999,
+  "scope": "Bounded public contract code/storage and linked frontend sources; controlled offline analysis; vendor documentation. No personal-account reads, signing or submission.",
+  "protocol_reproduced": false,
+  "signature_recovery_verified": false,
+  "bridge_completion_verified": false,
+  "raw_sources_published": false,
+  "reference": {
+    "number": "0x2ee5b63",
+    "hash": "0x9230dbdb9eae0f5e4e46a78f10ec1681b1c7979d74dd67aff524bbed13f77941",
+    "timestamp": "0x6ad94cfa"
+  },
+  "reference_number": 49175395,
+  "reference_header_repeated_identically": true,
+  "state_binding": "Explicit reference block number, single provider; no exact upgrade transaction or prestate reconstruction.",
+  "frontend_build": "2b8e2c45a33e",
+  "collection": {
+    "direct": {
+      "http": {
+        "attempts": 20,
+        "successful": 17
+      },
+      "rpc": {
+        "attempts": 21,
+        "successful": 20
+      }
+    },
+    "successful_capture_checks": 37,
+    "minimum_start_interval_seconds": 1.0000979900360107,
+    "vendor_page_opens": 7,
+    "vendor_successful_opens": 6,
+    "search_queries": 6,
+    "http_page_total": 27,
+    "limits": {
+      "http_page_total": 30,
+      "direct_http": 21,
+      "rpc": 30,
+      "search": 8
+    },
+    "prior_ledgers_unchanged": true,
+    "blocked_hosts": [
+      "docs.papertrade.xyz"
+    ],
+    "failed_direct_attempts": [
+      {
+        "ordinal": 1,
+        "kind": "http",
+        "label": "entry",
+        "status": "error",
+        "error_type": "URLError"
+      },
+      {
+        "ordinal": 4,
+        "kind": "http",
+        "label": "build",
+        "status": "error",
+        "error_type": "URLError"
+      },
+      {
+        "ordinal": 19,
+        "kind": "rpc",
+        "label": "exchange-runtime",
+        "status": "error",
+        "error_type": "URLError"
+      },
+      {
+        "ordinal": 29,
+        "kind": "http",
+        "label": "deposit",
+        "status": "error",
+        "error_type": "RemoteDisconnected"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "ordinal": 2,
+      "kind": "http",
+      "label": "entry",
+      "url": "https://exchange.papertrade.xyz/",
+      "started_at": "2026-10-21T23:38:33.140893+00:00",
+      "finished_at": "2026-10-21T23:38:33.502803+00:00",
+      "bytes": 9817,
+      "sha256": "aa6805049a896940b8d75340926d8032f8d88b88d7cd0a775b7acecdbb159462",
+      "locators": []
+    },
+    {
+      "ordinal": 3,
+      "kind": "rpc",
+      "label": "header",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:38:34.141284+00:00",
+      "finished_at": "2026-10-21T23:38:34.551477+00:00",
+      "bytes": 1722,
+      "sha256": "fb5f643f430a8e1c37dbaf1953cc42f914fe71be49cd14a73b616dbe5f2b7720",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "latest",
+          false
+        ]
+      },
+      "result": {
+        "number": "0x2ee5b63",
+        "hash": "0x9230dbdb9eae0f5e4e46a78f10ec1681b1c7979d74dd67aff524bbed13f77941",
+        "timestamp": "0x6ad94cfa"
+      }
+    },
+    {
+      "ordinal": 5,
+      "kind": "rpc",
+      "label": "exchange-implementation",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:39:13.317560+00:00",
+      "finished_at": "2026-10-21T23:39:13.663872+00:00",
+      "bytes": 102,
+      "sha256": "65d7e1a3c43d2d0794c5e4484cbf03e681da04ff9ba24cc9d8015c6bafaf7aab",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getStorageAt",
+        "params": [
+          "0x6cd5661646289fb6e65ea5c032310fded797d0a2",
+          "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+          "0x2ee5b63"
+        ]
+      },
+      "result": "0x0000000000000000000000000a44049dbbb6b4762a6ba37aa0f7548c0b4a3723"
+    },
+    {
+      "ordinal": 6,
+      "kind": "rpc",
+      "label": "session-implementation",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:39:14.322680+00:00",
+      "finished_at": "2026-10-21T23:39:14.683523+00:00",
+      "bytes": 102,
+      "sha256": "0eac7f0007c9a39c4df1a956342d2e61860296d337b3d6aa018ada1c3dbc8383",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getStorageAt",
+        "params": [
+          "0x8326eb8896e358717f10502ec73ce8d28e37b108",
+          "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+          "0x2ee5b63"
+        ]
+      },
+      "result": "0x00000000000000000000000004b5ea4cdd8d6de4bd6e0ef3865266947f043946"
+    },
+    {
+      "ordinal": 7,
+      "kind": "rpc",
+      "label": "tokenomics-implementation",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:39:15.327758+00:00",
+      "finished_at": "2026-10-21T23:39:15.696649+00:00",
+      "bytes": 102,
+      "sha256": "d9b915110a917d14c842d564c0f817d5e227c6061da20ea928428604a9b62c88",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getStorageAt",
+        "params": [
+          "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+          "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+          "0x2ee5b63"
+        ]
+      },
+      "result": "0x0000000000000000000000007c0a72a788cff4d68cfe9586aecb98e21eb58a03"
+    },
+    {
+      "ordinal": 8,
+      "kind": "rpc",
+      "label": "batch-implementation",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:39:16.332853+00:00",
+      "finished_at": "2026-10-21T23:39:16.644385+00:00",
+      "bytes": 102,
+      "sha256": "7ac4067c2b08374d3344c00bc092731082bcbe3b073b19b30db3cc495166a308",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getStorageAt",
+        "params": [
+          "0x233ff29b239abc1d7748605da9b205c3e008626e",
+          "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+          "0x2ee5b63"
+        ]
+      },
+      "result": "0x000000000000000000000000e0bc9cc7b067060aafccbaa3e250700c9cdd7262"
+    },
+    {
+      "ordinal": 9,
+      "kind": "rpc",
+      "label": "upgrade-operation",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:39:17.332951+00:00",
+      "finished_at": "2026-10-21T23:39:17.693816+00:00",
+      "bytes": 102,
+      "sha256": "db4796fef52c36f78989daa650510ae045136f8ce6ff5ea321cd80081e7ed2af",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getStorageAt",
+        "params": [
+          "0xb915fa41e824d6aa31bb833ee81220c0f2c8ea0f",
+          "0xbc7c059d74b21b5796f5267c660e05824ea6dbf40ca8eb74935a2ead78061f0c",
+          "0x2ee5b63"
+        ]
+      },
+      "result": "0x0000000000000000000000000000000000000000000000000000000000000001"
+    },
+    {
+      "ordinal": 10,
+      "kind": "http",
+      "label": "deployment",
+      "url": "https://exchange.papertrade.xyz/assets/deployment-DAcrFcif.js",
+      "started_at": "2026-10-21T23:39:18.335818+00:00",
+      "finished_at": "2026-10-21T23:39:18.684403+00:00",
+      "bytes": 2157,
+      "sha256": "2f412ab34c15071d5108853b2463482c602897a6dc194a880fff8b90ac8c8da2",
+      "locators": [
+        {
+          "needle": "exchangeImplementation:",
+          "positions": [
+            {
+              "codepoint": 614,
+              "utf8_byte": 614
+            }
+          ]
+        },
+        {
+          "needle": "exchangeNext:",
+          "positions": [
+            {
+              "codepoint": 682,
+              "utf8_byte": 682
+            }
+          ]
+        },
+        {
+          "needle": "depositProxyFactory:",
+          "positions": [
+            {
+              "codepoint": 1067,
+              "utf8_byte": 1067
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 11,
+      "kind": "http",
+      "label": "hooks",
+      "url": "https://exchange.papertrade.xyz/assets/hooks-CcThqb8N.js",
+      "started_at": "2026-10-21T23:39:19.340442+00:00",
+      "finished_at": "2026-10-21T23:39:19.745571+00:00",
+      "bytes": 69503,
+      "sha256": "b341faf903efcad343d9a3d44c4abc3b3f88a321dc1908083caf895d590a1d7c",
+      "locators": [
+        {
+          "needle": "withCredentials:!0",
+          "positions": [
+            {
+              "codepoint": 42440,
+              "utf8_byte": 42440
+            }
+          ]
+        },
+        {
+          "needle": "baseAccountRevision",
+          "positions": [
+            {
+              "codepoint": 54053,
+              "utf8_byte": 54053
+            },
+            {
+              "codepoint": 54561,
+              "utf8_byte": 54561
+            }
+          ]
+        },
+        {
+          "needle": "function Vr(",
+          "positions": [
+            {
+              "codepoint": 59381,
+              "utf8_byte": 59381
+            }
+          ]
+        },
+        {
+          "needle": "intakeControls:",
+          "positions": [
+            {
+              "codepoint": 57718,
+              "utf8_byte": 57718
+            }
+          ]
+        },
+        {
+          "needle": "out_of_sync",
+          "positions": [
+            {
+              "codepoint": 45615,
+              "utf8_byte": 45615
+            },
+            {
+              "codepoint": 54098,
+              "utf8_byte": 54098
+            },
+            {
+              "codepoint": 54879,
+              "utf8_byte": 54879
+            }
+          ]
+        },
+        {
+          "needle": "catchUpTimeoutMs",
+          "positions": [
+            {
+              "codepoint": 44879,
+              "utf8_byte": 44879
+            }
+          ]
+        },
+        {
+          "needle": "walletRevision",
+          "positions": [
+            {
+              "codepoint": 50352,
+              "utf8_byte": 50352
+            },
+            {
+              "codepoint": 51455,
+              "utf8_byte": 51455
+            },
+            {
+              "codepoint": 51641,
+              "utf8_byte": 51641
+            },
+            {
+              "codepoint": 51658,
+              "utf8_byte": 51658
+            },
+            {
+              "codepoint": 51994,
+              "utf8_byte": 51994
+            },
+            {
+              "codepoint": 62658,
+              "utf8_byte": 62658
+            },
+            {
+              "codepoint": 62691,
+              "utf8_byte": 62691
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 12,
+      "kind": "http",
+      "label": "app",
+      "url": "https://exchange.papertrade.xyz/assets/app-LLsjk1IE.js",
+      "started_at": "2026-10-21T23:39:20.341339+00:00",
+      "finished_at": "2026-10-21T23:39:20.929063+00:00",
+      "bytes": 584563,
+      "sha256": "475d3ab749e0433de799c137cb6f141ec992ba5c4a1f274a960882532f50fc6d",
+      "locators": [
+        {
+          "needle": "/price-history?",
+          "positions": [
+            {
+              "codepoint": 411377,
+              "utf8_byte": 411407
+            }
+          ]
+        },
+        {
+          "needle": "candleSnapshot",
+          "positions": [
+            {
+              "codepoint": 412108,
+              "utf8_byte": 412138
+            }
+          ]
+        },
+        {
+          "needle": "bbo",
+          "positions": [
+            {
+              "codepoint": 455398,
+              "utf8_byte": 455432
+            },
+            {
+              "codepoint": 455518,
+              "utf8_byte": 455552
+            }
+          ]
+        },
+        {
+          "needle": "trading:current",
+          "positions": [
+            {
+              "codepoint": 540991,
+              "utf8_byte": 541025
+            }
+          ]
+        },
+        {
+          "needle": "async withdraw(",
+          "positions": [
+            {
+              "codepoint": 572703,
+              "utf8_byte": 572754
+            }
+          ]
+        },
+        {
+          "needle": "async renewOnward(",
+          "positions": [
+            {
+              "codepoint": 573973,
+              "utf8_byte": 574024
+            }
+          ]
+        },
+        {
+          "needle": "/onward",
+          "positions": [
+            {
+              "codepoint": 574285,
+              "utf8_byte": 574336
+            }
+          ]
+        },
+        {
+          "needle": "maximumFee:",
+          "positions": [
+            {
+              "codepoint": 571065,
+              "utf8_byte": 571116
+            }
+          ]
+        },
+        {
+          "needle": "feeAddress:",
+          "positions": [
+            {
+              "codepoint": 549846,
+              "utf8_byte": 549880
+            }
+          ]
+        },
+        {
+          "needle": "X-Papertrade-Build",
+          "positions": [
+            {
+              "codepoint": 554182,
+              "utf8_byte": 554216
+            }
+          ]
+        },
+        {
+          "needle": "public:trades",
+          "positions": [
+            {
+              "codepoint": 539693,
+              "utf8_byte": 539727
+            }
+          ]
+        }
+      ],
+      "optional_needles_absent": [
+        "baseAccountRevision"
+      ]
+    },
+    {
+      "ordinal": 13,
+      "kind": "http",
+      "label": "build",
+      "url": "https://exchange.papertrade.xyz/assets/build-4X7P2wPA.js",
+      "started_at": "2026-10-21T23:39:21.344806+00:00",
+      "finished_at": "2026-10-21T23:39:21.627419+00:00",
+      "bytes": 122,
+      "sha256": "fddc605c7a4246831116467d8af349a2936cfcd2cd5284f2675d806c4f5b7a12",
+      "locators": []
+    },
+    {
+      "ordinal": 14,
+      "kind": "http",
+      "label": "chart-history",
+      "url": "https://exchange.papertrade.xyz/assets/chart-history-BsyjblFC.js",
+      "started_at": "2026-10-21T23:39:22.348738+00:00",
+      "finished_at": "2026-10-21T23:39:22.618684+00:00",
+      "bytes": 1247,
+      "sha256": "593ee5dda201caf9364082512849c9f6b3144b2762f1ec0835dbf8b0f290b5ca",
+      "locators": [
+        {
+          "needle": "retentionMs",
+          "positions": [
+            {
+              "codepoint": 581,
+              "utf8_byte": 581
+            },
+            {
+              "codepoint": 625,
+              "utf8_byte": 625
+            },
+            {
+              "codepoint": 673,
+              "utf8_byte": 673
+            },
+            {
+              "codepoint": 749,
+              "utf8_byte": 749
+            }
+          ]
+        },
+        {
+          "needle": "coverage.complete",
+          "positions": [
+            {
+              "codepoint": 22,
+              "utf8_byte": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 15,
+      "kind": "http",
+      "label": "trading-state",
+      "url": "https://exchange.papertrade.xyz/assets/trading-state-CbSDF5ke.js",
+      "started_at": "2026-10-21T23:39:23.350102+00:00",
+      "finished_at": "2026-10-21T23:39:23.626416+00:00",
+      "bytes": 1244,
+      "sha256": "ccc7c35229b297b0dd0cc2011ff4050e828724bda84c1efa2373bced197ae305",
+      "locators": [
+        {
+          "needle": "Live trading configuration does not match this deployment.",
+          "positions": [
+            {
+              "codepoint": 632,
+              "utf8_byte": 632
+            }
+          ]
+        },
+        {
+          "needle": "a.newer",
+          "positions": [
+            {
+              "codepoint": 700,
+              "utf8_byte": 700
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 16,
+      "kind": "http",
+      "label": "query-api-client",
+      "url": "https://exchange.papertrade.xyz/assets/query-api-client-DGxZQjmt.js",
+      "started_at": "2026-10-21T23:39:24.355189+00:00",
+      "finished_at": "2026-10-21T23:39:24.630611+00:00",
+      "bytes": 917,
+      "sha256": "82c86b9300bda6cda6d8beb1d512b315afa4a479288ed588a28c38dca2cb228b",
+      "locators": [
+        {
+          "needle": "Retry-After",
+          "positions": [
+            {
+              "codepoint": 840,
+              "utf8_byte": 840
+            }
+          ]
+        },
+        {
+          "needle": "Sign in to load this page.",
+          "positions": [
+            {
+              "codepoint": 84,
+              "utf8_byte": 84
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 17,
+      "kind": "http",
+      "label": "http",
+      "url": "https://exchange.papertrade.xyz/assets/http-DzwWne3j.js",
+      "started_at": "2026-10-21T23:39:25.360259+00:00",
+      "finished_at": "2026-10-21T23:39:25.672163+00:00",
+      "bytes": 1407,
+      "sha256": "acd84cc84d466b3d587ccd00d3a81ec670fa389e89904cc72bd53ca376ead50f",
+      "locators": [
+        {
+          "needle": "credentials:`same-origin`",
+          "positions": [
+            {
+              "codepoint": 1135,
+              "utf8_byte": 1135
+            }
+          ]
+        },
+        {
+          "needle": "redirect:`error`",
+          "positions": [
+            {
+              "codepoint": 1161,
+              "utf8_byte": 1161
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 18,
+      "kind": "http",
+      "label": "wire",
+      "url": "https://exchange.papertrade.xyz/assets/wire-DrIQETwf.js",
+      "started_at": "2026-10-21T23:39:26.365343+00:00",
+      "finished_at": "2026-10-21T23:39:26.746880+00:00",
+      "bytes": 400,
+      "sha256": "52fb71cc8b47c2c118b56fff2a91780e57c07e4cedab1233c92b3cd7f7c9406c",
+      "locators": []
+    },
+    {
+      "ordinal": 20,
+      "kind": "rpc",
+      "label": "exchange-runtime",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:40:24.318374+00:00",
+      "finished_at": "2026-10-21T23:40:24.723980+00:00",
+      "bytes": 47956,
+      "sha256": "99fa16e9b2a4f6d70da05dcaa93548581752a964c93a44786d8774eb7cabc228",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getCode",
+        "params": [
+          "0x0a44049dbbb6b4762a6ba37aa0f7548c0b4a3723",
+          "0x2ee5b63"
+        ]
+      },
+      "decoded_runtime_bytes": 23959,
+      "decoded_runtime_sha256": "fc7374f3969381160732fe98c5e3145e00c3f167f168d61d65bb4972e9a6b268"
+    },
+    {
+      "ordinal": 21,
+      "kind": "rpc",
+      "label": "session-runtime",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:40:25.320268+00:00",
+      "finished_at": "2026-10-21T23:40:25.703691+00:00",
+      "bytes": 9080,
+      "sha256": "73d75ab6a6f0fd9057ddb4c044cfaa31722d2ecdacde25394e8f56ad6fbf67d6",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getCode",
+        "params": [
+          "0x04b5ea4cdd8d6de4bd6e0ef3865266947f043946",
+          "0x2ee5b63"
+        ]
+      },
+      "decoded_runtime_bytes": 4521,
+      "decoded_runtime_sha256": "7df05c33597c04820a314fae015aab01b5566aff53e9bded8446962cfd4ad2c9"
+    },
+    {
+      "ordinal": 22,
+      "kind": "rpc",
+      "label": "factory-runtime",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:40:26.325373+00:00",
+      "finished_at": "2026-10-21T23:40:26.752261+00:00",
+      "bytes": 1888,
+      "sha256": "db0bf2e92f9ece86b56f0f1961e68092396e9bb28d834255ca370e64a5175999",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getCode",
+        "params": [
+          "0x1629b7d46bef6e13ff754174fc9f32dea309b38f",
+          "0x2ee5b63"
+        ]
+      },
+      "decoded_runtime_bytes": 925,
+      "decoded_runtime_sha256": "ee856dd4cb5ef8e82c77c3bd05afc71600cc41b7ed41bb609c148dc75714c17f"
+    },
+    {
+      "ordinal": 23,
+      "kind": "rpc",
+      "label": "deposit-wallet-runtime",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:40:27.330462+00:00",
+      "finished_at": "2026-10-21T23:40:27.649490+00:00",
+      "bytes": 4388,
+      "sha256": "a1e9e05e8479c0043b98b807579c541979f48a22235bc5fc9e652a78fa712a6c",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getCode",
+        "params": [
+          "0x6b9e773128f453f5c2c60935ee2de2cbc5390a24",
+          "0x2ee5b63"
+        ]
+      },
+      "decoded_runtime_bytes": 2175,
+      "decoded_runtime_sha256": "de90f6f079e69f34453c490764eb27d059a8021782555d62cf10a1bd10518bc8"
+    },
+    {
+      "ordinal": 24,
+      "kind": "rpc",
+      "label": "executor-slot",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:40:28.335580+00:00",
+      "finished_at": "2026-10-21T23:40:28.673636+00:00",
+      "bytes": 102,
+      "sha256": "910597433162ca76257b01b62c44275daaa6e9f748a1e8ce5d6a8c1d9b041a15",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getStorageAt",
+        "params": [
+          "0x6cd5661646289fb6e65ea5c032310fded797d0a2",
+          "0x58",
+          "0x2ee5b63"
+        ]
+      },
+      "result": "0x000000000000000000000000233ff29b239abc1d7748605da9b205c3e008626e"
+    },
+    {
+      "ordinal": 25,
+      "kind": "http",
+      "label": "panel",
+      "url": "https://exchange.papertrade.xyz/assets/panel-MVKfgRdU.js",
+      "started_at": "2026-10-21T23:40:37.889206+00:00",
+      "finished_at": "2026-10-21T23:40:38.287550+00:00",
+      "bytes": 3996,
+      "sha256": "e9c55c95e8dff859e363e93f28a7dd554aec1e457583f2aa03a0d9d865170f38",
+      "locators": []
+    },
+    {
+      "ordinal": 26,
+      "kind": "http",
+      "label": "client",
+      "url": "https://exchange.papertrade.xyz/assets/client-6rwzf9Ah.js",
+      "started_at": "2026-10-21T23:40:38.889327+00:00",
+      "finished_at": "2026-10-21T23:40:39.336303+00:00",
+      "bytes": 11166,
+      "sha256": "0ae46a24e5fffce097698929b95187f8219f98fcab16fee276d6622503224e96",
+      "locators": [
+        {
+          "needle": "/funding/deposits/check",
+          "positions": [
+            {
+              "codepoint": 10528,
+              "utf8_byte": 10528
+            }
+          ]
+        },
+        {
+          "needle": "/funding",
+          "positions": [
+            {
+              "codepoint": 324,
+              "utf8_byte": 324
+            },
+            {
+              "codepoint": 9442,
+              "utf8_byte": 9442
+            },
+            {
+              "codepoint": 10528,
+              "utf8_byte": 10528
+            }
+          ]
+        },
+        {
+          "needle": "onward:",
+          "positions": [
+            {
+              "codepoint": 3604,
+              "utf8_byte": 3604
+            }
+          ]
+        },
+        {
+          "needle": "Retry-After",
+          "positions": [
+            {
+              "codepoint": 10886,
+              "utf8_byte": 10886
+            }
+          ]
+        }
+      ],
+      "optional_needles_absent": [
+        "withCredentials"
+      ]
+    },
+    {
+      "ordinal": 27,
+      "kind": "http",
+      "label": "focus",
+      "url": "https://exchange.papertrade.xyz/assets/focus-B4j7CxoU.js",
+      "started_at": "2026-10-21T23:40:39.894435+00:00",
+      "finished_at": "2026-10-21T23:40:40.254752+00:00",
+      "bytes": 2936,
+      "sha256": "0c3d787335de6e70cb87a96dc3c61403e5cf44cf941594de58c00f00fae7893c",
+      "locators": [
+        {
+          "needle": "sourceTimeMs:",
+          "positions": [
+            {
+              "codepoint": 1356,
+              "utf8_byte": 1356
+            }
+          ]
+        },
+        {
+          "needle": "gapBefore:",
+          "positions": [
+            {
+              "codepoint": 1430,
+              "utf8_byte": 1430
+            }
+          ]
+        },
+        {
+          "needle": "midpointRaw:",
+          "positions": [
+            {
+              "codepoint": 1311,
+              "utf8_byte": 1311
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 28,
+      "kind": "http",
+      "label": "funding-sheet",
+      "url": "https://exchange.papertrade.xyz/assets/FundingSheet-Bake0-tm.js",
+      "started_at": "2026-10-21T23:41:23.144037+00:00",
+      "finished_at": "2026-10-21T23:41:23.565727+00:00",
+      "bytes": 54467,
+      "sha256": "6ca4f29620dbef506e30bda0da486d02ba06b7a53cb21ed54ada0b7e34b0811e",
+      "locators": [
+        {
+          "needle": "depositedBefore",
+          "positions": [
+            {
+              "codepoint": 16090,
+              "utf8_byte": 16090
+            },
+            {
+              "codepoint": 41357,
+              "utf8_byte": 41406
+            }
+          ]
+        },
+        {
+          "needle": "lifetime.depositedRaw",
+          "positions": [
+            {
+              "codepoint": 14391,
+              "utf8_byte": 14391
+            },
+            {
+              "codepoint": 41291,
+              "utf8_byte": 41340
+            }
+          ]
+        },
+        {
+          "needle": "needs_signature",
+          "positions": [
+            {
+              "codepoint": 47301,
+              "utf8_byte": 47350
+            },
+            {
+              "codepoint": 53851,
+              "utf8_byte": 53902
+            }
+          ]
+        },
+        {
+          "needle": "renewOnward",
+          "positions": [
+            {
+              "codepoint": 17203,
+              "utf8_byte": 17203
+            }
+          ]
+        },
+        {
+          "needle": "calculateCrossChainWithdrawalFee",
+          "positions": [
+            {
+              "codepoint": 6525,
+              "utf8_byte": 6525
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 30,
+      "kind": "rpc",
+      "label": "factory-implementation",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:42:22.293857+00:00",
+      "finished_at": "2026-10-21T23:42:22.833008+00:00",
+      "bytes": 102,
+      "sha256": "378c03b79a634544b500827041c510f40a738effd029e4fec6944424513879e2",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getStorageAt",
+        "params": [
+          "0x1629b7d46bef6e13ff754174fc9f32dea309b38f",
+          "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+          "0x2ee5b63"
+        ]
+      },
+      "result": "0x0000000000000000000000008f22a73a23a2de0dbfdf6729f4d8c07dbdc69cf0"
+    },
+    {
+      "ordinal": 31,
+      "kind": "rpc",
+      "label": "deposit-wallet-implementation",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:42:23.295654+00:00",
+      "finished_at": "2026-10-21T23:42:23.758916+00:00",
+      "bytes": 102,
+      "sha256": "8324c587182b968b6ef6d2783c5808b52685c989048b4fa692000a223906d1b4",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getStorageAt",
+        "params": [
+          "0x6b9e773128f453f5c2c60935ee2de2cbc5390a24",
+          "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+          "0x2ee5b63"
+        ]
+      },
+      "result": "0x0000000000000000000000007537af00779cc053a696e47ebd451b5bc4790da3"
+    },
+    {
+      "ordinal": 32,
+      "kind": "http",
+      "label": "deposit",
+      "url": "https://exchange.papertrade.xyz/assets/deposit-BKFZXORl.js",
+      "started_at": "2026-10-21T23:42:24.300694+00:00",
+      "finished_at": "2026-10-21T23:42:24.945767+00:00",
+      "bytes": 95828,
+      "sha256": "36dc3202b2cda5ae6b0e787b09550ef36d974af1925cd7369e0cf0c02c6f3910",
+      "locators": [
+        {
+          "needle": "computeProxyAddress",
+          "positions": [
+            {
+              "codepoint": 91066,
+              "utf8_byte": 91066
+            },
+            {
+              "codepoint": 91223,
+              "utf8_byte": 91223
+            }
+          ]
+        },
+        {
+          "needle": "async function _c(",
+          "positions": [
+            {
+              "codepoint": 94307,
+              "utf8_byte": 94307
+            }
+          ]
+        },
+        {
+          "needle": "/suggested-fees",
+          "positions": [
+            {
+              "codepoint": 87534,
+              "utf8_byte": 87534
+            }
+          ]
+        },
+        {
+          "needle": "forwardTxHash",
+          "positions": [
+            {
+              "codepoint": 89981,
+              "utf8_byte": 89981
+            },
+            {
+              "codepoint": 90401,
+              "utf8_byte": 90401
+            },
+            {
+              "codepoint": 90418,
+              "utf8_byte": 90418
+            },
+            {
+              "codepoint": 90517,
+              "utf8_byte": 90517
+            }
+          ]
+        },
+        {
+          "needle": "depositedBefore",
+          "positions": [
+            {
+              "codepoint": 94614,
+              "utf8_byte": 94614
+            },
+            {
+              "codepoint": 95096,
+              "utf8_byte": 95096
+            },
+            {
+              "codepoint": 95121,
+              "utf8_byte": 95121
+            }
+          ]
+        },
+        {
+          "needle": "refunded",
+          "positions": [
+            {
+              "codepoint": 88608,
+              "utf8_byte": 88608
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 33,
+      "kind": "rpc",
+      "label": "factory-logic",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:42:51.565209+00:00",
+      "finished_at": "2026-10-21T23:42:51.982986+00:00",
+      "bytes": 7872,
+      "sha256": "ddf766026a7d47e30f1a6f5cb254094592bf76fb100b3c55e9fc4e3af6dc0bca",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getCode",
+        "params": [
+          "0x8f22a73a23a2de0dbfdf6729f4d8c07dbdc69cf0",
+          "0x2ee5b63"
+        ]
+      },
+      "decoded_runtime_bytes": 3917,
+      "decoded_runtime_sha256": "808c1f14f7d7811b32fedb672fcfa0b5095f96faa20ec8413556875b4ace9efd"
+    },
+    {
+      "ordinal": 34,
+      "kind": "rpc",
+      "label": "deposit-wallet-logic",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:42:52.565784+00:00",
+      "finished_at": "2026-10-21T23:42:53.122048+00:00",
+      "bytes": 35910,
+      "sha256": "f0889d07600b7b811bce695b63633cb4ddc7a4c4ccccf10f27a6c35da06c4b51",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getCode",
+        "params": [
+          "0x7537af00779cc053a696e47ebd451b5bc4790da3",
+          "0x2ee5b63"
+        ]
+      },
+      "decoded_runtime_bytes": 17936,
+      "decoded_runtime_sha256": "bcf040c23787ba3841b251a94a14563a86c6186db930427064e14698c4e27531"
+    },
+    {
+      "ordinal": 35,
+      "kind": "http",
+      "label": "timeline",
+      "url": "https://exchange.papertrade.xyz/assets/timeline-BhBQk2eJ.js",
+      "started_at": "2026-10-21T23:43:17.435578+00:00",
+      "finished_at": "2026-10-21T23:43:17.780917+00:00",
+      "bytes": 4522,
+      "sha256": "f6d3291d3ded7584ae28377fa1890ab29898de5f08f84e6eddcc2ec63bdca9e1",
+      "locators": [
+        {
+          "needle": "l===`settled`&&(!u||!!a?.forwardTxHash)",
+          "positions": [
+            {
+              "codepoint": 3430,
+              "utf8_byte": 3430
+            }
+          ]
+        },
+        {
+          "needle": "Math.min(.8",
+          "positions": [
+            {
+              "codepoint": 4376,
+              "utf8_byte": 4376
+            }
+          ]
+        },
+        {
+          "needle": "expired",
+          "positions": [
+            {
+              "codepoint": 1687,
+              "utf8_byte": 1687
+            }
+          ]
+        },
+        {
+          "needle": "status_refunding",
+          "positions": [
+            {
+              "codepoint": 1959,
+              "utf8_byte": 1959
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ordinal": 36,
+      "kind": "http",
+      "label": "trading-network",
+      "url": "https://exchange.papertrade.xyz/assets/useTradingNetwork-VfVZiHJh.js",
+      "started_at": "2026-10-21T23:43:18.440672+00:00",
+      "finished_at": "2026-10-21T23:43:18.748505+00:00",
+      "bytes": 2785,
+      "sha256": "464ba8b7853e2a3dd279407f743e97aa4a7ce18d2de2ccd8794cb6a3cdb9761f",
+      "locators": []
+    },
+    {
+      "ordinal": 37,
+      "kind": "rpc",
+      "label": "reference-recheck",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:43:19.445709+00:00",
+      "finished_at": "2026-10-21T23:43:19.769072+00:00",
+      "bytes": 1722,
+      "sha256": "fb5f643f430a8e1c37dbaf1953cc42f914fe71be49cd14a73b616dbe5f2b7720",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getBlockByNumber",
+        "params": [
+          "0x2ee5b63",
+          false
+        ]
+      },
+      "result": {
+        "number": "0x2ee5b63",
+        "hash": "0x9230dbdb9eae0f5e4e46a78f10ec1681b1c7979d74dd67aff524bbed13f77941",
+        "timestamp": "0x6ad94cfa"
+      }
+    },
+    {
+      "ordinal": 38,
+      "kind": "rpc",
+      "label": "session-registry-slot",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:45:04.051781+00:00",
+      "finished_at": "2026-10-21T23:45:04.438849+00:00",
+      "bytes": 102,
+      "sha256": "e44bad4ed7e097a411d9754ce06b09061e5721f5115e155b3c13e544dfa78227",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getStorageAt",
+        "params": [
+          "0x8326eb8896e358717f10502ec73ce8d28e37b108",
+          "0x8",
+          "0x2ee5b63"
+        ]
+      },
+      "result": "0x000000000000000000000000fdc6550436dd75ce8a0b145f935b7d3a64f53248"
+    },
+    {
+      "ordinal": 39,
+      "kind": "rpc",
+      "label": "fee-registry-runtime",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:45:26.361777+00:00",
+      "finished_at": "2026-10-21T23:45:26.701595+00:00",
+      "bytes": 2458,
+      "sha256": "858d6139faa5e469169842996abc85b6e3db8c3914750eda7f9ca377259912de",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getCode",
+        "params": [
+          "0xfdc6550436dd75ce8a0b145f935b7d3a64f53248",
+          "0x2ee5b63"
+        ]
+      },
+      "decoded_runtime_bytes": 1210,
+      "decoded_runtime_sha256": "f459de55cb0463912417650fbca7e18109f3820551e4071234109e1e72801d2f"
+    },
+    {
+      "ordinal": 40,
+      "kind": "rpc",
+      "label": "fee-registry-implementation",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:45:27.366830+00:00",
+      "finished_at": "2026-10-21T23:45:27.714394+00:00",
+      "bytes": 102,
+      "sha256": "d6270a96c74e698681cb7c0012a25d17a018228bca3a631fd19a384e561ca22a",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getStorageAt",
+        "params": [
+          "0xfdc6550436dd75ce8a0b145f935b7d3a64f53248",
+          "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+          "0x2ee5b63"
+        ]
+      },
+      "result": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "ordinal": 41,
+      "kind": "rpc",
+      "label": "fee-registry-global-slot",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-21T23:46:10.858048+00:00",
+      "finished_at": "2026-10-21T23:46:11.216065+00:00",
+      "bytes": 102,
+      "sha256": "b037d51d9f5bb8560473f18d76d80eb72c4791a1a3400a3fd6bf2e4d6bdfc93c",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getStorageAt",
+        "params": [
+          "0xfdc6550436dd75ce8a0b145f935b7d3a64f53248",
+          "0x1",
+          "0x2ee5b63"
+        ]
+      },
+      "result": "0x000000000011c37937e08000696292762fd5ac3677a45edbe54eaece4194d1f6"
+    }
+  ],
+  "vendor_sources": [
+    {
+      "url": "https://developers.circle.com/cctp/howtos/transfer-usdc-with-forwarding-service",
+      "status": "reader_success"
+    },
+    {
+      "url": "https://developers.circle.com/cctp/cctp-supported-blockchains",
+      "status": "reader_success_redirect",
+      "canonical": "https://developers.circle.com/cctp/concepts/supported-chains-and-domains"
+    },
+    {
+      "url": "https://developers.circle.com/cctp/concepts/forwarding-service",
+      "status": "reader_success"
+    },
+    {
+      "url": "https://docs.across.to/guides/migration/suggested-fees-to-swap",
+      "status": "reader_internal_error",
+      "search_result_url": "https://exclusive.docs.across.to/guides/migration/suggested-fees-to-swap",
+      "note": "Search excerpt only; no alternate retrieval after error."
+    },
+    {
+      "url": "https://docs.across.to/introduction/embedded-actions",
+      "status": "reader_success"
+    },
+    {
+      "url": "https://docs.across.to/api-reference",
+      "status": "reader_success"
+    },
+    {
+      "url": "https://docs.across.to/introduction/refunds",
+      "status": "reader_success"
+    }
+  ],
+  "vendor_capture_limit": "Reader-rendered text or indexed search excerpt only; no upstream body hash or exact request timing. Migration canonical open failed; no alternate fetch.",
+  "rea": {
+    "version": "6.7.0",
+    "installation_reused": true,
+    "prior_frontend_graphs_reused": true,
+    "whole_main_rerun": false,
+    "target_execution": false,
+    "new_successful_small_evm_inspections": [
+      {
+        "name": "exchange-reviewed",
+        "output_sha256": "522508ea094f3cc4a9e86998a2c64c7df075677dc62644fb07b2b4eb56131a86",
+        "evidence_id": "ev_3445b72fdcbd009c7c8988a0764fa302c83425406be2d4801162e47e87dfa242",
+        "provider": {
+          "id": "evmole-interface",
+          "name": "REA EVM interface adapter",
+          "version": "evmole@0.9.3"
+        },
+        "functions": [
+          {
+            "selector": "01681a62",
+            "bytecodeOffset": 13926,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "01ad056f",
+            "bytecodeOffset": 13894,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "060447aa",
+            "bytecodeOffset": 13792,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "0b826190",
+            "bytecodeOffset": 13748,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "0cdd5fc4",
+            "bytecodeOffset": 13722,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "138e9de2",
+            "bytecodeOffset": 13696,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "13dd495b",
+            "bytecodeOffset": 13656,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "18715c9a",
+            "bytecodeOffset": 13630,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "1afd17e9",
+            "bytecodeOffset": 13559,
+            "dispatch": "abi",
+            "arguments": "uint32,bool,uint128,uint32",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "1b7c1009",
+            "bytecodeOffset": 13509,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "21f55a6c",
+            "bytecodeOffset": 13469,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "24a3d622",
+            "bytecodeOffset": 13429,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "2792e706",
+            "bytecodeOffset": 11778,
+            "dispatch": "abi",
+            "arguments": "address,uint256[],uint256,uint64,uint8,uint256,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "27e235e3",
+            "bytecodeOffset": 11721,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "2d2451d1",
+            "bytecodeOffset": 11285,
+            "dispatch": "abi",
+            "arguments": "uint32",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "2dcc7fce",
+            "bytecodeOffset": 11239,
+            "dispatch": "abi",
+            "arguments": "uint256",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "31a39849",
+            "bytecodeOffset": 11209,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "31a4956c",
+            "bytecodeOffset": 11102,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "32faa570",
+            "bytecodeOffset": 11045,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "3a21be03",
+            "bytecodeOffset": 10988,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "48bde20c",
+            "bytecodeOffset": 10884,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "48ee5e08",
+            "bytecodeOffset": 10854,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "4a4d9eea",
+            "bytecodeOffset": 10730,
+            "dispatch": "abi",
+            "arguments": "address,uint256,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "50c23fab",
+            "bytecodeOffset": 10616,
+            "dispatch": "abi",
+            "arguments": "uint256",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "53ac4b66",
+            "bytecodeOffset": 10586,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "53e23e2e",
+            "bytecodeOffset": 10551,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "551306f3",
+            "bytecodeOffset": 10494,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "58d3ec6a",
+            "bytecodeOffset": 10425,
+            "dispatch": "abi",
+            "arguments": "uint256[]",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "599dc539",
+            "bytecodeOffset": 10206,
+            "dispatch": "abi",
+            "arguments": "uint256[]",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "5ca4c0ea",
+            "bytecodeOffset": 9906,
+            "dispatch": "abi",
+            "arguments": "uint32,uint128,uint96,uint96,uint64",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "5fb3b1b5",
+            "bytecodeOffset": 9876,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "61d027b3",
+            "bytecodeOffset": 9846,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "628a9fd6",
+            "bytecodeOffset": 9641,
+            "dispatch": "abi",
+            "arguments": "uint32,uint128,uint128",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "63ca348f",
+            "bytecodeOffset": 9558,
+            "dispatch": "abi",
+            "arguments": "uint32,bool,uint128,uint32,bool",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "69f9a5f0",
+            "bytecodeOffset": 9533,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "6a3214c9",
+            "bytecodeOffset": 9487,
+            "dispatch": "abi",
+            "arguments": "address,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "6d142da1",
+            "bytecodeOffset": 9453,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "6d60ae8e",
+            "bytecodeOffset": 9422,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "70f75ff5",
+            "bytecodeOffset": 9388,
+            "dispatch": "abi",
+            "arguments": "uint256",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "753a369c",
+            "bytecodeOffset": 9245,
+            "dispatch": "abi",
+            "arguments": "address,uint256,uint256,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "7b9f5264",
+            "bytecodeOffset": 9220,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "7d004aeb",
+            "bytecodeOffset": 9187,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "7dc0d1d0",
+            "bytecodeOffset": 9146,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "7e4174fc",
+            "bytecodeOffset": 9089,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "7f99545a",
+            "bytecodeOffset": 9050,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "827ad94c",
+            "bytecodeOffset": 8921,
+            "dispatch": "abi",
+            "arguments": "address,uint256,uint256,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "82f47a3f",
+            "bytecodeOffset": 8705,
+            "dispatch": "abi",
+            "arguments": "uint128,uint128",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "837fa3fd",
+            "bytecodeOffset": 8590,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "86d506db",
+            "bytecodeOffset": 8486,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "88f2aea5",
+            "bytecodeOffset": 8461,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "899346c7",
+            "bytecodeOffset": 8431,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "8d09f23f",
+            "bytecodeOffset": 8059,
+            "dispatch": "abi",
+            "arguments": "address,uint256,uint256,uint64,uint8",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "8da5cb5b",
+            "bytecodeOffset": 8016,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "9274682e",
+            "bytecodeOffset": 7975,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "96523644",
+            "bytecodeOffset": 7945,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "99fbab88",
+            "bytecodeOffset": 7779,
+            "dispatch": "abi",
+            "arguments": "uint256",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "9d346583",
+            "bytecodeOffset": 7722,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "9d47d4d3",
+            "bytecodeOffset": 7681,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "a0bf0f75",
+            "bytecodeOffset": 7577,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "a25dc87f",
+            "bytecodeOffset": 7403,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "a69a2ad1",
+            "bytecodeOffset": 7362,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "ae4daf4e",
+            "bytecodeOffset": 7164,
+            "dispatch": "abi",
+            "arguments": "address,uint256,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "ae69b95b",
+            "bytecodeOffset": 6998,
+            "dispatch": "abi",
+            "arguments": "bool",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "af210ecc",
+            "bytecodeOffset": 6970,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "afdf6702",
+            "bytecodeOffset": 6929,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "b3060d36",
+            "bytecodeOffset": 6878,
+            "dispatch": "abi",
+            "arguments": "uint256",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "bacd9ea0",
+            "bytecodeOffset": 6844,
+            "dispatch": "abi",
+            "arguments": "uint256",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "c0c53b8b",
+            "bytecodeOffset": 6320,
+            "dispatch": "abi",
+            "arguments": "address,address,address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "c10f1a75",
+            "bytecodeOffset": 6279,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "c43fbc8c",
+            "bytecodeOffset": 6246,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "c8372577",
+            "bytecodeOffset": 6148,
+            "dispatch": "abi",
+            "arguments": "uint32",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "c88bbcf3",
+            "bytecodeOffset": 5569,
+            "dispatch": "abi",
+            "arguments": "uint256,uint256,uint256,uint32,uint256,uint256,uint256,uint256,uint64",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "cb163b03",
+            "bytecodeOffset": 5460,
+            "dispatch": "abi",
+            "arguments": "uint32",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "cbce7532",
+            "bytecodeOffset": 5427,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "cbeb5f3d",
+            "bytecodeOffset": 5386,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "cd2d3811",
+            "bytecodeOffset": 5232,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "d188c049",
+            "bytecodeOffset": 5128,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "d7c7e5fb",
+            "bytecodeOffset": 4911,
+            "dispatch": "abi",
+            "arguments": "uint32,uint32,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "d970fad5",
+            "bytecodeOffset": 4860,
+            "dispatch": "abi",
+            "arguments": "address,address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "dc8a47ef",
+            "bytecodeOffset": 4694,
+            "dispatch": "abi",
+            "arguments": "uint32",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "dcab7f6a",
+            "bytecodeOffset": 4637,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "ddc63262",
+            "bytecodeOffset": 4598,
+            "dispatch": "abi",
+            "arguments": "uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "e0189108",
+            "bytecodeOffset": 4564,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "e1f9209b",
+            "bytecodeOffset": 4523,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "e538b280",
+            "bytecodeOffset": 4351,
+            "dispatch": "abi",
+            "arguments": "uint256,uint256,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "e53e3de6",
+            "bytecodeOffset": 4310,
+            "dispatch": "abi",
+            "arguments": "address,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "e634384f",
+            "bytecodeOffset": 4222,
+            "dispatch": "abi",
+            "arguments": "uint256",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "e6ac4a74",
+            "bytecodeOffset": 4108,
+            "dispatch": "abi",
+            "arguments": "bool",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "ec0bdcfc",
+            "bytecodeOffset": 4078,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "ec6783f0",
+            "bytecodeOffset": 1925,
+            "dispatch": "abi",
+            "arguments": "address,uint32,bool,uint128,uint32,bool,uint256,uint64,uint8,uint256,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "ed410ee1",
+            "bytecodeOffset": 1884,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "efc1bd46",
+            "bytecodeOffset": 1780,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "f009ac03",
+            "bytecodeOffset": 1743,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "f1a8786c",
+            "bytecodeOffset": 1713,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "f28bbdb2",
+            "bytecodeOffset": 1677,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "f2fde38b",
+            "bytecodeOffset": 1581,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "f37d3c4f",
+            "bytecodeOffset": 1471,
+            "dispatch": "abi",
+            "arguments": "uint32",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "f728fc98",
+            "bytecodeOffset": 1429,
+            "dispatch": "abi",
+            "arguments": "uint256",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "f84a74d3",
+            "bytecodeOffset": 1373,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "fb9f1009",
+            "bytecodeOffset": 1328,
+            "dispatch": "abi",
+            "arguments": "uint32",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "fbddd751",
+            "bytecodeOffset": 1224,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "fdfd905d",
+            "bytecodeOffset": 1189,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "ff3bc415",
+            "bytecodeOffset": 1159,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          }
+        ],
+        "limitations": [
+          "Configured worker resource soft limits: address_space_bytes=3221225472, cpu_seconds=30, file_size_bytes=16777216. Selected from inherited tighter limits; original hard limits are retained. Effective worker limits are not independently probed.",
+          "Upstream may also report terminal metadata while recovering selectors. Its reported values are retained in raw_result, but integer precision and non-text-key coverage are unknown in the JS binding; complete original bytecode remains available.",
+          "Recovered selectors, argument strings and mutability are upstream inferences, not verified ABI signatures or names. Empty results do not prove the absence of callable dispatch.",
+          "Bytecode kind, hardfork and deployed-contract authenticity are unknown. This inspection performs no target runtime execution, chain/RPC lookup or network request.",
+          "Original carrier and decoded bytecode SHA-256 are distinct identities; SHA-256 is not the Ethereum Keccak code hash.",
+          "Terminal CBOR metadata is an independently decoded candidate, not proof of Solidity origin, source identity or deployment. Nested or unsupported values retain explicit unavailable interpretation and original byte ranges.",
+          "The owned worker has a 256 MiB JavaScript heap, 3 GiB virtual address-space limit and 30-second deadline. Virtual address space is distinct from resident memory; limits fail without partial success."
+        ]
+      },
+      {
+        "name": "session",
+        "output_sha256": "ce823b106e4af87c97e7c6c32bdd565adc19f65b45f704c35b81cc910e44de15",
+        "evidence_id": "ev_4db6d65e44e8a6c56d8a40784a2b969bdb107e69639072aa8dd722b7d29d9494",
+        "provider": {
+          "id": "evmole-interface",
+          "name": "REA EVM interface adapter",
+          "version": "evmole@0.9.3"
+        },
+        "functions": [
+          {
+            "selector": "0b4c3a82",
+            "bytecodeOffset": 3117,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "17a1678f",
+            "bytecodeOffset": 3041,
+            "dispatch": "abi",
+            "arguments": "address,uint64,address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "208e24fc",
+            "bytecodeOffset": 2983,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "2bc9ed54",
+            "bytecodeOffset": 2944,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "3644e515",
+            "bytecodeOffset": 2914,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "5197a0d3",
+            "bytecodeOffset": 2767,
+            "dispatch": "abi",
+            "arguments": "address,bool",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "5f76a1d6",
+            "bytecodeOffset": 2068,
+            "dispatch": "abi",
+            "arguments": "address,address,uint64,address,uint256,uint64,uint8",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "6525a680",
+            "bytecodeOffset": 2010,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "747b8a1c",
+            "bytecodeOffset": 1643,
+            "dispatch": "abi",
+            "arguments": "address,bytes,bytes,uint256,address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "78e890ba",
+            "bytecodeOffset": 1593,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "7ecebe00",
+            "bytecodeOffset": 1538,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "7f608253",
+            "bytecodeOffset": 1490,
+            "dispatch": "abi",
+            "arguments": "address,uint256,uint8,uint256,uint256",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "7f6e9d4b",
+            "bytecodeOffset": 1430,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "84f4fc6a",
+            "bytecodeOffset": 1334,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "8da5cb5b",
+            "bytecodeOffset": 1294,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "96ade1f9",
+            "bytecodeOffset": 1198,
+            "dispatch": "abi",
+            "arguments": "address,address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "97dc97cb",
+            "bytecodeOffset": 1158,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "b002b9fa",
+            "bytecodeOffset": 1045,
+            "dispatch": "abi",
+            "arguments": "address,uint8,uint64",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "bd322efa",
+            "bytecodeOffset": 936,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "c1e6613d",
+            "bytecodeOffset": 858,
+            "dispatch": "abi",
+            "arguments": "address,address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "cab7e8eb",
+            "bytecodeOffset": 782,
+            "dispatch": "abi",
+            "arguments": "address,uint8",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "cf8fbec9",
+            "bytecodeOffset": 692,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "d45167d0",
+            "bytecodeOffset": 622,
+            "dispatch": "abi",
+            "arguments": "uint256,uint8,uint256,uint256",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "d95208cd",
+            "bytecodeOffset": 536,
+            "dispatch": "abi",
+            "arguments": "address,uint256,uint8,uint256,uint256",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "e737de13",
+            "bytecodeOffset": 496,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "f2f59776",
+            "bytecodeOffset": 432,
+            "dispatch": "abi",
+            "arguments": "address,uint256",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "f2fde38b",
+            "bytecodeOffset": 328,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          }
+        ],
+        "limitations": [
+          "Configured worker resource soft limits: address_space_bytes=3221225472, cpu_seconds=30, file_size_bytes=16777216. Selected from inherited tighter limits; original hard limits are retained. Effective worker limits are not independently probed.",
+          "Upstream may also report terminal metadata while recovering selectors. Its reported values are retained in raw_result, but integer precision and non-text-key coverage are unknown in the JS binding; complete original bytecode remains available.",
+          "Recovered selectors, argument strings and mutability are upstream inferences, not verified ABI signatures or names. Empty results do not prove the absence of callable dispatch.",
+          "Bytecode kind, hardfork and deployed-contract authenticity are unknown. This inspection performs no target runtime execution, chain/RPC lookup or network request.",
+          "Original carrier and decoded bytecode SHA-256 are distinct identities; SHA-256 is not the Ethereum Keccak code hash.",
+          "Terminal CBOR metadata is an independently decoded candidate, not proof of Solidity origin, source identity or deployment. Nested or unsupported values retain explicit unavailable interpretation and original byte ranges.",
+          "The owned worker has a 256 MiB JavaScript heap, 3 GiB virtual address-space limit and 30-second deadline. Virtual address space is distinct from resident memory; limits fail without partial success."
+        ]
+      },
+      {
+        "name": "factory",
+        "output_sha256": "6c406112f3407e98a080266310c1789679a795e801aaf2520199d115c760a322",
+        "evidence_id": "ev_058283a0add57c57b491b038521849ded15f9b13195b438174879b1258ae0775",
+        "provider": {
+          "id": "evmole-interface",
+          "name": "REA EVM interface adapter",
+          "version": "evmole@0.9.3"
+        },
+        "functions": [
+          {
+            "selector": "4f1ef286",
+            "bytecodeOffset": 97,
+            "dispatch": "abi",
+            "arguments": "address,bytes",
+            "stateMutability": "payable"
+          },
+          {
+            "selector": "5c60da1b",
+            "bytecodeOffset": 92,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "8f283970",
+            "bytecodeOffset": 87,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "f851a440",
+            "bytecodeOffset": 82,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          }
+        ],
+        "limitations": [
+          "Configured worker resource soft limits: address_space_bytes=3221225472, cpu_seconds=30, file_size_bytes=16777216. Selected from inherited tighter limits; original hard limits are retained. Effective worker limits are not independently probed.",
+          "Upstream may also report terminal metadata while recovering selectors. Its reported values are retained in raw_result, but integer precision and non-text-key coverage are unknown in the JS binding; complete original bytecode remains available.",
+          "Recovered selectors, argument strings and mutability are upstream inferences, not verified ABI signatures or names. Empty results do not prove the absence of callable dispatch.",
+          "Bytecode kind, hardfork and deployed-contract authenticity are unknown. This inspection performs no target runtime execution, chain/RPC lookup or network request.",
+          "Original carrier and decoded bytecode SHA-256 are distinct identities; SHA-256 is not the Ethereum Keccak code hash.",
+          "Terminal CBOR metadata is an independently decoded candidate, not proof of Solidity origin, source identity or deployment. Nested or unsupported values retain explicit unavailable interpretation and original byte ranges.",
+          "The owned worker has a 256 MiB JavaScript heap, 3 GiB virtual address-space limit and 30-second deadline. Virtual address space is distinct from resident memory; limits fail without partial success."
+        ]
+      },
+      {
+        "name": "deposit-wallet",
+        "output_sha256": "0a25e6013b4747e86be1d7f6b58394b71e71e210542667baf30db430e920f947",
+        "evidence_id": "ev_16277a3c8e4b157636893b8b1c93b4729a47172f6f0386b610f2892e5d395615",
+        "provider": {
+          "id": "evmole-interface",
+          "name": "REA EVM interface adapter",
+          "version": "evmole@0.9.3"
+        },
+        "functions": [
+          {
+            "selector": "3659cfe6",
+            "bytecodeOffset": 117,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "4f1ef286",
+            "bytecodeOffset": 181,
+            "dispatch": "abi",
+            "arguments": "address,bytes",
+            "stateMutability": "payable"
+          },
+          {
+            "selector": "5c60da1b",
+            "bytecodeOffset": 322,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "8f283970",
+            "bytecodeOffset": 384,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "f851a440",
+            "bytecodeOffset": 448,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          }
+        ],
+        "limitations": [
+          "Configured worker resource soft limits: address_space_bytes=3221225472, cpu_seconds=30, file_size_bytes=16777216. Selected from inherited tighter limits; original hard limits are retained. Effective worker limits are not independently probed.",
+          "Upstream may also report terminal metadata while recovering selectors. Its reported values are retained in raw_result, but integer precision and non-text-key coverage are unknown in the JS binding; complete original bytecode remains available.",
+          "Recovered selectors, argument strings and mutability are upstream inferences, not verified ABI signatures or names. Empty results do not prove the absence of callable dispatch.",
+          "Bytecode kind, hardfork and deployed-contract authenticity are unknown. This inspection performs no target runtime execution, chain/RPC lookup or network request.",
+          "Original carrier and decoded bytecode SHA-256 are distinct identities; SHA-256 is not the Ethereum Keccak code hash.",
+          "Terminal CBOR metadata is an independently decoded candidate, not proof of Solidity origin, source identity or deployment. Nested or unsupported values retain explicit unavailable interpretation and original byte ranges.",
+          "The owned worker has a 256 MiB JavaScript heap, 3 GiB virtual address-space limit and 30-second deadline. Virtual address space is distinct from resident memory; limits fail without partial success."
+        ]
+      },
+      {
+        "name": "factory-logic",
+        "output_sha256": "b3ff2c5ff0d70cda0a6272ccdf52a8202e607e04cc33dc56a849b717da89e8d9",
+        "evidence_id": "ev_ad6fb925613fc05e1c9165e3e288631b58bde178e442d0ae0d32e1f1a6a1a330",
+        "provider": {
+          "id": "evmole-interface",
+          "name": "REA EVM interface adapter",
+          "version": "evmole@0.9.3"
+        },
+        "functions": [
+          {
+            "selector": "03b802b6",
+            "bytecodeOffset": 1327,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "0f71c8bc",
+            "bytecodeOffset": 1183,
+            "dispatch": "abi",
+            "arguments": "address,address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "29710388",
+            "bytecodeOffset": 1123,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "56e8d85b",
+            "bytecodeOffset": 960,
+            "dispatch": "abi",
+            "arguments": "address,address,address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "8da5cb5b",
+            "bytecodeOffset": 920,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "c1a9a508",
+            "bytecodeOffset": 863,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "c4d66de8",
+            "bytecodeOffset": 823,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "c6f881bc",
+            "bytecodeOffset": 721,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "cbd433f4",
+            "bytecodeOffset": 619,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "d2f7265a",
+            "bytecodeOffset": 576,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "d600539a",
+            "bytecodeOffset": 288,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "f2fde38b",
+            "bytecodeOffset": 163,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          }
+        ],
+        "limitations": [
+          "Configured worker resource soft limits: address_space_bytes=3221225472, cpu_seconds=30, file_size_bytes=16777216. Selected from inherited tighter limits; original hard limits are retained. Effective worker limits are not independently probed.",
+          "Upstream may also report terminal metadata while recovering selectors. Its reported values are retained in raw_result, but integer precision and non-text-key coverage are unknown in the JS binding; complete original bytecode remains available.",
+          "Recovered selectors, argument strings and mutability are upstream inferences, not verified ABI signatures or names. Empty results do not prove the absence of callable dispatch.",
+          "Bytecode kind, hardfork and deployed-contract authenticity are unknown. This inspection performs no target runtime execution, chain/RPC lookup or network request.",
+          "Original carrier and decoded bytecode SHA-256 are distinct identities; SHA-256 is not the Ethereum Keccak code hash.",
+          "Terminal CBOR metadata is an independently decoded candidate, not proof of Solidity origin, source identity or deployment. Nested or unsupported values retain explicit unavailable interpretation and original byte ranges.",
+          "The owned worker has a 256 MiB JavaScript heap, 3 GiB virtual address-space limit and 30-second deadline. Virtual address space is distinct from resident memory; limits fail without partial success."
+        ]
+      },
+      {
+        "name": "deposit-wallet-logic",
+        "output_sha256": "49b8c0de73c1feb1f41eba55d125f525ff10822a1f2ff23b120702f37bb13efe",
+        "evidence_id": "ev_8519fe37cd326d9d03704fb15d0ace3460f0042fd3a1701db198488e96ee4017",
+        "provider": {
+          "id": "evmole-interface",
+          "name": "REA EVM interface adapter",
+          "version": "evmole@0.9.3"
+        },
+        "functions": [
+          {
+            "selector": "0d39c3fc",
+            "bytecodeOffset": 690,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "pure"
+          },
+          {
+            "selector": "0e721e6e",
+            "bytecodeOffset": 720,
+            "dispatch": "abi",
+            "arguments": "uint32",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "108438e0",
+            "bytecodeOffset": 752,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "11f2b0dc",
+            "bytecodeOffset": 762,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "pure"
+          },
+          {
+            "selector": "2ab60045",
+            "bytecodeOffset": 783,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "2b2dfd2c",
+            "bytecodeOffset": 802,
+            "dispatch": "abi",
+            "arguments": "uint256,uint32",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "38a63183",
+            "bytecodeOffset": 821,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "3c1072d0",
+            "bytecodeOffset": 829,
+            "dispatch": "abi",
+            "arguments": "uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "3f4ba83a",
+            "bytecodeOffset": 848,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "46117830",
+            "bytecodeOffset": 856,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "pure"
+          },
+          {
+            "selector": "4c5bd546",
+            "bytecodeOffset": 864,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "554bab3c",
+            "bytecodeOffset": 872,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "5c975abb",
+            "bytecodeOffset": 891,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "6ddde35e",
+            "bytecodeOffset": 899,
+            "dispatch": "abi",
+            "arguments": "address,uint256,uint32,uint256,uint64,bytes",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "79ba5097",
+            "bytecodeOffset": 918,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "7b5c63cf",
+            "bytecodeOffset": 926,
+            "dispatch": "abi",
+            "arguments": "uint32",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "820b3e1e",
+            "bytecodeOffset": 945,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "8456cb59",
+            "bytecodeOffset": 966,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "8da5cb5b",
+            "bytecodeOffset": 974,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "9fd0506d",
+            "bytecodeOffset": 982,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "a7917af3",
+            "bytecodeOffset": 990,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "a9059cbb",
+            "bytecodeOffset": 998,
+            "dispatch": "abi",
+            "arguments": "address,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "b2118a8d",
+            "bytecodeOffset": 1017,
+            "dispatch": "abi",
+            "arguments": "address,address,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "b49595b7",
+            "bytecodeOffset": 1036,
+            "dispatch": "abi",
+            "arguments": "uint32",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "b7a42b92",
+            "bytecodeOffset": 1068,
+            "dispatch": "abi",
+            "arguments": "uint64",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "b8e2e3d4",
+            "bytecodeOffset": 1087,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "c0cfc00d",
+            "bytecodeOffset": 1095,
+            "dispatch": "abi",
+            "arguments": "uint32",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "c23c545a",
+            "bytecodeOffset": 1114,
+            "dispatch": "abi",
+            "arguments": "address,uint256,uint32",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "d004283e",
+            "bytecodeOffset": 1133,
+            "dispatch": "abi",
+            "arguments": "uint32",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "d26b3e26",
+            "bytecodeOffset": 1152,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "da6d4994",
+            "bytecodeOffset": 1171,
+            "dispatch": "abi",
+            "arguments": "uint32",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "e26f7d23",
+            "bytecodeOffset": 1190,
+            "dispatch": "abi",
+            "arguments": "bool,uint32",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "e30c3978",
+            "bytecodeOffset": 1209,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "ea031649",
+            "bytecodeOffset": 1217,
+            "dispatch": "abi",
+            "arguments": "uint256,uint256,uint256,uint256,uint8,uint256,uint256,uint32",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "eb42696a",
+            "bytecodeOffset": 1236,
+            "dispatch": "abi",
+            "arguments": "uint32,uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "eeb97d18",
+            "bytecodeOffset": 1255,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "view"
+          },
+          {
+            "selector": "f2fde38b",
+            "bytecodeOffset": 1263,
+            "dispatch": "abi",
+            "arguments": "address",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "f8f1b507",
+            "bytecodeOffset": 1282,
+            "dispatch": "abi",
+            "arguments": "uint256",
+            "stateMutability": "nonpayable"
+          },
+          {
+            "selector": "fc0c546a",
+            "bytecodeOffset": 1301,
+            "dispatch": "abi",
+            "arguments": "",
+            "stateMutability": "pure"
+          }
+        ],
+        "limitations": [
+          "Configured worker resource soft limits: address_space_bytes=3221225472, cpu_seconds=30, file_size_bytes=16777216. Selected from inherited tighter limits; original hard limits are retained. Effective worker limits are not independently probed.",
+          "Upstream may also report terminal metadata while recovering selectors. Its reported values are retained in raw_result, but integer precision and non-text-key coverage are unknown in the JS binding; complete original bytecode remains available.",
+          "Recovered selectors, argument strings and mutability are upstream inferences, not verified ABI signatures or names. Empty results do not prove the absence of callable dispatch.",
+          "Bytecode kind, hardfork and deployed-contract authenticity are unknown. This inspection performs no target runtime execution, chain/RPC lookup or network request.",
+          "Original carrier and decoded bytecode SHA-256 are distinct identities; SHA-256 is not the Ethereum Keccak code hash.",
+          "Terminal CBOR metadata is an independently decoded candidate, not proof of Solidity origin, source identity or deployment. Nested or unsupported values retain explicit unavailable interpretation and original byte ranges.",
+          "The owned worker has a 256 MiB JavaScript heap, 3 GiB virtual address-space limit and 30-second deadline. Virtual address space is distinct from resident memory; limits fail without partial success."
+        ]
+      }
+    ],
+    "initial_docker_attempt": "exit126: sandbox socket access denied; later permitted offline read-only invocation succeeded"
+  },
+  "selector_delta": {
+    "old_inferred_count": 98,
+    "new_inferred_count": 103,
+    "added": [
+      {
+        "selector": "69f9a5f0",
+        "bytecodeOffset": 9533,
+        "dispatch": "abi",
+        "arguments": "",
+        "stateMutability": "nonpayable"
+      },
+      {
+        "selector": "9d346583",
+        "bytecodeOffset": 7722,
+        "dispatch": "abi",
+        "arguments": "address",
+        "stateMutability": "view"
+      },
+      {
+        "selector": "cbce7532",
+        "bytecodeOffset": 5427,
+        "dispatch": "abi",
+        "arguments": "",
+        "stateMutability": "view"
+      },
+      {
+        "selector": "d970fad5",
+        "bytecodeOffset": 4860,
+        "dispatch": "abi",
+        "arguments": "address,address",
+        "stateMutability": "nonpayable"
+      },
+      {
+        "selector": "e6ac4a74",
+        "bytecodeOffset": 4108,
+        "dispatch": "abi",
+        "arguments": "bool",
+        "stateMutability": "nonpayable"
+      },
+      {
+        "selector": "f009ac03",
+        "bytecodeOffset": 1743,
+        "dispatch": "abi",
+        "arguments": "",
+        "stateMutability": "view"
+      }
+    ],
+    "removed": [
+      {
+        "selector": "415f1240",
+        "bytecodeOffset": 10772,
+        "dispatch": "abi",
+        "arguments": "uint256",
+        "stateMutability": "nonpayable"
+      }
+    ],
+    "retained_inferred_argument_changes": [],
+    "verified_abi": false,
+    "exhaustive_absence_proof": false
+  },
+  "fee_dependency": {
+    "session_slot": "0x8",
+    "registry": "0xfdc6550436dd75ce8a0b145f935b7d3a64f53248",
+    "resolver_selector": "0xd779e270",
+    "enable_mapping_root_slot": "0x2",
+    "global_rate_slot": "0x1",
+    "raw_rate": "5000000000000000",
+    "rate_shift_bits": 160,
+    "user_percentage_verified": false,
+    "fee_base_and_divisor_verified": false,
+    "builder_or_personal_mapping_queried": false
+  },
+  "checks": {
+    "collector_tests": 3,
+    "collector_envelope_subcases": 5,
+    "collector_empty_body_red_then_green": true,
+    "collector_independently_reviewed": true,
+    "new_window_wrapper_boundary_tests": 2,
+    "narrow_synthetic_vectors": {
+      "tests": 14,
+      "full_evm": false,
+      "signature_recovery": false,
+      "production_acceptance": false,
+      "results": [
+        {
+          "scope": "caller gate only",
+          "selector": "ec6783f0",
+          "start": 2058,
+          "pass": 2076,
+          "deny": 4056,
+          "caller_case": "executor",
+          "reached": 2076
+        },
+        {
+          "scope": "caller gate only",
+          "selector": "ec6783f0",
+          "start": 2058,
+          "pass": 2076,
+          "deny": 4056,
+          "caller_case": "synthetic-unprivileged",
+          "reached": 4056
+        },
+        {
+          "scope": "caller gate only",
+          "selector": "2792e706",
+          "start": 11856,
+          "pass": 11877,
+          "deny": 4056,
+          "caller_case": "executor",
+          "reached": 11877
+        },
+        {
+          "scope": "caller gate only",
+          "selector": "2792e706",
+          "start": 11856,
+          "pass": 11877,
+          "deny": 4056,
+          "caller_case": "synthetic-unprivileged",
+          "reached": 4056
+        },
+        {
+          "scope": "Session validator dispatch with mocked ecrecover, synthetic state, timestamp zero",
+          "selector": "7f608253",
+          "case": "unregistered-master",
+          "accepted": false
+        },
+        {
+          "scope": "Session validator dispatch with mocked ecrecover, synthetic state, timestamp zero",
+          "selector": "7f608253",
+          "case": "unregistered-key",
+          "accepted": false
+        },
+        {
+          "scope": "Session validator dispatch with mocked ecrecover, synthetic state, timestamp zero",
+          "selector": "7f608253",
+          "case": "synthetic-active-key",
+          "accepted": true
+        },
+        {
+          "scope": "Session validator dispatch with mocked ecrecover, synthetic state, timestamp zero",
+          "selector": "d95208cd",
+          "case": "unregistered-master",
+          "accepted": false
+        },
+        {
+          "scope": "Session validator dispatch with mocked ecrecover, synthetic state, timestamp zero",
+          "selector": "d95208cd",
+          "case": "unregistered-key",
+          "accepted": false
+        },
+        {
+          "scope": "Session validator dispatch with mocked ecrecover, synthetic state, timestamp zero",
+          "selector": "d95208cd",
+          "case": "synthetic-active-key",
+          "accepted": true
+        },
+        {
+          "scope": "fee registry, synthetic enabled flag and captured global rate",
+          "case": "disabled",
+          "raw_rate": "0"
+        },
+        {
+          "scope": "fee registry, synthetic enabled flag and captured global rate",
+          "case": "enabled",
+          "raw_rate": "5000000000000000"
+        },
+        {
+          "scope": "session attribution resolver with mocked registry return",
+          "raw_rate": "0",
+          "address_retained": false
+        },
+        {
+          "scope": "session attribution resolver with mocked registry return",
+          "raw_rate": "100",
+          "address_retained": true
+        }
+      ]
+    },
+    "vector_script_sha256": "0de6703c023101889d9e82d3fd7490d273d2e98a11c1ac3c810ea3416cf9deb6",
+    "full_evm": false,
+    "production_signature_or_transport": false
+  },
+  "remaining": [
+    "server admission and account authentication",
+    "full CoreWriter/sweep/credit call path and transfer correlation",
+    "external arrival/refund receipts",
+    "Across credentials and exact token/message route migration",
+    "builder fee base, divisor, payout and registration policy",
+    "classification of remaining changed/unknown callable entries",
+    "new Tokenomics semantics and exact upgrade transaction"
+  ]
+}
