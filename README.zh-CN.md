@@ -152,17 +152,38 @@ flowchart TB
 
 ## 独立客户端与 API 接入
 
-🛠️ 自写客户端已有经官方 relayer 接单的具体接口路线。开平仓仍受配置的
-BatchExecutor 和 relayer 白名单约束；自行广播交易不会获得这些执行权限。
+🛠️ 接入流程是 **读取规则和账户状态 → 签署交易意图 → 提交官方 relayer →
+跟踪执行及余额变化**。自写客户端可以用这些接口串起自己的交易流程；开平仓仍由
+获授权的 BatchExecutor 执行。
 
-| 主题 | 研究入口 |
+| 接口 | 在独立客户端中的作用 |
 |---|---|
-| API、签名与确认 | [独立客户端指南](docs/independent-client-guide.md)：精确消息类型、保证金单位、nonce 分组及确认未知的处理 |
-| 仓位管理 | [订单能力核对](docs/research-notes/012-independent-clients-orders-and-bridges.md#position-management-and-order-types)：选定仓位全平、另开仓位，以及尚未证实的单仓部分平仓、条件单和旧仓保证金调整入口 |
-| 充值与提款 | [资金路线](docs/research-notes/012-independent-clients-orders-and-bridges.md#funding-providers-and-actual-client-branches)：Circle 相关转发、Robinhood 的 Across 路线、Core/EVM 内部通道及到账/退款缺口 |
+| HTTP 查询：`/query/protocol/…` | 获取协议汇总、队列概况和 PAPER 动态，用于了解协议运行情况。 |
+| 公共 WebSocket：`trading:current` | 获取交易开关和市场规则，包括杠杆、仓位限制，用于下单前校验。 |
+| 账户查询与 SSE：`/query/accounts/…`、`/state/user/live?wallet=…` | 获取本人余额、仓位、操作状态和历史，用于核对账户变化；具体接入鉴权条件仍待补齐。 |
+| 签名指令：`POST /intents` | 提交会话授权、开平仓、提现到 HyperCore 及 PAPER 操作。先匹配接单回执，再跟踪实际执行；接单不等于成交。 |
 
-结论绑定 build `38f2c40c4112` 和记录中的 2026-10-22 观察。新增 REA 追踪与
-离线检查支持指南；没有执行生产订单或跨链转账。Builder codes 接入仍未验证。
+可以选择若干仓位逐个全平，再次开仓会形成独立仓位。单仓部分减仓、原生限价/
+止盈止损，以及修改旧仓保证金或杠杆，尚未找到已确立的支持接口。
+
+**充值与提现：**
+
+| 充值来源 | 资金路线 |
+|---|---|
+| Ethereum、Arbitrum、Solana 的 USDC | 走 Circle 相关销毁与转发流程到用户充值代理，再由平台处理并记入交易余额。 |
+| Robinhood 的 USDG | 走 Across，在 HyperEVM 侧以 USDC 到达，再经目标链处理器和 CoreDepositWallet 转入代理。 |
+| HyperEVM、HyperCore 的 USDC | 经 Core/EVM 内部转移进入代理，再由平台记账。 |
+
+提现先将平台余额转回用户的 HyperCore 现货账户。继续转到 HyperEVM、Ethereum、
+Arbitrum 或 Solana 时需要额外的后续转账授权；已恢复的提现路线不包含 Robinhood。
+跨链完成、平台入账和最终目的地到账是需要分别跟踪的阶段。
+
+**串成完整客户端还缺：** 服务端准入与账户鉴权、可靠的断线重连和状态对账、完整的
+费用/到账/退款处理，以及 builder 归属和费用规则。Across 已将这里使用的
+`/suggested-fees` 标为 legacy，新接入还需核对迁移路线。
+
+[API 与签名指南](docs/independent-client-guide.md) ·
+[订单能力及资金路线](docs/research-notes/012-independent-clients-orders-and-bridges.md)
 
 ## 探索研究仓库
 

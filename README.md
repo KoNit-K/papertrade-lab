@@ -153,19 +153,43 @@ Higher leverage makes the buffer a larger fraction of margin. See [formula and r
 
 ## Independent clients and API access
 
-🛠️ A replacement client can use the recovered intent interface through the official
-relayer. Opens and closes remain gated by the configured BatchExecutor and relayer
-allowlist; broadcasting your own transaction does not grant those roles.
+🛠️ The integration route is **read rules and account state → sign an intent →
+submit to the official relayer → reconcile execution and balances**. A custom
+client can use these interfaces to build its own trading workflow; opens and
+closes still pass through the authorized BatchExecutor.
 
-| Topic | Research entry |
+| Interface | Role in a custom client |
 |---|---|
-| API, signatures and confirmation | [Independent client guide](docs/independent-client-guide.md): exact message types, margin units, nonce groups and uncertain acknowledgements |
-| Position management | [Order capabilities](docs/research-notes/012-independent-clients-orders-and-bridges.md#position-management-and-order-types): selected whole-position closes, separate added positions, and unestablished partial-close/conditional/margin-update paths |
-| Deposits and withdrawals | [Funding routes](docs/research-notes/012-independent-clients-orders-and-bridges.md#funding-providers-and-actual-client-branches): Circle-related forwarding, Across from Robinhood, internal Core/EVM transfers and remaining completion/refund gaps |
+| HTTP queries: `/query/protocol/…` | Protocol summaries, queue information and PAPER activity for monitoring the protocol. |
+| Public WebSocket: `trading:current` | Trading availability and market rules, including leverage and position limits, for validating an order. |
+| Account queries and SSE: `/query/accounts/…`, `/state/user/live?wallet=…` | Balance, positions, operation status and history for reconciling the user's account. Account-access requirements still need to be established. |
+| Signed commands: `POST /intents` | Session registration, opens/closes, withdrawal to HyperCore and PAPER actions. Match the receipt to the intent, then follow execution; acceptance alone is not a fill. |
 
-Findings are bound to build `38f2c40c4112` and the recorded 2026-10-22 observations.
-New REA traces and offline checks support the guide; no production order or bridge
-transfer was executed. Builder-code integration remains unverified.
+Selected position IDs can be closed in full; another open creates a separate
+position. A supported interface for reducing part of one position, native
+limit/TP/SL orders or changing existing margin/leverage has not been established.
+
+**Deposits and withdrawals:**
+
+| Deposit source | Funding route |
+|---|---|
+| Ethereum, Arbitrum or Solana USDC | Circle-related burn and forwarding to the user's deposit proxy, followed by platform processing and trading-balance credit. |
+| Robinhood USDG | Across bridges into USDC on HyperEVM, then the destination handler forwards it through CoreDepositWallet to the proxy. |
+| HyperEVM or HyperCore USDC | Internal Core/EVM transfers into the proxy, followed by platform credit. |
+
+Withdrawals first move platform balance to the user's HyperCore spot account.
+Routes onward to HyperEVM, Ethereum, Arbitrum or Solana require additional
+transfer authorization; the recovered withdrawal routes do not include Robinhood.
+Bridge completion, platform credit and arrival at the final destination are
+separate stages.
+
+**Still missing for a complete integration:** server admission and account access,
+reliable reconnect/reconciliation behavior, full fee/arrival/refund handling, and
+builder attribution and fee rules. Across also marks the captured
+`/suggested-fees` interface as legacy, so a new integration needs its migration path.
+
+[API and signing guide](docs/independent-client-guide.md) ·
+[Order capabilities and funding routes](docs/research-notes/012-independent-clients-orders-and-bridges.md)
 
 ## Explore the research
 
