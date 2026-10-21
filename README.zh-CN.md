@@ -29,18 +29,6 @@
 
 🔎 这个仓库结合 [REA](https://github.com/morluto/rea) 与人工分析，研究它怎样收费、怎样清算，以及亏损和 PAPER 激励怎样连在一起。[研究进度](STATUS.md) · [来源](docs/sources.md)
 
-## 本轮发现：亏损换币、改规则与分红
-
-[五题详细研究](docs/research-notes/011-loss-governance-staking-and-payments.md)分别标明真实记录、取得代码的分析和条件算例。下表是 **2026-10-21 的采集观察**，不是实时状态。
-
-| 问题 | 发现与证据边界 |
-|---|---|
-| **同样亏损，为什么拿币不同？** | 合格基数、曲线进度和参数是不同原因。已核对清算例的发币基数为20，LP增量却为19.6；收据金额吻合不等于独立重现历史发币。 |
-| **谁能改规则？** | 已核对业务owner、代理管理权与治理合约的连接。真实成功交易把最小延迟设为 **1天**，但捕获的官网地址页写7天；guardian多签还能不经时间锁暂停新开仓。 |
-| **排期的改动已经生效了吗？** | 将LP盈余分红门槛设为1000万美元的方案已取消；三项实现升级最早可于 **2026-10-22 05:35:19（新加坡）** 执行，观察时尚未完成，新实现尚未分析。 |
-| **长期质押和临时加入有什么差别？** | 取得代码中，新加入的份额能分享此前尚未分配的钱；已分配收益归原持有人。7组原字节合成场景支持这个区别，未证明真实临时质押策略已经获利。 |
-| **分红和付款的钱从哪来？** | 新5笔分配与手续费来源、储备滚动核账相符；仍未取得实际LP盈余划转或活跃付款欠款案例。分配、内部入账和外部到账分别核对。 |
-
 ## 特性介绍
 
 | 特性 | 怎么运作 |
@@ -64,10 +52,19 @@
 ![PAPER 铸币曲线：累计进度推动边际铸币率衰减，保留进度后跨越 LP 阈值可出现阶跃](docs/assets/paper-mint-curve.zh-CN.svg)
 
 - 📉 <strong>怎么衰减：</strong> 文档示例中，LP 低于 200 万美元时为 100 PAPER/$；达到阈值后，铸币率随累计尾段进度 H 衰减。
-- ⚙️ <strong>谁能调整：</strong> 合约 owner 可修改 LP 阈值、铸币率、衰减尺度和 LP 分红上限。
+- ⚙️ <strong>谁能调整：</strong> 合约 owner 可修改 LP 阈值、铸币率、衰减尺度和 LP 盈余分红门槛。
 
 H 是累计进度，分红减少 LP 不会重置 H。右图固定 H 展示阈值阶跃，使用示例参数；整笔铸币按区间计算。
 [公式与绘图输入](docs/readme-figures.md#mint-rate-illustration) · [参数权限](docs/readme-figures.md#parameter-authority)
+
+**参与发币的亏损基数也会不同：** 没有赔付队列时，现金亏损平仓按亏损减去 LP 侧费用计算；清算则按全部损失保证金计算。这部分费用从 LP 所得划出，不是给交易者再加一笔亏损。
+
+| 已核对的清算例，内部记账单位 | 金额 |
+|---|---:|
+| 损失保证金与 PAPER 发币基数 | 20 |
+| 扣除费用后的 tracked LP 增量 | 19.6 |
+
+基数、累计进度和可调参数都能改变拿币数量，比例变化本身不能证明有人改参。这笔收据核对了金额关系，仍缺独立重现历史发币的完整输入。[亏损分支与算例](docs/research-notes/011-loss-governance-staking-and-payments.md#1-why-equal-losses-can-produce-different-paper-amounts)
 
 🔎 已采集的前端代码中，**PAPER 比例函数**按铸币数量 ÷ 合格亏损基数计算该笔平均比例。页面调用方和实际运行时使用仍未确认。[REA 与前端复核](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md#captured-paper-ratio-formatter)
 
@@ -85,6 +82,10 @@ H 是累计进度，分红减少 LP 不会重置 H。右图固定 H 展示阈值
 最后的 2% 按调整后盈利计算，不按仓位名义本金计算。
 
 [盈利调整公式与 BTC／ETH 示例](docs/readme-figures.md#profit-retention-examples)
+
+**费用和结算规则可以修改。** 2026-10-21 采集时，已核对的业务 owner 和升级路径连接到治理合约。真实成功交易把时间锁最小延迟设为 **1天**，而捕获的官网地址页仍写7天。guardian 多签可不经时间锁排期暂停新开仓；解除暂停需要 owner。
+
+三项实现升级已排期，最早可于 **2026-10-22 05:35:19（新加坡）** 执行。观察时仍待执行，不能当作已经升级，新实现尚未分析。[规则权限与真实变更记录](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed)
 
 ## 盈亏由谁承担？
 
@@ -104,7 +105,8 @@ flowchart TB
 | **赔付排队** | 已结算债权等待可用 LP 背书资金与 harvest；文档描述的赔付顺序为 FIFO。 |
 
 现金开仓的保证金返还与未付盈利分开记账；债权保证金的亏损销毁相应债权，不形成新增现金。
-[执行队列与赔付机制](docs/research-notes/007-queue-and-dividend-payment.md)
+因此，PAPER 发币量和 tracked LP 不能代替可付给赢家的现金。赔付队列只安排已有资金的支付顺序，不产生资金，也没有由此得到固定清偿期限。真实活跃欠款与部分付款案例仍缺。
+[执行队列与赔付机制](docs/research-notes/007-queue-and-dividend-payment.md) · [付款能力与条件算例](docs/research-notes/011-loss-governance-staking-and-payments.md#5-payment-capacity-when-many-traders-win)
 
 ## PAPER：分红代币怎样运作？
 
@@ -127,8 +129,12 @@ flowchart TB
 |---|---|
 | 🪙 **铸币** | 合格亏损基数与曲线进度决定数量。 |
 | 📥 **质押** | 按分配时份额累计分红，仅持有不分红；新加入可分享此前未分配的钱。文档无锁定期或冷却期。 |
-| 💵 **资金来源** | 已支付交易费用的一半，加上 tracked LP 超过上限的可划转盈余；文档示例上限为 500 万美元。 |
+| 💵 **资金来源** | 已支付交易费用的一半，加上 tracked LP 超过门槛的可划转盈余；文档示例门槛为 500 万美元。 |
 | ↗️ **领取** | 先计入交易余额，再单独提款至 HyperCore。 |
+
+**分配时点影响谁能分到这笔钱。** 取得的代码中，持有时长不额外加权，加入和退出质押也不会先把积累的费用分掉。假设有100单位奖励待分，后来者在分配前加入相同份额，两人各得50；若先分配再加入，则原持有人得100。已分配收益归原持有人，退出后也保留。这是条件代码算例，未证明真实临时质押策略已获利。[质押时机分析](docs/research-notes/011-loss-governance-staking-and-payments.md#3-long-term-staking-versus-joining-immediately-before-allocation)
+
+两个独立窗口中已核对的8笔分配均与手续费来源相符，未证明额外 LP 盈余划转，但不能排除其他时期有盈余分红。将 tracked LP 盈余分红门槛设为1000万美元的方案已取消，没有生效。分配、领取入账和外部到账仍需分别核对。[资金来源与储备核账](docs/research-notes/011-loss-governance-staking-and-payments.md#4-where-distributions-actually-came-from) · [门槛方案取消记录](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed)
 
 [铸币与质押机制分析](docs/research-notes/006-current-mechanisms.md) · [分红支付路径](docs/research-notes/007-queue-and-dividend-payment.md)
 

@@ -29,18 +29,6 @@
 
 🔎 This repository uses [REA](https://github.com/morluto/rea) and manual analysis to examine its fees, liquidation rules and the link between losses and PAPER incentives. [Research status](STATUS.md) · [Sources](docs/sources.md)
 
-## Latest findings: losses, governance and dividends
-
-The [five-question investigation](docs/research-notes/011-loss-governance-staking-and-payments.md) separates public records, acquired-code analysis and conditional examples. Observations below are dated **2026-10-21**, not a live status feed.
-
-| Question | Finding and evidence boundary |
-|---|---|
-| **Why does the same loss mint different PAPER amounts?** | Eligible basis, curve progress and parameters are separate causes. A checked liquidation has basis 20 but tracked-LP increase 19.6; matching receipt amounts do not independently reproduce historical minting. |
-| **Who can change the rules?** | Business ownership and proxy administration connect to governance contracts. A successful transaction set the minimum delay to **one day**, while the captured address documentation says seven days. The guardian multisig can pause new opens without the timelock. |
-| **Have the pending changes happened?** | A $10M LP reward-cap proposal was cancelled. Three implementation upgrades were scheduled with earliest execution **2026-10-22 05:35:19 Asia/Singapore**; they were not completed at observation time. New implementations remain unanalyzed. |
-| **Does staking early earn more?** | In the acquired code, new stake shares previously accumulated but undistributed funds; already allocated rewards remain with earlier holders. Seven synthetic runtime scenarios support this distinction, not a demonstrated real timing strategy. |
-| **Where do dividends and payouts come from?** | Five new distributions reconcile to fee funding and the reserve ledger. No actual LP-surplus transfer or active payout-debt case was established. Allocation, internal credit and external payment remain separate. |
-
 ## Features
 
 | Feature | How it works |
@@ -69,6 +57,15 @@ The [five-question investigation](docs/research-notes/011-loss-governance-stakin
 H is cumulative progress; LP distributions do not reset it. The right panel fixes H to show the threshold step using example parameters. Whole-trade minting integrates over an interval.
 [Formula and figure inputs](docs/readme-figures.md#mint-rate-illustration) · [Parameter authority](docs/readme-figures.md#parameter-authority)
 
+The **eligible mint basis** also matters: a cash-funded losing close with an empty payout queue uses loss minus the LP-side fee, while liquidation uses full lost margin. That fee comes from LP's gain, not an additional trader loss.
+
+| Checked liquidation, internal accounting units | Amount |
+|---|---:|
+| Lost margin and PAPER mint basis | 20 |
+| Tracked-LP increase after fees | 19.6 |
+
+Basis, cumulative progress and adjustable parameters can each change PAPER received. A changing ratio alone does not prove a parameter change. This receipt reconciles amounts; missing historical inputs prevent independent mint reproduction. [Loss branches and examples](docs/research-notes/011-loss-governance-staking-and-payments.md#1-why-equal-losses-can-produce-different-paper-amounts)
+
 🔎 The captured frontend's **PAPER ratio formatter** computes minted PAPER ÷ eligible mint basis: a per-record average. Its page consumer and actual runtime use remain unconfirmed. [REA and frontend cross-check](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md#captured-paper-ratio-formatter)
 
 ## Trading costs
@@ -85,6 +82,10 @@ H is cumulative progress; LP distributions do not reset it. The right panel fixe
 The final 2% applies to adjusted profit, not position notional.
 
 [Gain formula and BTC/ETH examples](docs/readme-figures.md#profit-retention-examples)
+
+**Fees and settlement rules can change.** At the 2026-10-21 observation, the inspected business-owner and upgrade paths connected to governance contracts. A successful transaction set the timelock minimum delay to **one day**, versus seven days in the captured official address page. The guardian multisig can pause new opens without timelock scheduling; resumption requires owner authority.
+
+Three implementation upgrades were scheduled with earliest execution **2026-10-22 05:35:19 Asia/Singapore**. They were pending at observation time, not confirmed as executed; their new implementations remain unanalyzed. [Rule authority and change records](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed)
 
 ## Who pays whom?
 
@@ -105,7 +106,8 @@ flowchart TB
 
 With cash-funded positions, returned margin is credited separately from unpaid gains.
 Debt-funded losses cancel the corresponding claim rather than bring in new cash.
-[Execution queue and payout mechanics](docs/research-notes/007-queue-and-dividend-payment.md)
+PAPER issuance and tracked LP are therefore not substitutes for cash available to pay winners. A payout queue orders available funding; it does not create funds or establish a fixed clearance time. Actual active-debt and partial-payment cases remain missing.
+[Execution queue and payout mechanics](docs/research-notes/007-queue-and-dividend-payment.md) · [Payment capacity and conditional examples](docs/research-notes/011-loss-governance-staking-and-payments.md#5-payment-capacity-when-many-traders-win)
 
 ## PAPER: the dividend token
 
@@ -130,6 +132,10 @@ flowchart TB
 | 📥 **Staking** | Distributions accrue by share at allocation; holding alone does not participate. New stake can share earlier undistributed funds. No documented lockup or cooldown. |
 | 💵 **Funding** | Half of paid trading fees, plus sweepable tracked-LP excess above the cap; the documented example cap is $5M. |
 | ↗️ **Claiming** | Claim into trading balance, then withdraw separately to HyperCore. |
+
+**Allocation timing determines who shares each distribution.** In the acquired code, holding time adds no extra weight, and stake and unstake do not first distribute accumulated fees. With 100 reward units waiting, two equal stakes share 50 each if the second joins before allocation; if allocation happens first, the original stake receives 100. Already allocated rewards remain with their holder, including after unstaking. This is a conditional code example, not a demonstrated real timing strategy. [Staking timing](docs/research-notes/011-loss-governance-staking-and-payments.md#3-long-term-staking-versus-joining-immediately-before-allocation)
+
+Eight checked distributions across two separate windows match fee funding; none establishes an additional LP-surplus transfer. That does not rule out surplus funding elsewhere. A proposal setting the LP reward cap to $10M was cancelled, not applied. Allocation, claim credit and external payment remain separate checks. [Funding records and reserve ledger](docs/research-notes/011-loss-governance-staking-and-payments.md#4-where-distributions-actually-came-from) · [Cap cancellation](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed)
 
 [Mint curve & staking analysis](docs/research-notes/006-current-mechanisms.md) · [Dividend payment path](docs/research-notes/007-queue-and-dividend-payment.md)
 
