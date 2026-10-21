@@ -1,7 +1,7 @@
 # Third-party notices
 
 Copyright 2026 Papertrade Mechanics Lab contributors.
-Original project documentation and future original code are licensed under
+Original project documentation and original code are licensed under
 Apache-2.0; see [LICENSE](LICENSE).
 
 The full license text is obtained from the
@@ -19,3 +19,11 @@ Before incorporating upstream code or assets, pin the actual version, inspect it
 license, retain required notices, and document copied versus independently written
 parts. Minimal original summaries and source pointers do not assert ownership of
 upstream content. Tool outputs also require provenance and disclosure review.
+
+## Validator tooling dependencies
+
+The lockfile records the exact resolved dependency graph. Packages are installed
+from the registry, not vendored into this repository. Ajv 8.17.1 (MIT) supplies
+JSON Schema validation; TypeScript 5.9.3 (Apache-2.0) and @types/node 26.6.5
+(MIT) are development tools. Their transitive dependencies retain their respective
+package licenses; installing them does not relicense them under this project's license.

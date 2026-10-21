@@ -1,0 +1,489 @@
+{
+  "type": "object",
+  "properties": {
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "pattern": "^CLM-[A-Z0-9-]+$"
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope_kind": {
+            "enum": [
+              "unidentified_user_observation",
+              "source_description_only"
+            ]
+          },
+          "provenance_kinds": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "user_report",
+                "official_doc"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "support_status": {
+            "enum": [
+              "unverified",
+              "supported",
+              "conflicting",
+              "refuted"
+            ]
+          },
+          "reproduction_status": {
+            "enum": [
+              "not_attempted",
+              "blocked"
+            ]
+          },
+          "implementation_status": {
+            "enum": [
+              "not_started",
+              "partial",
+              "implemented"
+            ]
+          },
+          "observation_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^OBS-00[1-5]$"
+            },
+            "uniqueItems": true
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^EVD-[A-Z0-9-]+$"
+            },
+            "uniqueItems": true
+          },
+          "counterevidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^EVD-[A-Z0-9-]+$"
+            },
+            "uniqueItems": true
+          },
+          "source_dependency_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^EVD-[A-Z0-9-]+$"
+            },
+            "uniqueItems": true
+          },
+          "version_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^VER-[A-Z0-9-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "origin_domain": {
+            "type": "null"
+          },
+          "observed_at": {
+            "type": "null"
+          },
+          "transaction_hash": {
+            "type": "null"
+          },
+          "falsification": {
+            "type": "string",
+            "minLength": 1
+          },
+          "missing_inputs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "verification_command": {
+            "type": "null"
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "claim_id",
+          "statement",
+          "scope_kind",
+          "provenance_kinds",
+          "support_status",
+          "reproduction_status",
+          "implementation_status",
+          "observation_ids",
+          "evidence_ids",
+          "counterevidence_ids",
+          "source_dependency_ids",
+          "version_id",
+          "falsification",
+          "missing_inputs",
+          "verification_command",
+          "limitations"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "pattern": "^EVD-[A-Z0-9-]+$"
+          },
+          "source_id": {
+            "type": "string",
+            "pattern": "^S[0-9]+$"
+          },
+          "provenance_kind": {
+            "enum": [
+              "official_doc"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "format": "public-https"
+          },
+          "collection_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "retrieval_started_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "retrieval_finished_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "timestamp_precision": {
+            "enum": [
+              "date",
+              "client_wall_clock"
+            ]
+          },
+          "source_stated_updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "retrieval_status": {
+            "enum": [
+              "read"
+            ]
+          },
+          "http_status": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 200,
+                "maximum": 299
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "retrieval_tool": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "name",
+              "version"
+            ],
+            "additionalProperties": false
+          },
+          "method": {
+            "type": "object",
+            "properties": {
+              "http_method": {
+                "enum": [
+                  "GET"
+                ]
+              },
+              "authentication": {
+                "enum": [
+                  "none"
+                ]
+              },
+              "redirects_followed": {
+                "type": "boolean"
+              },
+              "timeout_seconds": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "http_method",
+              "authentication",
+              "redirects_followed",
+              "timeout_seconds"
+            ],
+            "additionalProperties": false
+          },
+          "raw_capture": {
+            "type": "object",
+            "properties": {
+              "hash_algorithm": {
+                "enum": [
+                  "sha256"
+                ]
+              },
+              "content_hash": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "byte_length": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "published": {
+                "type": "boolean"
+              },
+              "repository_path": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "redistribution_status": {
+                "enum": [
+                  "not_established",
+                  "permitted"
+                ]
+              }
+            },
+            "required": [
+              "hash_algorithm",
+              "content_hash",
+              "byte_length",
+              "published",
+              "repository_path",
+              "redistribution_status"
+            ],
+            "additionalProperties": false
+          },
+          "public_summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version_id": {
+            "type": "string",
+            "pattern": "^VER-[A-Z0-9-]+$"
+          },
+          "source_dependency_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^EVD-[A-Z0-9-]+$"
+            },
+            "uniqueItems": true
+          },
+          "independence_note": {
+            "type": "string",
+            "minLength": 1
+          },
+          "privacy_review": {
+            "type": "string",
+            "minLength": 1
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "evidence_id",
+          "source_id",
+          "provenance_kind",
+          "url",
+          "collection_date",
+          "retrieval_started_at",
+          "retrieval_finished_at",
+          "timestamp_precision",
+          "source_stated_updated_at",
+          "retrieval_status",
+          "http_status",
+          "retrieval_tool",
+          "method",
+          "raw_capture",
+          "public_summary",
+          "version_id",
+          "source_dependency_ids",
+          "independence_note",
+          "privacy_review",
+          "limitations"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "versions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "version_id": {
+            "type": "string",
+            "pattern": "^VER-[A-Z0-9-]+$"
+          },
+          "kind": {
+            "enum": [
+              "documentation_collection"
+            ]
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^S[0-9]+$"
+            },
+            "uniqueItems": true
+          },
+          "chain_id": {
+            "type": "null"
+          },
+          "block_number": {
+            "type": "null"
+          },
+          "block_hash": {
+            "type": "null"
+          },
+          "proxy": {
+            "type": "null"
+          },
+          "implementation_address": {
+            "type": "null"
+          },
+          "implementation_code_hash": {
+            "type": "null"
+          },
+          "parameter_snapshot_id": {
+            "type": "null"
+          },
+          "frontend_bundle_hash": {
+            "type": "null"
+          },
+          "api_schema_hash": {
+            "type": "null"
+          },
+          "effective_from": {
+            "type": "null"
+          },
+          "effective_to": {
+            "type": "null"
+          },
+          "needs_revalidation": {
+            "type": "boolean"
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "version_id",
+          "kind",
+          "source_ids",
+          "chain_id",
+          "block_number",
+          "block_hash",
+          "proxy",
+          "implementation_address",
+          "implementation_code_hash",
+          "parameter_snapshot_id",
+          "frontend_bundle_hash",
+          "api_schema_hash",
+          "effective_from",
+          "effective_to",
+          "needs_revalidation",
+          "limitations"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    }
+  },
+  "required": [
+    "claims",
+    "evidence",
+    "versions"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "M0 document and unverified observation records (not chain replay)"
+}

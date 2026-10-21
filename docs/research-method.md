@@ -1,6 +1,8 @@
 # Research method
 
-Updated: 2026-10-21. This describes the method; it is not an implemented validator.
+Updated: 2026-10-21. This describes the full research method. The implemented
+[record validator](evidence-records.md) currently supports only document evidence
+and unidentified user reports, a subset of this method.
 
 ## Separate five dimensions
 
@@ -48,7 +50,8 @@ verification_command: null
 limitations: "No identified transaction; seed descriptions are not execution evidence."
 ```
 
-An empty evidence list is deliberate. Later source statements must get their own
+This conceptual YAML example illustrates the broader research method; it is not
+an input fixture for the narrower current JSON schema. An empty evidence list is deliberate. Later source statements must get their own
 claims; they cannot silently upgrade this report to `reproduced`.
 
 ## From question to result

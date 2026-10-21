@@ -1,5 +1,13 @@
 # Changelog
 
+## M0 validator increment — 2026-10-21
+
+- Add a strict offline TypeScript validator for documentation and unverified-observation records.
+- Reject unsupported reproduction, broken evidence/version references, cyclic dependencies, invalid dates and unsafe capture paths.
+- Check permitted published capture bytes against SHA-256 and length; report absent unpublished bytes separately.
+- Add real CLI negative tests, strict type checking, fixed dependencies and a pnpm lockfile.
+- Keep chain-case schema, automated collection/export and all protocol reproduction explicitly pending.
+
 ## Post-launch increment — 2026-10-21
 
 - Read four further official sources and register six document readings with capture hashes.

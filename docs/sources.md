@@ -29,7 +29,8 @@ retroactive timestamp for these captures.
 | L1 LICENSE | `cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30` |
 
 Hashes identify bytes, not truth, deployment versions, or EVM code hashes. This
-index is a reading log, not yet a machine-validated evidence manifest.
+index is a reading log. The related record structure now has an offline validator;
+it cannot verify the unpublished source bytes or establish their truth.
 
 ## Source seeds not read during P0
 
