@@ -1,7 +1,7 @@
 <h1 align="center">papertrade-research</h1>
 
 <p align="center">
-  <strong>Settlement costs, LP exposure and PAPER distributions in Papertrade.</strong>
+  <strong>Papertrade mechanics: trading, liquidation and PAPER dividends.</strong>
 </p>
 
 ![papertrade-research — observe, trace and reconcile](docs/assets/readme-banner.svg)
@@ -25,27 +25,25 @@
   <a href="docs/sources.md">Sources</a>
 </p>
 
-[Papertrade](https://docs.papertrade.xyz/) is a perpetuals protocol on HyperEVM with a documented maximum leverage of 1000×.
-Traders settle against the protocol LP. Eligible realized losses generate PAPER, and staked PAPER shares participate in USDC distributions.
+[Papertrade](https://docs.papertrade.xyz/) is a perpetuals protocol on HyperEVM: trades settle against the protocol LP, losses can generate PAPER, and staked PAPER participates in USDC distributions.
 
-🔎 This repository examines traders' net cash flows, LP exposure, and the funding and constraints behind PAPER distributions.
-Inputs include user observations, documentation, frontend and bytecode analysis, public transaction records and offline calculations. See [sources](docs/sources.md) and [research status](STATUS.md) for their basis and verification status.
+🔎 This repository examines its fees, liquidation rules and the link between losses and PAPER incentives. [Research status](STATUS.md) · [Sources](docs/sources.md)
 
 ## Features
 
-| Mechanism | Rule | Effect on cash flows or execution |
-|---|---|---|
-| **Protocol LP as counterparty** | Every trade settles directly with the Papertrade protocol liquidity pool. | The LP takes the other side of trader PnL; gain payments also depend on available backing and the payout queue. |
-| 📊 **Pricing and settlement** | Contracts read the HyperCore best-bid/ask midpoint; positions and balances are recorded on HyperEVM. | Reference prices and net PnL require separate calculation, including gain adjustments and fees. |
-| **Leverage and isolated margin** | Documented leverage is up to 1000×; margin and leverage are fixed at open, and positions close in full. | Leverage magnifies price moves relative to margin. Long and short positions do not cross-collateralize. |
-| **Fee structure** | Opening fees and funding payments are zero; the relayer pays gas for relayed trades. | Profitable closes still incur deadband, nonlinear gain adjustment and a 2% fee on adjusted profit. |
-| ⏳ **Execution queue** | The relayer receives, queues and batches market intents on chain. | Opens and closes can wait during busy periods. Prices can move, and liquidation can precede a queued close. |
-| **Losses and PAPER issuance** | Eligible loss basis determines PAPER issuance along the emission curve. | Token amounts and claimable USDC are different quantities; USDC distributions also depend on funding and staked share. |
+| Feature | How it works |
+|---|---|
+| 🤝 **Protocol LP as counterparty** | Every trade settles directly with the Papertrade protocol liquidity pool, which takes the other side of trader PnL. |
+| 📊 **Hyperliquid pricing** | Contracts read the HyperCore best-bid/ask midpoint; accounting and settlement run on HyperEVM. |
+| ⚡ **Up to 1000×, isolated margin** | Margin and leverage are fixed at open. Each position closes in full; long and short positions are independent. |
+| 💸 **0 opening fee · 0 funding payments** | Profitable closes incur gain adjustment and fees. The relayer pays gas for relayed trades. |
+| ⏳ **Queues during busy periods** | The relayer receives, queues and batches market intents on chain. Both opens and closes can wait. |
+| 🪙 **Losses generate PAPER** | Eligible losses and liquidations mint PAPER along the emission curve; staked PAPER shares participate in USDC distributions. |
 
-The current product is web-based, with no standalone mobile app. It supports market orders, without limit orders or automatic take-profit/stop-loss.
-Settlement uses the execution-time BBO midpoint without order-book-depth matching. Price moves during waiting and gain adjustments still affect the outcome.
+> 🖥️ <strong>Manual monitoring required:</strong> The current product has web-based market orders, without limit orders, automatic take-profit/stop-loss or a standalone mobile app.
+> At high leverage, a small adverse move can liquidate a position. Controlling exit timing requires watching prices and closing manually; liquidation can still precede a queued close.
 
-> 🖥️ <strong>Operational constraint:</strong> Active position management requires manual monitoring and close submission, adding a time and attention cost. A submitted close still awaits execution.
+🧩 <strong>The mechanism to examine:</strong> A losing close or liquidation generates PAPER from eligible loss basis; staking PAPER then participates in distributions. Liquidation risk and post-loss token incentives sit inside the same system.
 
 [Trading mechanics](docs/mechanism-map.md)
 
@@ -53,14 +51,11 @@ Settlement uses the execution-time BBO midpoint without order-book-depth matchin
 
 ![PAPER mint curve: cumulative progress drives marginal decay; retained history can create a step at the LP threshold](docs/assets/paper-mint-curve.en.svg)
 
-The figure uses documented example parameters. Below <strong>$2M tracked LP</strong>, the flat region mints <strong>100 PAPER per $1 of eligible loss basis</strong>.
-At or above the threshold, the marginal rate is `r(H) = R × [S / (S + H)]²`, with documented examples `R = 100`, `S = $120M`, and cumulative tail progress `H`.
+- 📉 <strong>How it decays:</strong> Documented examples use 100 PAPER/$ below $2M LP; at or above the threshold, the rate falls with cumulative tail progress H.
+- ⚙️ <strong>Who can change it:</strong> The contract owner can adjust the LP threshold, mint rate, decay scale and LP reward cap.
 
-<strong>Current LP and H are different variables.</strong> Distributions reduce LP without resetting H. The right panel fixes retained `H = $260.5M`, giving about <strong>9.9 PAPER/$</strong>,
-to illustrate the threshold step rather than a live point. Whole-trade issuance integrates over its interval; it is not simply loss times the displayed marginal rate.
-
-⚙️ <strong>Parameter authority:</strong> the contract owner can change the LP threshold, flat mint rate, decay scale and LP reward cap, affecting subsequent emissions or distributions.
-[Mint formula and figure inputs](docs/readme-figures.md#mint-rate-illustration) · [Parameter authority](docs/readme-figures.md#parameter-authority)
+H is cumulative progress; LP distributions do not reset it. The right panel fixes H to show the threshold step using example parameters. Whole-trade minting integrates over an interval.
+[Formula and figure inputs](docs/readme-figures.md#mint-rate-illustration) · [Parameter authority](docs/readme-figures.md#parameter-authority)
 
 ## Trading costs
 
@@ -72,7 +67,7 @@ to illustrate the threshold step rather than a live point. Whole-trade issuance 
 | **Close at a profit** | Deduct deadband, adjust the gain, then charge **2% of adjusted profit** |
 | **Close at a loss** | The realized loss, with no extra trading fee |
 
-The deadband is approximately <strong>0.002%</strong> of entry price. In the documented examples, the nonlinear adjustment removes about <strong>10% to nearly 100%</strong> of the post-deadband gain; smaller favorable price moves lose more.
+💡 The deadband is approximately <strong>0.002%</strong> of entry price. In the documented examples, the nonlinear adjustment removes about <strong>10% to nearly 100%</strong> of the post-deadband gain; smaller favorable price moves lose more.
 The final 2% applies to adjusted profit, not position notional.
 
 [Gain formula and BTC/ETH examples](docs/readme-figures.md#profit-retention-examples)
@@ -100,7 +95,7 @@ Debt-funded losses cancel the corresponding claim rather than bring in new cash.
 
 ## PAPER: the dividend token
 
-PAPER issuance uses eligible loss basis. USDC distributions are funded by paid trading fees and sweepable LP surplus. The two require separate accounting.
+🪙 Eligible loss basis drives PAPER issuance; trading fees and LP surplus fund USDC distributions.
 
 ```mermaid
 flowchart TB
@@ -115,29 +110,25 @@ flowchart TB
     class Stake,Rewards accent
 ```
 
-| Item | Rule and conditions |
+| Step | Rule |
 |---|---|
-| **Issuance basis** | Emissions follow eligible loss basis and curve progress. Issuing PAPER does not itself return the USDC loss. |
-| 📥 **Distribution share** | Rewards accrue by staked share; holding alone does not participate. The documented mechanism has no staking lockup or cooldown. |
-| **Funding sources** | Half of paid trading fees, plus sweepable tracked-LP excess above its configured cap; the documented example cap is $5M. |
-| ↗️ **Payment path** | Claiming credits the trading balance; withdrawal to HyperCore is a separate step. Internal accounting and external receipt are distinct. |
+| 🪙 **Minting** | Eligible loss basis and curve progress determine the amount. |
+| 📥 **Staking** | Distributions accrue by staked share; holding alone does not participate. No documented lockup or cooldown. |
+| 💵 **Funding** | Half of paid trading fees, plus sweepable tracked-LP excess above the cap; the documented example cap is $5M. |
+| ↗️ **Claiming** | Claim into trading balance, then withdraw separately to HyperCore. |
 
 [Mint curve & staking analysis](docs/research-notes/006-current-mechanisms.md) · [Dividend payment path](docs/research-notes/007-queue-and-dividend-payment.md)
 
 ## Liquidation: trigger price and margin loss
 
-The documented liquidation buffer is approximately 5 basis points (0.05%), applied to the theoretical zero-equity reference toward entry.
-Liquidation consumes the position's full isolated margin; the price buffer is not returned to the trader.
-
-> <strong>Illustrative 100× long:</strong> entry 100 → theoretical zero-equity price 99 →
-> liquidation trigger about **99.05**. A voluntary close just before the trigger
-> can still return equity; liquidation at the trigger consumes the whole margin.
+⚠️ Liquidation triggers before the theoretical zero-equity price. The documented buffer is about 5 basis points (0.05%), applied to that reference. Liquidation consumes the full isolated margin.
 
 ![Liquidation formula: integer-rounded long and short bust prices, with inclusive price triggers](docs/assets/liquidation-formula.en.svg)
 
-The buffer applies to the zero-equity reference price. At entry 100, 100× leverage and a 0.05% buffer, the continuous long-side result is **99.0495 ≈ 99.05**; the contract rounds in integer price units.
-Higher leverage makes the same small price buffer a larger fraction of margin.
-[Exact formula & rounding](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold)
+> 🧮 <strong>Illustrative 100× long:</strong> entry 100 → zero-equity price 99 → liquidation price about 99.0495 ≈ 99.05.
+> A voluntary close before the trigger can return remaining equity; liquidation consumes the full margin.
+
+Higher leverage makes the buffer a larger fraction of margin. See [formula and rounding](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold).
 
 ## Explore the research
 
