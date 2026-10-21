@@ -15,7 +15,8 @@
 <p align="center">
   <a href="README.md">English</a> ·
   <a href="#机制速览">机制速览</a> ·
-  <a href="#沿着证据阅读">研究发现</a> ·
+  <a href="#交易成本">交易费用</a> ·
+  <a href="#paper分红代币怎样运作">PAPER 分红</a> ·
   <a href="#探索研究仓库">仓库导航</a> ·
   <a href="docs/sources.md">来源</a>
 </p>
@@ -27,63 +28,89 @@
 
 ## 机制速览
 
-| 机制 | 怎样运作 | 深入阅读 |
-|---|---|---|
-| **交易执行** | 签署的意图先在 relayer 等待，再作为批次中的独立调用执行。 | [排队与批处理](docs/research-notes/007-queue-and-dividend-payment.md) |
-| **仓位** | 逐仓保证金、固定杠杆、整仓平仓；同一账户可以分别持有多仓和空仓。 | [多空双开案例](docs/research-notes/006-current-mechanisms.md#case-005-opposite-positions-can-coexist-in-the-observed-case) |
-| **结算** | 盈利依次经过 deadband、非线性调整和费用计算；未支付部分进入另一条赔付队列。 | [PnL 与整数算术](docs/research-notes/004-economic-path-and-state-audit.md) |
-| **PAPER 与分红** | 符合条件的亏损沿衰减曲线铸币；质押 PAPER 后按份额累计分配的奖励。 | [铸币与质押](docs/research-notes/006-current-mechanisms.md) |
-| **清算** | 带缓冲的爆仓阈值触发清算，损失该仓位的全部逐仓保证金。 | [触发条件与取整](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold) |
+| 特性 | Papertrade 怎样运作 |
+|---|---|
+| **对手方是协议 LP** | 每笔交易都与协议流动性池结算，不是撮合另一位交易者与你对赌。 |
+| **Hyperliquid 定价，HyperEVM 结算** | 合约读取 HyperCore 最优买卖价的中间价；仓位和余额记在 HyperEVM。 |
+| **最高 1000×，逐仓隔离** | 保证金和杠杆开仓时固定，每个仓位整仓平仓；可以分别持有多仓和空仓。 |
+| **无开仓费、无资金费率** | 交易者的额外协议成本发生在盈利平仓；经 relayer 执行的交易由其支付 gas。 |
+| **开仓、平仓都可能排队** | 签署的市价意图先经 relayer 排队，再上链执行；排队中的平仓仍可能先被清算。 |
+| **亏损铸 PAPER，质押分 USDC** | 符合条件的已实现亏损和清算沿衰减曲线铸币；质押 PAPER 后按份额参与分红。 |
 
 当前官方界面采用市价执行，没有限价单、止盈或止损单。
+[官方交易说明 →](https://docs.papertrade.xyz/learn/trades-pricing/)
 
-## 从签署意图到交易结算
+## 交易成本
+
+| 发生什么 | 交易者承担什么成本 |
+|---|---|
+| **开仓** | **0 开仓手续费** |
+| **持仓** | **0 资金费率** |
+| **Relayer 执行交易** | Gas 由 relayer 支付 |
+| **盈利平仓** | 先扣除 deadband 并做非线性盈利调整，再收取**调整后盈利的 2%** |
+| **亏损平仓** | 承担已实现亏损，不在亏损以外再加收一笔费用 |
+
+**盈利路径：**市场盈利 → deadband／盈利调整 → 2% 盈利手续费 → 净盈利。
+2% 按调整后的盈利计算，不按仓位名义本金计算：调整后盈利 100 USDC，盈利手续费为 2 USDC。
+亏损平仓与清算时，协议可能从 LP 所得中分出费用，不会在交易者既有亏损之外再扣一次。
+[费用机制 →](https://docs.papertrade.xyz/learn/wins-losses/)
+
+## 盈亏由谁承担？
 
 ```mermaid
 flowchart TB
-    Intent[签署交易意图] --> Relayer[Relayer]
-    Relayer --> Batch[BatchExecutor]
-    Batch --> Exchange[Exchange]
-    BBO[HyperCore BBO] --> Oracle[PriceOracle]
-    Oracle --> Exchange
-    Exchange --> Position[独立逐仓仓位]
-    Exchange <--> Pool[LP 与赔付队列]
-    Exchange -->|合格亏损基数| PAPER[铸出 PAPER]
+    Price[HyperCore BBO 中间价] -.->|成交价格| Trader[交易者：独立逐仓仓位]
+    Trader -->|现金保证金亏损| Pool[协议 LP：交易对手方]
+    Pool -->|盈利赔付| Trader
+    Trader -->|合格亏损基数| PAPER[铸出 PAPER]
+    classDef accent fill:#e1f4d5,stroke:#477a35,color:#18351b
+    class Pool,PAPER accent
 ```
 
-| 两条不同的队列 | 等待的是什么？ | 由什么推进？ |
-|---|---|---|
-| **执行队列** | 等待处理的签名操作 | Relayer 选取、提交，以及单项调用成功执行 |
-| **赔付队列** | 尚未支付的结算债权 | 可用背书资金与 harvest；官方机制按 FIFO 赔付 |
+| 两种不同的等待 | 等待的是什么？ |
+|---|---|
+| **执行排队** | 开／平仓意图等待 relayer 选取并成功执行。 |
+| **赔付排队** | 已结算债权等待可用 LP 背书资金与 harvest；官方赔付顺序为 FIFO。 |
 
-## 从 PAPER 到质押分红
+现金开仓的保证金返还与未付盈利分开记账；债权保证金的亏损销毁相应债权，不形成新增现金。
+[执行队列](docs/research-notes/007-queue-and-dividend-payment.md) · [赔付机制](https://docs.papertrade.xyz/how/solvency-queue/)
 
-**质押 PAPER → 累计奖励 → 领取至交易余额 → 提款至 HyperCore。**
+## PAPER：分红代币怎样运作？
+
+**亏损时铸币，质押后参与分配，奖励以 USDC 支付。**
 
 ```mermaid
 flowchart TB
-    Fees[已支付交易费用的一半] --> Rewards[质押奖励分配]
+    Loss[符合条件的亏损或清算] --> Mint[铸出 PAPER]
+    Mint --> Stake[质押 PAPER]
+    Fees[已支付交易费用的一半] --> Rewards[USDC 奖励分配]
     Surplus[可划转 LP 盈余] --> Rewards
-    PAPER[已质押 PAPER] -.->|分配份额| Rewards
-    Rewards --> Claim[领取]
-    Claim --> Balance[交易余额]
-    Balance -->|提款 / CoreWriter| Core[HyperCore USDC]
+    Stake -.->|按质押份额| Rewards
+    Rewards --> Claim[领取至交易余额]
+    Claim -->|经 CoreWriter 提款| Core[HyperCore USDC]
+    classDef accent fill:#e1f4d5,stroke:#477a35,color:#18351b
+    class Stake,Rewards accent
 ```
 
-仅持有 PAPER 不参与分红。官方列出的奖励来源是已支付交易费用的一半，以及超过设定上限后可划转的 LP 盈余。
+| PAPER 特性 | 对使用者意味着什么 |
+|---|---|
+| **通过亏损获取** | 铸币量取决于合格亏损基数和曲线进度，每亏 1 美元获得的 PAPER 数量并不固定。 |
+| **质押才参与分红** | 仅持有不分红；奖励按质押份额累计，官方机制无锁定期或冷却期。 |
+| **两条分红来源** | 已支付交易费用的一半，以及 tracked LP 超过设定上限后可划转的盈余；官方列出的上限为 **500 万美元**。 |
+| **领取与提款分两步** | 领取先计入交易余额，再通过单独的提款操作把 USDC 转到 HyperCore。 |
 
-## 沿着证据阅读
+[官方分红说明](https://docs.papertrade.xyz/learn/staking-dividends/) · [铸币与质押机制分析](docs/research-notes/006-current-mechanisms.md)
 
-| 问题 | 抽样案例得到的结果 | 研究记录 |
-|---|---|---|
-| 整笔批次成功，是否代表每项都成功？ | **734 项结果：730 成功、4 失败**；失败后仍有后续调用成功执行。 | [007 · 批次结果](docs/research-notes/007-queue-and-dividend-payment.md) |
-| 饱和度 0% 是否代表没有积压？ | 服务快照出现 **217 条意图排队、饱和度 0%**。 | [008 · 后台排队压力](docs/research-notes/008-core-credit-and-relayer-pressure.md) |
-| 同时做多做空，合起来也会亏钱吗？ | 一对已平仓仓位的事件合计交易 PnL 约 **−0.223207** 内部单位；亏损腿另铸约 **3.421797 PAPER**。 | [006 · 双开案例](docs/research-notes/006-current-mechanisms.md#case-005-opposite-positions-can-coexist-in-the-observed-case) |
-| 分红 reserve 的变化能否对账？ | **3 次分配与后续 33 次领取**，滚动计算匹配已捕获的官方 API reserve。 | [009 · 最新：奖励储备账本](docs/research-notes/009-distribution-reserve-ledger.md) |
-| 选定提款是否到达 HyperCore？ | **1115.251244 USDC** 与官方账本的入账记录匹配。 | [008 · 入账核对](docs/research-notes/008-core-credit-and-relayer-pressure.md#selected-withdrawal-one-exact-official-ledger-match) |
+## 清算：为什么缓冲很重要？
 
-**证据状态：**研究结合官方说明、取得的代码与服务商返回的链上事件。
-完整历史重放、后台调度规则及 LP 盈余／债权分支仍待补齐。[验证与进度 →](STATUS.md)
+清算会在**理论归零价之前**触发。官方描述的缓冲约为**价格的 5 个基点（0.05%）**，朝开仓价方向提前。
+这是价格缓冲，不是保证金返还保护：一旦触发清算，损失的是该仓位的**全部逐仓保证金**。
+
+> **100× 多仓示意：**开仓价 100 → 理论归零价 99 → 清算触发价约 **99.05**。
+> 在触发前主动平仓仍可能返还部分权益；触发清算则损失整笔保证金。
+
+杠杆越高，同样的小幅价格缓冲，占保证金的比例越大。
+[官方清算说明](https://docs.papertrade.xyz/learn/liquidations/) · [精确公式与取整](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold)
 
 ## 探索研究仓库
 
@@ -94,7 +121,7 @@ flowchart TB
 | [离线算术](packages/research/mechanics.ts) | 铸币曲线、爆仓价格和待领取奖励的计算函数 |
 | [证据工具](docs/chain-evidence.md) | 记录验证与版本一致性检查 |
 | [只读采集](docs/readonly-collection.md) · [安全导出](docs/safe-export.md) | 有界公开读取与经审阅的元数据导出 |
-| [研究方法](docs/research-method.md) · [路线图](ROADMAP.md) | 工作方法与下一阶段目标 |
+| [研究方法](docs/research-method.md) · [研究进度](STATUS.md) · [路线图](ROADMAP.md) | 工作方法、验证状态与下一阶段目标 |
 
 <details>
 <summary><strong>运行本地检查</strong> · Node.js ≥ 24.12.0 / pnpm 11.25.0</summary>

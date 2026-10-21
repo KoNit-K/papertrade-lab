@@ -15,7 +15,8 @@
 <p align="center">
   <a href="README.zh-CN.md">简体中文</a> ·
   <a href="#mechanisms-at-a-glance">Mechanisms</a> ·
-  <a href="#follow-the-evidence">Research</a> ·
+  <a href="#trading-costs">Fees</a> ·
+  <a href="#paper-the-dividend-token">PAPER</a> ·
   <a href="#explore-the-lab">Explore the lab</a> ·
   <a href="docs/sources.md">Sources</a>
 </p>
@@ -29,65 +30,94 @@ public transaction cases, and reproducible research tools.
 
 ## Mechanisms at a glance
 
-| Mechanism | What happens | Read more |
-|---|---|---|
-| **Execution** | Signed intents wait at the relayer, then execute as individual items in a batch. | [Queue & batch behavior](docs/research-notes/007-queue-and-dividend-payment.md) |
-| **Positions** | Isolated margin, fixed leverage and full closure per position. Separate long and short positions can coexist. | [Position case](docs/research-notes/006-current-mechanisms.md#case-005-opposite-positions-can-coexist-in-the-observed-case) |
-| **Settlement** | Winning gains pass through a deadband, nonlinear adjustment and fee. Unpaid payouts enter a separate queue. | [PnL & integer arithmetic](docs/research-notes/004-economic-path-and-state-audit.md) |
-| **PAPER & dividends** | Eligible losses mint PAPER along a decaying curve. Staked PAPER earns allocated rewards. | [Minting & staking](docs/research-notes/006-current-mechanisms.md) |
-| **Liquidation** | A buffered bust threshold triggers loss of the position's full isolated margin. | [Triggers & rounding](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold) |
+| Feature | How Papertrade works |
+|---|---|
+| **The LP is your counterparty** | Every trade settles against the protocol's liquidity pool. Papertrade does not match you with another trader. |
+| **Hyperliquid prices, HyperEVM settlement** | Contracts read the HyperCore best-bid/ask midpoint. Positions and balances live on HyperEVM. |
+| **Up to 1000×, isolated per position** | Margin and leverage are fixed at open; each position closes in full. Separate long and short positions can coexist. |
+| **No opening fee or funding payments** | The trader's protocol charges come from profitable closes. The relayer pays gas for relayed trades. |
+| **Opens and closes can wait** | Signed market intents pass through the relayer's execution queue before on-chain processing. A queued close can still be liquidated first. |
+| **Losses earn PAPER** | Eligible realized losses and liquidations mint PAPER along a decaying emission curve. Staking PAPER earns a share of USDC distributions. |
 
-The current official app uses market execution; it has no limit, take-profit or stop-loss orders.
+The current official app uses market execution, without limit, take-profit or stop-loss orders.
+[Official trading guide →](https://docs.papertrade.xyz/learn/trades-pricing/)
 
-## From intent to settlement
+## Trading costs
+
+| When | What the trader pays |
+|---|---|
+| **Open a position** | **0 opening fee** |
+| **Keep a position open** | **0 funding payments** |
+| **Execute a relayed trade** | Gas is paid by the relayer |
+| **Close at a profit** | A deadband and nonlinear gain adjustment, then **2% of the adjusted profit** |
+| **Close at a loss** | The realized loss; no additional fee on top of it |
+
+**Winning close:** market gain → deadband / gain adjustment → 2% win fee → net gain.
+The 2% is charged on adjusted profit, not position notional: an adjusted gain of
+100 USDC incurs a 2 USDC win fee. Loss-close and liquidation fee shares can be
+carved from the LP's proceeds rather than added to the trader's loss.
+[Fee mechanics →](https://docs.papertrade.xyz/learn/wins-losses/)
+
+## Who pays whom?
 
 ```mermaid
 flowchart TB
-    Intent[Signed intent] --> Relayer[Relayer]
-    Relayer --> Batch[BatchExecutor]
-    Batch --> Exchange[Exchange]
-    BBO[HyperCore BBO] --> Oracle[PriceOracle]
-    Oracle --> Exchange
-    Exchange --> Position[Isolated positions]
-    Exchange <--> Pool[LP and payout queue]
-    Exchange -->|Eligible loss basis| PAPER[PAPER issuance]
+    Price[HyperCore BBO midpoint] -.->|Execution price| Trader[Trader: isolated positions]
+    Trader -->|Cash-funded loss| Pool[Protocol LP: the counterparty]
+    Pool -->|Winning payout| Trader
+    Trader -->|Eligible loss basis| PAPER[PAPER issuance]
+    classDef accent fill:#e1f4d5,stroke:#477a35,color:#18351b
+    class Pool,PAPER accent
 ```
 
-| Two different queues | What is waiting? | What moves it forward? |
-|---|---|---|
-| **Execution queue** | A signed action awaiting processing | Relayer selection, submission and successful item execution |
-| **Payout queue** | An unpaid settlement claim | Available backing and harvest; documented FIFO payouts |
+| Two separate waits | What is waiting? |
+|---|---|
+| **Execution queue** | An open or close intent waiting for relayer selection and successful execution. |
+| **Payout queue** | A settled claim waiting for available LP backing and harvest; the documented payout order is FIFO. |
 
-## From PAPER to dividends
+With cash-funded positions, returned margin is credited separately from unpaid gains.
+Debt-funded losses cancel the corresponding claim rather than bring in new cash.
+[Execution queue](docs/research-notes/007-queue-and-dividend-payment.md) · [Payout mechanics](https://docs.papertrade.xyz/how/solvency-queue/)
 
-**Stake PAPER → accrue rewards → claim into the trading balance → withdraw to HyperCore.**
+## PAPER: the dividend token
+
+**Losses mint it. Staking activates the reward share. Distributions pay in USDC.**
 
 ```mermaid
 flowchart TB
-    Fees[Half of paid trading fees] --> Rewards[Staking distribution]
+    Loss[Eligible loss or liquidation] --> Mint[Mint PAPER]
+    Mint --> Stake[Stake PAPER]
+    Fees[Half of paid trading fees] --> Rewards[USDC reward distribution]
     Surplus[Sweepable LP surplus] --> Rewards
-    PAPER[Staked PAPER] -.->|Reward share| Rewards
-    Rewards --> Claim[Claim]
-    Claim --> Balance[Trading balance]
-    Balance -->|Withdrawal / CoreWriter| Core[HyperCore USDC]
+    Stake -.->|Proportional reward share| Rewards
+    Rewards --> Claim[Claim into trading balance]
+    Claim -->|Withdraw via CoreWriter| Core[HyperCore USDC]
+    classDef accent fill:#e1f4d5,stroke:#477a35,color:#18351b
+    class Stake,Rewards accent
 ```
 
-Holding PAPER alone does not earn dividends. The documented reward sources are half
-of paid trading fees and sweepable LP excess above the configured LP cap.
+| PAPER feature | What it means |
+|---|---|
+| **Earned through losses** | Emissions follow eligible loss basis and curve progress; PAPER per dollar is not fixed. |
+| **Stake to participate** | Holding alone does not earn dividends. Rewards accrue by staked share, with no documented lockup or cooldown. |
+| **Two reward sources** | Half of paid trading fees, plus sweepable tracked-LP excess above its configured cap, documented at **$5M**. |
+| **Claim, then withdraw** | Claiming credits the trading balance. Moving USDC to HyperCore is a separate withdrawal. |
 
-## Follow the evidence
+[Official dividends](https://docs.papertrade.xyz/learn/staking-dividends/) · [Mint curve & staking analysis](docs/research-notes/006-current-mechanisms.md)
 
-| Question | Result from sampled cases | Research |
-|---|---|---|
-| Does a successful batch mean every item succeeded? | **734 results:** 730 successes, 4 failures; later items still executed after failures. | [007 · Batch outcomes](docs/research-notes/007-queue-and-dividend-payment.md) |
-| Does 0% saturation mean no backlog? | A service snapshot reports **217 queued intents at 0% saturation**. | [008 · Relayer pressure](docs/research-notes/008-core-credit-and-relayer-pressure.md) |
-| Can opposite positions cost money together? | One closed pair reports **−0.223207** trading PnL in internal units, plus **3.421797 PAPER** on the losing leg. | [006 · Opposite positions](docs/research-notes/006-current-mechanisms.md#case-005-opposite-positions-can-coexist-in-the-observed-case) |
-| Can dividend reserve movements be reconciled? | **3 distributions and 33 later claims** reconcile to the captured API reserve. | [009 · Latest: reserve ledger](docs/research-notes/009-distribution-reserve-ledger.md) |
-| Did a selected withdrawal reach HyperCore? | **1115.251244 USDC** matches the official incoming ledger entry. | [008 · Credit confirmation](docs/research-notes/008-core-credit-and-relayer-pressure.md#selected-withdrawal-one-exact-official-ledger-match) |
+## Liquidation: the buffer matters
 
-**Evidence status:** findings combine official descriptions, acquired code and sampled
-provider-reported events. Full historical replay, backend scheduling policy and
-LP-surplus/debt cases remain open. [Verification & progress →](STATUS.md)
+Liquidation triggers **before the theoretical zero-equity price**. The documented
+buffer is about **5 basis points (0.05% of price)** toward entry. This is a price
+buffer, not a promise to return the remaining margin: triggering liquidation
+consumes the position's **full isolated margin**.
+
+> **Illustrative 100× long:** entry 100 → theoretical zero-equity price 99 →
+> liquidation trigger about **99.05**. A voluntary close just before the trigger
+> can still return equity; liquidation at the trigger consumes the whole margin.
+
+Higher leverage makes the same small price buffer a larger fraction of margin.
+[Liquidation guide](https://docs.papertrade.xyz/learn/liquidations/) · [Exact formula & rounding](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold)
 
 ## Explore the lab
 
@@ -98,7 +128,7 @@ LP-surplus/debt cases remain open. [Verification & progress →](STATUS.md)
 | [Offline arithmetic](packages/research/mechanics.ts) | Mint-curve, bust-price and pending-reward helpers |
 | [Evidence tooling](docs/chain-evidence.md) | Record validation and version consistency |
 | [Collection](docs/readonly-collection.md) · [Safe export](docs/safe-export.md) | Bounded public reads and reviewed metadata export |
-| [Method](docs/research-method.md) · [Roadmap](ROADMAP.md) | Research process and next milestones |
+| [Method](docs/research-method.md) · [Progress](STATUS.md) · [Roadmap](ROADMAP.md) | Research process, verification status and next milestones |
 
 <details>
 <summary><strong>Run the local checks</strong> · Node.js ≥ 24.12.0 / pnpm 11.25.0</summary>
