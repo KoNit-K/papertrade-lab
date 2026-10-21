@@ -1,0 +1,50 @@
+{
+  "schema_version": "public-metadata-v1",
+  "scope": "collection_metadata",
+  "source_sha256": "2e4ff262dd53bc62ba993f265e760cdfbc3430d1535854046af587a2aa60ed74",
+  "protocol_reproduced": false,
+  "raw_data_included": false,
+  "endpoint": "https://rpc.hyperliquid.xyz/evm",
+  "status": "completed",
+  "stop_reason": "none",
+  "started_at": "2026-10-21T04:41:01.908Z",
+  "finished_at": "2026-10-21T04:41:05.073Z",
+  "requests": [
+    {
+      "method": "eth_chainId",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "37047d9fa98f2102688f6d8f5163bbe33308161d4f482b3e5853043ce6c7163b",
+      "response_sha256": "430f684fbe48ec1e680bfacf8a2bea38f365e868bc8874eebe9e26e360983a9a",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getCode",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "17b62ab3c1d1dec507ad29540c25bf0e972174e93e7387bcd1fbe6dccf536a08",
+      "response_sha256": "8526b803f67958e6e8e18177af8d543a150c8346fe93cd0c7e8a351e3fd2939e",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getStorageAt",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "1dbb0c60fb611f6a757c44243c92d2c92f2b1c9f876a8a1b1759cc9de61e81a4",
+      "response_sha256": "e89d7c4daca7ad23fb2491711a6fac987b54afccc6b8beeceeb9a2312545e9ee",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getStorageAt",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "8b30ba21ae29678a190f01dc13d0d174b04a8b14a42bf4f271ddba798e35dbab",
+      "response_sha256": "6075db6ae6dbe2195b1434aadc255737137d458da727286ce5c1bb1cd272d8c4",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    }
+  ]
+}

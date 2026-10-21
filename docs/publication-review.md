@@ -75,3 +75,37 @@ Snapshot `complete` means the declared metadata and supplied bytes are internall
 consistent; it does not verify provider truth, proxy behavior, finality, all
 parameters, pre-state or settlement. Export manifests omit raw content and do not
 replace manual disclosure review. Tests are synthetic, not on-chain findings.
+
+## CASE-001 intake publication review — 2026-10-21
+
+- M0 tooling was tested and ordinarily pushed as `7afb25e` before live intake.
+  This increment changes documentation and evidence metadata only.
+- Reviewed 20 explicit files: ten documentation files, three case JSON records,
+  and seven exporter-generated metadata manifests. The local intake plan was
+  saved before event reads but published afterward; no public preregistration
+  claim is made.
+- Checked 29/30 attempted requests, 28 successful responses, one network failure,
+  1,039 unique log coordinates, 458 transactions, 294 ordered event-signature leads,
+  and the first lead's receipt identity against private collection results.
+- Checked original-byte SHA-256 bindings for all seven exports. The private chain
+  packet validates as two incomplete versions, nine evidence items and two blocked
+  claims. The original document records still validate; no protocol reproduction
+  is reported by either validator.
+- Reviewed the public field subset, local links, whitespace, private-path/token/key
+  patterns and outgoing diff. Raw results, indexed user addresses, bytecode and
+  approval declarations remain outside public history. Public event coordinates
+  and the single transaction pointer allow chain lookup and are not anonymity.
+- Independent review rechecked counts, candidate ordering, all seven projections,
+  the nine evidence mappings and manual proxy classification against private records;
+  no blocking finding remained. A discovery-request wording ambiguity was corrected.
+- Export review covers this user's authorized public research subset: original
+  summaries, protocol contract identifiers, one transaction lead, minimized
+  ordering coordinates and hashes. No wallet is associated with a person or report;
+  no raw third-party dataset or source implementation is redistributed.
+
+The 140-test suite and type check were completed for the preceding tooling commit;
+this metadata-only increment adds packet, digest, count, order and publication
+checks. It does not claim a new protocol test, independent finality check, archival
+execution trace or settlement replay. Private payloads and original wire bytes are
+not distributed, so these public manifests alone cannot verify the provider or
+replay the case. M1 case selection remains blocked by missing decisive inputs.

@@ -40,7 +40,8 @@
 
 M0 已建立初步来源与断言记录及文档版本身份；离线校验器现可检查文档/观察记录与已公开证据文件的完整性。
 实际命令及边界见[校验指南](docs/evidence-records.md)。现已补充[历史链上快照校验](docs/chain-evidence.md)、[有约束的只读采集](docs/readonly-collection.md)
-和[审核后的最小元数据导出](docs/safe-export.md)。真实案例证据与 M1 复验仍未验证。
+和[审核后的最小元数据导出](docs/safe-export.md)。[首次有界链上采集](docs/research-notes/002-first-case-intake.md)已保留最早事件线索，
+但缺少决定性的历史输入，尚未选出满足规则的盈利结算案例，也未完成 M1 复验。
 M1 随后选取有界公开结算案例，把独立整数模型与独立取得的执行结果对照。
 验收条件见[路线图](ROADMAP.md)，真实进度见[当前状态](STATUS.md)。
 

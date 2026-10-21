@@ -1,5 +1,12 @@
 # Changelog
 
+## First bounded case intake — 2026-10-21
+
+- Fix a 500-block interval before log reads and record 29 bounded read-only RPC attempts.
+- Check two historical block-end implementation identities and the earliest third-party close-event lead receipt.
+- Publish seven reviewed metadata manifests, a minimized ordered candidate ledger and missing-input report.
+- Keep case selection and reproduction blocked; no historical parameters, intent outcome or winning settlement is inferred.
+
 ## M0 chain, collection and export increment — 2026-10-21
 
 - Validate historical block/proxy/implementation/parameter identities and conflicting evidence; distinguish Keccak-256 from SHA-256.

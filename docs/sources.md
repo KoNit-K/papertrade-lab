@@ -83,3 +83,18 @@ and historical deployed behavior remain unverified. See [record limitations](evi
 No external page's statements upgrade the five historical reports or establish a
 settlement result. The default RPC's documented archival limitation must not be
 worked around by substituting current state.
+
+## CASE-001 intake sources — 2026-10-21
+
+- The official public RPC was queried at fixed blocks; actual runs, limitations and
+  reviewed metadata are linked in the [intake report](research-notes/002-first-case-intake.md).
+- [DefiLlama adapter](https://github.com/DefiLlama/dimension-adapters/blob/815e50b0b599b5bc88cd12f7db60598d122442cc/fees/papertrade.ts),
+  blob `aca70e4c45225dd60ec8e4987c4f93eebc89eb98`: read via GitHub connector;
+  third-party event-signature lead, not historically authenticated ABI.
+- [Community protocol reference](https://github.com/nirholas/papertrade-sdk/blob/483a760ef596564e5ad799357a92e5726dada9ba/docs/PROTOCOL.md),
+  blob `493d94301845396243714696924fc448958b5aed`: read, not executed. Its reported
+  validation results remain source claims; they are not this project's findings.
+- Explorer source retrieval was unsuccessful. No verified source or ABI obtained.
+
+Pinned historical code/storage responses were observed despite the documented
+default archival limitation; general archival/trace capability remains unestablished.

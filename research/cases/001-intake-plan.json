@@ -1,0 +1,36 @@
+{
+  "case_id": "CASE-001",
+  "registered_at": "2026-10-21T04:37:21.085922+00:00",
+  "status": "boundaries_fixed_before_event_reads",
+  "chain_id": "999",
+  "endpoint": "https://rpc.hyperliquid.xyz/evm",
+  "discovery_budget": 2,
+  "total_rpc_budget": 30,
+  "sampling_width_blocks": 500,
+  "interval_rule": "After finalized-header discovery, persist [max(0,F-499),F] with boundary hashes before reading candidate logs.",
+  "reason": "A fixed recent window independent of trade profit or model output; no expansion if empty or blocked.",
+  "candidate_order": [
+    "block_number",
+    "transaction_index",
+    "log_index"
+  ],
+  "selection_rule": "First ordinary winning close with decisive historical inputs and intended position established; otherwise no eligible selection.",
+  "exchange_source": "https://docs.papertrade.xyz/dev/contract-addresses/",
+  "stop_conditions": [
+    "wrong_chain",
+    "finalized_header_unavailable",
+    "access_denied",
+    "rate_limited",
+    "request_budget_exhausted",
+    "historical_inputs_missing"
+  ],
+  "user_report_linkage": "none",
+  "reproduction_status": "not_attempted",
+  "support_status": "unverified",
+  "interval_fixed_at": "2026-10-21T04:37:45.787500+00:00",
+  "block_from": "49105284",
+  "block_to": "49105783",
+  "end_block_hash": "0x8439510b3f8d488683332e64882e732b5ee4c18dd66c658c1467b4b1f4f5c7d4",
+  "start_block_hash": "0x55dddd125ad9a841a332fddc992eb4a927a72e1a07f7cce73850a6ecc3c57901",
+  "finality_basis": "Provider finalized tag; not independently corroborated"
+}

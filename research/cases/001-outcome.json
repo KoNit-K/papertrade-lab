@@ -1,0 +1,75 @@
+{
+  "schema_version": "case-intake-outcome-v1",
+  "case_id": "CASE-001",
+  "collected_at": "2026-10-21T04:41:51.959Z",
+  "chain_id": "999",
+  "support_status": "unverified",
+  "reproduction_status": "blocked",
+  "selection_status": "no_eligible_case_established",
+  "selected_transaction": null,
+  "first_event_lead": {
+    "transaction_hash": "0xa27ad6fea35d00f484f244485f2a09fd6d002c7e5189086ca6a0b20a3691f83b",
+    "block_number": "49105284",
+    "block_hash": "0x55dddd125ad9a841a332fddc992eb4a927a72e1a07f7cce73850a6ecc3c57901",
+    "transaction_index": "0",
+    "log_index": "3",
+    "receipt_status": "success",
+    "receipt_log_count": 14,
+    "ordinary_winning_close": null,
+    "intent_outcome": null
+  },
+  "rpc_requests_attempted": 29,
+  "rpc_budget": 30,
+  "rpc_response_ok": 28,
+  "network_errors": 1,
+  "provider_completeness": "provider_reported_only",
+  "independent_finality": false,
+  "exchange": "0x6cd5661646289fb6e65ea5c032310fded797d0a2",
+  "implementation": "0x0f3febfc94876b0c895f7acecdc8f5c863b549ee",
+  "proxy_code_bytes": 925,
+  "proxy_code_keccak256": "0x93076ef48e1d48172af505f739606cf1fa8425dbf9dbc6bee6743307bd4bd63b",
+  "implementation_code_bytes": 23052,
+  "implementation_code_keccak256": "0x9d20287df886415035d53344a0dc8a1044949308cc3283ee0fe7ea5f3ea28d92",
+  "boundary_identity_equal": true,
+  "unchanged_through_interval": null,
+  "version_comparison": {
+    "changed_fields": [
+      "block_hash",
+      "block_number"
+    ],
+    "identity_complete": false,
+    "requires_revalidation": true
+  },
+  "logs": 1039,
+  "transactions_with_exchange_logs": 458,
+  "third_party_close_signature_matches": 294,
+  "topic_counts": {
+    "0x87902ed2451849f465fc4d36a01d7f5c67b53af12f63ee85d2814a2d582f89bf": 310,
+    "0xa32e4800a59f03b131f5fea90951bdf00d8d505ad98f48ece29d8620a0bf09b0": 294,
+    "0xe7fd56edb8bf641db0dc0a89a9d7d3a10da1fedab015ab0c51f1c418d2bc15b0": 37,
+    "0x88451ea1189f73b554f0bf39c09868560ed149b3d788fcc933ff66ba926827f3": 302,
+    "0x95d1a93901f24eeaa294588802f66fa008f9f3741060c9f79e5dab4709de5e75": 10,
+    "0xa065d6ba54c5124cd73ce640fd3fbc0ce6eb8a4f4c9d5155347dcc461ad0cffe": 25,
+    "0x02d61879cd72906e0951e3a96096407dd2b1f2cd2d063dae983bb20216cf3025": 4,
+    "0xc36b5179cb9c303b200074996eab2b3473eac370fdd7eba3bec636fe35109696": 4,
+    "0x18d8b7951a20bbcb2b5f45b29bb62a81963f4b1f75dac5e2493a885a6de74291": 2,
+    "0x0c859bc5db091ba3b9dc10c00f8dfc78b1f0b7e2566d107253ae67c069ae5de8": 31,
+    "0x0bb3f42f9fe304326ba30302693425c1db2e2f6a4675df44372fc0af5ce73706": 20
+  },
+  "source_pin": {
+    "repository": "DefiLlama/dimension-adapters",
+    "commit": "815e50b0b599b5bc88cd12f7db60598d122442cc",
+    "path": "fees/papertrade.ts",
+    "blob_sha": "aca70e4c45225dd60ec8e4987c4f93eebc89eb98"
+  },
+  "stop_reason": "Shared decisive historical inputs missing; no range expansion or candidate promotion",
+  "public_manifest_files": [
+    "../../evidence/public/CASE001-DISCOVERY.json",
+    "../../evidence/public/CASE001-BOUNDARY.json",
+    "../../evidence/public/CASE001-SCAN.json",
+    "../../evidence/public/CASE001-VERSION.json",
+    "../../evidence/public/CASE001-DETAIL.json",
+    "../../evidence/public/CASE001-DETAIL-RETRY.json",
+    "../../evidence/public/CASE001-CHAIN.json"
+  ]
+}

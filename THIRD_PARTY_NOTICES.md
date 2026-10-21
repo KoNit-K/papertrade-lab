@@ -30,3 +30,12 @@ package licenses; installing them does not relicense them under this project's l
 
 The M0 chain validator uses @noble/hashes 2.4.0 (MIT) for Keccak-256. Its code is
 installed through the lockfile, not copied into this repository.
+
+## Public chain intake
+
+CASE-001 publishes original factual summaries, reviewed metadata, minimal event
+coordinates and source links. Raw provider responses, bytecode, third-party ABI
+files and SDK/adapter implementations are not distributed. The event-signature
+lead is attributed to the pinned DefiLlama source in the research note. These
+original summaries do not relicense linked sources or assert rights over raw
+provider data. No wallet-to-report or personal identity association is included.

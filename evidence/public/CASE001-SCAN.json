@@ -1,0 +1,140 @@
+{
+  "schema_version": "public-metadata-v1",
+  "scope": "collection_metadata",
+  "source_sha256": "cc8b710d68e9435a40114eb9d1addf7c6da95713b566777477d5c45b26d18849",
+  "protocol_reproduced": false,
+  "raw_data_included": false,
+  "endpoint": "https://rpc.hyperliquid.xyz/evm",
+  "status": "completed",
+  "stop_reason": "none",
+  "started_at": "2026-10-21T04:38:18.316Z",
+  "finished_at": "2026-10-21T04:38:32.180Z",
+  "requests": [
+    {
+      "method": "eth_chainId",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "37047d9fa98f2102688f6d8f5163bbe33308161d4f482b3e5853043ce6c7163b",
+      "response_sha256": "430f684fbe48ec1e680bfacf8a2bea38f365e868bc8874eebe9e26e360983a9a",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getCode",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "e8cc735fce11d76e22b3c689654663f5a7a43686546d2610e10a95aada13712e",
+      "response_sha256": "8526b803f67958e6e8e18177af8d543a150c8346fe93cd0c7e8a351e3fd2939e",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getLogs",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "5e7b23a8a6f2cce60a829e044885f1219d04b675fff7128d80a3642fadcce659",
+      "response_sha256": "dcd65c8fa8443861d10c2415cdcebb5d3dc0830ec5e714229bf3cc9d15ae0132",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getLogs",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "b49a6e8becac9ada865153f653218fec3e64966f5020910c2dc6b85de37e8880",
+      "response_sha256": "7534037302d74c120d726e1d1219faee179b22c1fe8313ffea4b455ecc32b5c8",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getLogs",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "1dd9d69f183f28e31760d10ec5d27cdc640b749f928294175ae31be6ac3131f2",
+      "response_sha256": "e01fe6911d60699d6c771d4564dd54154be4a592f07668f302f52c1d6b21fe7a",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getLogs",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "510f1eef19b81cd512c1d09dd6935d6efbee65d07c55b9bd3801f3a995ef8c12",
+      "response_sha256": "c76adf934820d54f41bde2bf023c7efc0788811562721fc0bd58d54a4f933917",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getLogs",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "12f1e41771417bc6b07f2f90fb2690afb92601bfc09c502d0be0b4458165bebb",
+      "response_sha256": "ab2f2ff41be60d41930af49513236ea04dc240b250242b2029a8c856cd942920",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getLogs",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "3a14b62035d4784beee7db8e1b537a2dac34a3918ae590f58b9f936b79681bf5",
+      "response_sha256": "35508e934124691ab421afd0e9b124fc964e33d4f1f0b6869a91c45d50a14aeb",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getLogs",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "864cea2e6b73fb51f79cf120384a7308653570567e57aaf3d0d3ec88e7fc9423",
+      "response_sha256": "0fca9ba565e362a612b95c77b1e4aab506d38666c4519380741ca0444a9ebef7",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getLogs",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "f37b73372125422eca1a87caf69fb7ceba18fcb2e355fc0904c9d8cc499ace7a",
+      "response_sha256": "e24f85b32cdc3b0da017eaa1d1b77e2cae9ac1a67cb7b7f9c142aead4471b2e2",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getLogs",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "d9c07deef37ec18dea78ab876efcc3374f747c2c156c8c2c313c8bf4a3470a27",
+      "response_sha256": "ad587de0696dfed87be4e994d079786853bdff624900194292ed727850f0e035",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getLogs",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "b2a550c7057420c1343f3b24f2b96dc95d09fa7e16be1f756a340ff15b59b5d8",
+      "response_sha256": "1c20db6e929595a52426bb4fa61a5ff1b6bc9dbce83643f90d794334cc008e54",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getBlockByNumber",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "e642affabcaf30242f724f4f6d724be95be52adfba65021bc376a24d2879b12c",
+      "response_sha256": "d1cbe032cc068d73996369db07a31e62fdf7dedd174672fb4b136419ad8a78b7",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getBlockByNumber",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "42d8bf5e4e84582c16484edc2392ae02b28dae0776d6bdcc2a3ec860ae5947b5",
+      "response_sha256": "29cb1df087770696cd1d73c4d032005f59782d26849b50bad61568f9917e9bb6",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    }
+  ]
+}

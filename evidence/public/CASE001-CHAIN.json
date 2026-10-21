@@ -1,0 +1,114 @@
+{
+  "schema_version": "public-metadata-v1",
+  "scope": "chain_metadata",
+  "source_sha256": "ee188c440d056befdec32731c31d15efee9ac643993d9821019349b921029b12",
+  "protocol_reproduced": false,
+  "raw_data_included": false,
+  "fixture_kind": "public_chain",
+  "versions": [
+    {
+      "version_id": "VER-CASE001-START",
+      "chain_id": "999",
+      "block_number": "49105284",
+      "block_hash": "0x55dddd125ad9a841a332fddc992eb4a927a72e1a07f7cce73850a6ecc3c57901",
+      "binding_status": "incomplete",
+      "needs_revalidation": true
+    },
+    {
+      "version_id": "VER-CASE001-END",
+      "chain_id": "999",
+      "block_number": "49105783",
+      "block_hash": "0x8439510b3f8d488683332e64882e732b5ee4c18dd66c658c1467b4b1f4f5c7d4",
+      "binding_status": "incomplete",
+      "needs_revalidation": true
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "EVD-CASE001-START-BLOCK",
+      "version_id": "VER-CASE001-START",
+      "kind": "block",
+      "content_sha256": "c59651208474ad4cd5389e484de8a7e0a9d722287338484e55701718bf9c87a6"
+    },
+    {
+      "evidence_id": "EVD-CASE001-START-PROXY",
+      "version_id": "VER-CASE001-START",
+      "kind": "code",
+      "content_sha256": "725c1639c5120be2ea9a7efd9b9de1a06c525e7c1b6ed7133ed4e24f1a4fb518"
+    },
+    {
+      "evidence_id": "EVD-CASE001-START-SLOT",
+      "version_id": "VER-CASE001-START",
+      "kind": "storage",
+      "content_sha256": "9f1bc11929f116b35f0bcf4d24ee756f4c2589d8990e34c5a7332eecbe041bdc"
+    },
+    {
+      "evidence_id": "EVD-CASE001-START-IMPL",
+      "version_id": "VER-CASE001-START",
+      "kind": "code",
+      "content_sha256": "b835a9a2a98fece9fdba4a7beccc8726a23e828d63d3aebf4ddb57934f48cba1"
+    },
+    {
+      "evidence_id": "EVD-CASE001-START-RECEIPT",
+      "version_id": "VER-CASE001-START",
+      "kind": "receipt",
+      "content_sha256": "b053a6357e31a8a60e52e3a0e9a2009cb3ec50a64f56ec75fa7229bde602eb62"
+    },
+    {
+      "evidence_id": "EVD-CASE001-END-BLOCK",
+      "version_id": "VER-CASE001-END",
+      "kind": "block",
+      "content_sha256": "61a68db37ff5b0b9a7092d79b6ac5bd96b675c231676a7830eee784f4a7d8000"
+    },
+    {
+      "evidence_id": "EVD-CASE001-END-PROXY",
+      "version_id": "VER-CASE001-END",
+      "kind": "code",
+      "content_sha256": "725c1639c5120be2ea9a7efd9b9de1a06c525e7c1b6ed7133ed4e24f1a4fb518"
+    },
+    {
+      "evidence_id": "EVD-CASE001-END-SLOT",
+      "version_id": "VER-CASE001-END",
+      "kind": "storage",
+      "content_sha256": "9f1bc11929f116b35f0bcf4d24ee756f4c2589d8990e34c5a7332eecbe041bdc"
+    },
+    {
+      "evidence_id": "EVD-CASE001-END-IMPL",
+      "version_id": "VER-CASE001-END",
+      "kind": "code",
+      "content_sha256": "b835a9a2a98fece9fdba4a7beccc8726a23e828d63d3aebf4ddb57934f48cba1"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "CLM-CASE001-START",
+      "version_id": "VER-CASE001-START",
+      "support_status": "unverified",
+      "reproduction_status": "blocked",
+      "missing_inputs": [
+        "parameters",
+        "prestate",
+        "trace",
+        "price",
+        "intent_outcome",
+        "independent_result",
+        "finality"
+      ]
+    },
+    {
+      "claim_id": "CLM-CASE001-END",
+      "version_id": "VER-CASE001-END",
+      "support_status": "unverified",
+      "reproduction_status": "blocked",
+      "missing_inputs": [
+        "parameters",
+        "prestate",
+        "trace",
+        "price",
+        "intent_outcome",
+        "independent_result",
+        "finality"
+      ]
+    }
+  ]
+}

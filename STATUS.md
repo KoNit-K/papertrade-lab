@@ -23,7 +23,7 @@ The current branch additionally contains the M0 records and validator increments
 | Evidence/version validator | Document records plus separate chain snapshot profile; historical identity, dependency, conflict and hash checks |
 | Read-only collector / safe export tooling | Implemented for one public RPC and reviewed metadata-only export; see guides |
 | Integer model / transaction CLI / offline replay | Not implemented |
-| Real transaction reproduction | Not attempted; first-case intake follows the tooling push |
+| Real transaction reproduction | Blocked: CASE-001 intake completed, earliest event lead retained, decisive inputs missing |
 | REA installation / outputs | Not performed / none |
 | Local validator tests / strict type check | Implemented and run; see checks below |
 | CI, model tests, document-site build | Not configured / not run |
@@ -33,15 +33,15 @@ See the [publication review](docs/publication-review.md) for actual P0 checks an
 
 ## Next three tasks
 
-1. Execute the bounded finalized-block discovery plan, then persist an exact interval before reading candidate events.
-2. Inventory archival state, proxy classification, event ABI and transaction/intent ordering for the earliest eligible candidate.
-3. Build M1 only from decisive historical inputs and independent results; otherwise publish the missing-input report.
+1. Obtain an authenticated ABI/storage layout for the observed historical implementation.
+2. Establish intent-to-position mapping and exact execution pre-state, parameters and prices for the ordered CASE-001 leads.
+3. Select a fully eligible ordinary winning close and implement M1 only with independent expected results.
 
 M0 tools are implemented for the documented profile: official document records,
 chain-999 block-end snapshots (EIP-1967 or explicitly incomplete), bounded public
 RPC, and reviewed metadata export. This is not arbitrary HAR anonymization,
-a transaction-prestate decoder or independent reproduction. Live case intake is
-pending; M1–M4 remain unimplemented. No milestone is closed by test counts alone.
+a transaction-prestate decoder or independent reproduction. The first bounded live intake is complete, with no eligible settlement established;
+M1–M4 remain unimplemented. No milestone is closed by test counts alone.
 
 ## Checks for the post-launch increment
 
@@ -90,3 +90,16 @@ synthetic chain packet passed while retaining `protocol_reproduced: false`.
 All checks also passed in a fresh temporary copy installed offline from the
 frozen lockfile and populated package cache. Minimum Node/Windows compatibility,
 hosted CI and a dependency vulnerability audit were not run.
+
+## First bounded live intake
+
+[CASE-001](docs/research-notes/002-first-case-intake.md) fixed blocks
+49105284–49105783 before event reads. Across 29/30 RPC attempts, 28 succeeded
+and one chain handshake failed with a network error; one normal retry succeeded.
+The scan returned 1,039 logs and 294 third-party close-signature leads. The first
+lead receipt was checked; remaining leads have a shared missing-input exclusion.
+Two block-end implementation identities match, but neither transaction pre-state
+nor a continuous unchanged interval is established. Two incomplete versions, nine
+evidence items and two blocked claims passed the chain validator. Seven reviewed
+metadata exports omit raw payloads. All mechanism claims remain unverified;
+there is no integer settlement replay or eligible winning-case selection yet.

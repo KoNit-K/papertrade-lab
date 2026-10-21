@@ -45,7 +45,8 @@ An offline validator now checks document/observation records and published captu
 Read the [validation guide](docs/evidence-records.md) for real commands and limits.
 M0 now includes [historical chain snapshot checks](docs/chain-evidence.md),
 [bounded read-only collection](docs/readonly-collection.md) and
-[reviewed metadata export](docs/safe-export.md). Live case evidence and M1 replay remain unverified.
+[reviewed metadata export](docs/safe-export.md). The [first bounded live intake](docs/research-notes/002-first-case-intake.md) retained an earliest event lead,
+but decisive historical inputs are missing; no eligible winning settlement or M1 replay is established.
 Then M1 selects a bounded public settlement case and
 compares an independent integer model with independently sourced execution results.
 See the [roadmap](ROADMAP.md) for acceptance criteria and the [status](STATUS.md)

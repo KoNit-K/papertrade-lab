@@ -1,0 +1,68 @@
+{
+  "schema_version": "public-metadata-v1",
+  "scope": "collection_metadata",
+  "source_sha256": "873e6d8728e3348f9ff6dcb54391416dbdf948d14ef8f4b36b7d047ca56cfcba",
+  "protocol_reproduced": false,
+  "raw_data_included": false,
+  "endpoint": "https://rpc.hyperliquid.xyz/evm",
+  "status": "completed",
+  "stop_reason": "none",
+  "started_at": "2026-10-21T04:41:46.789Z",
+  "finished_at": "2026-10-21T04:41:51.959Z",
+  "requests": [
+    {
+      "method": "eth_chainId",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "37047d9fa98f2102688f6d8f5163bbe33308161d4f482b3e5853043ce6c7163b",
+      "response_sha256": "430f684fbe48ec1e680bfacf8a2bea38f365e868bc8874eebe9e26e360983a9a",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getCode",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "a2e17cc24e0e9c44c2436fcf09f7cf1eefd72ea50f589371000f8ea30167de8c",
+      "response_sha256": "885976888ae52e99e4c167921a60808b31cedf86007f8048504f4c0f1023eda9",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getCode",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "e3517b256e2784e24f0c468366de83fba15c78c0f1f2e2368ab84acbddb20c27",
+      "response_sha256": "dd091f560dd01792700cd7cafd4b52150b61d3055b22634a42d1e93620f19d17",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getTransactionReceipt",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "292a083277eafca2aa083c85451b92829204f0ff550b9a0a64e8a5dc5f6f91fe",
+      "response_sha256": "83765bd780bd4a8f23859237cb85c9248d670ed97745b52c5b68f1b847f098b0",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getBlockByNumber",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "e642affabcaf30242f724f4f6d724be95be52adfba65021bc376a24d2879b12c",
+      "response_sha256": "18f0c6340b1254811b4848b444813de1ef5eb31f827b5a919c44ec6729e49458",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    },
+    {
+      "method": "eth_getBlockByNumber",
+      "status": "ok",
+      "http_status": 200,
+      "request_sha256": "42d8bf5e4e84582c16484edc2392ae02b28dae0776d6bdcc2a3ec860ae5947b5",
+      "response_sha256": "792f68064ba049a7ee1df3d9a7c7a7f9166fd05ff0ac21eb07bed06f6c03dc50",
+      "rpc_error_code": null,
+      "retry_after_seconds": null
+    }
+  ]
+}

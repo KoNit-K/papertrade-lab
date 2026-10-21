@@ -1,0 +1,2079 @@
+{
+  "schema_version": "case-intake-ledger-v1",
+  "case_id": "CASE-001",
+  "support_status": "unverified",
+  "reproduction_status": "blocked",
+  "selection_status": "no_eligible_case_established",
+  "selected_transaction": null,
+  "classification_basis": "Third-party event signature match and ABI word shape only; not authenticated against historical implementation",
+  "shared_missing_inputs": [
+    "historically_authenticated_event_abi",
+    "position_and_intent_mapping",
+    "transaction_execution_prestate",
+    "historical_parameters_and_prices",
+    "independent_expected_settlement"
+  ],
+  "review_depth": "First event receipt checked; remaining 293 leads rejected at the shared evidence gate without individual receipt/position review",
+  "unclassified_log_count": 745,
+  "unclassified_disposition": "Not decoded; cannot rule out additional settlement candidates",
+  "candidate_events": [
+    {
+      "ordinal": 1,
+      "block_number": "49105284",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 2,
+      "block_number": "49105286",
+      "transaction_index": "4",
+      "log_index": "9",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 3,
+      "block_number": "49105286",
+      "transaction_index": "4",
+      "log_index": "14",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 4,
+      "block_number": "49105287",
+      "transaction_index": "2",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 5,
+      "block_number": "49105294",
+      "transaction_index": "1",
+      "log_index": "4",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 6,
+      "block_number": "49105297",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 7,
+      "block_number": "49105297",
+      "transaction_index": "0",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 8,
+      "block_number": "49105298",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 9,
+      "block_number": "49105298",
+      "transaction_index": "0",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 10,
+      "block_number": "49105299",
+      "transaction_index": "1",
+      "log_index": "14",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 11,
+      "block_number": "49105300",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 12,
+      "block_number": "49105301",
+      "transaction_index": "1",
+      "log_index": "28",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 13,
+      "block_number": "49105305",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 14,
+      "block_number": "49105309",
+      "transaction_index": "3",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 15,
+      "block_number": "49105312",
+      "transaction_index": "4",
+      "log_index": "20",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 16,
+      "block_number": "49105312",
+      "transaction_index": "4",
+      "log_index": "25",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 17,
+      "block_number": "49105312",
+      "transaction_index": "4",
+      "log_index": "30",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 18,
+      "block_number": "49105313",
+      "transaction_index": "2",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 19,
+      "block_number": "49105314",
+      "transaction_index": "1",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 20,
+      "block_number": "49105318",
+      "transaction_index": "3",
+      "log_index": "9",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 21,
+      "block_number": "49105318",
+      "transaction_index": "3",
+      "log_index": "14",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 22,
+      "block_number": "49105321",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 23,
+      "block_number": "49105321",
+      "transaction_index": "0",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 24,
+      "block_number": "49105322",
+      "transaction_index": "2",
+      "log_index": "9",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 25,
+      "block_number": "49105323",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 26,
+      "block_number": "49105323",
+      "transaction_index": "0",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 27,
+      "block_number": "49105324",
+      "transaction_index": "0",
+      "log_index": "1",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 28,
+      "block_number": "49105325",
+      "transaction_index": "1",
+      "log_index": "9",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 29,
+      "block_number": "49105325",
+      "transaction_index": "1",
+      "log_index": "13",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 30,
+      "block_number": "49105327",
+      "transaction_index": "6",
+      "log_index": "15",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 31,
+      "block_number": "49105330",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 32,
+      "block_number": "49105331",
+      "transaction_index": "1",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 33,
+      "block_number": "49105336",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 34,
+      "block_number": "49105338",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 35,
+      "block_number": "49105339",
+      "transaction_index": "1",
+      "log_index": "14",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 36,
+      "block_number": "49105340",
+      "transaction_index": "2",
+      "log_index": "16",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 37,
+      "block_number": "49105341",
+      "transaction_index": "1",
+      "log_index": "15",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 38,
+      "block_number": "49105341",
+      "transaction_index": "1",
+      "log_index": "18",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 39,
+      "block_number": "49105343",
+      "transaction_index": "1",
+      "log_index": "22",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 40,
+      "block_number": "49105344",
+      "transaction_index": "1",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 41,
+      "block_number": "49105345",
+      "transaction_index": "2",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 42,
+      "block_number": "49105347",
+      "transaction_index": "1",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 43,
+      "block_number": "49105348",
+      "transaction_index": "1",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 44,
+      "block_number": "49105348",
+      "transaction_index": "1",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 45,
+      "block_number": "49105348",
+      "transaction_index": "1",
+      "log_index": "11",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 46,
+      "block_number": "49105349",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 47,
+      "block_number": "49105349",
+      "transaction_index": "0",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 48,
+      "block_number": "49105349",
+      "transaction_index": "0",
+      "log_index": "10",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 49,
+      "block_number": "49105349",
+      "transaction_index": "0",
+      "log_index": "13",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 50,
+      "block_number": "49105350",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 51,
+      "block_number": "49105351",
+      "transaction_index": "1",
+      "log_index": "4",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 52,
+      "block_number": "49105352",
+      "transaction_index": "2",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 53,
+      "block_number": "49105352",
+      "transaction_index": "2",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 54,
+      "block_number": "49105353",
+      "transaction_index": "1",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 55,
+      "block_number": "49105354",
+      "transaction_index": "1",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 56,
+      "block_number": "49105354",
+      "transaction_index": "1",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 57,
+      "block_number": "49105354",
+      "transaction_index": "1",
+      "log_index": "10",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 58,
+      "block_number": "49105354",
+      "transaction_index": "1",
+      "log_index": "15",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 59,
+      "block_number": "49105354",
+      "transaction_index": "1",
+      "log_index": "19",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 60,
+      "block_number": "49105355",
+      "transaction_index": "1",
+      "log_index": "1",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 61,
+      "block_number": "49105356",
+      "transaction_index": "0",
+      "log_index": "1",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 62,
+      "block_number": "49105356",
+      "transaction_index": "0",
+      "log_index": "4",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 63,
+      "block_number": "49105358",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 64,
+      "block_number": "49105359",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 65,
+      "block_number": "49105363",
+      "transaction_index": "1",
+      "log_index": "14",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 66,
+      "block_number": "49105363",
+      "transaction_index": "1",
+      "log_index": "19",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 67,
+      "block_number": "49105364",
+      "transaction_index": "11",
+      "log_index": "45",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 68,
+      "block_number": "49105364",
+      "transaction_index": "11",
+      "log_index": "50",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 69,
+      "block_number": "49105364",
+      "transaction_index": "11",
+      "log_index": "55",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 70,
+      "block_number": "49105365",
+      "transaction_index": "1",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 71,
+      "block_number": "49105367",
+      "transaction_index": "4",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 72,
+      "block_number": "49105369",
+      "transaction_index": "2",
+      "log_index": "15",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 73,
+      "block_number": "49105369",
+      "transaction_index": "2",
+      "log_index": "20",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 74,
+      "block_number": "49105371",
+      "transaction_index": "4",
+      "log_index": "16",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 75,
+      "block_number": "49105374",
+      "transaction_index": "1",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 76,
+      "block_number": "49105376",
+      "transaction_index": "1",
+      "log_index": "18",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 77,
+      "block_number": "49105376",
+      "transaction_index": "1",
+      "log_index": "22",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 78,
+      "block_number": "49105376",
+      "transaction_index": "1",
+      "log_index": "26",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 79,
+      "block_number": "49105377",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 80,
+      "block_number": "49105378",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 81,
+      "block_number": "49105378",
+      "transaction_index": "0",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 82,
+      "block_number": "49105378",
+      "transaction_index": "0",
+      "log_index": "11",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 83,
+      "block_number": "49105379",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 84,
+      "block_number": "49105384",
+      "transaction_index": "1",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 85,
+      "block_number": "49105385",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 86,
+      "block_number": "49105387",
+      "transaction_index": "3",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 87,
+      "block_number": "49105388",
+      "transaction_index": "12",
+      "log_index": "34",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 88,
+      "block_number": "49105389",
+      "transaction_index": "6",
+      "log_index": "16",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 89,
+      "block_number": "49105392",
+      "transaction_index": "0",
+      "log_index": "1",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 90,
+      "block_number": "49105392",
+      "transaction_index": "0",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 91,
+      "block_number": "49105396",
+      "transaction_index": "1",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 92,
+      "block_number": "49105398",
+      "transaction_index": "4",
+      "log_index": "10",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 93,
+      "block_number": "49105398",
+      "transaction_index": "4",
+      "log_index": "15",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 94,
+      "block_number": "49105399",
+      "transaction_index": "14",
+      "log_index": "38",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 95,
+      "block_number": "49105401",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 96,
+      "block_number": "49105402",
+      "transaction_index": "7",
+      "log_index": "14",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 97,
+      "block_number": "49105407",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 98,
+      "block_number": "49105408",
+      "transaction_index": "2",
+      "log_index": "22",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 99,
+      "block_number": "49105409",
+      "transaction_index": "2",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 100,
+      "block_number": "49105411",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 101,
+      "block_number": "49105411",
+      "transaction_index": "1",
+      "log_index": "10",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 102,
+      "block_number": "49105412",
+      "transaction_index": "1",
+      "log_index": "17",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 103,
+      "block_number": "49105413",
+      "transaction_index": "1",
+      "log_index": "4",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 104,
+      "block_number": "49105413",
+      "transaction_index": "1",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 105,
+      "block_number": "49105413",
+      "transaction_index": "1",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 106,
+      "block_number": "49105414",
+      "transaction_index": "2",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 107,
+      "block_number": "49105419",
+      "transaction_index": "1",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 108,
+      "block_number": "49105419",
+      "transaction_index": "1",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 109,
+      "block_number": "49105420",
+      "transaction_index": "1",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 110,
+      "block_number": "49105422",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 111,
+      "block_number": "49105423",
+      "transaction_index": "0",
+      "log_index": "1",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 112,
+      "block_number": "49105424",
+      "transaction_index": "1",
+      "log_index": "14",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 113,
+      "block_number": "49105425",
+      "transaction_index": "1",
+      "log_index": "9",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 114,
+      "block_number": "49105428",
+      "transaction_index": "1",
+      "log_index": "13",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 115,
+      "block_number": "49105428",
+      "transaction_index": "1",
+      "log_index": "17",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 116,
+      "block_number": "49105429",
+      "transaction_index": "2",
+      "log_index": "11",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 117,
+      "block_number": "49105429",
+      "transaction_index": "2",
+      "log_index": "16",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 118,
+      "block_number": "49105430",
+      "transaction_index": "1",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 119,
+      "block_number": "49105430",
+      "transaction_index": "1",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 120,
+      "block_number": "49105430",
+      "transaction_index": "1",
+      "log_index": "10",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 121,
+      "block_number": "49105435",
+      "transaction_index": "8",
+      "log_index": "43",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 122,
+      "block_number": "49105437",
+      "transaction_index": "1",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 123,
+      "block_number": "49105439",
+      "transaction_index": "2",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 124,
+      "block_number": "49105440",
+      "transaction_index": "4",
+      "log_index": "25",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 125,
+      "block_number": "49105447",
+      "transaction_index": "2",
+      "log_index": "18",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 126,
+      "block_number": "49105448",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 127,
+      "block_number": "49105450",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 128,
+      "block_number": "49105451",
+      "transaction_index": "3",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 129,
+      "block_number": "49105451",
+      "transaction_index": "3",
+      "log_index": "11",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 130,
+      "block_number": "49105458",
+      "transaction_index": "5",
+      "log_index": "38",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 131,
+      "block_number": "49105460",
+      "transaction_index": "2",
+      "log_index": "13",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 132,
+      "block_number": "49105461",
+      "transaction_index": "1",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 133,
+      "block_number": "49105462",
+      "transaction_index": "2",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 134,
+      "block_number": "49105462",
+      "transaction_index": "2",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 135,
+      "block_number": "49105465",
+      "transaction_index": "2",
+      "log_index": "16",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 136,
+      "block_number": "49105467",
+      "transaction_index": "2",
+      "log_index": "15",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 137,
+      "block_number": "49105476",
+      "transaction_index": "1",
+      "log_index": "14",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 138,
+      "block_number": "49105477",
+      "transaction_index": "1",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 139,
+      "block_number": "49105485",
+      "transaction_index": "2",
+      "log_index": "9",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 140,
+      "block_number": "49105508",
+      "transaction_index": "1",
+      "log_index": "24",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 141,
+      "block_number": "49105508",
+      "transaction_index": "1",
+      "log_index": "28",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 142,
+      "block_number": "49105510",
+      "transaction_index": "2",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 143,
+      "block_number": "49105511",
+      "transaction_index": "2",
+      "log_index": "4",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 144,
+      "block_number": "49105511",
+      "transaction_index": "2",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 145,
+      "block_number": "49105511",
+      "transaction_index": "2",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 146,
+      "block_number": "49105512",
+      "transaction_index": "1",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 147,
+      "block_number": "49105513",
+      "transaction_index": "3",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 148,
+      "block_number": "49105514",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 149,
+      "block_number": "49105514",
+      "transaction_index": "0",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 150,
+      "block_number": "49105514",
+      "transaction_index": "0",
+      "log_index": "11",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 151,
+      "block_number": "49105514",
+      "transaction_index": "0",
+      "log_index": "16",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 152,
+      "block_number": "49105517",
+      "transaction_index": "1",
+      "log_index": "4",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 153,
+      "block_number": "49105520",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 154,
+      "block_number": "49105520",
+      "transaction_index": "0",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 155,
+      "block_number": "49105520",
+      "transaction_index": "0",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 156,
+      "block_number": "49105522",
+      "transaction_index": "1",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 157,
+      "block_number": "49105525",
+      "transaction_index": "3",
+      "log_index": "10",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 158,
+      "block_number": "49105525",
+      "transaction_index": "3",
+      "log_index": "14",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 159,
+      "block_number": "49105526",
+      "transaction_index": "2",
+      "log_index": "19",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 160,
+      "block_number": "49105527",
+      "transaction_index": "3",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 161,
+      "block_number": "49105529",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 162,
+      "block_number": "49105529",
+      "transaction_index": "0",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 163,
+      "block_number": "49105530",
+      "transaction_index": "2",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 164,
+      "block_number": "49105530",
+      "transaction_index": "2",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 165,
+      "block_number": "49105530",
+      "transaction_index": "2",
+      "log_index": "17",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 166,
+      "block_number": "49105531",
+      "transaction_index": "1",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 167,
+      "block_number": "49105532",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 168,
+      "block_number": "49105533",
+      "transaction_index": "2",
+      "log_index": "16",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 169,
+      "block_number": "49105533",
+      "transaction_index": "2",
+      "log_index": "21",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 170,
+      "block_number": "49105534",
+      "transaction_index": "0",
+      "log_index": "1",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 171,
+      "block_number": "49105535",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 172,
+      "block_number": "49105537",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 173,
+      "block_number": "49105539",
+      "transaction_index": "13",
+      "log_index": "35",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 174,
+      "block_number": "49105540",
+      "transaction_index": "9",
+      "log_index": "26",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 175,
+      "block_number": "49105541",
+      "transaction_index": "1",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 176,
+      "block_number": "49105541",
+      "transaction_index": "1",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 177,
+      "block_number": "49105542",
+      "transaction_index": "1",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 178,
+      "block_number": "49105545",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 179,
+      "block_number": "49105545",
+      "transaction_index": "0",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 180,
+      "block_number": "49105546",
+      "transaction_index": "1",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 181,
+      "block_number": "49105546",
+      "transaction_index": "1",
+      "log_index": "11",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 182,
+      "block_number": "49105548",
+      "transaction_index": "1",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 183,
+      "block_number": "49105549",
+      "transaction_index": "4",
+      "log_index": "15",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 184,
+      "block_number": "49105549",
+      "transaction_index": "4",
+      "log_index": "20",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 185,
+      "block_number": "49105549",
+      "transaction_index": "4",
+      "log_index": "24",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 186,
+      "block_number": "49105550",
+      "transaction_index": "5",
+      "log_index": "26",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 187,
+      "block_number": "49105553",
+      "transaction_index": "2",
+      "log_index": "11",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 188,
+      "block_number": "49105553",
+      "transaction_index": "2",
+      "log_index": "15",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 189,
+      "block_number": "49105558",
+      "transaction_index": "7",
+      "log_index": "20",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 190,
+      "block_number": "49105560",
+      "transaction_index": "2",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 191,
+      "block_number": "49105563",
+      "transaction_index": "3",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 192,
+      "block_number": "49105563",
+      "transaction_index": "3",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 193,
+      "block_number": "49105564",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 194,
+      "block_number": "49105566",
+      "transaction_index": "3",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 195,
+      "block_number": "49105567",
+      "transaction_index": "16",
+      "log_index": "47",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 196,
+      "block_number": "49105571",
+      "transaction_index": "4",
+      "log_index": "20",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 197,
+      "block_number": "49105574",
+      "transaction_index": "3",
+      "log_index": "18",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 198,
+      "block_number": "49105574",
+      "transaction_index": "3",
+      "log_index": "22",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 199,
+      "block_number": "49105575",
+      "transaction_index": "3",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 200,
+      "block_number": "49105575",
+      "transaction_index": "3",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 201,
+      "block_number": "49105576",
+      "transaction_index": "1",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 202,
+      "block_number": "49105584",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 203,
+      "block_number": "49105585",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 204,
+      "block_number": "49105595",
+      "transaction_index": "3",
+      "log_index": "14",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 205,
+      "block_number": "49105595",
+      "transaction_index": "3",
+      "log_index": "17",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 206,
+      "block_number": "49105595",
+      "transaction_index": "4",
+      "log_index": "22",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 207,
+      "block_number": "49105595",
+      "transaction_index": "4",
+      "log_index": "27",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 208,
+      "block_number": "49105595",
+      "transaction_index": "4",
+      "log_index": "31",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 209,
+      "block_number": "49105595",
+      "transaction_index": "4",
+      "log_index": "35",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 210,
+      "block_number": "49105596",
+      "transaction_index": "5",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 211,
+      "block_number": "49105597",
+      "transaction_index": "2",
+      "log_index": "16",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 212,
+      "block_number": "49105598",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 213,
+      "block_number": "49105598",
+      "transaction_index": "0",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 214,
+      "block_number": "49105600",
+      "transaction_index": "1",
+      "log_index": "9",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 215,
+      "block_number": "49105602",
+      "transaction_index": "1",
+      "log_index": "13",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 216,
+      "block_number": "49105602",
+      "transaction_index": "1",
+      "log_index": "17",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 217,
+      "block_number": "49105602",
+      "transaction_index": "2",
+      "log_index": "22",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 218,
+      "block_number": "49105602",
+      "transaction_index": "2",
+      "log_index": "26",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 219,
+      "block_number": "49105602",
+      "transaction_index": "2",
+      "log_index": "30",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 220,
+      "block_number": "49105603",
+      "transaction_index": "2",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 221,
+      "block_number": "49105603",
+      "transaction_index": "2",
+      "log_index": "10",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 222,
+      "block_number": "49105604",
+      "transaction_index": "1",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 223,
+      "block_number": "49105606",
+      "transaction_index": "2",
+      "log_index": "18",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 224,
+      "block_number": "49105611",
+      "transaction_index": "1",
+      "log_index": "14",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 225,
+      "block_number": "49105611",
+      "transaction_index": "1",
+      "log_index": "18",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 226,
+      "block_number": "49105611",
+      "transaction_index": "1",
+      "log_index": "22",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 227,
+      "block_number": "49105611",
+      "transaction_index": "1",
+      "log_index": "27",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 228,
+      "block_number": "49105613",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 229,
+      "block_number": "49105614",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 230,
+      "block_number": "49105614",
+      "transaction_index": "0",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 231,
+      "block_number": "49105618",
+      "transaction_index": "1",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 232,
+      "block_number": "49105624",
+      "transaction_index": "1",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 233,
+      "block_number": "49105624",
+      "transaction_index": "1",
+      "log_index": "16",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 234,
+      "block_number": "49105626",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 235,
+      "block_number": "49105626",
+      "transaction_index": "0",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 236,
+      "block_number": "49105636",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 237,
+      "block_number": "49105636",
+      "transaction_index": "0",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 238,
+      "block_number": "49105636",
+      "transaction_index": "0",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 239,
+      "block_number": "49105637",
+      "transaction_index": "2",
+      "log_index": "18",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 240,
+      "block_number": "49105637",
+      "transaction_index": "2",
+      "log_index": "23",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 241,
+      "block_number": "49105639",
+      "transaction_index": "1",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 242,
+      "block_number": "49105639",
+      "transaction_index": "1",
+      "log_index": "10",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 243,
+      "block_number": "49105640",
+      "transaction_index": "1",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 244,
+      "block_number": "49105640",
+      "transaction_index": "1",
+      "log_index": "13",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 245,
+      "block_number": "49105640",
+      "transaction_index": "1",
+      "log_index": "18",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 246,
+      "block_number": "49105640",
+      "transaction_index": "1",
+      "log_index": "23",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 247,
+      "block_number": "49105641",
+      "transaction_index": "2",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 248,
+      "block_number": "49105641",
+      "transaction_index": "2",
+      "log_index": "13",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 249,
+      "block_number": "49105643",
+      "transaction_index": "4",
+      "log_index": "27",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 250,
+      "block_number": "49105644",
+      "transaction_index": "5",
+      "log_index": "15",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 251,
+      "block_number": "49105646",
+      "transaction_index": "11",
+      "log_index": "23",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 252,
+      "block_number": "49105647",
+      "transaction_index": "6",
+      "log_index": "44",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 253,
+      "block_number": "49105648",
+      "transaction_index": "3",
+      "log_index": "27",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 254,
+      "block_number": "49105649",
+      "transaction_index": "1",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 255,
+      "block_number": "49105649",
+      "transaction_index": "1",
+      "log_index": "10",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 256,
+      "block_number": "49105652",
+      "transaction_index": "2",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 257,
+      "block_number": "49105653",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 258,
+      "block_number": "49105656",
+      "transaction_index": "1",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 259,
+      "block_number": "49105658",
+      "transaction_index": "2",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 260,
+      "block_number": "49105677",
+      "transaction_index": "2",
+      "log_index": "10",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 261,
+      "block_number": "49105689",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 262,
+      "block_number": "49105689",
+      "transaction_index": "0",
+      "log_index": "7",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 263,
+      "block_number": "49105696",
+      "transaction_index": "2",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 264,
+      "block_number": "49105711",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 265,
+      "block_number": "49105715",
+      "transaction_index": "0",
+      "log_index": "4",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 266,
+      "block_number": "49105719",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 267,
+      "block_number": "49105729",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 268,
+      "block_number": "49105741",
+      "transaction_index": "0",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 269,
+      "block_number": "49105742",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 270,
+      "block_number": "49105743",
+      "transaction_index": "2",
+      "log_index": "16",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 271,
+      "block_number": "49105743",
+      "transaction_index": "2",
+      "log_index": "20",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 272,
+      "block_number": "49105744",
+      "transaction_index": "11",
+      "log_index": "24",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 273,
+      "block_number": "49105744",
+      "transaction_index": "11",
+      "log_index": "29",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 274,
+      "block_number": "49105744",
+      "transaction_index": "11",
+      "log_index": "34",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 275,
+      "block_number": "49105744",
+      "transaction_index": "11",
+      "log_index": "39",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 276,
+      "block_number": "49105744",
+      "transaction_index": "11",
+      "log_index": "44",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 277,
+      "block_number": "49105744",
+      "transaction_index": "11",
+      "log_index": "49",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 278,
+      "block_number": "49105744",
+      "transaction_index": "11",
+      "log_index": "54",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 279,
+      "block_number": "49105744",
+      "transaction_index": "11",
+      "log_index": "59",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 280,
+      "block_number": "49105746",
+      "transaction_index": "2",
+      "log_index": "13",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 281,
+      "block_number": "49105749",
+      "transaction_index": "1",
+      "log_index": "12",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 282,
+      "block_number": "49105751",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 283,
+      "block_number": "49105752",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 284,
+      "block_number": "49105761",
+      "transaction_index": "1",
+      "log_index": "4",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 285,
+      "block_number": "49105764",
+      "transaction_index": "1",
+      "log_index": "2",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 286,
+      "block_number": "49105764",
+      "transaction_index": "1",
+      "log_index": "6",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 287,
+      "block_number": "49105767",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 288,
+      "block_number": "49105772",
+      "transaction_index": "1",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 289,
+      "block_number": "49105775",
+      "transaction_index": "1",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 290,
+      "block_number": "49105778",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 291,
+      "block_number": "49105779",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 292,
+      "block_number": "49105779",
+      "transaction_index": "0",
+      "log_index": "8",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 293,
+      "block_number": "49105780",
+      "transaction_index": "2",
+      "log_index": "5",
+      "disposition": "blocked_by_shared_missing_inputs"
+    },
+    {
+      "ordinal": 294,
+      "block_number": "49105781",
+      "transaction_index": "0",
+      "log_index": "3",
+      "disposition": "blocked_by_shared_missing_inputs"
+    }
+  ]
+}

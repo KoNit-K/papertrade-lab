@@ -1,7 +1,9 @@
 # First public case: intake and stop conditions
 
-Status: selection protocol only; no transaction selected, chain read performed,
-or fixture collected. Updated: 2026-10-21 after P0 publication.
+Status: bounded intake executed on 2026-10-21 after the M0 tooling push.
+[CASE-001 report](research-notes/002-first-case-intake.md): 500 blocks, 29 RPC
+attempts, one earliest event lead retained; no eligible winning settlement
+established. Historical inputs remain incomplete and reproduction is blocked.
 
 ## Bounded selection rule
 
@@ -12,9 +14,12 @@ first ordinary winning close for which the intended position and all decisive
 historical inputs can be established. Record every skipped candidate and reason;
 do not choose the highest profit or tune selection to match a model.
 
-An interval has not yet been chosen. The address page is a deployment lead, not
-an authenticated historical deployment. Identify proxy type and implementation
-before using storage-slot assumptions. Do not associate the selected transaction
+The first intake used a bounded finalized-header discovery before fixing
+49105284–49105783 and both boundary hashes, then queried events. See the
+[registered plan](../research/cases/001-intake-plan.json). This plan was stored
+locally before the scan and published afterward, not publicly preregistered.
+The address page is a deployment lead; proxy classification and implementation
+reads must precede historical deployment claims. Do not associate the selected transaction
 with any anonymous report author, even if amounts happen to resemble a report.
 
 ## Required packet and stop conditions
