@@ -1,0 +1,26 @@
+# Private research and original task material
+/data/private/
+/private/
+/raw/
+/handoff/
+/papertrade-lab-planning/
+.env
+.env.*
+*.har
+*.pcap
+*.pcapng
+*.key
+*.pem
+*credentials*
+*cookies*
+*session-secret*
+*chat-export*
+*.zip
+
+# Local tooling and generated output
+.DS_Store
+node_modules/
+dist/
+coverage/
+*.log
+.tmp/
