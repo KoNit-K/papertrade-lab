@@ -33,7 +33,7 @@ See the [publication review](docs/publication-review.md) for actual P0 checks an
 
 ## Next three tasks
 
-1. Obtain authenticated archive/trace evidence for the same fixed interval; the default RPC is unsuitable for historical code/storage.
+1. Obtain recorded block precompile inputs/results and actual-transaction archive traces for the same fixed interval; [note 005](docs/research-notes/005-historical-source-feasibility.md) identifies the source interface and access limits. No target record was acquired.
 2. Bind candidate 4 economics to actual execution pre-state, BBO/frozen price, parameters, authorization and ledger/queue deltas.
 3. Preserve the original candidate order and implement M1 only after a fully eligible case and independent expected results are available.
 
@@ -160,3 +160,42 @@ record check passed. No new production model or CI was added in this increment.
 Independent review found no blocking or important issue; two non-blocking opcode
 references were corrected before publication. The public file/digest/link/privacy
 subset was checked again after those corrections.
+
+## Historical source feasibility
+
+[Note 005](docs/research-notes/005-historical-source-feasibility.md) identifies
+nanoreth's `eth_blockPrecompileData` and its exact address/input/gas matching from
+pinned source. Official documentation distinguishes recorded actual reads from
+hypothetical precompile calls. Archive presentation of system transactions also
+requires explicit reconciliation with the original candidate coordinates. These
+are source observations and acquisition requirements, not historical execution evidence.
+
+The bounded investigation used 30/30 explicit source accesses and 8/8 search
+queries, with **zero new RPC requests**; cumulative CASE-001 RPC attempts remain
+85. Official S3 access is requester-pays; inspected hosted archive/trace routes
+use provisioned credentials. No account, token, paid service, node or deployment
+was created. The explorer read failed, and no target trace, prestate, state diff
+or precompile result was obtained. This is not an exhaustive provider survey.
+
+Candidate 4 remains ineligible, `selected_transaction` remains null and M1 is
+unimplemented. The original candidate ledger, fixed 500-block window, production
+tooling and purpose/mechanism-focused homepages are unchanged. The
+[structured record](research/cases/001-archive-feasibility.json) preserves the
+access log, source-file digests, unverified fields and acquisition limits.
+
+Verification on Node.js 26.8.2 and pnpm 11.25.0: **147/147 tests passed** after
+rerunning with local-listen permission. The first run passed 146 tests and failed
+only the loopback transport test with `listen EPERM`; no test or code was changed.
+Strict type checking and the existing 13-claim/6-evidence/1-version document record
+validation passed. The new research JSON summaries were checked separately for
+syntax, null evidence gates, budgets and unchanged scope; they are not new
+validated chain packets. All 12 published source-text digest/length entries match
+private captures. Original ledger bytes, local links, public sensitive-pattern
+checks and whitespace checks passed. These checks do not validate historical
+prices, state, provider truth or an M1 model.
+
+Independent read-only review found no blocking or important issue. It confirmed
+the retained source digests and research boundaries, while noting that the partial
+local reader captures cannot independently prove every search/access execution.
+The source count conservatively includes two reader `find` operations; the
+original pre-read plan is retained without retrospective edits.

@@ -129,3 +129,21 @@ These current documentation descriptions do not authenticate historical paramete
 Returned economic-library bytes and event amounts support a same-case integer
 consistency check, not an independent settlement result. The new source accounting
 is 10/20 explicit accesses; no third-party runtime/source body is redistributed.
+
+## Historical archive and recorded-read sources — 2026-10-21
+
+[Note 005](research-notes/005-historical-source-feasibility.md) and its
+[access/digest record](../research/cases/001-archive-feasibility.json) cover official
+RPC/raw-block/market-history documentation, official node and sync/indexer examples,
+nanoreth at commit `2c6525dadb8f47d4b6cf88f2401561509fab9b00`, and provider capability
+pages. The key new source observation is a block extras API with recorded read
+inputs, gas limits and results; no actual CASE-001 extras or trace was retrieved.
+Provider capability claims are not successful target-block tests. Failed reader
+accesses and the unconfirmed Dwellir search-result inventory remain explicit.
+
+Source-file Git blob hashes were checked locally. UTF-8 SHA-256 hashes identify
+connector-returned source text, not remote HTTP bodies, deployed client versions
+or historical EVM state. Raw source text stays private; only original summaries,
+URLs and digest metadata are published. This increment used 30 explicit source
+accesses and eight search queries; exact retrieval times and a complete local
+archive of web-reader responses were not recorded. No new production RPC ran.

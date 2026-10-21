@@ -1,0 +1,397 @@
+{
+  "schema_version": "case-archive-feasibility-v1",
+  "case_id": "CASE-001",
+  "date": "2026-10-21",
+  "support_status": "unverified",
+  "reproduction_status": "blocked",
+  "selection_status": "no_eligible_case_established",
+  "selected_transaction": null,
+  "m1_implemented": false,
+  "scope": {
+    "block_from": "49105284",
+    "block_to": "49105783",
+    "range_expansion": false,
+    "candidate_order_changed": false,
+    "candidate_ledger_sha256": "993c8867ae6a6c2a418df31906650cba6ad6dfbd8d4daff32850b6002965c142"
+  },
+  "collection": {
+    "previous_rpc_attempts": 85,
+    "new_rpc_budget": 0,
+    "new_rpc_attempts": 0,
+    "total_rpc_attempts": 85,
+    "public_source_access_budget": 30,
+    "public_source_accesses": 30,
+    "web_search_query_budget": 8,
+    "web_search_queries": 8,
+    "source_access_log": [
+      {
+        "ordinal": 1,
+        "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/json-rpc",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 2,
+        "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/interacting-with-hypercore",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "reader_failure"
+      },
+      {
+        "ordinal": 3,
+        "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/historical-data",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "reader_failure"
+      },
+      {
+        "ordinal": 4,
+        "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/raw-hyperevm-block-data",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 5,
+        "url": "https://solidrpc.io/docs/chains/hyperevm",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 6,
+        "url": "https://www.dwellir.com/docs/hyperliquid/archival-data",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "redirected_page_read_coverage_inventory_unconfirmed"
+      },
+      {
+        "ordinal": 7,
+        "url": "https://github.com/hyperliquid-dex/hyperliquid-python-sdk/blob/master/examples/evm_block_indexer.py",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 8,
+        "url": "https://github.com/hyperliquid-dex/node/blob/main/README.md",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 9,
+        "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/historical-data",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "response_not_retained_locally"
+      },
+      {
+        "ordinal": 10,
+        "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/interacting-with-hypercore",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "response_not_retained_locally"
+      },
+      {
+        "ordinal": 11,
+        "url": "https://solidrpc.io/docs/public-rpc",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "response_not_retained_locally"
+      },
+      {
+        "ordinal": 12,
+        "url": "https://solidrpc.io/docs/tracing",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "response_not_retained_locally"
+      },
+      {
+        "ordinal": 13,
+        "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/historical-data",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 14,
+        "url": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm/interacting-with-hypercore",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "reader_failure"
+      },
+      {
+        "ordinal": 15,
+        "url": "https://solidrpc.io/docs/public-rpc",
+        "retrieved_at": null,
+        "operation": "web_reader_find",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 16,
+        "url": "https://www.dwellir.com/docs/hyperliquid/historical-data",
+        "retrieved_at": null,
+        "operation": "web_reader_find",
+        "result": "no_matching_text"
+      },
+      {
+        "ordinal": 17,
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/node-builder/README.md",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 18,
+        "url": "https://api.github.com/repos/hl-archive-node/nanoreth/commits?per_page=1",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 19,
+        "url": "https://www.quicknode.com/docs/hyperliquid/hyperevm-overview",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 20,
+        "url": "https://hyperevmscan.io/tx/0x44814dab6b4fed15ed1a3e912f3d3cc3c0850a03e309b87a3c8b78c7df1d678a",
+        "retrieved_at": null,
+        "operation": "web_reader_open",
+        "result": "reader_failure"
+      },
+      {
+        "ordinal": 21,
+        "url": "https://api.github.com/repos/hl-archive-node/nanoreth/git/trees/528d0b5f7082e652d6ebf953108d02483c1994d6?recursive=1",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 22,
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/rpc/precompile.rs",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 23,
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/primitives/block.rs",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 24,
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/primitives/body.rs",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 25,
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/rpc/mod.rs",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 26,
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/evm/factory.rs",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 27,
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/types/mod.rs",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 28,
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/evm/mod.rs",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 29,
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/evm/executor.rs",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      },
+      {
+        "ordinal": 30,
+        "url": "https://github.com/hyperliquid-dex/hyper-evm-sync/blob/main/README.md",
+        "retrieved_at": null,
+        "operation": "github_source_read",
+        "result": "source_text_read"
+      }
+    ],
+    "audit_limitations": [
+      "Exact per-access retrieval times not recorded; date is known",
+      "Some web-reader responses not retained locally; no HTTP-body digest claimed",
+      "Source UTF-8 SHA256 identifies connector text only; Git blob SHA1 verified separately",
+      "Internal web-reader fetches unknown; Git administration excluded",
+      "Bounded route search, not exhaustive provider coverage"
+    ],
+    "search_queries": [
+      "HyperEVM archive RPC historical state debug_traceTransaction precompile",
+      "Hyperliquid historical BBO data S3 node fills replica HyperEVM precompile historical",
+      "HyperEVM archive RPC public historical precompile eth_getSystemTxs drpc",
+      "site.github.com/hyperliquid-dex \"read_precompile\" \"evm\"",
+      "site.hyperliquid.gitbook.io \"historical data\"",
+      "HyperEVM archive node public RPC historical traces precompile reth [domains: docs.chainstack.com, www.quicknode.com, docs.drpc.org, github.com]",
+      "\"HyperEVM\" \"precompile\" \"archive\" \"trace\"",
+      "\"HyperEVM\" \"historical\" \"public\" \"RPC\" \"archive\""
+    ]
+  },
+  "candidate_context": {
+    "ordinal": 4,
+    "block_number": "49105287",
+    "block_hash": "0xb3d6f482c4ed76969a6c8467832465214c933c63b2c376ceb08383bf05e8c58b",
+    "transaction_index_original": "2",
+    "block_timestamp_utc": "2026-10-21T04:29:15Z",
+    "timestamp_source": "Existing private CASE001-FOURTH capture, locally decoded; provider-reported, not a new chain observation",
+    "hypercore_height": null
+  },
+  "archive_source_observations": {
+    "nanoreth_commit": "2c6525dadb8f47d4b6cf88f2401561509fab9b00",
+    "custom_method_in_source": "eth_blockPrecompileData",
+    "method_tested_on_provider": false,
+    "read_key": [
+      "precompile_address",
+      "input_bytes",
+      "gas_limit"
+    ],
+    "recorded_success_fields": [
+      "gas_used",
+      "bytes"
+    ],
+    "block_level_not_transaction_attribution": true,
+    "historical_live_forwarding_in_inspected_rpc": false,
+    "missing_block_may_return_default_extras": true,
+    "system_transaction_presentation_requires_reconciliation": true,
+    "sdk_indexer_drops_replay_extras": true,
+    "source_files": [
+      {
+        "url": "https://github.com/hyperliquid-dex/node/blob/main/README.md",
+        "git_blob_sha1": "dd24feed0a56915d085203f74f4b55b11a6792eb",
+        "source_utf8_sha256": "51115647477b18c91e83739d8b26444ac6ab4ff15612101cae6c255a95d21f41",
+        "bytes": 23047,
+        "retrieved_at": null,
+        "assurance": "Source text returned by GitHub connector; Git blob hash locally verified; not deployed-client identity or historical chain evidence"
+      },
+      {
+        "url": "https://github.com/hyperliquid-dex/hyperliquid-python-sdk/blob/master/examples/evm_block_indexer.py",
+        "git_blob_sha1": "78ae4e7ffdf00e69f44eff7aad27d0e2ab75f238",
+        "source_utf8_sha256": "e873385bd8d2a6f913b7db1b096843572327d5b5543a24b1121181f5e8f004a7",
+        "bytes": 8368,
+        "retrieved_at": null,
+        "assurance": "Source text returned by GitHub connector; Git blob hash locally verified; not deployed-client identity or historical chain evidence"
+      },
+      {
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/node-builder/README.md",
+        "git_blob_sha1": "1a1bb1772a4c47672c07671a43a684c1fe92fe20",
+        "source_utf8_sha256": "b60908788173fd6dcb4dfe22b73099839927e9b2666ab5a75a88b3bf9543fa26",
+        "bytes": 9720,
+        "retrieved_at": null,
+        "assurance": "Source text returned by GitHub connector; Git blob hash locally verified; not deployed-client identity or historical chain evidence"
+      },
+      {
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/rpc/precompile.rs",
+        "git_blob_sha1": "12788bc567f1061805ad769bd0590a35289f07d3",
+        "source_utf8_sha256": "22c676eae4efcbc62b072fa4a7b3c888ba01a63840e833d79d96df2ced60f949",
+        "bytes": 1388,
+        "retrieved_at": null,
+        "assurance": "Source text returned by GitHub connector; Git blob hash locally verified; not deployed-client identity or historical chain evidence"
+      },
+      {
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/primitives/block.rs",
+        "git_blob_sha1": "7462a82c6efd73457c70481e41f81ccedbaae491",
+        "source_utf8_sha256": "2c0cb35d38c3e4d981e8195bd84fc668018f1d499241fa6c56395570cdf3db84",
+        "bytes": 1493,
+        "retrieved_at": null,
+        "assurance": "Source text returned by GitHub connector; Git blob hash locally verified; not deployed-client identity or historical chain evidence"
+      },
+      {
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/primitives/body.rs",
+        "git_blob_sha1": "adc6cb09fb3e6fb9ae9dd1d2648b5b5cb1a14df5",
+        "source_utf8_sha256": "1fa23670ebb63abeefc0cb7d3d43ce35a05f4bcc0d1125a0b829f455951035d1",
+        "bytes": 2288,
+        "retrieved_at": null,
+        "assurance": "Source text returned by GitHub connector; Git blob hash locally verified; not deployed-client identity or historical chain evidence"
+      },
+      {
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/rpc/mod.rs",
+        "git_blob_sha1": "d1fd4542d41171eeedd52d98f1d6bb64256e1310",
+        "source_utf8_sha256": "08a55429037348ed8e706d80bd12a35b9e19808d1f9ab57d92abede21fd904b8",
+        "bytes": 16964,
+        "retrieved_at": null,
+        "assurance": "Source text returned by GitHub connector; Git blob hash locally verified; not deployed-client identity or historical chain evidence"
+      },
+      {
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/evm/factory.rs",
+        "git_blob_sha1": "138a06e2a9b2e49c2642202cdee860d6f72e5ea3",
+        "source_utf8_sha256": "5b55db60924adbf9ab74f31638338f273709f12697c708314563b672f40b12e7",
+        "bytes": 2256,
+        "retrieved_at": null,
+        "assurance": "Source text returned by GitHub connector; Git blob hash locally verified; not deployed-client identity or historical chain evidence"
+      },
+      {
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/types/mod.rs",
+        "git_blob_sha1": "f94760c24c2f57a7cc36f8b590911b421461132d",
+        "source_utf8_sha256": "6042d666009c8c59a8c99f0b10f179bd398f308156abb4cf3742c62a92f4f621",
+        "bytes": 8840,
+        "retrieved_at": null,
+        "assurance": "Source text returned by GitHub connector; Git blob hash locally verified; not deployed-client identity or historical chain evidence"
+      },
+      {
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/evm/mod.rs",
+        "git_blob_sha1": "13113817482ab0e5a80c99cf0c32146d1667a8ba",
+        "source_utf8_sha256": "5532c4c43c990003b1cf8033573a7bb2add42bfe7db34c67fa960f9bbf249cef",
+        "bytes": 4867,
+        "retrieved_at": null,
+        "assurance": "Source text returned by GitHub connector; Git blob hash locally verified; not deployed-client identity or historical chain evidence"
+      },
+      {
+        "url": "https://github.com/hl-archive-node/nanoreth/blob/2c6525dadb8f47d4b6cf88f2401561509fab9b00/src/node/evm/executor.rs",
+        "git_blob_sha1": "85d53612f539ba3daadc32cb899d72768fddef7c",
+        "source_utf8_sha256": "5b3c1257da1e7d12710149acfb3969719732e989969fd4c89f8801ec53b9534f",
+        "bytes": 14117,
+        "retrieved_at": null,
+        "assurance": "Source text returned by GitHub connector; Git blob hash locally verified; not deployed-client identity or historical chain evidence"
+      },
+      {
+        "url": "https://github.com/hyperliquid-dex/hyper-evm-sync/blob/main/README.md",
+        "git_blob_sha1": "991f128b620094ed8d711d2a942913880cb623d4",
+        "source_utf8_sha256": "ec2c268c9ef860682f163c228ff34f34ae028a63cc7ba2f5f05901214f76eb03",
+        "bytes": 1079,
+        "retrieved_at": null,
+        "assurance": "Source text returned by GitHub connector; Git blob hash locally verified; not deployed-client identity or historical chain evidence"
+      }
+    ]
+  },
+  "actual_historical_inputs": {
+    "code_identity": null,
+    "parameters": null,
+    "transaction_prestate": null,
+    "execution_trace": null,
+    "state_diff": null,
+    "read_precompile_calls": null,
+    "bid": null,
+    "ask": null,
+    "retirement_state": null,
+    "independent_expected_settlement": null
+  },
+  "next_evidence_route": "Acquire pinned block extras and actual-transaction trace from a documented accessible archive or original node block file; review bounded collector changes first. Preserve raw bytes privately. No route with target evidence was obtained this round.",
+  "raw_capture_published": false,
+  "credentials_or_paid_service_used": false
+}

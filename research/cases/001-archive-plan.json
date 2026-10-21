@@ -1,0 +1,26 @@
+{
+  "case_id": "CASE-001",
+  "phase": "historical-source-feasibility",
+  "registered_at": "2026-10-21T06:03:56.675481+00:00",
+  "block_from": "49105284",
+  "block_to": "49105783",
+  "candidate_order": [
+    "block_number",
+    "transaction_index",
+    "log_index"
+  ],
+  "target_candidate_ordinal": 4,
+  "range_expansion": false,
+  "previous_rpc_attempts": 85,
+  "new_rpc_budget": 0,
+  "public_source_access_budget": 30,
+  "web_search_query_budget": 8,
+  "source_budget_unit": "Each explicitly opened URL or direct HTTP GET counts once, including failures and retries; searches counted separately. Internal web-reader fetches are not observable. Git administration excluded.",
+  "rules": [
+    "Capability research first; no alternate RPC or debug methods without separately reviewed bounded collection changes",
+    "No credentials, paid services, cloud deployment, signing or broadcast",
+    "Preserve original order and missing values; no current-state substitution",
+    "No M1 without decisive historical inputs and independent expected results"
+  ],
+  "candidate_ledger_sha256_before": "993c8867ae6a6c2a418df31906650cba6ad6dfbd8d4daff32850b6002965c142"
+}
