@@ -193,7 +193,31 @@ did not locate primary backend scheduling evidence; third-party dashboard search
 results were not used to assert server policy.
 
 A narrowly registered, derived-chain-account ledger query was rejected by automatic
-approval review before execution; it has zero HTTP attempts and awaits explicit
-permission. No alternative account lookup bypassed that refusal. Real receipts
+approval review before execution; that increment had zero HTTP attempts. It was
+later explicitly authorized and completed in [note 008](research-notes/008-core-credit-and-relayer-pressure.md). No alternative account lookup bypassed that refusal. Real receipts
 prove a claim credit and a later CoreWriter withdrawal action, not final HyperCore
 credit, complete reward provenance or a subsequent bridge payment.
+
+## Authorized Core credit and public relayer telemetry — 2026-10-21
+
+[Note 008](research-notes/008-core-credit-and-relayer-pressure.md) and the
+[Core confirmation](../research/cases/004-core-payment-confirmation.json) record one
+authorized official non-funding-ledger read, following the prior recipient/time
+selection. Exactly one incoming USDC transfer matches the prior withdrawal's sender,
+recipient and amount. Other account activity, addresses, ledger hashes and the raw
+response stay private. This confirms provider-reported HyperCore credit, not full
+reward provenance, another-chain payment or independent consensus execution.
+
+The [scheduler record](../research/cases/002-scheduler-investigation.json) has 23/30
+access units and 8/8 searches: 21 successful units, a connection failure and a source
+repository 404. Stream connection/connect/subscribe operations are conservatively
+counted separately. Current app/hooks bytes match prior captures. The official
+anonymous `pressure:current` and `trading:current` feeds provide actual aggregate
+backlog and published intake configuration, not per-intent scheduling records.
+No account channels or signed intent were used in this investigation.
+
+The auditor's own Guardian report supplies scoped operational context. It does
+not audit the server scheduler or establish source equivalence to the deployment.
+Reader/connector digest metadata identifies retained tool responses; ordinary HTTP
+entries hash response bytes, while stream units share the corresponding private
+capture digest. No third-party search-result claim establishes FIFO or retry policy.

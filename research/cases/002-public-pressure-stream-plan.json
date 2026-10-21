@@ -1,0 +1,28 @@
+{
+  "registered_at": "2026-10-21T08:50:47.201912+00:00",
+  "case_id": "CASE-002",
+  "parent": "002-scheduler-investigation-plan.json",
+  "source": "current official app py/my/hy/Sy: pressure:current is an anonymous aggregate relayer-postgres snapshot with gas/count metrics",
+  "url": "wss://stream.papertrade.xyz/connection/websocket",
+  "read_only_commands": [
+    {
+      "id": 1,
+      "connect": {}
+    },
+    {
+      "id": 2,
+      "subscribe": {
+        "channel": "pressure:current"
+      }
+    }
+  ],
+  "max_connections": 1,
+  "max_duration_seconds": 10,
+  "max_frames": 24,
+  "max_total_bytes": 2097152,
+  "retries": 0,
+  "account_fields_or_credentials": false,
+  "no_intents_or_other_channels": true,
+  "budget_accounting": "conservatively count connection plus each of up to two sent read commands as source accesses within 30",
+  "purpose": "Observe real aggregate queued/submitted/pending execution pressure separately from payout debt; does not prove FIFO/priority scheduling"
+}

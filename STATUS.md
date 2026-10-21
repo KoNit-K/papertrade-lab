@@ -33,7 +33,7 @@ See the [publication review](docs/publication-review.md) for actual P0 checks an
 
 ## Next three tasks
 
-1. Complete actual intent submit/ack/execution timelines and missing queue/debt/distribution ledger cases identified in [note 007](docs/research-notes/007-queue-and-dividend-payment.md).
+1. Complete actual intent submit/ack/execution timelines and missing queue/debt/distribution ledger cases identified in [note 008](docs/research-notes/008-core-credit-and-relayer-pressure.md).
 2. Obtain archive/trace and recorded precompile evidence for CASE-001 and authenticate candidate 4 prestate, prices, parameters and ledger deltas.
 3. Preserve registered selection rules and implement M1 only after decisive historical inputs and independent expected results are available.
 
@@ -269,7 +269,8 @@ not asserted as the source of this claim. Final Core credit and onward payment
 remain unverified. A separately registered account-free `spotMeta` read confirms
 current token 0 is USDC with eight wei decimals; it does not confirm payment.
 An explicit-account public-ledger lookup was rejected by
-automatic approval review before network execution; permission is pending.
+automatic approval review before network execution; it was later authorized and
+completed in note 008 below.
 
 This follow-up used 26 RPC attempts (25 successful, one failed chain handshake
 and one successful ordinary retry): CASE-002 19/60, CASE-004 7/60. Source reads
@@ -290,5 +291,48 @@ Independent read-only review found no blocking or important issue across all 12
 public files. The reviewer independently recomputed batch ordering/counts, checked
 receipt identities and unit conversions, checked all 22 source accesses, the successful captures, and seven
 RPC run digests/counts, and confirmed frontend rules, bilingual consistency and
-publication boundaries. The account-ledger lookup remains unexecuted pending
-explicit permission; review did not bypass that restriction.
+publication boundaries. The account-ledger lookup was unexecuted at that review; it was later explicitly
+authorized and completed in note 008. Review did not bypass that restriction.
+
+## Official HyperCore credit and observed server backlog
+
+[Note 008](docs/research-notes/008-core-credit-and-relayer-pressure.md) records the
+previously blocked, now explicitly authorized one-request ledger lookup. The
+selected withdrawal has exactly one matching incoming `spotTransfer` for
+**1115.251244 USDC** from Exchange to the selected recipient. Its eight-decimal
+amount matches CoreWriter exactly; the ledger reports zero transfer/native fee
+for that entry. Raw account, ledger hash, response and other activity remain
+private. This closes provider-reported HyperCore credit for one case, not full
+dividend provenance, later bridge payment or independent settlement reproduction.
+The prior follow-up's source total becomes 23/30; no retry or extra account lookup.
+
+A separate prospective scheduler investigation used 23/30 source access units,
+8/8 search queries and zero RPC. Public `pressure:current` supplies 12 real aggregate
+snapshots labeled `relayer-postgres`, with 159–217 queued intents and 0–59 submitted
+intents. A snapshot has 217 queued at 0% reported saturation; sampled saturation
+tracks submitted gas, not the entire backlog. Pending/active counters are not
+interchangeable. Six public trading snapshots expose current enabled actions and
+intake limits; no submitted intent tested their enforcement. Frontend app/hooks
+were refetched and match previous bytes. Original windows and CASE-001 are unchanged.
+
+The actual selection, priority, batching, retry and expiry-worker algorithms remain
+unverified. Guardian's primary report places operated off-chain services outside
+its contract review, and its linked source tree returned 404. Public aggregate
+telemetry does not supply per-intent receive/select/broadcast clocks. No account
+channels, signing, trade, cancellation, new credential, fee or deployment was used.
+
+This increment reran the full suite: **152/152 tests passed**, strict type check
+passed, and the original document validator accepted 13 claims, six evidence
+entries and one version. Separate offline checks passed for the unique Core credit,
+all displayed pressure/count/gas relations, source/search digests, public links,
+JSON and unchanged prior case bytes. Exact private account/ledger identifiers,
+other account activity, stream client IDs, secrets and private paths were checked
+against the 11-file public subset and excluded. These research summaries are not
+new validator-authenticated chain snapshots or an independent M1 replay.
+
+Independent read-only review found no blocking or important issue across all 11
+public files. The reviewer recomputed the Core match and all pressure/configuration
+summaries, checked stream plans against captures, verified source/search/Core
+digests and counts, and independently reran the link/JSON/original-case/privacy
+checks. The review preserved the distinction between official-ledger credit,
+aggregate service observation and an unverified server scheduling algorithm.

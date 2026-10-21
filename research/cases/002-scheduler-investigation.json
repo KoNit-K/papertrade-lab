@@ -1,0 +1,467 @@
+{
+  "schema_version": "scheduler-observation-v1",
+  "case_id": "CASE-002",
+  "date": "2026-10-21",
+  "baseline": "87c1c91ecde52879af2c6e2bb3bf76f0f6ef158e",
+  "plan": "002-scheduler-investigation-plan.json",
+  "stream_plans": [
+    "002-public-trading-stream-plan.json",
+    "002-public-pressure-stream-plan.json"
+  ],
+  "rpc_attempts": 0,
+  "new_chain_log_window": null,
+  "case_001_and_prior_windows_unchanged": true,
+  "source_access_count": 23,
+  "source_access_budget": 30,
+  "source_ok": 21,
+  "source_failed": 2,
+  "counting": "Each anonymous websocket connection plus connect and subscribe command counted as three accesses, conservatively; no account channels. Source ordinal is recording order, timestamps retain invocation interval.",
+  "source_accesses": [
+    {
+      "ordinal": 1,
+      "url": "https://papertrade.xyz/",
+      "started_at": "2026-10-21T08:44:59.154327+00:00",
+      "http_status": 200,
+      "content_type": "text/html",
+      "status": "ok",
+      "body_sha256": "be6a824507f268af237f91ed4586d8a4943894ce9f86bf0f26ebd98d695a2e1c",
+      "bytes": 5479,
+      "finished_at": "2026-10-21T08:44:59.911125+00:00"
+    },
+    {
+      "ordinal": 2,
+      "url": "https://exchange.papertrade.xyz/",
+      "started_at": "2026-10-21T08:45:00.914131+00:00",
+      "http_status": 200,
+      "content_type": "text/html",
+      "status": "ok",
+      "body_sha256": "e5f1557161f7005f52a639742c2036f54de9c97fa2b0a44ee85e7559ed0ac918",
+      "bytes": 9501,
+      "finished_at": "2026-10-21T08:45:01.228416+00:00"
+    },
+    {
+      "ordinal": 3,
+      "url": "https://exchange.papertrade.xyz/query/notices",
+      "started_at": "2026-10-21T08:45:02.233878+00:00",
+      "http_status": 200,
+      "content_type": "application/json",
+      "status": "ok",
+      "body_sha256": "823b06dada6cf539dde01b9451b5d2b6817ee7930f1ebeba4dc79d7688e79287",
+      "bytes": 14,
+      "finished_at": "2026-10-21T08:45:12.112054+00:00"
+    },
+    {
+      "ordinal": 4,
+      "url": "https://exchange.papertrade.xyz/state/house/current",
+      "started_at": "2026-10-21T08:45:13.113272+00:00",
+      "http_status": 200,
+      "content_type": "application/json",
+      "status": "ok",
+      "body_sha256": "ab81ac2e58c79289153a2a7755920e19a9e282a5d42d95e6bd6bef6e19cc3807",
+      "bytes": 4724,
+      "finished_at": "2026-10-21T08:45:13.783929+00:00"
+    },
+    {
+      "ordinal": 5,
+      "url": "https://www.guardian.security/portfolio/papertrade/protocol-review-2026-10-09/",
+      "access_kind": "web_reader_open",
+      "status": "ok",
+      "started_at": "2026-10-21 08:45:39 UTC",
+      "finished_at": "2026-10-21 08:45:45 UTC",
+      "capture_sha256": "f11f2711e3fb3dde217c7edb16717e15dcb808c5d8a9e47b4ceeabf93abd5e6d",
+      "capture_bytes": 32836,
+      "upstream_body_sha256": null
+    },
+    {
+      "ordinal": 6,
+      "url": "https://papertrade.xyz/assets/main-BUx2Fpmc.js",
+      "started_at": "2026-10-21T08:46:09.872692+00:00",
+      "http_status": 200,
+      "content_type": "text/javascript",
+      "status": "ok",
+      "body_sha256": "6f89cd684f755a3ff8dff55840f3ae1eeef953dde806db5f118ad86e0e29c49f",
+      "bytes": 49061,
+      "finished_at": "2026-10-21T08:46:10.310981+00:00"
+    },
+    {
+      "ordinal": 7,
+      "url": "https://exchange.papertrade.xyz/query/protocol/market-stats",
+      "started_at": "2026-10-21T08:46:11.316802+00:00",
+      "http_status": 200,
+      "content_type": "application/json",
+      "status": "ok",
+      "body_sha256": "a9854535fdec0c2bc59caa44d015f2e20d4dd085a8abe9fae9fa6bfc82db06d8",
+      "bytes": 124,
+      "finished_at": "2026-10-21T08:46:11.699448+00:00"
+    },
+    {
+      "ordinal": 8,
+      "url": "https://exchange.papertrade.xyz/assets/useMarket-CmNkvf2t.js",
+      "started_at": "2026-10-21T08:46:30.997261+00:00",
+      "http_status": 200,
+      "content_type": "text/javascript",
+      "status": "ok",
+      "body_sha256": "b4a02f44c3eb7b8a7d474656f6f7b099fc6f11318a7cb6f3e20957bc7540aebe",
+      "bytes": 1026,
+      "finished_at": "2026-10-21T08:46:32.075233+00:00"
+    },
+    {
+      "ordinal": 9,
+      "url": "https://docs.papertrade.xyz/how/architecture/",
+      "started_at": "2026-10-21T08:46:33.080805+00:00",
+      "http_status": 200,
+      "content_type": "text/html",
+      "status": "ok",
+      "body_sha256": "ba32eb2d2cf834acd4ff9684dd7793b331affaf2476aa2070ce91fe8703bc40f",
+      "bytes": 17784,
+      "finished_at": "2026-10-21T08:46:34.005519+00:00"
+    },
+    {
+      "ordinal": 10,
+      "url": "https://docs.papertrade.xyz/how/risk/",
+      "started_at": "2026-10-21T08:46:35.011231+00:00",
+      "http_status": 200,
+      "content_type": "text/html",
+      "status": "ok",
+      "body_sha256": "d6116689bce8b534b458370c2171bd66c739b6694c992a2982d9115fcc476c32",
+      "bytes": 13568,
+      "finished_at": "2026-10-21T08:46:35.577526+00:00"
+    },
+    {
+      "ordinal": 11,
+      "url": "https://api.github.com/repos/the1xinoe/exchange-contract-audit-guardian/git/trees/a467d52a9a?recursive=1",
+      "access_kind": "github_connector_fetch",
+      "status": "not_found",
+      "http_status": 404,
+      "started_at": "2026-10-21 08:46:06 UTC",
+      "finished_at": "2026-10-21 08:46:07 UTC",
+      "capture_sha256": "7acbd3c494e23027eccc138ec3fc571b3993207a7501da5365b4c42df0fff397",
+      "capture_bytes": 673,
+      "upstream_body_sha256": null,
+      "recorded_after_http_batch": true
+    },
+    {
+      "ordinal": 12,
+      "url": "https://exchange.papertrade.xyz/assets/utils-CFRuuifg.js",
+      "started_at": "2026-10-21T08:47:55.869890+00:00",
+      "http_status": 200,
+      "content_type": "text/javascript",
+      "status": "ok",
+      "body_sha256": "e7d728a8d4bfac9b7c962af3129e10af7e0d9acfa676d3a5324c26e269bd0dbc",
+      "bytes": 3567,
+      "finished_at": "2026-10-21T08:47:56.208918+00:00"
+    },
+    {
+      "ordinal": 13,
+      "url": "https://exchange.papertrade.xyz/assets/client-BDqWRHs8.js",
+      "started_at": "2026-10-21T08:48:31.188282+00:00",
+      "http_status": 200,
+      "content_type": "text/javascript",
+      "status": "ok",
+      "body_sha256": "a0fb83bf04f906e24fe16776e31c2fda220f962f0c7f764c1e6e00851b20edb9",
+      "bytes": 11166,
+      "finished_at": "2026-10-21T08:48:31.702230+00:00"
+    },
+    {
+      "ordinal": 14,
+      "url": "https://exchange.papertrade.xyz/assets/request-EQ35YREo.js",
+      "started_at": "2026-10-21T08:48:32.707735+00:00",
+      "http_status": 200,
+      "content_type": "text/javascript",
+      "status": "ok",
+      "body_sha256": "eb579ead246f81679ec82fc120a6f86773cba50eed9f8db80174a672f4550555",
+      "bytes": 5227,
+      "finished_at": "2026-10-21T08:48:33.237786+00:00"
+    },
+    {
+      "ordinal": 15,
+      "url": "https://exchange.papertrade.xyz/assets/app-DL1CQl0h.js",
+      "started_at": "2026-10-21T08:50:51.378960+00:00",
+      "http_status": 200,
+      "content_type": "text/javascript",
+      "status": "ok",
+      "body_sha256": "15af5e1a6dd7dcb66f6fdd4f49cda02f8be9625f1f3e0745b47d27a1c50b5234",
+      "bytes": 581202,
+      "finished_at": "2026-10-21T08:50:52.735534+00:00"
+    },
+    {
+      "ordinal": 16,
+      "url": "https://exchange.papertrade.xyz/assets/hooks-a3qtukpN.js",
+      "started_at": "2026-10-21T08:50:53.741844+00:00",
+      "status": "error",
+      "error_type": "URLError",
+      "finished_at": "2026-10-21T08:51:09.965087+00:00"
+    },
+    {
+      "ordinal": 17,
+      "url": "wss://stream.papertrade.xyz/connection/websocket",
+      "access_kind": "anonymous_read_only_stream",
+      "read_action": "connection",
+      "channel": null,
+      "status": "ok",
+      "started_at": "2026-10-21T08:49:13.142Z",
+      "finished_at": "2026-10-21T08:49:19.358Z",
+      "capture_sha256": "9bdbd0ed10d4072d01eab29fdd7c5e401fac3e3e12ecdeb0e64947c7300555a5",
+      "capture_bytes": 9163,
+      "frames": 8,
+      "stop_reason": "frame_limit",
+      "commands_sent": 2,
+      "raw_payload_published": false,
+      "time_scope": "whole connection interval; per-command send timestamps not separately captured"
+    },
+    {
+      "ordinal": 18,
+      "url": "wss://stream.papertrade.xyz/connection/websocket",
+      "access_kind": "anonymous_read_only_stream",
+      "read_action": "connect_command",
+      "channel": null,
+      "status": "ok",
+      "started_at": "2026-10-21T08:49:13.142Z",
+      "finished_at": "2026-10-21T08:49:19.358Z",
+      "capture_sha256": "9bdbd0ed10d4072d01eab29fdd7c5e401fac3e3e12ecdeb0e64947c7300555a5",
+      "capture_bytes": 9163,
+      "frames": 8,
+      "stop_reason": "frame_limit",
+      "commands_sent": 2,
+      "raw_payload_published": false,
+      "time_scope": "whole connection interval; per-command send timestamps not separately captured"
+    },
+    {
+      "ordinal": 19,
+      "url": "wss://stream.papertrade.xyz/connection/websocket",
+      "access_kind": "anonymous_read_only_stream",
+      "read_action": "subscribe_command",
+      "channel": "trading:current",
+      "status": "ok",
+      "started_at": "2026-10-21T08:49:13.142Z",
+      "finished_at": "2026-10-21T08:49:19.358Z",
+      "capture_sha256": "9bdbd0ed10d4072d01eab29fdd7c5e401fac3e3e12ecdeb0e64947c7300555a5",
+      "capture_bytes": 9163,
+      "frames": 8,
+      "stop_reason": "frame_limit",
+      "commands_sent": 2,
+      "raw_payload_published": false,
+      "time_scope": "whole connection interval; per-command send timestamps not separately captured"
+    },
+    {
+      "ordinal": 20,
+      "url": "wss://stream.papertrade.xyz/connection/websocket",
+      "access_kind": "anonymous_read_only_stream",
+      "read_action": "connection",
+      "channel": null,
+      "status": "ok",
+      "started_at": "2026-10-21T08:50:47.245Z",
+      "finished_at": "2026-10-21T08:50:57.274Z",
+      "capture_sha256": "7b8d245d349489c1fc8061577caf04f385f789927464b2d8ae3734749f63f43b",
+      "capture_bytes": 26988,
+      "frames": 14,
+      "stop_reason": "captured",
+      "commands_sent": 2,
+      "raw_payload_published": false,
+      "time_scope": "whole connection interval; per-command send timestamps not separately captured"
+    },
+    {
+      "ordinal": 21,
+      "url": "wss://stream.papertrade.xyz/connection/websocket",
+      "access_kind": "anonymous_read_only_stream",
+      "read_action": "connect_command",
+      "channel": null,
+      "status": "ok",
+      "started_at": "2026-10-21T08:50:47.245Z",
+      "finished_at": "2026-10-21T08:50:57.274Z",
+      "capture_sha256": "7b8d245d349489c1fc8061577caf04f385f789927464b2d8ae3734749f63f43b",
+      "capture_bytes": 26988,
+      "frames": 14,
+      "stop_reason": "captured",
+      "commands_sent": 2,
+      "raw_payload_published": false,
+      "time_scope": "whole connection interval; per-command send timestamps not separately captured"
+    },
+    {
+      "ordinal": 22,
+      "url": "wss://stream.papertrade.xyz/connection/websocket",
+      "access_kind": "anonymous_read_only_stream",
+      "read_action": "subscribe_command",
+      "channel": "pressure:current",
+      "status": "ok",
+      "started_at": "2026-10-21T08:50:47.245Z",
+      "finished_at": "2026-10-21T08:50:57.274Z",
+      "capture_sha256": "7b8d245d349489c1fc8061577caf04f385f789927464b2d8ae3734749f63f43b",
+      "capture_bytes": 26988,
+      "frames": 14,
+      "stop_reason": "captured",
+      "commands_sent": 2,
+      "raw_payload_published": false,
+      "time_scope": "whole connection interval; per-command send timestamps not separately captured"
+    },
+    {
+      "ordinal": 23,
+      "url": "https://exchange.papertrade.xyz/assets/hooks-a3qtukpN.js",
+      "started_at": "2026-10-21T08:52:56.099916+00:00",
+      "http_status": 200,
+      "content_type": "text/javascript",
+      "status": "ok",
+      "body_sha256": "8ff55c81aad69dc15ae8fb612b13f3fc55b03e6af528f3cea4310ff6b9f1af47",
+      "bytes": 76254,
+      "finished_at": "2026-10-21T08:52:57.004297+00:00"
+    }
+  ],
+  "search_query_count": 8,
+  "search_query_budget": 8,
+  "searches": [
+    {
+      "queries": [
+        "site:papertrade.xyz relayer queue FIFO priority retry batch",
+        "site:github.com \"papertrade.xyz\" \"relayer\" \"queue\""
+      ],
+      "started_at": "2026-10-21 08:43:56 UTC",
+      "finished_at": "2026-10-21 08:44:01 UTC",
+      "capture_sha256": "5e0ac22186cdaabdcd916b39e70fb25021798e7076c48645e2a841ccde3fbbd3",
+      "result_use": "primary auditor report inspected; third-party clients, commentary and gists not used to establish server policy"
+    },
+    {
+      "queries": [
+        "\"papertrade\" \"queueRevision\"",
+        "\"papertrade\" \"relayer\" \"FIFO\"",
+        "\"papertrade.xyz\" \"batch\" \"retry\""
+      ],
+      "started_at": "2026-10-21 08:44:59 UTC",
+      "finished_at": "2026-10-21 08:45:18 UTC",
+      "capture_sha256": "9e84c7e56fab7fd54293e805ea557de483f27b964fb2921668557db7ac266c16",
+      "result_use": "primary auditor report inspected; third-party clients, commentary and gists not used to establish server policy"
+    },
+    {
+      "queries": [
+        "site:docs.papertrade.xyz \"relayer\" \"priority\"",
+        "\"papertrade.xyz\" \"relayer\" \"scheduler\"",
+        "\"papertrade\" \"intents\" \"retry\" \"relayer\""
+      ],
+      "started_at": "2026-10-21 08:47:56 UTC",
+      "finished_at": "2026-10-21 08:48:01 UTC",
+      "capture_sha256": "068ca27b1a5075c2bfd83419715ea527cf086d05648367c0b95dc89f9d388b86",
+      "result_use": "primary auditor report inspected; third-party clients, commentary and gists not used to establish server policy"
+    }
+  ],
+  "frontend_identity": {
+    "app_response_matches_prior_bytes": true,
+    "hooks_response_matches_prior_bytes": true
+  },
+  "pressure": {
+    "channel": "pressure:current",
+    "service_source_label": "relayer-postgres",
+    "capture_started_at": "2026-10-21T08:50:47.245Z",
+    "capture_finished_at": "2026-10-21T08:50:57.274Z",
+    "raw_frames": 14,
+    "decoded_publications": 12,
+    "stop_reason": "captured",
+    "snapshot_timestamp_range_ms": [
+      1792572653248,
+      1792572656254
+    ],
+    "chain_latest_block_range": [
+      49121246,
+      49121249
+    ],
+    "queued_intents_range": [
+      159,
+      217
+    ],
+    "submitted_intents_range": [
+      0,
+      59
+    ],
+    "checks": {
+      "active_equals_queued_plus_submitted_all_snapshots": true,
+      "pending_gas_equals_queued_plus_submitted_gas_all_snapshots": true,
+      "saturation_matches_submitted_gas_over_block_limit_percent_rounded_2dp_in_sample": true,
+      "pending_count_has_same_scope_as_active_intents": false
+    },
+    "examples": [
+      {
+        "ts": 1792572653248,
+        "blockGasLimit": "3000000",
+        "totalQueuedGas": "64785000",
+        "totalSubmittedGas": "1200000",
+        "totalPendingGas": "65985000",
+        "saturationPct": 40,
+        "pendingCount": 212,
+        "activeIntents": 210,
+        "submittedIntents": 0,
+        "queuedIntents": 210,
+        "queue_revision_changed": false,
+        "chain_latest_block": 49121246
+      },
+      {
+        "ts": 1792572654776,
+        "blockGasLimit": "3000000",
+        "totalQueuedGas": "66890000",
+        "totalSubmittedGas": "0",
+        "totalPendingGas": "66890000",
+        "saturationPct": 0,
+        "pendingCount": 217,
+        "activeIntents": 217,
+        "submittedIntents": 0,
+        "queuedIntents": 217,
+        "queue_revision_changed": true,
+        "chain_latest_block": 49121247
+      },
+      {
+        "ts": 1792572655775,
+        "blockGasLimit": "3000000",
+        "totalQueuedGas": "49225000",
+        "totalSubmittedGas": "18375000",
+        "totalPendingGas": "67600000",
+        "saturationPct": 612.5,
+        "pendingCount": 165,
+        "activeIntents": 218,
+        "submittedIntents": 59,
+        "queuedIntents": 159,
+        "queue_revision_changed": true,
+        "chain_latest_block": 49121248
+      }
+    ],
+    "no_individual_intent_or_action_breakdown": true,
+    "not_a_fifo_or_delay_measurement": true
+  },
+  "intake": {
+    "channel": "trading:current",
+    "capture_started_at": "2026-10-21T08:49:13.142Z",
+    "capture_finished_at": "2026-10-21T08:49:19.358Z",
+    "decoded_publications": 6,
+    "indexed_block_range": [
+      49121146,
+      49121151
+    ],
+    "tradingPaused": false,
+    "disabled_actions": [],
+    "open_close_published_enabled": true,
+    "minimum_trade_size_raw": "10000000000000000000",
+    "minimum_open_notional_raw": "1000000000000000000000",
+    "minimum_paper_stake_raw": "1000000000000000000000",
+    "leverage_override_maximum": 0,
+    "leverage_override_minimum": 0,
+    "leverage_zero_meaning": "no client intake override, not a zero-leverage contract",
+    "server_enforcement_tested_by_submitting_intent": false
+  },
+  "audit_source": {
+    "url": "https://www.guardian.security/portfolio/papertrade/protocol-review-2026-10-09/",
+    "report_published_date": "2026-10-10",
+    "relevant_vectors": [
+      "KV-14",
+      "KV-19"
+    ],
+    "assertion": "protocol-operated relayer and other off-chain services are outside the contract review scope; not an independently checked scheduler implementation",
+    "linked_source_tree_access": "404; no code recovered",
+    "audit_to_current_runtime_equivalence": null
+  },
+  "scheduler_fifo": null,
+  "scheduler_priority": null,
+  "scheduler_packing_algorithm": null,
+  "scheduler_retry_backoff": null,
+  "scheduler_expiry_worker_policy": null,
+  "individual_submit_ack_broadcast_clocks": null,
+  "independent_historical_settlement_reproduced": false,
+  "raw_payload_published": false,
+  "account_channels_queried": false,
+  "signed_intents_submitted": false
+}

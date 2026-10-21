@@ -4,6 +4,11 @@ Date: 2026-10-21. Baseline: `4707147`. This follows [note 006](006-current-mecha
 and retains CASE-002/004's original **49115089–49115588** window and ordering.
 No new log window was sampled. CASE-001, its candidate order and M1 gate are unchanged.
 
+**Later update:** the owner authorized the blocked ledger query, and
+[note 008](008-core-credit-and-relayer-pressure.md) records a unique official
+HyperCore credit match plus real anonymous relayer backlog. The access/credit
+limitations below describe the end of this earlier increment.
+
 ## Scope, identity and collection
 
 The [follow-up plan](../../research/cases/002-004-followup-plan.json) was registered

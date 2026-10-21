@@ -6,7 +6,7 @@ An independent open-source project reading official sources, inspecting frontend
 and contract bytecode, and checking public transaction events. We explain how trades
 execute, losses mint PAPER, rewards are allocated, and balances differ from unpaid claims.
 
-[简体中文](README.zh-CN.md) · [Mechanism map](docs/mechanism-map.md) · [Latest mechanism research](docs/research-notes/007-queue-and-dividend-payment.md) · [Sources](docs/sources.md)
+[简体中文](README.zh-CN.md) · [Mechanism map](docs/mechanism-map.md) · [Latest mechanism research](docs/research-notes/008-core-credit-and-relayer-pressure.md) · [Sources](docs/sources.md)
 
 We distinguish **official description, bytecode support, chain case support, and
 independent reproduction passed**. Some paths now have bytecode and provider-reported
@@ -43,12 +43,21 @@ execution timeline or independently reconstructed active payout-queue ledger.
 730 successes and four failures. All four failures occur in one six-open batch,
 ordered success/failure/failure/failure/failure/success. The error selector maps
 to the acquired runtime's directional-cap check, and failures did not abort that
-batch. Submitted array order is supported; cross-user relayer FIFO is not. Current
-open/close signatures default to a one-hour deadline, which is not a fill promise.
+batch. Submitted array order is supported; cross-user relayer FIFO is not.
+
+**Real backend backlog is now observed.** The official anonymous feed labels its
+source `relayer-postgres`. Twelve sampled snapshots report **159–217 queued intents**
+and **0–59 submitted intents**. One has **217 queued and 0% saturation**: in this
+sample, saturation tracks submitted gas divided by block gas limit, not an empty
+queue or a waiting-time estimate. These are aggregate counts across actions, not
+open/close-only counts. Cross-user FIFO, priority and retries remain unverified.
+
+Current open/close signatures default to a one-hour deadline, which is not a fill promise.
 The client filters IDs already being closed and submits closes in groups of up to 12.
 
 **Evidence: official description and frontend source; batch events support individual
-success/failure outcomes.** [Real batches and client waiting rules](docs/research-notes/007-queue-and-dividend-payment.md#execution-array-order-and-partial-failures-are-real-scheduler-fifo-is-unknown) ·
+success/failure outcomes.** [Real backend pressure and metric limits](docs/research-notes/008-core-credit-and-relayer-pressure.md#real-backend-observation-anonymous-relayer-pressure) ·
+[Batch and client rules](docs/research-notes/007-queue-and-dividend-payment.md#execution-array-order-and-partial-failures-are-real-scheduler-fifo-is-unknown) ·
 [Architecture](https://docs.papertrade.xyz/how/architecture/) · [Payout queue](https://docs.papertrade.xyz/how/solvency-queue/)
 
 ## How do positions work? Can one account hold both long and short?
@@ -146,14 +155,17 @@ pre-distribution shares, LP-excess funding and real unstake remain unreproduced.
 
 A follow-up real claim of about **1115.251243442** exactly matches internal balance
 credit. The same chain account later executes a withdrawal of about **1115.251244**,
-with an Exchange-to-recipient CoreWriter spot-send action in its receipt. **The
-transfer action toward HyperCore is checked; final HyperCore credit has not been
-obtained.** This shared-balance withdrawal differs slightly from the claim and
+with an Exchange-to-recipient CoreWriter spot-send action in its receipt. **A later
+official HyperCore ledger query found one exact incoming match: 1115.251244 USDC,
+with sender, recipient and amount reconciled to that action.** This case is checked
+through HyperCore account credit; it is not a universal withdrawal guarantee or
+independent consensus replay. This shared-balance withdrawal differs slightly from the claim and
 cannot be wholly attributed to that dividend. An onward route to another chain
 requires a separate destination receipt.
 
-**Evidence: official description, bytecode support and stake/claim chain cases.**
-[Real claim, withdrawal and payment boundary](docs/research-notes/007-queue-and-dividend-payment.md#dividend-a-real-claim-followed-by-a-withdrawal-action) ·
+**Evidence: official description, bytecode support and stake/claim/withdrawal cases;
+the selected withdrawal passes official HyperCore credit reconciliation.**
+[HyperCore credit confirmation and limits](docs/research-notes/008-core-credit-and-relayer-pressure.md#selected-withdrawal-one-exact-official-ledger-match) ·
 [Accumulator and distribution](docs/research-notes/006-current-mechanisms.md#case-004-dividends-are-an-accumulator-and-a-claim-against-internal-balance) ·
 [Official staking mechanics](https://docs.papertrade.xyz/paper/staking/)
 

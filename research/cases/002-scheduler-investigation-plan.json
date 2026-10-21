@@ -1,0 +1,20 @@
+{
+  "registered_at": "2026-10-21T08:43:42.623240+00:00",
+  "case_id": "CASE-002",
+  "baseline": "87c1c91ecde52879af2c6e2bb3bf76f0f6ef158e",
+  "purpose": "Find primary server queue scheduling, retry and expiry rules and distinguish actual API responses from frontend expectations",
+  "source_access_budget": 30,
+  "search_query_budget": 8,
+  "rpc_budget": 60,
+  "initial_log_window": null,
+  "window_rule": "Reuse recorded windows first; register any new <=500-block interval before logs and retain all failures, fixed block/transaction/log order",
+  "selection": "primary official docs, linked current frontend, public aggregate/health/config APIs only; any repository source must be attributable and versioned; third-party clients are leads, not server evidence",
+  "restrictions": [
+    "read only; no intent submission, cancellation, signing or test trades",
+    "no new credentials, paid services, deployments or outreach",
+    "no account endpoint exploration; separately authorized CASE-004 ledger query is the sole exception",
+    "no unlisted host scan, access-control bypass or retry after denial/rate limit",
+    "retain raw private; no user identity association",
+    "no FIFO or latency claim from chain order alone"
+  ]
+}

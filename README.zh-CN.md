@@ -5,7 +5,7 @@
 这是一个独立开源研究项目。我们阅读官方资料、分析前端与合约字节码，并核对公开交易事件，
 解释交易怎样执行、亏损怎样铸币、收益怎样分配，以及余额和待赔付债权怎样变化。
 
-[English](README.md) · [机制地图](docs/mechanism-map.md) · [最新机制研究](docs/research-notes/007-queue-and-dividend-payment.md) · [来源](docs/sources.md)
+[English](README.md) · [机制地图](docs/mechanism-map.md) · [最新机制研究](docs/research-notes/008-core-credit-and-relayer-pressure.md) · [来源](docs/sources.md)
 
 以下结论注明**官方说明、字节码支持、链上案例支持、独立复验通过**的区别。
 本轮有部分字节码和链上案例支持，完整历史结算尚未通过独立复验。参数和规则需要按版本核对。
@@ -35,10 +35,16 @@ flowchart LR
 四个失败集中在一笔六项开仓批次，顺序为“成功、失败、失败、失败、失败、成功”。
 其错误码与取得字节码中的方向容量检查对应，说明等待后仍可能执行失败，且失败项没有中止该批次。
 这证明批内按提交数组顺序处理，不证明 relayer 跨用户按 FIFO 调度。
+
+**后台真实积压也已观察到。** 官网匿名实时频道自报来自 `relayer-postgres`：本轮 12 个快照中，
+排队意图为 **159–217 条**、已提交意图为 **0–59 条**。其中一个快照显示 **217 条排队、饱和度 0%**；
+该饱和度在样本中对应已提交 gas 与区块 gas 上限之比，不代表队列为空，也不能换算为等待时间。
+这些是多种操作的聚合数量，不能当作纯开平仓数量；跨用户 FIFO、优先级和重试算法仍未证实。
 当前客户端开／平仓默认签名截止时间为一小时；这不是成交期限。平仓会过滤已在关闭中的仓位 ID，按每组最多 12 个提交。
 
 **证据：官方说明＋前端源码；批处理链上事件支持存在逐项成功／失败。**
-[真实批次与前端等待规则](docs/research-notes/007-queue-and-dividend-payment.md#execution-array-order-and-partial-failures-are-real-scheduler-fifo-is-unknown) ·
+[真实后台积压与指标含义](docs/research-notes/008-core-credit-and-relayer-pressure.md#real-backend-observation-anonymous-relayer-pressure) ·
+[批内执行与客户端规则](docs/research-notes/007-queue-and-dividend-payment.md#execution-array-order-and-partial-failures-are-real-scheduler-fifo-is-unknown) ·
 [官方架构](https://docs.papertrade.xyz/how/architecture/) · [官方赔付队列](https://docs.papertrade.xyz/how/solvency-queue/)
 
 ## 仓位怎样运作？能否多空双开？
@@ -117,11 +123,12 @@ LP 向质押者划出超额收益时，`H` 不随之回退；再次进入尾段�
 
 后续找到真实“领取后提款”案例：约 **1115.251243442** 的 claim 与内部余额入账完全对应；
 同一链上账户随后执行约 **1115.251244** 的提款，回执含 Exchange 发往该账户的 CoreWriter spot-send 动作。
-**这一步已核对到跨向 HyperCore 的转账动作，尚未取得 HyperCore 最终入账记录。**
+**后续已在官方 HyperCore 账本找到唯一匹配入账：1115.251244 USDC，发送方、接收方和金额均与该提款动作一致。**
+这笔案例已完成到 HyperCore 收款账户的账本对账；不是所有提款成功的保证，也不是独立共识重放。
 提款来自共享余额，且与 claim 略有差额，不能声称全部提款都来自该次分红。若选择其他链，后续路由支付还需单独确认。
 
-**证据：官方说明＋字节码支持＋stake／claim 链上案例支持。**
-[真实领取、提款与支付边界](docs/research-notes/007-queue-and-dividend-payment.md#dividend-a-real-claim-followed-by-a-withdrawal-action) ·
+**证据：官方说明＋字节码支持＋stake／claim／提款案例支持；该提款的官方 HyperCore 入账对账通过。**
+[HyperCore 入账确认与边界](docs/research-notes/008-core-credit-and-relayer-pressure.md#selected-withdrawal-one-exact-official-ledger-match) ·
 [累计器与分配](docs/research-notes/006-current-mechanisms.md#case-004-dividends-are-an-accumulator-and-a-claim-against-internal-balance) ·
 [官方质押机制](https://docs.papertrade.xyz/paper/staking/)
 
