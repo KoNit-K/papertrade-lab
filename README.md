@@ -50,22 +50,23 @@
 
 ## PAPER mint curve
 
-- 🪙 <strong>Supply-relative issuance:</strong> Eligible loss mints against the then-current PAPER supply, roughly 0.1% of supply per $1M of eligible loss; the exact result depends on the configured rate and integer integration.
-- ⏱️ <strong>During insolvency:</strong> A time multiplier rises from 1× to 5× over three days. The bonus applies to the eligible part of the loss that repairs the deficit, rather than every loss receiving the former flat 100 PAPER/$ rate.
-- 📉 <strong>Dilution:</strong> New issuance reduces an unchanged holder's share of supply. More PAPER does not guarantee recovery of the trading loss or a cash redemption value.
+**Issuance changed from a decaying token-per-dollar curve to a fraction of existing supply.** Eligible losses grow the total supply; read the token count together with the share it represents.
 
-[Issuance rules, evidence and limits](docs/research-notes/014-official-announcement-crosscheck.md#2-supply-relative-issuance-and-insolvency-timing) · [Earlier curve illustration](docs/readme-figures.md#mint-rate-illustration)
+![Old and new PAPER issuance: retained progress creates an LP-threshold step and a tail declining through 25, 20 and lower; new supply-relative issuance grows total supply and dilutes unchanged holdings](docs/assets/paper-mint-curve.en.svg)
 
-The **eligible mint basis** also matters: a cash-funded losing close with an empty payout queue uses loss minus the LP-side fee, while liquidation uses full lost margin. That fee comes from LP's gain, not an additional trader loss.
+| What matters | Old mechanism | New mechanism |
+|---|---|---|
+| **PAPER per $1 of loss** | 100 PAPER/$ was the early/low-LP flat branch; the old tail already decayed with cumulative progress H, for example 25 → 20 → about 10. Re-entering above the threshold at retained H can step down; 25/20 are not fixed tiers. | Roughly 0.1% of then-current supply per $1M eligible loss. Larger supply means more tokens for the same loss; the configured coefficient determines the exact rate. |
+| **How issuance grows** | In the tail, equal losses produce progressively fewer new tokens. | Eligible losses keep issuing a proportion of supply; there is no fixed daily release in this mechanism. Unchanged holdings represent a smaller supply share. |
+| **During insolvency** | The old flat branch applies. | A continuous-insolvency time multiplier rises from 1× to 5× over three days, limited to the eligible deficit-repair portion. |
 
-| Checked liquidation, internal accounting units | Amount |
-|---|---:|
-| Lost margin and PAPER mint basis | 20 |
-| Tracked-LP increase after fees | 19.6 |
+💡 **Token count and total supply belong together:** starting from 10 billion PAPER, the figure's simplified 0.1% issuance per $1M eligible-loss step gives **10bn → 10.01bn → 10.02001bn**. This is an illustration, not exact contract settlement or an equal increase in USDC backing.
 
-Eligible basis, current supply, insolvency duration and adjustable parameters can each change PAPER received. A changing ratio alone does not prove a parameter change. This receipt reconciles amounts; missing historical inputs prevent independent mint reproduction. [Loss branches and examples](docs/research-notes/011-loss-governance-staking-and-payments.md#1-why-equal-losses-can-produce-different-paper-amounts)
+📍 **2026-10-22 acquisition snapshot:** approximately **8.903 billion PAPER** in total supply and a **9.802 PAPER/$** base marginal rate. The quantities are related; neither is live. Actual distributions also depend on funding, staking shares and allocation timing.
 
-🔎 The captured frontend's **PAPER ratio formatter** computes minted PAPER ÷ eligible mint basis: a per-record average. Its page consumer and actual runtime use remain unconfirmed. [REA and frontend cross-check](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md#captured-paper-ratio-formatter)
+🗓️ **Change timeline:** the retained old docs page is dated **2026-10-06** and still showed the old curve when acquired October 21; the announcement displays **2026-10-20, 6:30 AM** (timezone unknown); **installation and new-mode enablement were checked October 22**. The exact upgrade execution time remains unreconstructed.
+
+[Old official description](https://docs.papertrade.xyz/how/mint-curve/) · [Official new-rule announcement](https://x.com/papertrade_xyz/status/2112310325521399982) · [Figure, issuance examples and formula appendix](docs/readme-figures.md#issuance-old-vs-new) · [Contract evidence and version record](docs/research-notes/014-official-announcement-crosscheck.md#2-supply-relative-issuance-and-insolvency-timing)
 
 ## Trading costs
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render documented mint-rate illustrations and liquidation formulas offline.
+"""Render old/new issuance comparisons and liquidation formulas offline.
 
 Requires matplotlib. See docs/readme-figures.md for inputs and interpretation.
 The marginal curve is not an integer settlement or a whole-trade mint estimate.
@@ -23,6 +23,34 @@ def tail_rate(progress_m: float) -> float:
     return FLAT_RATE * (DECAY_M / (DECAY_M + progress_m)) ** 2
 
 
+def legacy_rate(lp_m: float, progress_m: float) -> float:
+    """Old mode: fixed-H state cross-section, not an LP/time trajectory."""
+    rate = tail_rate(progress_m)
+    return FLAT_RATE if lp_m < THRESHOLD_M else rate
+
+
+def issuance_steps(initial_supply: Decimal, steps: int) -> list[Decimal]:
+    """Illustration only: add 0.1% of prior supply per $1M eligible loss step.
+
+    This recurrence is a rounded announcement-scale teaching example, not the
+    current contract's coefficient, interval integration or integer rounding.
+    """
+    if initial_supply < 0 or steps < 0:
+        raise ValueError('Supply and steps must be nonnegative')
+    with localcontext() as context:
+        context.prec = 50
+        values = [initial_supply]
+        for _ in range(steps):
+            values.append(values[-1] * Decimal('1.001'))
+        return values
+
+
+def unchanged_holder_share(holding: Decimal, total_supply: Decimal) -> Decimal:
+    if holding < 0 or total_supply <= 0:
+        raise ValueError('Holding must be nonnegative and total supply positive')
+    return holding / total_supply
+
+
 def net_gain_kept(move_percent: str, position_multiplier: str) -> Decimal:
     """Fraction of raw market gain retained, including deadband and 2% win fee."""
     with localcontext() as context:
@@ -43,6 +71,16 @@ def net_gain_kept(move_percent: str, position_multiplier: str) -> Decimal:
 def check_values() -> None:
     assert tail_rate(0) == 100
     assert tail_rate(120) == 25
+    assert legacy_rate(1.999, 120) == 100
+    assert legacy_rate(2, 120) == 25
+    assert abs(legacy_rate(2, 120 * (5 ** .5 - 1)) - 20) < 1e-12
+    supplies = issuance_steps(Decimal('10000000000'), 2)
+    assert supplies == [Decimal('10000000000'), Decimal('10010000000'), Decimal('10020010000')]
+    assert issuance_steps(Decimal('0'), 3) == [Decimal('0')] * 4
+    assert issuance_steps(Decimal('10000000000'), 100)[-1].quantize(Decimal('.01')) == Decimal('11051156977.21')
+    assert unchanged_holder_share(Decimal('100000000'), supplies[-1]) < Decimal('.01')
+    final_share_percent = unchanged_holder_share(Decimal('100000000'), issuance_steps(Decimal('10000000000'), 100)[-1]) * 100
+    assert final_share_percent.quantize(Decimal('.001')) == Decimal('.905')
     assert abs(tail_rate(ILLUSTRATIVE_H_M) - 9.946107980888277) < 1e-12
     assert all(tail_rate(i + 1) < tail_rate(i) for i in range(360))
     assert net_gain_kept('0.002', '814.598') == 0
@@ -52,7 +90,7 @@ def check_values() -> None:
         assert list(map(str, values)) == [btc, eth]
     for market in ['814.598', '483.979']:
         assert net_gain_kept('1000000', market) < Decimal('.882')
-    print('PASS: marginal-rate anchors/monotonicity, deadband, gain examples and asymptote')
+    print('PASS: legacy threshold/tail, supply issuance/dilution, deadband and retained gain examples')
 
 
 def render(output: Path, language: str, font: str | None) -> None:
@@ -60,6 +98,7 @@ def render(output: Path, language: str, font: str | None) -> None:
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     from matplotlib import font_manager
+    from matplotlib.patches import FancyBboxPatch
     import numpy as np
 
     if font:
@@ -69,79 +108,116 @@ def render(output: Path, language: str, font: str | None) -> None:
     else:
         family = 'DejaVu Sans'
     plt.rcParams.update({'font.family': family, 'svg.fonttype': 'path', 'font.size': 12,
-                         'axes.unicode_minus': False, 'text.parse_math': False, 'svg.hashsalt': 'papertrade-mint-v1'})
+                         'axes.unicode_minus': False, 'text.parse_math': False,
+                         'svg.hashsalt': 'papertrade-issuance-comparison-v2'})
     zh = language == 'zh-CN'
     bg, panel, text, muted, grid = '#0e1713', '#15241c', '#eff6ee', '#adc1b2', '#34483b'
     mint, amber = '#b7f58b', '#f2bc72'
-    fig = plt.figure(figsize=(12, 6.5), facecolor=bg)
-    left = fig.add_axes((.075, .23, .40, .48), facecolor=panel)
-    right = fig.add_axes((.57, .23, .385, .48), facecolor=panel)
-    for ax in (left, right):
-        ax.set_ylim(0, 112)
-        ax.set_yticks([0, 25, 50, 75, 100])
+    fig = plt.figure(figsize=(14, 10), facecolor=bg)
+    fig.text(.055, .945, 'PAPER 发行：旧曲线 → 新机制' if zh else 'PAPER ISSUANCE  /  OLD → NEW',
+             color=text, fontsize=27, weight='bold')
+    fig.text(.055, .90, '看发了多少币，也看总量增长后你还占多少。' if zh
+             else 'Read the token count together with total supply and your remaining share.',
+             color=muted, fontsize=15)
+    fig.text(.055, .855, '2026 · 10/06 旧官网页标注  →  10/20 新机制公告  →  10/22 已安装核验（并非精确执行时间）' if zh
+             else '2026 · Oct 06: old docs date  →  Oct 20: announcement  →  Oct 22: installation checked (not execution time)',
+             color=muted, fontsize=11)
+    fig.text(.055, .79, '旧模型  /  门槛降档 + 尾段衰减' if zh else 'OLD  /  THRESHOLD + DECAY',
+             color=amber, fontsize=15, weight='bold')
+    fig.text(.545, .79, '新模型  /  按现有供应量比例增发' if zh else 'NEW  /  SUPPLY-RELATIVE ISSUANCE',
+             color=mint, fontsize=15, weight='bold')
+    step = fig.add_axes((.085, .56, .37, .16), facecolor=panel)
+    tail = fig.add_axes((.085, .275, .37, .16), facecolor=panel)
+    supply_ax = fig.add_axes((.575, .275, .36, .19), facecolor=panel)
+    for ax in [step, tail, supply_ax]:
         ax.tick_params(colors=muted, labelsize=10)
-        ax.grid(axis='y', color=grid, linewidth=.7, alpha=.8)
+        ax.grid(axis='y', color=grid, linewidth=.7)
         ax.set_axisbelow(True)
         for spine in ax.spines.values():
             spine.set_color(grid)
-    fig.text(.075, .91, 'PAPER 铸币曲线' if zh else 'PAPER MINT CURVE',
-             color=text, fontsize=25, weight='bold')
-    fig.text(.075, .85, '每 1 美元合格亏损基数对应的边际 PAPER 数量' if zh
-             else 'Marginal PAPER per $1 of eligible loss basis', color=muted, fontsize=13)
-    left.set_title('① 累计进度越大，尾段铸币率越低' if zh else '01  A one-way decaying tail',
-                   loc='left', color=text, fontsize=13, pad=17)
-    h = np.linspace(0, 360, 721)
-    rates = FLAT_RATE * (DECAY_M / (DECAY_M + h)) ** 2
-    left.plot(h, rates, color=mint, linewidth=2.8)
-    left.fill_between(h, rates, color=mint, alpha=.10)
-    left.set_xlim(0, 360)
-    left.set_xticks([0, 120, 240, 360])
-    left.set_xlabel('累计尾段进度 H（百万美元）' if zh else 'Cumulative tail progress H (USD millions)',
-                    color=muted, labelpad=12, fontsize=11)
-    left.set_ylabel('PAPER / $1', color=muted, labelpad=8, fontsize=11)
-    for x, offset in [(0, (12, 8)), (120, (10, 12)), (ILLUSTRATIVE_H_M, (-10, 18))]:
+    fig.text(.055, .745, '① 保留旧进度后，再过 LP 门槛会突然降档' if zh
+             else '01  A threshold re-entry can step down at retained H', color=text, fontsize=12)
+    # Hold H fixed. Do not join this LP cross-section to the H-axis tail plot.
+    step.plot([1, 2], [legacy_rate(1, 120)] * 2, color=amber, linewidth=3)
+    step.plot([2, 3.5], [legacy_rate(2, 120)] * 2, color=amber, linewidth=3)
+    step.plot([2, 2], [100, 25], color=amber, linestyle='--', linewidth=2)
+    step.set(xlim=(1, 3.5), ylim=(0, 115), xticks=[1, 2, 3], yticks=[0, 25, 100])
+    step.set_xlabel('当前 LP（百万美元）；H 固定为 $120M' if zh
+                    else 'Current LP ($M); H held at $120M', color=muted, fontsize=10)
+    step.set_ylabel('PAPER / $1', color=muted, fontsize=10)
+    step.text(1.07, 104, '100：平坦段' if zh else '100: flat branch', color=amber, fontsize=10)
+    step.text(2.13, 38, '25：保留进度的例子' if zh else '25: retained-H example', color=amber, fontsize=10)
+    fig.text(.055, .49, '② 尾段继续衰减：25 → 20 → 约 10' if zh
+             else '02  The tail keeps decaying: 25 → 20 → about 10', color=text, fontsize=12)
+    h = np.linspace(120, 280, 401)
+    tail.plot(h, [tail_rate(float(x)) for x in h], color=amber, linewidth=3)
+    tail.fill_between(h, [tail_rate(float(x)) for x in h], color=amber, alpha=.09)
+    tail.set(xlim=(115, 285), ylim=(0, 31), xticks=[120, 180, 260], yticks=[0, 10, 20, 25])
+    tail.set_xlabel('累计尾段进度 H（百万美元），不是当前 LP' if zh
+                    else 'Cumulative tail H ($M), not current LP', color=muted, fontsize=10)
+    tail.set_ylabel('PAPER / $1', color=muted, fontsize=10)
+    for x, label in [(120, '25'), (120 * (5 ** .5 - 1), '20'), (260.5, '9.95')]:
         y = tail_rate(x)
-        left.scatter([x], [y], color=mint, s=35, zorder=4)
-        left.annotate(f'{y:.1f}', (x, y), xytext=offset, textcoords='offset points',
-                      color=mint, fontsize=12, weight='bold')
-    right.set_title('② 保留历史进度后，LP 阈值出现阶跃' if zh else '02  Retained history creates a step',
-                    loc='left', color=text, fontsize=13, pad=17)
-    rate = tail_rate(ILLUSTRATIVE_H_M)
-    # This is a state cross-section at fixed H, not a trajectory with increasing H.
-    right.plot([-1, THRESHOLD_M], [FLAT_RATE, FLAT_RATE], color=amber, linewidth=2.8)
-    right.plot([THRESHOLD_M, THRESHOLD_M], [FLAT_RATE, rate], color=amber, linewidth=2,
-               linestyle=(0, (3, 3)))
-    right.plot([THRESHOLD_M, 12], [rate, rate], color=amber, linewidth=2.8)
-    right.fill_between([-1, THRESHOLD_M], FLAT_RATE, color=amber, alpha=.10)
-    right.fill_between([THRESHOLD_M, 12], rate, color=amber, alpha=.10)
-    right.axvline(THRESHOLD_M, color=muted, linestyle=(0, (3, 4)), linewidth=1)
-    right.axvline(CAP_M, color=mint, linestyle=(0, (3, 4)), linewidth=1, alpha=.8)
-    right.set_xlim(-1, 12)
-    right.set_xticks([0, 2, 5, 8, 12])
-    right.set_xlabel('当前 tracked LP（百万美元）' if zh else 'Current tracked LP (USD millions)',
-                     color=muted, labelpad=12, fontsize=11)
-    right.text(-.45, 103, '平坦段 100' if zh else 'Flat: 100', color=amber, fontsize=11)
-    right.text(6.0, 22, '固定 H = $260.5M\n示意铸币率 ≈ 9.9' if zh else 'Fixed H = $260.5M\nIllustrative rate ≈ 9.9',
-               color=amber, fontsize=11, linespacing=1.5)
-    right.text(2.15, 85, '$2M 阈值' if zh else '$2M threshold', color=muted, fontsize=10)
-    right.text(5.15, 67, '$5M 分红上限\n不是铸币折点' if zh else '$5M reward cap\nNot a mint breakpoint',
-               color=mint, fontsize=10, linespacing=1.6)
-    fig.text(.075, .095, '平坦段：LP < $2M 时为 100 PAPER/$；尾段：100 × [120 / (120 + H)]²（H 单位为百万美元）' if zh
-             else 'Flat: 100 PAPER/$ below $2M LP. Tail: 100 × [120 / (120 + H)]², with H in USD millions.',
-             color=text, fontsize=11)
-    fig.text(.075, .045, '文档示例参数 · 右图固定历史 H，并非实时状态 · 分红划走 LP 不重置 H · Owner 可调整参数' if zh
-             else 'Documented defaults · Fixed illustrative H, not live state · LP distributions do not reset H · Owner-adjustable parameters',
+        tail.scatter([x], [y], color=amber, s=30)
+        tail.annotate(label, (x, y), xytext=(3, 9), textcoords='offset points',
+                      color=amber, fontsize=11, weight='bold')
+    fig.text(.055, .205, '100 不是升级前一直适用的水平；25 / 20 也不是固定跳档值。' if zh
+             else '100 was not the universal pre-upgrade rate; 25 / 20 are not fixed tiers.',
+             color=amber, fontsize=10)
+    fig.text(.545, .745, '① 相同亏损，供应量越大，新增币数越多' if zh
+             else '01  Same loss: a larger supply creates more new tokens', color=text, fontsize=12)
+    supplies = issuance_steps(Decimal('10000000000'), 100)
+    unit, suffix = (Decimal('1e8'), ' 亿') if zh else (Decimal('1e9'), ' bn')
+    precision = [3, 3, 4] if zh else [3, 3, 5]
+    cards = [f'{supply / unit:.{places}f}' + suffix
+             for supply, places in zip(supplies[:3], precision)]
+    for j, value in enumerate(cards):
+        x = .545 + .137 * j
+        patch = FancyBboxPatch((x, .59), .123, .115,
+                              boxstyle='round,pad=0.005,rounding_size=0.01',
+                              transform=fig.transFigure, facecolor=panel, edgecolor=grid)
+        fig.add_artist(patch)
+        fig.text(x + .009, .668, ('起始总量' if j == 0 else f'第 {j} 次后') if zh
+                 else ('Starting supply' if j == 0 else f'After step {j}'), color=muted, fontsize=10)
+        fig.text(x + .009, .622, value, color=mint, fontsize=14, weight='bold')
+    fig.text(.545, .55, '每步 $1M 合格亏损 → 按前一步总量增发约 0.1%' if zh
+             else 'Each $1M eligible loss → issue about 0.1% of the prior supply',
+             color=muted, fontsize=11)
+    supply_ax.plot(range(101), [float(x / Decimal('1000000000')) for x in supplies],
+                   color=mint, linewidth=3)
+    supply_ax.fill_between(range(101), 10, [float(x / Decimal('1000000000')) for x in supplies],
+                           color=mint, alpha=.1)
+    supply_ax.set(xlim=(0, 100), ylim=(9.9, 11.4), xticks=[0, 50, 100], yticks=[10, 10.5, 11])
+    supply_ax.set_xlabel('累计合格亏损（百万美元）' if zh else 'Cumulative eligible loss ($M)',
+                         color=muted, fontsize=10)
+    supply_ax.set_ylabel('总供应量（十亿枚）' if zh else 'Total supply (bn PAPER)',
+                         color=muted, fontsize=10)
+    supply_ax.annotate('+10.51%', (100, float(supplies[-1] / Decimal('1e9'))),
+                       xytext=(-74, 12), textcoords='offset points', color=mint,
+                       fontsize=13, weight='bold')
+    share = unchanged_holder_share(Decimal('100000000'), supplies[-1]) * 100
+    fig.text(.545, .205, ('持币数不变：原占比 1% → 约 ' + f'{share:.3f}%') if zh
+             else f'Unchanged holding: 1% of supply → about {share:.3f}%',
+             color=mint, fontsize=12, weight='bold')
+    fig.text(.055, .135, '资不抵债加成：1 → 5 倍 / 3 天，仅作用于符合条件的缺口修复部分。' if zh
+             else 'Insolvency incentive: 1 → 5× over 3 days, limited to the eligible deficit-repair portion.',
+             color=text, fontsize=12)
+    fig.text(.055, .085, '图为机制示意：右侧每步固定 0.1%，不是合约精确计算；左侧使用旧参数与指定 H，不是历史行情。' if zh
+             else 'Illustrations: right uses a fixed 0.1% step, not exact contract math; left uses old parameters and chosen H, not history.',
              color=muted, fontsize=10)
+    fig.text(.055, .045, '更多 PAPER ≠ 更多 USDC；实际分红还取决于资金来源、质押份额与分配时点。' if zh
+             else 'More PAPER does not create more USDC; distributions depend on funding, staking shares and allocation timing.',
+             color=muted, fontsize=11)
     output.mkdir(parents=True, exist_ok=True)
     stem = output / f'paper-mint-curve.{language}'
-    metadata = {'Date': None, 'Creator': 'papertrade-research / matplotlib',
-                'Description': 'Documented marginal mint-rate illustration; fixed illustrative H, not live state.'}
     svg_path = stem.with_suffix(stem.suffix + '.svg')
-    fig.savefig(svg_path, facecolor=bg, metadata=metadata)
+    fig.savefig(svg_path, facecolor=bg, metadata={
+        'Date': None, 'Creator': 'papertrade-research / matplotlib',
+        'Description': 'Old retained-H threshold and decaying tail versus illustrative supply-relative issuance and dilution. Not contract replay.'})
     svg_path.write_text('\n'.join(line.rstrip() for line in svg_path.read_text().splitlines()) + '\n')
-    fig.savefig(stem.with_suffix(stem.suffix + '.png'), facecolor=bg, dpi=160)
+    fig.savefig(stem.with_suffix(stem.suffix + '.png'), facecolor=bg, dpi=140)
     plt.close(fig)
-    print(f'Rendered {language} SVG/PNG')
+    print(f'Rendered issuance comparison {language} SVG/PNG')
 
 
 def render_liquidation(output: Path, language: str, font: str | None) -> None:
@@ -210,15 +286,18 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--check-only', action='store_true')
     parser.add_argument('--output-dir', type=Path, default=Path(__file__).resolve().parents[1] / 'docs/assets')
+    parser.add_argument('--mint-only', action='store_true', help='Render only the issuance comparison')
     parser.add_argument('--cjk-font', help='Installed CJK font file for the Chinese figure')
     args = parser.parse_args()
     check_values()
     if not args.check_only:
         render(args.output_dir, 'en', None)
-        render_liquidation(args.output_dir, 'en', None)
+        if not args.mint_only:
+            render_liquidation(args.output_dir, 'en', None)
         if args.cjk_font:
             render(args.output_dir, 'zh-CN', args.cjk_font)
-            render_liquidation(args.output_dir, 'zh-CN', args.cjk_font)
+            if not args.mint_only:
+                render_liquidation(args.output_dir, 'zh-CN', args.cjk_font)
 
 
 if __name__ == '__main__':

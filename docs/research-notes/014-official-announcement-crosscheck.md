@@ -24,6 +24,15 @@ records sources, exact byte identities, current global values and boundaries.
 | Distributor permission and below-bust close changes prevent gas griefing | Announced changes and security goal. Exact before/after permissions, close outcomes and attack-cost proof were not reconstructed here. |
 | Queued upgrades go live after 24 hours | Historical future tense. Installed targets and the completed Timelock sentinel were already confirmed in [note 013](013-market-state-funding-and-upgrade-followup.md#1-the-scheduled-implementations-are-now-installed); execution transaction and initialization remain missing. |
 
+## Mechanism change timeline
+
+The old official mint page marks its last update 2026-10-06; the retained
+October 21 capture still describes the flat/ratchet model. The new announcement
+is displayed as 6:30 AM on October 20, with unknown timezone. Matching installed
+targets and Timelock completion were checked October 22; new Tokenomics mode was
+also checked that day. Neither header time is the exact upgrade execution time.
+[Source reconciliation and timestamps](../readme-figures.md#dates-and-source-reconciliation).
+
 ## 1. Transfer restrictions and the external-short argument
 
 The PAPER proxy is `0xe40f17915daa230324030003a197cdaef2261c0e`, acquired
@@ -64,6 +73,19 @@ PAPER's loss rebate/counter-insolvency purpose describes an incentive. It does n
 make minted tokens cash backing, guarantee distributions or reimburse a loss.
 
 ## 2. Supply-relative issuance and insolvency timing
+
+**Read issuance and total supply together.** The old model was already a decaying
+tail after its early/low-LP flat branch; 100 PAPER/$ was not the universal
+pre-upgrade rate. At retained H=$120M the old tail rate is 25; at about $148.328M
+it is 20. These are curve examples, not fixed tiers or verified transition dates.
+
+The new mode instead issues relative to then-current supply. In a deliberately
+simplified 0.1%-per-$1M example, 10bn PAPER becomes 10.01bn after one loss step and
+10.02001bn after the next: equal losses produce more tokens as total supply grows.
+After 100 steps, total supply is about 11.05116bn; an unchanged 100M holding moves
+from 1% to about 0.905% of supply. This loss-driven supply growth is not a fixed
+daily release or a matching increase in USDC backing. The example is not exact
+contract interval math. [Visual comparison and full appendix](../readme-figures.md#issuance-old-vs-new).
 
 New Tokenomics implementation: `0x7c0a72a788cff4d68cfe9586aecb98e21eb58a03`.
 The low 128 bits of slot 9 contain a nonzero normalized issuance coefficient `q`,

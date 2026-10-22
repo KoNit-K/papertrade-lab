@@ -75,6 +75,19 @@ duplicating one ordinal without overwriting successful captures; the raw ledger
 was retained, a serial lock added and its regression tested. No signatures,
 intents, transactions, personal-account queries or bridge quotes were used.
 
+## PAPER issuance visual comparison
+
+The bilingual README mint module and existing image paths now compare the old
+retained-H threshold step and decaying tail with supply-relative issuance, total
+supply growth and dilution. 100 PAPER/$ is explicitly the old early/low-LP branch;
+25/20 are curve examples, not fixed tiers. The [figure appendix](docs/readme-figures.md#issuance-old-vs-new)
+reconciles the October 6 old-page date, October 20 announcement and October 22
+installation/new-mode observations, keeping exact execution time unknown. Figure
+math is a labeled teaching recurrence, not a new contract calculator. Only this
+README module changes; retained receipts, arithmetic helpers and liquidation
+assets are unchanged. No new protocol collection, install or whole-app analysis
+was performed for the visual revision.
+
 ## Official announcement and changed issuance rules
 
 [Note 014](docs/research-notes/014-official-announcement-crosscheck.md) checks the
@@ -87,7 +100,7 @@ OI relaxation, exhaustive attack elimination, exact distributor changes and
 below-bust gas-griefing claims remain unverified.
 
 The bilingual READMEs now summarize these business implications and link the
-version/evidence detail. Old mint figures and helpers retain their historical
+version/evidence detail. Old mint formulas and helpers retain their historical
 scope. Two focused interpreter-extension tests and 31 captured-code synthetic
 checks passed; two small offline REA 6.7.0 inspections reused the existing runtime.
 Collection: 25 RPC attempts (23 successful), two successful direct HTTP reads,
