@@ -1,0 +1,287 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "CASE-012-CONTRACT-SET-2",
+  "date": "2026-10-22",
+  "baseline_commit": "b20c2fe9796fe909ba89299c179bbb019f06a11d",
+  "chain_id": 999,
+  "protocol_reproduced": false,
+  "source_independently_fetched": false,
+  "raw_sources_published": false,
+  "source": {
+    "url": "https://docs.papertrade.xyz/dev/protocol-changes/",
+    "origin": "Owner-supplied text attributed to official page; hand transcription used for local indexing, not a server-response capture.",
+    "local_transcription_sha256": "87f99753c86035c3cc19a169eae7aa646e9ad77e298e4e8412e5a4cf104530d8",
+    "local_transcription_bytes": 1810,
+    "page_publication_time": null,
+    "page_update_time": null,
+    "reader_result": "not accessible via this tool; no HTTP status or page content",
+    "http_status": null,
+    "alternate_retrieval": false,
+    "linked_current_and_v1_pages_read": false
+  },
+  "versions": {
+    "set_1": {
+      "live_date_official_claim": "2026-10-07",
+      "time": null,
+      "timezone": null,
+      "exchange_implementation": "0x0f3febfc94876b0c895f7acecdc8f5c863b549ee"
+    },
+    "set_2": {
+      "activation_time": null,
+      "implementation_stated_by_source": null,
+      "relationship_to_retained_new_code": "Matching changed behaviors support association; not independent authentication of full set membership or exact execution/initialization."
+    }
+  },
+  "reused_reference": {
+    "number": "0x2ee6d32",
+    "hash": "0xffe3d8135f4197a84148679252df87b7ad2d9d75fb9eabe6acf10a9930a22e06",
+    "timestamp": "0x6ad95e7e"
+  },
+  "state_binding": "Explicit block-number requests; latest-only acquisition-time code/storage from one provider, not an atomic or authenticated historical snapshot or transaction prestate.",
+  "frontend_build_reused": "2b8e2c45a33e",
+  "runtimes": {
+    "older_exchange": {
+      "address": "0x0f3febfc94876b0c895f7acecdc8f5c863b549ee",
+      "bytes": 23052,
+      "sha256": "2f2e20ca683b70511fe62178b8090c93df24208b13dbdfa6407f38946fcef0b1"
+    },
+    "newer_exchange": {
+      "address": "0x0a44049dbbb6b4762a6ba37aa0f7548c0b4a3723",
+      "bytes": 23959,
+      "sha256": "fc7374f3969381160732fe98c5e3145e00c3f167f168d61d65bb4972e9a6b268",
+      "keccak256": "0x1fcb80437ee76e0a495223b0aef8aecf74a4742b9fb7df18752354cd7e2877e0"
+    }
+  },
+  "official_changes": [
+    {
+      "topic": "small-winning-moves",
+      "claim": "Extra holdback for small wins; payout still rises with favorable move.",
+      "support": "Prior fixed-band constants and boundary checks.",
+      "remaining": "No exhaustive instrument/rounding monotonicity proof."
+    },
+    {
+      "topic": "two-payout-curves",
+      "claim": "Dedicated keeper selects standard/off-hours fixed curves.",
+      "support": "Prior library constants; local guarded bool setter.",
+      "remaining": "No live keeper identity, schedule or switching transaction."
+    },
+    {
+      "topic": "close-at-bust",
+      "claim": "At or beyond bust settles as hard liquidation.",
+      "support": "Six local inclusive-direction comparisons.",
+      "remaining": "No full oracle/signature/settlement ledger."
+    },
+    {
+      "topic": "builder-fees",
+      "claim": "Approved builder named by session key receives 0.5% of close PnL; liquidations pay none.",
+      "support": "Prior approved-registry rate 5000000000000000; local liability/owner-gate checks.",
+      "remaining": "Exact PnL stage/sign, rounding, addition versus carve-out and final payment."
+    },
+    {
+      "topic": "staker-fee-push",
+      "claim": "Only PaperStaking calls Exchange.pushStakerFees().",
+      "support": "New caller check against configured slot 0x1f, unlike acquired older entry.",
+      "remaining": "Configured role not freshly read; complete funding/allocation/withdrawal not replayed."
+    },
+    {
+      "topic": "mint-rule",
+      "claim": "Each dollar of loss basis mints a fixed share of supply, with no cap.",
+      "support": "Prior enabled coefficient, getter and controlled mint-call checks.",
+      "remaining": "No unbounded arithmetic or every administrative mint/burn path proof."
+    },
+    {
+      "topic": "insolvency-bonus",
+      "claim": "Deficit-refilling portion counts up to 5x toward mint.",
+      "support": "Prior three-day multiplier and deficit clipping.",
+      "remaining": "Not a whole-loss 5x rule or a supply cap."
+    },
+    {
+      "topic": "governance",
+      "claim": "Timelock approves builders, sets rate and moves unclaimed fees; multisig can remove immediately.",
+      "support": "Retained authority checks and owner-guarded move entry.",
+      "remaining": "Invented-owner fixture does not identify live role holders or query builder mappings."
+    }
+  ],
+  "selectors_and_offsets": {
+    "pushStakerFees()": {
+      "selector": "0x7b9f5264",
+      "old_entry": "0x2345",
+      "old_helper": "0x4372",
+      "new_entry": "0x2404",
+      "new_helper": "0x3c27",
+      "role_slot": "0x1f"
+    },
+    "keeper_bool_setter": {
+      "selector": "0xe6ac4a74",
+      "signature": null,
+      "role_slot": "0x59",
+      "flag_slot": "0x8",
+      "flag_bits": "32..39"
+    },
+    "builderFees(address)": {
+      "selector": "0x9d346583",
+      "mapping_root": "0x27"
+    },
+    "claimBuilderFees()": {
+      "selector": "0x69f9a5f0",
+      "helper": "0x3af8",
+      "nonzero_fixture_stop_before_credit": "0x3b45",
+      "aggregate_slot": "0x26",
+      "aggregate_bits": "160..255"
+    },
+    "moveBuilderFees(address,address)": {
+      "selector": "0xd970fad5",
+      "owner_guard": "0x4500",
+      "helper": "0x3eba"
+    },
+    "close_predicate": {
+      "start": "0x594d",
+      "normal": "0x5970",
+      "hard": "0x5975",
+      "price_and_bust_width_bits": 64
+    }
+  },
+  "local_checks": {
+    "checks": 16,
+    "passed": true,
+    "full_evm": false,
+    "chain_execution": false,
+    "network_requests": 0,
+    "rows": [
+      {
+        "case": "push-caller-gate",
+        "configured": true,
+        "reached": 15425
+      },
+      {
+        "case": "push-caller-gate",
+        "configured": false,
+        "reached": 15698
+      },
+      {
+        "case": "old-push-entry-no-equivalent-caller-gate",
+        "configured": true,
+        "reached": 17290
+      },
+      {
+        "case": "old-push-entry-no-equivalent-caller-gate",
+        "configured": false,
+        "reached": 17290
+      },
+      {
+        "case": "keeper-mode-setter",
+        "flag": "0",
+        "unrelated_caller_rejected": true
+      },
+      {
+        "case": "keeper-mode-setter",
+        "flag": "1",
+        "unrelated_caller_rejected": true
+      },
+      {
+        "case": "close-bust-predicate",
+        "isLong": false,
+        "price": "99",
+        "bust": "100",
+        "hard_liquidation_branch": false,
+        "reached": 22896
+      },
+      {
+        "case": "close-bust-predicate",
+        "isLong": false,
+        "price": "100",
+        "bust": "100",
+        "hard_liquidation_branch": true,
+        "reached": 22901
+      },
+      {
+        "case": "close-bust-predicate",
+        "isLong": false,
+        "price": "101",
+        "bust": "100",
+        "hard_liquidation_branch": true,
+        "reached": 22901
+      },
+      {
+        "case": "close-bust-predicate",
+        "isLong": true,
+        "price": "99",
+        "bust": "100",
+        "hard_liquidation_branch": true,
+        "reached": 22901
+      },
+      {
+        "case": "close-bust-predicate",
+        "isLong": true,
+        "price": "100",
+        "bust": "100",
+        "hard_liquidation_branch": true,
+        "reached": 22901
+      },
+      {
+        "case": "close-bust-predicate",
+        "isLong": true,
+        "price": "101",
+        "bust": "100",
+        "hard_liquidation_branch": false,
+        "reached": 22896
+      },
+      {
+        "case": "builder-claim-before-credit",
+        "amount": "0",
+        "liability_cleared": true,
+        "stopped_before_credit": false
+      },
+      {
+        "case": "builder-claim-before-credit",
+        "amount": "100000000000000000000",
+        "liability_cleared": true,
+        "stopped_before_credit": true
+      },
+      {
+        "case": "move-builder-fees-owner-gate",
+        "configured_owner": true,
+        "reached": 4906
+      },
+      {
+        "case": "move-builder-fees-owner-gate",
+        "configured_owner": false,
+        "reached": 17686
+      }
+    ]
+  },
+  "limits": {
+    "external_calls": "mocked",
+    "delegatecall": "interpreter stops; not a complete EVM",
+    "claim": "nonzero fixture stops before internal credit",
+    "bust": "manually supplied local stack and computed bust; no upstream reconstruction",
+    "roles": "invented fixture addresses, no personal/builder account queries"
+  },
+  "collection_this_increment": {
+    "rpc": 0,
+    "direct_http": 0,
+    "web_page_opens": 1,
+    "successful_web_page_opens": 0,
+    "search_queries": 0,
+    "rea_runs": 0,
+    "installations": 0
+  },
+  "operations": {
+    "signatures": 0,
+    "intents": 0,
+    "transactions": 0,
+    "account_queries": 0,
+    "bridge_quotes": 0,
+    "stream_connections": 0
+  },
+  "remaining": [
+    "exact upgrade execution and initialization",
+    "complete fee arithmetic and builder receipt",
+    "full hard-liquidation ledger",
+    "live keeper role and schedule",
+    "server admission/account access",
+    "final bridge payment/refund",
+    "Across legacy migration",
+    "unidentified order entry points"
+  ]
+}

@@ -1,5 +1,7 @@
 # Independent client integration guide
 
+**Contract set 2 update:** [note 015](research-notes/015-contract-set-2.md) adds the official version names, approved-builder fee rule and the staking fee-push restriction. Earlier recovered interfaces below keep their stated version scope.
+
 Initial recovery: 2026-10-22, Asia/Singapore, build `38f2c40c4112`.
 The [upgrade/data-flow follow-up](research-notes/013-market-state-funding-and-upgrade-followup.md)
 checks build `2b8e2c45a33e` and confirms installation of the scheduled implementations.
@@ -25,10 +27,13 @@ cross-support it. No signature, intent submission or fill was tested here.
 
 Withdrawal, session revocation and maintenance have different authorization paths.
 The captured architecture describes permissionless transaction delivery for
-withdrawals/maintenance and owner-driven direct session revocation. This is not a
+withdrawals/maintenance and owner-driven direct session revocation. In set 2,
+`Exchange.pushStakerFees()` is an explicit exception: only PaperStaking can call it.
+The newer local caller-gate checks are in [note 015](research-notes/015-contract-set-2.md#4-fee-push-permission-and-the-keeper). This is not a
 blanket assertion that every such call succeeds: signatures, deadlines, balances,
-liquidation conditions and contract roles still apply. Our new synthetic checks
-cover only the open/close caller gates and BatchExecutor allowlist branch.
+liquidation conditions and contract roles still apply. The original note-012
+synthetic checks cover open/close caller gates and the BatchExecutor allowlist;
+note 015 adds the separate fee-push and keeper gates.
 
 ## 2. End-to-end stages
 
@@ -222,7 +227,10 @@ The captured registration path supplies the zero address as `feeAddress`.
 [Builder codes](https://docs.papertrade.xyz/how/builder-codes/) are an integration
 lead: that page was denied during this research session. The team's October 20
 announcement specifies an initial whitelist; recovered registry/enablement gates
-support controlled admission. Arbitrary fee addresses, live registration criteria,
-fee base, attribution and payout remain unvalidated. See the
-[announcement cross-check](research-notes/014-official-announcement-crosscheck.md#4-builders-distribution-permissions-and-below-bust-closes).
+support controlled admission. The later owner-supplied official set-2 text states **0.5% of PnL** for closes
+using approved builders and no builder fee on liquidations. It assigns approval,
+rate setting and moving unclaimed fees to the timelock, with immediate removal
+by the multisig. Exact PnL stage/sign treatment, rounding, fee addition versus
+carve-out, admission criteria and realized payment remain unresolved. See
+[builder accounting and control](research-notes/015-contract-set-2.md#3-builder-fees-documented-rule-accounting-and-payment).
 No builder registration or fee configuration was performed.

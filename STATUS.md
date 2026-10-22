@@ -75,6 +75,25 @@ duplicating one ordinal without overwriting successful captures; the raw ledger
 was retained, a serial lock added and its regression tested. No signatures,
 intents, transactions, personal-account queries or bridge quotes were used.
 
+## Contract set 2 official version guide
+
+[Note 015](docs/research-notes/015-contract-set-2.md) and
+[CASE-012](research/cases/012-contract-set-2.json) reconcile the owner's supplied
+official eight-change text with earlier observations. Set 1 is documented as live
+from October 7, 2026; exact set-2 execution/initialization remains unknown. The
+source now explicitly states no cap for loss-based issuance, 0.5%-of-PnL approved
+builder fees with no fee on liquidations, named builder governance roles and the
+PaperStaking-only fee-push permission. The READMEs explain these business rules;
+the mint images retain their teaching math and add the launch date/no-cap label.
+
+Sixteen narrow synthetic cases passed against retained code: old/new push entry
+gates, keeper mode changes, inclusive bust comparisons, builder liabilities before
+credit and owner-only fee movement. External calls remain mocked; full fee
+arithmetic, real payment, server access, bridge completion/refunds and Across
+migration remain open. One page-reader open failed without HTTP status/content;
+no alternate retrieval, new direct HTTP/RPC/search, account read, signature, intent,
+transaction, installation or REA run occurred. Historical records stay unchanged.
+
 ## PAPER issuance visual comparison
 
 The bilingual README mint module and existing image paths now compare the old

@@ -1,5 +1,7 @@
 # October 20 announcement: issuance, transfers, fees and builder access
 
+**Later official clarification:** [note 015](015-contract-set-2.md) records the supplied protocol-changes text: set 1 launched October 7, set 2 has no supply cap in its loss-based mint rule, approved-builder closes pay 0.5% of PnL, and fee pushing is restricted to PaperStaking. It adds governance and close-boundary checks; the earlier unknowns below retain their original source scope.
+
 Observed: 2026-10-22. Baseline: `75438b3`. This note cross-checks the owner's
 supplied full text of the [official announcement](https://x.com/papertrade_xyz/status/2112310325521399982),
 displayed as **6:30 AM · Oct 20, 2026**. The display timezone is unknown. Direct X

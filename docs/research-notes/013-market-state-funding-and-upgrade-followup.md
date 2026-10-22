@@ -1,5 +1,7 @@
 # Market state, funding continuation and the executed upgrade
 
+**Later version guide:** [note 015](015-contract-set-2.md) adds the official contract-set names, 0.5%-of-PnL builder rule, governance and fee-push/bust-boundary checks. Unknowns below describe this earlier observation window; the later source narrows some without completing settlement or payment replay.
+
 Observed: 2026-10-22, Asia/Singapore. This bounded follow-up reuses the prior
 REA 6.7.0 graphs and source index, then checks changed inputs. It supersedes the
 **current-version** assumptions in [note 012](012-independent-clients-orders-and-bridges.md),

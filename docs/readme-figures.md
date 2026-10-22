@@ -18,13 +18,17 @@ figure paths as before; the old standalone image has been replaced.
 | Source or observation | Date/time and what it establishes |
 |---|---|
 | Retained [official mint page](https://docs.papertrade.xyz/how/mint-curve/) | Page marks last update 2026-10-06. Acquired 2026-10-21 at 07:18:06 UTC; it still describes the flat/ratchet mode. SHA-256 `f263fecf03ae73a3e6922c0c944b14c8c9930d2646acec053ffd9cd0cd3ec66c`, 14717 bytes; indexed in [CASE-002–005](../research/cases/002-005-current-evidence.json). This is the old page's date, not a verified contract activation date. |
+| [Official protocol changes](https://docs.papertrade.xyz/dev/protocol-changes/) | Owner-supplied text names set 1 as live from **2026-10-07**, identifies set 2 and explicitly states no cap for its loss-based mint rule. Page publication/update and exact set-2 activation time are unknown. [Source limits and checks](research-notes/015-contract-set-2.md). |
 | [Official announcement](https://x.com/papertrade_xyz/status/2112310325521399982) | Owner-supplied full text and display: 6:30 AM · 2026-10-20; timezone unknown. Announces supply-relative issuance and time-based insolvency incentives. |
 | First installed-target observation | 2026-10-22; reference header 49175395 is timestamped 07:38:34 Asia/Singapore. [Note 013](research-notes/013-market-state-funding-and-upgrade-followup.md#1-the-scheduled-implementations-are-now-installed) confirms matching implementation slots and the completed Timelock sentinel. This is not the exact execution time. |
 | New-mode/global-parameter observation | 2026-10-22; reference header 49179954 is timestamped 08:53:18 Asia/Singapore. [Note 014](research-notes/014-official-announcement-crosscheck.md) establishes the enabled nonzero issuance coefficient and records the acquired supply, rate and code. |
 
 The old webpage and the later announcement describe different mechanism versions.
-Documentation refreshes remain stopped after HTTP 403; X also returned 403. We reused
-the retained page and owner-supplied announcement without alternate retrieval.
+The figure now uses October 7 for the stated set-1 launch; October 6 remains only
+the retained old page's last-update date.
+Earlier documentation refreshes stopped after HTTP 403; X also returned 403. The
+new protocol-changes page reader reported “not accessible via this tool”, with no
+HTTP status or content. We used the owner-supplied text without alternate retrieval.
 Code/storage are latest-only acquisition-time observations from one provider,
 not atomic state authenticated at either header timestamp. Exact deployment,
 execution and initialization chronology remains incomplete.
@@ -77,8 +81,10 @@ and [loss-basis receipts](research-notes/011-loss-governance-staking-and-payment
 The official scale description is roughly 0.1% of then-current supply per $1M
 eligible loss. This replaces a fixed token-count interpretation: the same loss
 can mint more tokens as supply grows. Issuance in this mechanism is loss-driven,
-not a fixed daily release. The announcement does not specify a terminal supply
-schedule; this is not proof about every administrative mint/burn capability.
+not a fixed daily release. The later official set-2 description explicitly says
+**no cap** for this loss-based issuance rule. The 5× insolvency limit caps the bonus,
+not total supply. This is not a proof of unlimited machine arithmetic or every
+administrative mint/burn capability.
 
 The figure uses a **teaching recurrence**, deliberately separate from contract math:
 

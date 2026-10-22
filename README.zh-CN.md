@@ -30,6 +30,8 @@
 
 🔎 我们结合官网文档、公开代码和 [REA](https://github.com/morluto/rea)，解释它怎样运作，也核对哪些说法有证据支持。[进度](STATUS.md) · [来源](docs/sources.md)
 
+**版本说明：** 官网把最初版本叫 **Contract set 1**（2026-10-07 上线），新规则叫 **Contract set 2**。下面介绍新版规则；旧版文档仍可从官网的版本选择器查看。[官方变更表](https://docs.papertrade.xyz/dev/protocol-changes/) · [逐项核对](docs/research-notes/015-contract-set-2.md)
+
 ## 特性介绍
 
 | 特性 | 怎么运作 |
@@ -57,16 +59,16 @@
 | 想知道什么 | 以前 | 现在 |
 |---|---|---|
 | **亏损能拿多少 PAPER？** | 100 PAPER/$ 是旧规则中 LP 较低时的分支，后段早已可能降到 25 → 20 → 约 10。再次跨过 LP 门槛时可能突然下降；25/20 是例子，不是固定档位。 | 每 $1M 计入发币的亏损，大约增发当时 PAPER 总量的 0.1%。总量越大，同样亏损拿到的币越多，精确比例还要看参数。 |
-| **总量怎么增加？** | 在旧曲线下降的部分，同样亏损带来的新增币数越来越少。 | 亏损持续推动发币，每次按当时总量计算；没有固定的每日释放量。持币数不变，占总量的比例会下降。 |
+| **总量怎么增加？** | 在旧曲线下降的部分，同样亏损带来的新增币数越来越少。 | 亏损持续推动发币，每次按当时总量计算；没有固定的每日释放量，官网也明确写了**没有发行上限**。持币数不变，占总量的比例会下降。 |
 | **LP 不够还欠款时呢？** | 回到旧规则中低 LP 的发币分支。 | 缺口持续越久，奖励越高：3 天内从 1 倍升到 5 倍，只给符合条件、用于填补缺口的那部分亏损加成。 |
 
 💡 **看个简单例子：** 从 10B PAPER 开始，假设每次 $1M 亏损都按上一次总量增发 0.1%，总量就是 **10B → 10.01B → 10.02001B**。这是帮助理解的算例，合约的实际算法更细。多发 PAPER 不会凭空增加同等价值的 USDC。这里 B = 10亿，M = 100万。
 
 📍 **2026-10-22 查到的数值：** 总量约 **8.903B PAPER**，小额亏损的起始发币率约 **9.802 PAPER/$**，还没算 LP 缺口加成。这些是那次查询的数值，不是实时数据。能分到多少 USDC，还要看有多少钱可分、谁在质押，以及什么时候分。
 
-🗓️ **什么时候变的：** 保存的旧官网页标注 **2026-10-06** 更新，我们在 10月21日读取时仍是旧曲线。新规则公告显示 **2026-10-20 6:30 AM**（时区未知）。**10月22日检查时，新规则已经启用**；精确升级时间还没找到。
+🗓️ **什么时候变的：** Contract set 1 于 **2026-10-07** 上线，新规则公告显示 **2026-10-20 6:30 AM**（时区未知）。**10月22日检查时，新规则已经启用**；精确升级时间还没找到。
 
-[旧官网说明](https://docs.papertrade.xyz/how/mint-curve/) · [新规则公告](https://x.com/papertrade_xyz/status/2112310325521399982) · [算例与公式](docs/readme-figures.md#issuance-old-vs-new) · [我们核对了什么](docs/research-notes/014-official-announcement-crosscheck.md#2-supply-relative-issuance-and-insolvency-timing)
+[旧版发币说明](https://docs.papertrade.xyz/v1/how/mint-curve/#shape) · [新版发币说明](https://docs.papertrade.xyz/how/mint-curve/#shape) · [算例与公式](docs/readme-figures.md#issuance-old-vs-new) · [版本与证据](docs/research-notes/015-contract-set-2.md#6-issuance-old-docs-and-remaining-work)
 
 ## 交易成本
 
@@ -80,9 +82,13 @@
 
 💡 顺向价格变动最前面的 **0.002%** 不计入盈利，这叫 **deadband**。新规则还会对小幅盈利多做一层扣减：正常时段模式的范围到 **6bps（0.06%）**，非正常时段模式到 **10bps（0.1%）**。在设定范围的两端和范围外，这层额外扣减为零；范围内扣多少，还取决于价格走到了哪里。
 
+官网说明，即使小幅盈利被扣减，价格继续朝有利方向走时，付款仍会增加。一个专门的 keeper 账户负责切换正常／非正常时段模式，两套算法都写在合约里；不是页面自己随意改算法。
+
 这些数字说的是价格变动，不是手续费率。更大的价格变动仍要经过原来的盈利调整（asymmetric impact）和最后的 2% 手续费。
 
 [费用算例与公式](docs/readme-figures.md#profit-retention-examples) · [新扣减怎样计算](docs/research-notes/014-official-announcement-crosscheck.md#3-the-new-profit-adjustment-is-a-price-move-band)
+
+**Builder 费用：** 如果签名用的会话密钥登记了获批 builder，官网说这类平仓会付给它 **PnL（盈亏）的 0.5%**，清算不付。这里说的是 PnL，不是仓位本金；它和原来手续费具体怎样合并，见[费用核对](docs/research-notes/015-contract-set-2.md#3-builder-fees-documented-rule-accounting-and-payment)。
 
 **规则可以修改。** 改规则和升级需要相应的治理权限。我们查到的时间锁最少等 1 天；guardian 可以不等时间锁就暂停新开仓，恢复开仓需要 owner 批准。[谁能改规则](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed) · [升级记录](docs/research-notes/013-market-state-funding-and-upgrade-followup.md#1-the-scheduled-implementations-are-now-installed)
 
@@ -135,6 +141,8 @@ flowchart TB
 | 💵 **准备分红资金** | 已付交易费的一半，加上 LP 超过设定门槛后能转入分红的钱；官网示例门槛为 $5M。 |
 | ↗️ **领取** | 先进入交易余额，提现到 HyperCore 是下一步。 |
 
+**谁能把费用送入分红？** 新版只允许 PaperStaking 合约向 Exchange 发起这一步，其他地址不能直接调用。费用送入、分红记到你名下、领取入账、提现到账，仍是不同的步骤。[新旧权限对比](docs/research-notes/015-contract-set-2.md#4-fee-push-permission-and-the-keeper)
+
 **什么时候分钱，会影响谁拿到多少。** 我们检查的代码不因为质押更久就多给权重，加入或退出质押也不会先把积累的费用分掉。例如有 100 单位奖励待分，后来者先加入相同份额，两人各得 50；如果先分再加入，原质押者拿 100。已经分给你的奖励，退出质押后也保留。这是按代码举例，还没验证成真实赚钱策略。[分红时机](docs/research-notes/011-loss-governance-staking-and-payments.md#3-long-term-staking-versus-joining-immediately-before-allocation)
 
 我们在两个时期核对了 8 笔分红，金额都能和手续费来源对上，没有一笔证明额外用了 LP 盈余，但不能排除其他时期有。把 LP 分红门槛改为 $10M 的方案已经取消。分红记到名下、领取入账、真正转到平台外，是不同的步骤。[分红的钱从哪来](docs/research-notes/011-loss-governance-staking-and-payments.md#4-where-distributions-actually-came-from) · [取消的门槛变更](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed)
@@ -149,6 +157,8 @@ flowchart TB
 
 > 🧮 <strong>100× 多仓例子：</strong> 开仓价 100 → 理论上保证金归零的价格 99 → 清算价约 99.0495，也就是 99.05。
 > 触发前平仓，可以拿回仓里剩余的钱；清算会损失全部保证金。
+
+**发了平仓请求，也可能按清算处理。** 在 set 2，如果平仓执行时价格已经达到或越过合约的爆仓价，这次平仓会按强制清算结算，损失全部保证金。排队时仍要留意这一点。[新版规则与边界检查](docs/research-notes/015-contract-set-2.md#5-hard-liquidation-at-the-boundary)
 
 杠杆越高，缓冲相当于保证金的比例越大。[公式与取整](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold)。
 
@@ -177,7 +187,7 @@ flowchart TB
 
 **做成完整客户端还缺什么：** 服务器和账户 API 的使用权限、断线后可靠恢复、完整的费用／到账／退款流程，以及 builder 算谁的、怎样拿钱。Across 把这里使用的 `/suggested-fees` API 标为 legacy，新接入前还要核对替代接口。
 
-**Builder codes：** 团队宣布初期只允许获批的 builder，代码也有注册和启停检查。谁能加入、费用怎么算、钱怎么分到 builder，还要继续核对。[Builder 说明](docs/research-notes/014-official-announcement-crosscheck.md#4-builders-distribution-permissions-and-below-bust-closes)
+**Builder codes：** 会话密钥里登记的 builder 还必须获批，才能按官网规则拿平仓 PnL 的 0.5%。时间锁负责批准、设费率，也能转移尚未领取的费用；多签可以立即移除 builder。注册接入条件、精确记账和实际到账还需核对。[Builder 与管理权限](docs/research-notes/015-contract-set-2.md#3-builder-fees-documented-rule-accounting-and-payment)
 
 [客户端与签名指南](docs/independent-client-guide.md) · [订单和资金路线](docs/research-notes/012-independent-clients-orders-and-bridges.md)
 

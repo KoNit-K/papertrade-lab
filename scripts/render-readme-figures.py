@@ -119,8 +119,8 @@ def render(output: Path, language: str, font: str | None) -> None:
     fig.text(.055, .90, '看发了多少币，也看总量增长后你还占多少。' if zh
              else 'See how many tokens you get and how big the total becomes.',
              color=muted, fontsize=15)
-    fig.text(.055, .855, '2026 · 10/06 旧文档日期  →  10/20 公告  →  10/22 已查到新规则启用（确切切换时间未知）' if zh
-             else '2026 · Oct 06: old docs date  →  Oct 20: announced  →  Oct 22: new rules active (exact switch time unknown)',
+    fig.text(.055, .855, '2026 · 10/07 旧版上线  →  10/20 公告  →  10/22 已查到新规则启用（确切切换时间未知）' if zh
+             else '2026 · Oct 07: set 1 live  →  Oct 20: announced  →  Oct 22: new rules active (exact switch time unknown)',
              color=muted, fontsize=11)
     fig.text(.055, .79, '以前  /  过门槛后，每美元拿币继续减少' if zh else 'BEFORE  /  FEWER TOKENS PER $1',
              color=amber, fontsize=15, weight='bold')
@@ -183,6 +183,9 @@ def render(output: Path, language: str, font: str | None) -> None:
     fig.text(.545, .55, '每次 $1M 计入发币的亏损 → 新发约上次总量的 0.1%' if zh
              else 'Each $1M of qualifying losses adds about 0.1% to the total',
              color=muted, fontsize=11)
+    fig.text(.545, .505, '官网：发行没有上限；5 倍只限制缺口加成' if zh
+             else 'Docs: no supply cap; 5× limits only the shortfall bonus',
+             color=muted, fontsize=10)
     supply_ax.plot(range(101), [float(x / Decimal('1000000000')) for x in supplies],
                    color=mint, linewidth=3)
     supply_ax.fill_between(range(101), 10, [float(x / Decimal('1000000000')) for x in supplies],

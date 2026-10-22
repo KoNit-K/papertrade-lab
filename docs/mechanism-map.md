@@ -1,6 +1,8 @@
 # Mechanism map
 
-Status: research agenda, not a verified protocol specification. Updated: 2026-10-21.
+**Contract set 2:** [note 015](research-notes/015-contract-set-2.md) adds the official eight-change guide and retained-code checks. Builder rate/base and named governance roles now have source-level answers; exact fee accounting, payment and upgrade chronology remain partial.
+
+Status: research agenda, not a verified protocol specification. Updated: 2026-10-22.
 This map separates source descriptions, partial bytecode support, provider-reported
 cases and independent reproduction. No mechanism has a complete independently
 reproduced historical settlement; three bounded research arithmetic helpers exist.

@@ -323,3 +323,21 @@ team's policy/security/empirical claims from bytecode and synthetic-path support
 [Metadata](../research/cases/011-official-announcement.json) records source hashes,
 current global observations, reused inputs and unverified outcomes; raw notice,
 captures and scratch helpers remain private. No account or transaction was used.
+
+
+## Contract set 2 version guide — 2026-10-22
+
+The owner supplied text attributed to the official
+[Protocol changes](https://docs.papertrade.xyz/dev/protocol-changes/) page. It names
+set 1 (live October 7, 2026) and set 2, and describes eight user-facing changes.
+A normal page-reader open returned “not accessible via this tool”, without HTTP
+status or content. This is an owner-supplied source, not an independently fetched
+page; publication/update time and exact set-2 activation are unknown. Current/v1
+links supplied in the text were not separately retrieved. No alternate access
+route was attempted. [Note 015](research-notes/015-contract-set-2.md) separates
+source claims, retained bytecode checks and remaining gaps;
+[CASE-012](../research/cases/012-contract-set-2.json) records byte identities.
+
+This increment made one unsuccessful page-reader open, zero direct HTTP/RPC/search
+requests and no new REA run. It reused the earlier code captures for 16 narrow
+synthetic cases, not production settlement, payment or independent EVM replay.
