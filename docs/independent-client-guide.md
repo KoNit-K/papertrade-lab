@@ -219,7 +219,10 @@ research authorization. Relayer availability, scheduling, execution price and
 on-chain item failure still matter even with correct encoding.
 
 The captured registration path supplies the zero address as `feeAddress`.
-[Builder codes](https://docs.papertrade.xyz/how/builder-codes/) are a future
-integration lead: the page was denied during this research session, and arbitrary
-fee addresses, revenue attribution, eligibility and fee calculation were not
-validated. No builder registration or fee configuration was performed.
+[Builder codes](https://docs.papertrade.xyz/how/builder-codes/) are an integration
+lead: that page was denied during this research session. The team's October 20
+announcement specifies an initial whitelist; recovered registry/enablement gates
+support controlled admission. Arbitrary fee addresses, live registration criteria,
+fee base, attribution and payout remain unvalidated. See the
+[announcement cross-check](research-notes/014-official-announcement-crosscheck.md#4-builders-distribution-permissions-and-below-bust-closes).
+No builder registration or fee configuration was performed.

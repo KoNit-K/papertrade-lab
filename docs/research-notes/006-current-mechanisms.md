@@ -3,6 +3,11 @@
 Date: 2026-10-21. Baseline: `b5f5509`. This investigation adds CASE-002–005.
 **No full historical settlement reproduction is claimed; CASE-001 stays blocked.**
 
+**Later rule change:** [note 014](014-official-announcement-crosscheck.md) checks
+new supply-relative issuance, insolvency timing and an added profit-adjustment
+band. The flat/tail mint formulas below remain historical acquired-code findings,
+not the enabled current-mode rule. Existing helper tests and receipts are unchanged.
+
 ## Evidence and version boundaries
 
 The four locally registered plans fix a shared first window of **49115089–49115588**

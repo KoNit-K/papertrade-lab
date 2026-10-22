@@ -1,0 +1,586 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "CASE-011-OFFICIAL-ANNOUNCEMENT",
+  "date": "2026-10-22",
+  "baseline_commit": "75438b3ffd4d561612875264daa3070d36c182f1",
+  "chain_id": 999,
+  "protocol_reproduced": false,
+  "signature_recovery_verified": false,
+  "announcement_independently_fetched": false,
+  "raw_sources_published": false,
+  "announcement": {
+    "url": "https://x.com/papertrade_xyz/status/2112310325521399982",
+    "publication_date_user_supplied": "2026-10-20",
+    "displayed_time_user_supplied": "6:30 AM",
+    "timezone": null,
+    "origin": "Owner-supplied full text attributed to official Papertrade notice; URL and display timestamp later supplied by owner.",
+    "direct_access": "HTTP403; stopped without alternate retrieval",
+    "full_text_sha256": "0b941e00eeefa7f60c2e9c4e18dec5bece0381a95b654d84ff4537848bf72d7a"
+  },
+  "reference": {
+    "number": "0x2ee6d32",
+    "hash": "0xffe3d8135f4197a84148679252df87b7ad2d9d75fb9eabe6acf10a9930a22e06",
+    "timestamp": "0x6ad95e7e"
+  },
+  "reference_header_repeated_identically": true,
+  "state_binding": "Explicit block-number requests; latest-only acquisition-time code/storage from one provider, not an atomic or authenticated historical snapshot or transaction prestate.",
+  "frontend_build": "2b8e2c45a33e",
+  "implementations": {
+    "exchange": "0x0a44049dbbb6b4762a6ba37aa0f7548c0b4a3723",
+    "tokenomics": "0x7c0a72a788cff4d68cfe9586aecb98e21eb58a03",
+    "paper": "0x433bd418ec92818a960585f4d5fae563e735bb4a",
+    "staking": "0xe6e3519455170913c5c3bfe541dd918a2d0cbb15",
+    "session": "Reused note 013 observation; not freshly queried in this increment."
+  },
+  "runtimes": {
+    "tokenomics": {
+      "address": "0x7c0a72a788cff4d68cfe9586aecb98e21eb58a03",
+      "bytes": 6452,
+      "sha256": "56caf868c73dbc33b94725972fc101dbcec0fb7b017c4f2f9e8cda49516992e9",
+      "keccak256": "0x7d62af455409263c5307ac4f3d053d32d29225232e6f34946a4549927f203aac"
+    },
+    "paper": {
+      "address": "0x433bd418ec92818a960585f4d5fae563e735bb4a",
+      "bytes": 3528,
+      "sha256": "f77b91537421a0092f1c068f85af316caf7fd8d8461e8b0305022ee6f5f0faae",
+      "keccak256": "0x087aaaf8472c1ca9bb313493a83fca6f5497d639ef46e6ca2ed0ef4cab85a590"
+    },
+    "exchange": {
+      "address": "0x0a44049dbbb6b4762a6ba37aa0f7548c0b4a3723",
+      "bytes": 23959,
+      "sha256": "fc7374f3969381160732fe98c5e3145e00c3f167f168d61d65bb4972e9a6b268",
+      "keccak256": "0x1fcb80437ee76e0a495223b0aef8aecf74a4742b9fb7df18752354cd7e2877e0"
+    },
+    "economic_library": {
+      "address": "0x583d0bd818c991c5830fea93aef04e474b272459",
+      "bytes": 6286,
+      "sha256": "ced8e434ebd5379c4acc1fba809a5b18f531c676a264308c9a0a1a76d9641440",
+      "keccak256": "0x5f2ca1ddda760ceff465c01e7bab7b033a4a8f004e5580b9be9892ea6eca1657"
+    }
+  },
+  "global_observations": {
+    "tokenomics_q_low128": "1101001766258568981998368146",
+    "insolvency_start_high64": "0",
+    "tracked_lp": "3513193471545262177456824",
+    "retained_H": "263336521876980577783742143",
+    "legacy_threshold": "2000000000000000000000000",
+    "reward_cap": "5000000000000000000000000",
+    "legacy_flat_rate": "100000000000000000000",
+    "legacy_decay": "120000000000000000000000000",
+    "paper_supply": "8902946992095273801392426640",
+    "paper_transfer_route": "0xaad6c7b0cc3014fc80ffedae0ed7ce5967b0f016",
+    "exchange_slot8": "0x0000000000000000000000000000000000000000000000000000000100000002",
+    "off_hours_flag": "1",
+    "base_rate_raw": "9802160363203310436",
+    "unit_scope": "Internal 18-decimal accounting convention; global storage only, no holder balance or account query."
+  },
+  "selectors_and_offsets": {
+    "rate": {
+      "selector": "0xeedf4c43",
+      "helper": "0x1151",
+      "formula": "floor(q*supplyRaw/10^36)"
+    },
+    "multiplier": {
+      "selector": "0x4ec7182e",
+      "helper": "0x1354",
+      "duration_seconds": 259200,
+      "minimum": "1",
+      "maximum": "5"
+    },
+    "mint": {
+      "selector": "0x0efdf838",
+      "new_branch_helper": "0x11e2",
+      "integration_helper": "0x1604",
+      "scope": "Captured dispatch with synthetic caller, global storage, supply and mint-call responses. No real mint execution."
+    },
+    "transfer_gate": {
+      "range": "0x0c5b-0x0d31",
+      "condition": "nonzero route AND caller==route AND (from==route OR to==route)"
+    },
+    "profit": {
+      "library_selector": "0x06c5308a",
+      "helper_range": "0x15a2-0x1671",
+      "caller_return_pc": "0x0ae7",
+      "on_hours": {
+        "startPpm": "75",
+        "endPpm": "600",
+        "holdbackWad": "3597000000000000000",
+        "cubicFall": false
+      },
+      "off_hours": {
+        "startPpm": "30",
+        "endPpm": "1000",
+        "holdbackWad": "6085000000000000000",
+        "cubicFall": true
+      },
+      "boundary_zero": "No added override; existing formula applies. Not zero total PnL.",
+      "frontend_chart_function": "Ep",
+      "frontend_chart_locator": "holdbackWad; u=(move-start)/(end-start); k*width*(u*(1-u))^2; optional (1-u)"
+    }
+  },
+  "collection": {
+    "limits": {
+      "rpc": 30,
+      "direct_http": 21,
+      "http_page_total": 30,
+      "search": 8
+    },
+    "rpc": {
+      "attempts": 25,
+      "successful": 23
+    },
+    "http": {
+      "attempts": 2,
+      "successful": 2
+    },
+    "search_queries": 2,
+    "page_opens": 1,
+    "page_successful_opens": 0,
+    "blocked_hosts": [
+      "docs.papertrade.xyz",
+      "x.com"
+    ],
+    "successful_capture_checks": 25,
+    "failures": [
+      {
+        "ordinal": 14,
+        "label": "tokenomics-slot-3",
+        "status": "error",
+        "error_type": "URLError"
+      },
+      {
+        "ordinal": 17,
+        "label": "tokenomics-slot-5",
+        "status": "error",
+        "error_type": "URLError"
+      }
+    ],
+    "scope": "All direct attempts counted including transport failures; one-second minimum spacing; no account, event scan, feed, bridge quote, signing or submission."
+  },
+  "offline": {
+    "rea_version": "6.7.0",
+    "installation_performed": false,
+    "whole_app_retry": false,
+    "interface_inspections": [
+      {
+        "subject": "tokenomics",
+        "bytes": 24089,
+        "output_sha256": "a43f80876f80bec055724bafef1fbcd05df1b900e14c5e911146f85a7eb9a21a",
+        "engine": {
+          "id": "evmole-interface",
+          "name": "REA EVM interface adapter",
+          "version": "evmole@0.9.3"
+        },
+        "selector_count": 26
+      },
+      {
+        "subject": "accounting-library",
+        "bytes": 20670,
+        "output_sha256": "1523223499b0122e335e7ac853f2b9666dbab5557745bc2b81ab6025f34de41e",
+        "engine": {
+          "id": "evmole-interface",
+          "name": "REA EVM interface adapter",
+          "version": "evmole@0.9.3"
+        },
+        "selector_count": 10
+      }
+    ],
+    "vm_extensions": [
+      "MULMOD",
+      "controlled TIMESTAMP"
+    ],
+    "extension_tests": 2,
+    "synthetic_checks": 31,
+    "outputs": {
+      "checks": 31,
+      "passed": true,
+      "oneDollarMint": "9999989999999990000",
+      "millionDollarMint": "10005001667073399994998332",
+      "scope": "Synthetic captured-code paths; mocked Tokenomics supply/mint call. No independent EVM, live account or settlement replay."
+    },
+    "limitations": [
+      "Mocked totalSupply and mint-call success",
+      "DELEGATECALL stops at boundary in private interpreter",
+      "No independent EVM or complete settlement replay",
+      "Interface selectors and types are inferred, not authenticated ABI"
+    ]
+  },
+  "unverified": [
+    "Realized external-short attack profitability or impossible external derivatives",
+    "15x bot-versus-human profitability effect",
+    "Actual open-interest relaxation",
+    "Complete straddle-attack elimination",
+    "Exact old/new distributor authorization matrix",
+    "Below-bust close transition and measured gas-griefing prevention",
+    "Builder fee base, live registration eligibility and final payout",
+    "Upgrade execution transaction and complete initialization",
+    "Server admission and bridge/Across completion gaps from note 013"
+  ],
+  "sources": [
+    {
+      "id": "tokenomics-code",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:52:49.810790+00:00",
+      "finished_at": "2026-10-22T00:52:50.192213+00:00",
+      "bytes": 12942,
+      "sha256": "f0bfcdd2c2e6e87aef655f5933e6abdcbb29dbf6d1bcea9e10ae2a7807451d36",
+      "method": "eth_getCode",
+      "parameters": [
+        "0x7c0a72a788cff4d68cfe9586aecb98e21eb58a03",
+        "0x2ee5b63"
+      ]
+    },
+    {
+      "id": "header-current",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:53:18.165514+00:00",
+      "finished_at": "2026-10-22T00:53:18.600666+00:00",
+      "bytes": 1860,
+      "sha256": "e97a66931d330376fde69ba938b2670776fb157b7c71bc342161423f81ab02dc",
+      "method": "eth_getBlockByNumber",
+      "parameters": [
+        "latest",
+        false
+      ]
+    },
+    {
+      "id": "entry-current",
+      "kind": "http",
+      "url": "https://exchange.papertrade.xyz/",
+      "started_at": "2026-10-22T00:53:19.170589+00:00",
+      "finished_at": "2026-10-22T00:53:19.517107+00:00",
+      "bytes": 9817,
+      "sha256": "aa6805049a896940b8d75340926d8032f8d88b88d7cd0a775b7acecdbb159462"
+    },
+    {
+      "id": "exchange-implementation",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:54:03.614483+00:00",
+      "finished_at": "2026-10-22T00:54:03.961524+00:00",
+      "bytes": 102,
+      "sha256": "65d7e1a3c43d2d0794c5e4484cbf03e681da04ff9ba24cc9d8015c6bafaf7aab",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0x6cd5661646289fb6e65ea5c032310fded797d0a2",
+        "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "tokenomics-implementation",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:54:04.618776+00:00",
+      "finished_at": "2026-10-22T00:54:05.010188+00:00",
+      "bytes": 102,
+      "sha256": "d9b915110a917d14c842d564c0f817d5e227c6061da20ea928428604a9b62c88",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+        "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "paper-implementation",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:54:05.623881+00:00",
+      "finished_at": "2026-10-22T00:54:05.965784+00:00",
+      "bytes": 102,
+      "sha256": "98e5dba262bf157d64f183cc335492b63e1ccfb9ec6b82234867dd83eb39fdae",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0xe40f17915daa230324030003a197cdaef2261c0e",
+        "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "staking-implementation",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:54:06.624488+00:00",
+      "finished_at": "2026-10-22T00:54:06.940539+00:00",
+      "bytes": 102,
+      "sha256": "c4882a4b69fcccab0e0eb09933c51b2ab03d786cab6c3b74c68d842e3f4e96c5",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0xaad6c7b0cc3014fc80ffedae0ed7ce5967b0f016",
+        "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "paper-runtime",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:54:07.625198+00:00",
+      "finished_at": "2026-10-22T00:54:07.989148+00:00",
+      "bytes": 1888,
+      "sha256": "db0bf2e92f9ece86b56f0f1961e68092396e9bb28d834255ca370e64a5175999",
+      "method": "eth_getCode",
+      "parameters": [
+        "0xe40f17915daa230324030003a197cdaef2261c0e",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "build-current",
+      "kind": "http",
+      "url": "https://exchange.papertrade.xyz/assets/build-4X7P2wPA.js",
+      "started_at": "2026-10-22T00:54:08.630310+00:00",
+      "finished_at": "2026-10-22T00:54:08.984826+00:00",
+      "bytes": 122,
+      "sha256": "fddc605c7a4246831116467d8af349a2936cfcd2cd5284f2675d806c4f5b7a12"
+    },
+    {
+      "id": "paper-logic",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:54:57.571675+00:00",
+      "finished_at": "2026-10-22T00:54:57.966116+00:00",
+      "bytes": 7094,
+      "sha256": "008268415eb327db6f20e4008ce4369dc296f087797a42b8abfdb34fca096e51",
+      "method": "eth_getCode",
+      "parameters": [
+        "0x433bd418ec92818a960585f4d5fae563e735bb4a",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "tokenomics-code-current",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:54:58.572452+00:00",
+      "finished_at": "2026-10-22T00:54:59.013878+00:00",
+      "bytes": 12942,
+      "sha256": "f0bfcdd2c2e6e87aef655f5933e6abdcbb29dbf6d1bcea9e10ae2a7807451d36",
+      "method": "eth_getCode",
+      "parameters": [
+        "0x7c0a72a788cff4d68cfe9586aecb98e21eb58a03",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "tokenomics-slot-7",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:54:59.575290+00:00",
+      "finished_at": "2026-10-22T00:55:00.062335+00:00",
+      "bytes": 102,
+      "sha256": "6dc8d948f31a8038879432d121641151df057020efe33f033b17b21c62ff61a8",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+        "0x7",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "tokenomics-slot-9",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:55:00.576931+00:00",
+      "finished_at": "2026-10-22T00:55:00.981734+00:00",
+      "bytes": 102,
+      "sha256": "b6269dd6c7b4676c1ccdc16d16b5dd635dc5ea6613476624f918a81a7ba30db9",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+        "0x9",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "tokenomics-slot-3",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:56:38.344116+00:00",
+      "finished_at": "2026-10-22T00:56:38.688958+00:00",
+      "bytes": 102,
+      "sha256": "d39e8d713ff9df14133d5342faf75ebc791e87d98a93c1e75eabae132bab4d68",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+        "0x3",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "tokenomics-slot-4",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:56:39.349203+00:00",
+      "finished_at": "2026-10-22T00:56:39.706182+00:00",
+      "bytes": 102,
+      "sha256": "1a912c7fa7f2c9d6f1ef4198ba79547b42de3d5a88952dbb36ebac8916507453",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+        "0x4",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "tokenomics-slot-5",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:58:42.253374+00:00",
+      "finished_at": "2026-10-22T00:58:42.709532+00:00",
+      "bytes": 102,
+      "sha256": "02ac5e38c6098b5d71e99ee415f6faddc2555b9bc21b3f61bb48989a39c3b510",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+        "0x5",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "tokenomics-slot-6",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:58:43.258505+00:00",
+      "finished_at": "2026-10-22T00:58:43.680694+00:00",
+      "bytes": 102,
+      "sha256": "a4bfeb4ea181126cdc574bca0aae93badc33451d4e4b936e1aa9343ff90244f4",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+        "0x6",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "tokenomics-slot-8",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:58:44.261879+00:00",
+      "finished_at": "2026-10-22T00:58:44.625719+00:00",
+      "bytes": 102,
+      "sha256": "e95fd1d40d12a3e0cb23375942a26cb38a5fa92b11c01dd96d3ff59ddf75ecad",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0x75174549dbbd44497d31a47e2e2d7406408d63d9",
+        "0x8",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "paper-slot-6",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:58:45.266952+00:00",
+      "finished_at": "2026-10-22T00:58:45.667582+00:00",
+      "bytes": 102,
+      "sha256": "c28df76c0c55f91d8f6cc6836b8909b5fee80ea18fa10ddf61d35df3975137e1",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0xe40f17915daa230324030003a197cdaef2261c0e",
+        "0x6",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "paper-slot-9",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:58:46.272080+00:00",
+      "finished_at": "2026-10-22T00:58:46.742238+00:00",
+      "bytes": 102,
+      "sha256": "b1a21b2d75b4088f38db292a4ec54877525361b87e8482e0bd3ec42d1a8e81be",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0xe40f17915daa230324030003a197cdaef2261c0e",
+        "0x9",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "exchange-code-current",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:58:47.272962+00:00",
+      "finished_at": "2026-10-22T00:58:47.733765+00:00",
+      "bytes": 47956,
+      "sha256": "99fa16e9b2a4f6d70da05dcaa93548581752a964c93a44786d8774eb7cabc228",
+      "method": "eth_getCode",
+      "parameters": [
+        "0x0a44049dbbb6b4762a6ba37aa0f7548c0b4a3723",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "accounting-library",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T00:58:48.274437+00:00",
+      "finished_at": "2026-10-22T00:58:48.659056+00:00",
+      "bytes": 12610,
+      "sha256": "b379c653ef3968958635457b88ecdea2b1a2b65514d4d4966e01d92f30574370",
+      "method": "eth_getCode",
+      "parameters": [
+        "0x583d0bd818c991c5830fea93aef04e474b272459",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "exchange-global-mode",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T01:02:31.613854+00:00",
+      "finished_at": "2026-10-22T01:02:32.062351+00:00",
+      "bytes": 102,
+      "sha256": "4ce9bff5c159c2379909e0bdc53b85e6ab4b80b1bbc0904380cc41446e71d0c5",
+      "method": "eth_getStorageAt",
+      "parameters": [
+        "0x6cd5661646289fb6e65ea5c032310fded797d0a2",
+        "0x8",
+        "0x2ee6d32"
+      ]
+    },
+    {
+      "id": "reference-header-recheck",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T01:02:32.616800+00:00",
+      "finished_at": "2026-10-22T01:02:33.059764+00:00",
+      "bytes": 1860,
+      "sha256": "e97a66931d330376fde69ba938b2670776fb157b7c71bc342161423f81ab02dc",
+      "method": "eth_getBlockByNumber",
+      "parameters": [
+        "0x2ee6d32",
+        false
+      ]
+    },
+    {
+      "id": "chain-id",
+      "kind": "rpc",
+      "url": "https://rpc.hyperliquid.xyz/evm",
+      "started_at": "2026-10-22T01:02:33.620345+00:00",
+      "finished_at": "2026-10-22T01:02:34.101742+00:00",
+      "bytes": 41,
+      "sha256": "430f684fbe48ec1e680bfacf8a2bea38f365e868bc8874eebe9e26e360983a9a",
+      "method": "eth_chainId",
+      "parameters": []
+    },
+    {
+      "id": "reused-deployment",
+      "bytes": 2157,
+      "sha256": "2f412ab34c15071d5108853b2463482c602897a6dc194a880fff8b90ac8c8da2",
+      "url": "https://exchange.papertrade.xyz/assets/deployment-DAcrFcif.js",
+      "scope": "Reused prior successful capture; current entry/build and installed targets checked, no full bundle rerun."
+    },
+    {
+      "id": "reused-app",
+      "bytes": 584563,
+      "sha256": "475d3ab749e0433de799c137cb6f141ec992ba5c4a1f274a960882532f50fc6d",
+      "url": "https://exchange.papertrade.xyz/assets/app-LLsjk1IE.js",
+      "scope": "Reused prior successful capture; current entry/build and installed targets checked, no full bundle rerun."
+    }
+  ]
+}

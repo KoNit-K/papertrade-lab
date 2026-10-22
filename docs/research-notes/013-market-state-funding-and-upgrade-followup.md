@@ -10,6 +10,12 @@ No signing, intent submission, transaction, bridge quote, personal-account looku
 or stream connection was performed. Statements about consumers and synthetic
 branches are distinguished below from live protocol state and vendor descriptions.
 
+**Subsequent announcement cross-check:** [note 014](014-official-announcement-crosscheck.md)
+adds Tokenomics mode/issuance semantics, PAPER transfer restrictions, the added
+profit band and the team's initial builder-whitelist policy. Statements below
+that new Tokenomics logic is unreviewed describe this note's original scope;
+the later checks remain partial and do not close funding or admission gaps.
+
 ## 1. The scheduled implementations are now installed
 
 At chain-999 block **49175395** (`0x2ee5b63`), hash

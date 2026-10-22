@@ -40,6 +40,15 @@ HyperCore dependencies, governance, and off-chain scheduling may cross these bou
 | Relayer and waiting | Where can intent acceptance, batching, expiry, or failure be observed? External timing versus hidden scheduling. | S2; OBS-002 | Server receive/broadcast times, queue discipline, censored failures | Record known time intervals and missing timestamps; distinguish intent waiting from payout waiting. |
 | Frontend/API evolution | Can displayed rules lag contracts or change independently? Public bundles and schemas versus implementation. | S8, S9, S12, S1 | Actual tool compatibility, bundle history, schema drift | Hash a permitted public snapshot and compare versions; REA output remains inference until independently supported. |
 
+## Announcement and changed-rule follow-up
+
+[Note 014](research-notes/014-official-announcement-crosscheck.md) separates official
+claims from acquired-code support for supply-relative issuance, insolvency timing,
+PAPER transfer gates and the on/off-hours profit band. Builder whitelisting is an
+announced initial policy; 15× bot profitability effects, OI relaxation and complete
+attack elimination remain unverified. Prior flat/tail results retain their dated
+scope; the historical helpers are not current-mode calculators.
+
 ## What would change this map
 
 A missing API field does not establish a missing contract capability. A successful

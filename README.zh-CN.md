@@ -50,13 +50,11 @@
 
 ## PAPER 铸币曲线
 
-![PAPER 铸币曲线：累计进度推动边际铸币率衰减，保留进度后跨越 LP 阈值可出现阶跃](docs/assets/paper-mint-curve.zh-CN.svg)
+- 🪙 <strong>按供应量发币：</strong> 合格亏损按当时 PAPER 总供应量铸币，约每 100 万美元合格亏损增发供应量的 0.1%；精确结果取决于配置的铸币率和整数区间计算。
+- ⏱️ <strong>资不抵债时：</strong> 时间乘数在 3 天内从 1 倍升至 5 倍，加成针对亏损中用于修复缺口的合格部分，不再是所有亏损回到原先固定的 100 PAPER/$。
+- 📉 <strong>稀释影响：</strong> 新增发币会降低持币数量不变者的供应量占比。拿到更多 PAPER 不保证收回交易亏损，也不保证现金赎回价值。
 
-- 📉 <strong>怎么衰减：</strong> 文档示例中，LP 低于 200 万美元时为 100 PAPER/$；达到阈值后，铸币率随累计尾段进度 H 衰减。
-- ⚙️ <strong>谁能调整：</strong> 合约 owner 可修改 LP 阈值、铸币率、衰减尺度和 LP 盈余分红门槛。
-
-H 是累计进度，分红减少 LP 不会重置 H。右图固定 H 展示阈值阶跃，使用示例参数；整笔铸币按区间计算。
-[公式与绘图输入](docs/readme-figures.md#mint-rate-illustration) · [参数权限](docs/readme-figures.md#parameter-authority)
+[发币规则、证据与边界](docs/research-notes/014-official-announcement-crosscheck.md#2-supply-relative-issuance-and-insolvency-timing) · [旧曲线示意](docs/readme-figures.md#mint-rate-illustration)
 
 **参与发币的亏损基数也会不同：** 没有赔付队列时，现金亏损平仓按亏损减去 LP 侧费用计算；清算则按全部损失保证金计算。这部分费用从 LP 所得划出，不是给交易者再加一笔亏损。
 
@@ -65,7 +63,7 @@ H 是累计进度，分红减少 LP 不会重置 H。右图固定 H 展示阈值
 | 损失保证金与 PAPER 发币基数 | 20 |
 | 扣除费用后的 tracked LP 增量 | 19.6 |
 
-基数、累计进度和可调参数都能改变拿币数量，比例变化本身不能证明有人改参。这笔收据核对了金额关系，仍缺独立重现历史发币的完整输入。[亏损分支与算例](docs/research-notes/011-loss-governance-staking-and-payments.md#1-why-equal-losses-can-produce-different-paper-amounts)
+合格基数、当时供应量、资不抵债持续时间和可调参数都能改变拿币数量，比例变化本身不能证明有人改参。这笔收据核对了金额关系，仍缺独立重现历史发币的完整输入。[亏损分支与算例](docs/research-notes/011-loss-governance-staking-and-payments.md#1-why-equal-losses-can-produce-different-paper-amounts)
 
 🔎 已采集的前端代码中，**PAPER 比例函数**按铸币数量 ÷ 合格亏损基数计算该笔平均比例。页面调用方和实际运行时使用仍未确认。[REA 与前端复核](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md#captured-paper-ratio-formatter)
 
@@ -79,14 +77,11 @@ H 是累计进度，分红减少 LP 不会重置 H。右图固定 H 展示阈值
 | **盈利平仓** | 先扣 deadband、调整盈利，再收取 <strong>调整后盈利的 2%</strong> |
 | **亏损平仓** | 承担亏损，不额外加收交易费 |
 
-💡 Deadband 约为开仓价的 <strong>0.002%</strong>。文档示例中，非线性调整会削减 deadband 后盈利的约 <strong>10% 到接近 100%</strong>；顺向价格变动越小，削减越明显。
-最后的 2% 按调整后盈利计算，不按仓位名义本金计算。
+💡 Deadband 约为开仓价的 <strong>0.002%</strong>。新增的非线性调整作用于标的顺向价格变动<strong>正常时段 6bps（0.06%）</strong>或<strong>非正常时段 10bps（0.1%）</strong>以内；在配置区间端点及区间外，这层新增调整为零。这些是价格变动阈值，不是手续费率。超出新区间仍需考虑既有 deadband、asymmetric impact 和最后按调整后盈利收取的 2%。
 
-[盈利调整公式与 BTC／ETH 示例](docs/readme-figures.md#profit-retention-examples)
+[调整方式与边界核验](docs/research-notes/014-official-announcement-crosscheck.md#3-the-new-profit-adjustment-is-a-price-move-band) · [旧版基础公式](docs/readme-figures.md#profit-retention-examples)
 
-**费用和结算规则可以修改。** 2026-10-21 采集时，已核对的业务 owner 和升级路径连接到治理合约。真实成功交易把时间锁最小延迟设为 **1天**，而捕获的官网地址页仍写7天。guardian 多签可不经时间锁排期暂停新开仓；解除暂停需要 owner。
-
-三项实现升级已排期，最早可于 **2026-10-22 05:35:19（新加坡）** 执行。观察时仍待执行，不能当作已经升级，新实现尚未分析。[规则权限与真实变更记录](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed)
+**费用和结算规则可以修改。** Owner 改参和升级受治理权限约束，已观察到的时间锁最小延迟为 1 天；guardian 可不经排期暂停新开仓，恢复需要 owner 权限。[规则权限](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed) · [升级记录](docs/research-notes/013-market-state-funding-and-upgrade-followup.md#1-the-scheduled-implementations-are-now-installed)
 
 ## 盈亏由谁承担？
 
@@ -113,6 +108,8 @@ flowchart TB
 
 🪙 PAPER 把合格亏损转成代币发行；USDC 分红的资金来自交易费用和 LP 盈余。
 
+**PAPER 不能在钱包之间自由转账。** 转账受配置的质押通道控制。团队将这一政策与外部 PAPER 空头可能放大攻击 LP 偿付能力的收益联系起来；这是有条件的经济风险论证，不能证明外部衍生品或操纵绝不可能。[转账限制与风险逻辑](docs/research-notes/014-official-announcement-crosscheck.md#1-transfer-restrictions-and-the-external-short-argument)
+
 ```mermaid
 flowchart TB
     Loss[符合条件的亏损或清算] --> Mint[铸出 PAPER]
@@ -128,7 +125,7 @@ flowchart TB
 
 | 环节 | 规则 |
 |---|---|
-| 🪙 **铸币** | 合格亏损基数与曲线进度决定数量。 |
+| 🪙 **铸币** | 合格亏损基数、当时供应量和资不抵债持续时间共同决定数量。 |
 | 📥 **质押** | 按分配时份额累计分红，仅持有不分红；新加入可分享此前未分配的钱。文档无锁定期或冷却期。 |
 | 💵 **资金来源** | 已支付交易费用的一半，加上 tracked LP 超过门槛的可划转盈余；文档示例门槛为 500 万美元。 |
 | ↗️ **领取** | 先计入交易余额，再单独提款至 HyperCore。 |
@@ -181,6 +178,8 @@ Arbitrum 或 Solana 时需要额外的后续转账授权；已恢复的提现路
 **串成完整客户端还缺：** 服务端准入与账户鉴权、可靠的断线重连和状态对账、完整的
 费用/到账/退款处理，以及 builder 归属和费用规则。Across 已将这里使用的
 `/suggested-fees` 标为 legacy，新接入还需核对迁移路线。
+
+**Builder codes：** 团队宣布初期仅开放白名单；已恢复的注册表和启用检查支持受控准入。费用基数、分账到账及现行注册政策仍待核验。[Builder 边界](docs/research-notes/014-official-announcement-crosscheck.md#4-builders-distribution-permissions-and-below-bust-closes)
 
 [API 与签名指南](docs/independent-client-guide.md) ·
 [订单能力及资金路线](docs/research-notes/012-independent-clients-orders-and-bridges.md)

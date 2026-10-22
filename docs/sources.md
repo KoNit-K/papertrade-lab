@@ -311,3 +311,15 @@ time and capture digest. The public subset contains original summaries and selec
 metadata, excluding raw responses, complete calldata, signatures, signer identities,
 local paths and user-identity joins. This custom research record is not a newly
 validated historical chain packet or a general-purpose anonymization result.
+
+## October 20 official announcement cross-check
+
+[Official X announcement](https://x.com/papertrade_xyz/status/2112310325521399982):
+user-supplied full text and displayed publication **6:30 AM · Oct 20, 2026**;
+timezone unknown. Direct X retrieval returned HTTP403 and stopped, so this is
+user-supplied primary-source material, not an independently fetched page.
+[Note 014](research-notes/014-official-announcement-crosscheck.md) separates the
+team's policy/security/empirical claims from bytecode and synthetic-path support.
+[Metadata](../research/cases/011-official-announcement.json) records source hashes,
+current global observations, reused inputs and unverified outcomes; raw notice,
+captures and scratch helpers remain private. No account or transaction was used.

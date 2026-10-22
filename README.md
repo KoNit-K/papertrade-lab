@@ -50,13 +50,11 @@
 
 ## PAPER mint curve
 
-![PAPER mint curve: cumulative progress drives marginal decay; retained history can create a step at the LP threshold](docs/assets/paper-mint-curve.en.svg)
+- 🪙 <strong>Supply-relative issuance:</strong> Eligible loss mints against the then-current PAPER supply, roughly 0.1% of supply per $1M of eligible loss; the exact result depends on the configured rate and integer integration.
+- ⏱️ <strong>During insolvency:</strong> A time multiplier rises from 1× to 5× over three days. The bonus applies to the eligible part of the loss that repairs the deficit, rather than every loss receiving the former flat 100 PAPER/$ rate.
+- 📉 <strong>Dilution:</strong> New issuance reduces an unchanged holder's share of supply. More PAPER does not guarantee recovery of the trading loss or a cash redemption value.
 
-- 📉 <strong>How it decays:</strong> Documented examples use 100 PAPER/$ below $2M LP; at or above the threshold, the rate falls with cumulative tail progress H.
-- ⚙️ <strong>Who can change it:</strong> The contract owner can adjust the LP threshold, mint rate, decay scale and LP reward cap.
-
-H is cumulative progress; LP distributions do not reset it. The right panel fixes H to show the threshold step using example parameters. Whole-trade minting integrates over an interval.
-[Formula and figure inputs](docs/readme-figures.md#mint-rate-illustration) · [Parameter authority](docs/readme-figures.md#parameter-authority)
+[Issuance rules, evidence and limits](docs/research-notes/014-official-announcement-crosscheck.md#2-supply-relative-issuance-and-insolvency-timing) · [Earlier curve illustration](docs/readme-figures.md#mint-rate-illustration)
 
 The **eligible mint basis** also matters: a cash-funded losing close with an empty payout queue uses loss minus the LP-side fee, while liquidation uses full lost margin. That fee comes from LP's gain, not an additional trader loss.
 
@@ -65,7 +63,7 @@ The **eligible mint basis** also matters: a cash-funded losing close with an emp
 | Lost margin and PAPER mint basis | 20 |
 | Tracked-LP increase after fees | 19.6 |
 
-Basis, cumulative progress and adjustable parameters can each change PAPER received. A changing ratio alone does not prove a parameter change. This receipt reconciles amounts; missing historical inputs prevent independent mint reproduction. [Loss branches and examples](docs/research-notes/011-loss-governance-staking-and-payments.md#1-why-equal-losses-can-produce-different-paper-amounts)
+Eligible basis, current supply, insolvency duration and adjustable parameters can each change PAPER received. A changing ratio alone does not prove a parameter change. This receipt reconciles amounts; missing historical inputs prevent independent mint reproduction. [Loss branches and examples](docs/research-notes/011-loss-governance-staking-and-payments.md#1-why-equal-losses-can-produce-different-paper-amounts)
 
 🔎 The captured frontend's **PAPER ratio formatter** computes minted PAPER ÷ eligible mint basis: a per-record average. Its page consumer and actual runtime use remain unconfirmed. [REA and frontend cross-check](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md#captured-paper-ratio-formatter)
 
@@ -79,14 +77,11 @@ Basis, cumulative progress and adjustable parameters can each change PAPER recei
 | **Close at a profit** | Deduct deadband, adjust the gain, then charge **2% of adjusted profit** |
 | **Close at a loss** | The realized loss, with no extra trading fee |
 
-💡 The deadband is approximately <strong>0.002%</strong> of entry price. In the documented examples, the nonlinear adjustment removes about <strong>10% to nearly 100%</strong> of the post-deadband gain; smaller favorable price moves lose more.
-The final 2% applies to adjusted profit, not position notional.
+💡 The deadband is approximately <strong>0.002%</strong> of entry price. An additional nonlinear adjustment affects favorable underlying-price moves within <strong>6bps (0.06%) during on-hours</strong> or <strong>10bps (0.1%) during off-hours</strong>; its effect is zero at the band endpoints and outside its configured band. These are price-move thresholds, not fee rates. Existing deadband, asymmetric impact and the final 2% of adjusted profit still matter outside the new band.
 
-[Gain formula and BTC/ETH examples](docs/readme-figures.md#profit-retention-examples)
+[Adjustment and boundary checks](docs/research-notes/014-official-announcement-crosscheck.md#3-the-new-profit-adjustment-is-a-price-move-band) · [Earlier baseline formula](docs/readme-figures.md#profit-retention-examples)
 
-**Fees and settlement rules can change.** At the 2026-10-21 observation, the inspected business-owner and upgrade paths connected to governance contracts. A successful transaction set the timelock minimum delay to **one day**, versus seven days in the captured official address page. The guardian multisig can pause new opens without timelock scheduling; resumption requires owner authority.
-
-Three implementation upgrades were scheduled with earliest execution **2026-10-22 05:35:19 Asia/Singapore**. They were pending at observation time, not confirmed as executed; their new implementations remain unanalyzed. [Rule authority and change records](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed)
+**Fees and settlement rules can change.** Owner changes and upgrades follow governance authority. The observed timelock minimum delay is one day; the guardian can pause new opens without scheduling, while resumption requires owner authority. [Rule authority](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed) · [Upgrade records](docs/research-notes/013-market-state-funding-and-upgrade-followup.md#1-the-scheduled-implementations-are-now-installed)
 
 ## Who pays whom?
 
@@ -114,6 +109,8 @@ PAPER issuance and tracked LP are therefore not substitutes for cash available t
 
 🪙 Eligible loss basis drives PAPER issuance; trading fees and LP surplus fund USDC distributions.
 
+**PAPER is not freely transferable between wallets.** The configured staking route controls transfers. The team links this policy to the risk that an external PAPER short could increase the payoff from attacking LP solvency. This is a conditional economic argument, not proof that external derivatives or manipulation are impossible. [Transfer restrictions and risk argument](docs/research-notes/014-official-announcement-crosscheck.md#1-transfer-restrictions-and-the-external-short-argument)
+
 ```mermaid
 flowchart TB
     Loss[Eligible loss or liquidation] --> Mint[Mint PAPER]
@@ -129,7 +126,7 @@ flowchart TB
 
 | Step | Rule |
 |---|---|
-| 🪙 **Minting** | Eligible loss basis and curve progress determine the amount. |
+| 🪙 **Minting** | Eligible basis, current supply and insolvency timing determine the amount. |
 | 📥 **Staking** | Distributions accrue by share at allocation; holding alone does not participate. New stake can share earlier undistributed funds. No documented lockup or cooldown. |
 | 💵 **Funding** | Half of paid trading fees, plus sweepable tracked-LP excess above the cap; the documented example cap is $5M. |
 | ↗️ **Claiming** | Claim into trading balance, then withdraw separately to HyperCore. |
@@ -187,6 +184,8 @@ separate stages.
 reliable reconnect/reconciliation behavior, full fee/arrival/refund handling, and
 builder attribution and fee rules. Across also marks the captured
 `/suggested-fees` interface as legacy, so a new integration needs its migration path.
+
+**Builder codes:** the team announced an initial whitelist. Recovered registry and enablement gates support controlled admission; fee base, payout and live registration policy still need verification. [Builder boundaries](docs/research-notes/014-official-announcement-crosscheck.md#4-builders-distribution-permissions-and-below-bust-closes)
 
 [API and signing guide](docs/independent-client-guide.md) ·
 [Order capabilities and funding routes](docs/research-notes/012-independent-clients-orders-and-bridges.md)

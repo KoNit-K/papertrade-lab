@@ -75,6 +75,28 @@ duplicating one ordinal without overwriting successful captures; the raw ledger
 was retained, a serial lock added and its regression tested. No signatures,
 intents, transactions, personal-account queries or bridge quotes were used.
 
+## Official announcement and changed issuance rules
+
+[Note 014](docs/research-notes/014-official-announcement-crosscheck.md) checks the
+user-supplied October 20 official notice against the installed Tokenomics,
+PAPER transfer route and Exchange economic library. The enabled mode uses current
+supply, with a time-based insolvency bonus reaching 5× after three days. Added
+profit bands have 6/10bps upper edges; they supplement the earlier cost formula.
+Initial builder whitelisting is an announced policy. Bot profitability statistics,
+OI relaxation, exhaustive attack elimination, exact distributor changes and
+below-bust gas-griefing claims remain unverified.
+
+The bilingual READMEs now summarize these business implications and link the
+version/evidence detail. Old mint figures and helpers retain their historical
+scope. Two focused interpreter-extension tests and 31 captured-code synthetic
+checks passed; two small offline REA 6.7.0 inspections reused the existing runtime.
+Collection: 25 RPC attempts (23 successful), two successful direct HTTP reads,
+two searches and one denied X page open. All 25 successful capture hashes/lengths
+matched. No installation, full-app rerun, personal-account read, signing, intent,
+transaction or event scan occurred. [Metadata](research/cases/011-official-announcement.json)
+retains the exact reference and limits. The funding, server-admission and Across
+migration gaps remain open.
+
 ## Market, funding and executed-upgrade follow-up
 
 [Note 013](docs/research-notes/013-market-state-funding-and-upgrade-followup.md)

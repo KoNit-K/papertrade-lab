@@ -1,6 +1,14 @@
 # README figure inputs and calculations
 
-The README figures explain the documented formulas. They use fixed example inputs,
+**Version boundary:** the mint curve and profit-retention examples below retain
+the earlier parameterization. The [October 20 announcement cross-check](research-notes/014-official-announcement-crosscheck.md)
+identifies enabled supply-relative minting and the added on/off-hours profit band.
+The old mint SVGs are retained as historical illustrations and removed from the
+README's current-rule summary. The BTC/ETH examples omit the added band. Neither
+the old images nor the existing arithmetic helper are current-mode calculators.
+The liquidation cards concern a separate formula.
+
+The figures explain the earlier documented formulas. They use fixed example inputs,
 not a live parameter feed or historical transaction replay. A reference image informs the layout only; its apparent current-LP point is not
 the source of the plotted values.
 
