@@ -16,11 +16,11 @@
   <path d="M 760 24 V 312" stroke="#344a3d"/>
   <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif">
     <rect x="48" y="40" width="8" height="8" rx="2" fill="#b7f58b"/>
-    <text x="68" y="49" fill="#b7f58b" font-size="12" font-weight="600" letter-spacing="2">INDEPENDENT RESEARCH · HYPEREVM 999</text>
+    <text x="68" y="49" fill="#b7f58b" font-size="12" font-weight="600" letter-spacing="2">INDEPENDENT NOTES · HYPEREVM 999</text>
     <text x="48" y="130" fill="#f4f8f3" font-size="63" font-weight="700" letter-spacing="-2">papertrade</text>
     <text x="48" y="198" fill="#b7f58b" font-size="63" font-weight="700" letter-spacing="-2">research</text>
-    <text x="51" y="246" fill="#b4c5ba" font-size="20">Settlement costs, LP exposure &amp; PAPER.</text>
-    <text x="51" y="294" fill="#91a69a" font-size="12" letter-spacing="2">COSTS · CASH FLOWS · EXECUTION CONSTRAINTS</text>
+    <text x="51" y="246" fill="#b4c5ba" font-size="20">Trading fees, the pool &amp; PAPER rewards.</text>
+    <text x="51" y="294" fill="#91a69a" font-size="12" letter-spacing="2">TRADES · PAYMENTS · PAPER REWARDS</text>
     <path d="M 831 99 V 237" stroke="#5c7a62" stroke-width="2"/>
     <g fill="#b7f58b">
       <circle cx="831" cy="99" r="7"/>
@@ -28,14 +28,14 @@
       <circle cx="831" cy="237" r="7"/>
     </g>
     <g fill="#f4f8f3" font-size="21" font-weight="600">
-      <text x="856" y="96">Observe</text>
-      <text x="856" y="165">Trace</text>
-      <text x="856" y="234">Reconcile</text>
+      <text x="856" y="96">Read</text>
+      <text x="856" y="165">Follow</text>
+      <text x="856" y="234">Check</text>
     </g>
     <g fill="#a1b7a7" font-size="13">
-      <text x="856" y="118">User questions &amp; public data</text>
-      <text x="856" y="187">Frontend &amp; contract paths</text>
-      <text x="856" y="256">Events, arithmetic &amp; ledgers</text>
+      <text x="856" y="118">Questions and public data</text>
+      <text x="856" y="187">How the app and contracts work</text>
+      <text x="856" y="256">Numbers and payment records</text>
     </g>
   </g>
 </svg>

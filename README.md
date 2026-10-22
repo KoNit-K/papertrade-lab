@@ -1,10 +1,10 @@
 <h1 align="center">papertrade-research</h1>
 
 <p align="center">
-  <strong>REA-assisted reverse engineering of Papertrade trading, liquidation and PAPER dividends.</strong>
+  <strong>A plain guide to Papertrade trading, fees and PAPER rewards.</strong>
 </p>
 
-![papertrade-research — observe, trace and reconcile](docs/assets/readme-banner.svg)
+![papertrade-research: trading, fees and PAPER explained](docs/assets/readme-banner.svg)
 
 <p align="center">
   <a href="docs/mechanism-map.md"><img alt="Network: HyperEVM 999" src="https://img.shields.io/badge/HyperEVM-999-b7f58b?style=flat-square&amp;labelColor=17251d" /></a>
@@ -26,183 +26,173 @@
   <a href="docs/sources.md">Sources</a>
 </p>
 
-[Papertrade](https://docs.papertrade.xyz/) is a perpetuals protocol on HyperEVM: trades settle against the protocol LP, losses can generate PAPER, and staked PAPER participates in USDC distributions.
+[Papertrade](https://docs.papertrade.xyz/) lets you trade perpetual futures on HyperEVM. The protocol's trading pool (LP) takes the other side of each trade. Losses can earn PAPER, and staking PAPER lets you share in USDC rewards.
 
-🔎 This repository uses [REA](https://github.com/morluto/rea) and manual analysis to examine its fees, liquidation rules and the link between losses and PAPER incentives. [Research status](STATUS.md) · [Sources](docs/sources.md)
+🔎 We use official docs, public code and [REA](https://github.com/morluto/rea) to explain how it works and check what the evidence supports. [Progress](STATUS.md) · [Sources](docs/sources.md)
 
 ## Features
 
 | Feature | How it works |
 |---|---|
-| 🤝 **Protocol LP as counterparty** | Every trade settles directly with the Papertrade protocol liquidity pool, which takes the other side of trader PnL. |
-| 📊 **Hyperliquid pricing** | Contracts read the HyperCore best-bid/ask midpoint; accounting and settlement run on HyperEVM. |
-| ⚡ **Up to 1000×, isolated margin** | Margin and leverage are fixed at open. Each position closes in full; long and short positions are independent. |
-| 💸 **0 opening fee · 0 funding payments** | Profitable closes incur gain adjustment and fees. The relayer pays gas for relayed trades. |
-| ⏳ **Queues during busy periods** | The relayer receives, queues and batches market intents on chain. Both opens and closes can wait. |
-| 🪙 **Losses generate PAPER** | Eligible losses and liquidations mint PAPER along the emission curve; staked PAPER shares participate in USDC distributions. |
+| 🤝 **Trade against the pool** | You trade against Papertrade's LP. Your gains come from the pool; cash losses add to it. |
+| 📊 **Hyperliquid prices** | Trade prices use the midpoint between HyperCore's best buy and sell prices. Balances are recorded on HyperEVM. |
+| ⚡ **Up to 1000× leverage** | Each position has its own margin. You choose margin and leverage when opening; they stay fixed. Each position closes in full, and long and short positions stay separate. |
+| 💸 **0 opening fee · 0 funding payments** | Winning trades have profit deductions and a fee. The order service pays gas for trades it sends. |
+| ⏳ **Orders can wait** | The order service, called the relayer, groups requests and sends them on chain. Both opening and closing can take time. |
+| 🪙 **Losses can earn PAPER** | The mint rules decide how much of a loss earns PAPER. Stake those tokens to share in USDC rewards. |
 
-> 🖥️ <strong>Manual monitoring required:</strong> The current product has web-based market orders, without limit orders, automatic take-profit/stop-loss or a standalone mobile app.
-> At high leverage, a small adverse move can liquidate a position. Controlling exit timing requires watching prices and closing manually; liquidation can still precede a queued close.
+> 🖥️ <strong>You need to watch your positions:</strong> the web app we reviewed uses market orders, with no limit orders, automatic take-profit/stop-loss or separate mobile app.
+> At high leverage, a small move against you can wipe out a position. A close request can still be waiting when liquidation happens.
 
-🧩 <strong>The mechanism to examine:</strong> A losing close or liquidation generates PAPER from eligible loss basis; staking PAPER then participates in distributions. Liquidation risk and post-loss token incentives sit inside the same system.
+🧩 <strong>Why look at PAPER?</strong> A losing close or liquidation can create PAPER, which can then be staked for rewards. To understand that trade-off, look at the trading loss, the new tokens and the money available for rewards together.
 
-[Trading mechanics](docs/mechanism-map.md)
+[How trading works](docs/mechanism-map.md)
 
 ## PAPER mint curve
 
-**Issuance changed from a decaying token-per-dollar curve to a fraction of existing supply.** Eligible losses grow the total supply; read the token count together with the share it represents.
+**Before, the old curve gave fewer PAPER per $1 as it progressed. Now, new tokens are based on the total PAPER already issued.** As that total grows, the same loss can earn more tokens, while existing holders own a smaller share.
 
-![Old and new PAPER issuance: retained progress creates an LP-threshold step and a tail declining through 25, 20 and lower; new supply-relative issuance grows total supply and dilutes unchanged holdings](docs/assets/paper-mint-curve.en.svg)
+![Old and new PAPER rules: a sharp drop and falling rewards per $1 under the old curve; more tokens, a growing total and a smaller share for unchanged holdings under the new rules](docs/assets/paper-mint-curve.en.svg)
 
-| What matters | Old mechanism | New mechanism |
+| Question | Before | Now |
 |---|---|---|
-| **PAPER per $1 of loss** | 100 PAPER/$ was the early/low-LP flat branch; the old tail already decayed with cumulative progress H, for example 25 → 20 → about 10. Re-entering above the threshold at retained H can step down; 25/20 are not fixed tiers. | Roughly 0.1% of then-current supply per $1M eligible loss. Larger supply means more tokens for the same loss; the configured coefficient determines the exact rate. |
-| **How issuance grows** | In the tail, equal losses produce progressively fewer new tokens. | Eligible losses keep issuing a proportion of supply; there is no fixed daily release in this mechanism. Unchanged holdings represent a smaller supply share. |
-| **During insolvency** | The old flat branch applies. | A continuous-insolvency time multiplier rises from 1× to 5× over three days, limited to the eligible deficit-repair portion. |
+| **How much PAPER does a loss earn?** | 100 PAPER/$ applied in the old low-LP branch. The later curve could already be at 25 → 20 → about 10. Crossing the LP threshold again could cause a sharp drop; 25/20 are examples, not fixed levels. | Roughly $1M of losses counted by the mint rules adds 0.1% of the PAPER already issued. A bigger total means more new tokens for the same loss. The exact rate depends on the settings. |
+| **How does the total grow?** | In the falling part of the old curve, equal losses added fewer new tokens over time. | Losses keep adding tokens based on the total at that point. There is no fixed daily release in this model. If you keep the same number of tokens, your share of the total falls. |
+| **What if the LP owes more than it has?** | The old low-LP rate applied. | The longer the shortfall lasts, the bigger the bonus: 1× to 5× over 3 days. It only boosts the part of a loss that qualifies and helps fill the shortfall. |
 
-💡 **Token count and total supply belong together:** starting from 10 billion PAPER, the figure's simplified 0.1% issuance per $1M eligible-loss step gives **10bn → 10.01bn → 10.02001bn**. This is an illustration, not exact contract settlement or an equal increase in USDC backing.
+💡 **A simple example:** start with 10B PAPER. If each $1M loss step adds 0.1% of the previous total, it grows **10B → 10.01B → 10.02001B**. This shows the idea; the contract uses a more detailed calculation. Creating PAPER does not add the same value in USDC.
 
-📍 **2026-10-22 acquisition snapshot:** approximately **8.903 billion PAPER** in total supply and a **9.802 PAPER/$** base marginal rate. The quantities are related; neither is live. Actual distributions also depend on funding, staking shares and allocation timing.
+📍 **What we found on 2026-10-22:** about **8.903B PAPER** had been issued. The base rate for a small loss was about **9.802 PAPER per $1** before any shortfall bonus. These are values from that check, not live numbers. USDC rewards also depend on how much money is available, who has staked and when it is shared out.
 
-🗓️ **Change timeline:** the retained old docs page is dated **2026-10-06** and still showed the old curve when acquired October 21; the announcement displays **2026-10-20, 6:30 AM** (timezone unknown); **installation and new-mode enablement were checked October 22**. The exact upgrade execution time remains unreconstructed.
+🗓️ **When it changed:** the saved old docs page is dated **2026-10-06** and still showed the old curve when we read it on October 21. The new rules were announced at **6:30 AM on 2026-10-20** (timezone unknown). They were active when we checked on **October 22**; we have not found the exact upgrade time.
 
-[Old official description](https://docs.papertrade.xyz/how/mint-curve/) · [Official new-rule announcement](https://x.com/papertrade_xyz/status/2112310325521399982) · [Figure, issuance examples and formula appendix](docs/readme-figures.md#issuance-old-vs-new) · [Contract evidence and version record](docs/research-notes/014-official-announcement-crosscheck.md#2-supply-relative-issuance-and-insolvency-timing)
+[Old docs](https://docs.papertrade.xyz/how/mint-curve/) · [New announcement](https://x.com/papertrade_xyz/status/2112310325521399982) · [Examples and formulas](docs/readme-figures.md#issuance-old-vs-new) · [What we checked](docs/research-notes/014-official-announcement-crosscheck.md#2-supply-relative-issuance-and-insolvency-timing)
 
 ## Trading costs
 
-| When | What the trader pays |
+| When | What you pay |
 |---|---|
 | **Open a position** | 0 opening fee |
-| **Keep a position open** | 0 funding payments |
-| **Execute a relayed trade** | Gas is paid by the relayer |
-| **Close at a profit** | Deduct deadband, adjust the gain, then charge **2% of adjusted profit** |
-| **Close at a loss** | The realized loss, with no extra trading fee |
+| **Keep it open** | 0 funding payments |
+| **The relayer sends your trade** | The relayer pays gas |
+| **Close with a profit** | Several deductions reduce the gain, then a fee takes **2% of the remaining profit** |
+| **Close with a loss** | Your loss, with no extra trading fee added |
 
-💡 The deadband is approximately <strong>0.002%</strong> of entry price. An additional nonlinear adjustment affects favorable underlying-price moves within <strong>6bps (0.06%) during on-hours</strong> or <strong>10bps (0.1%) during off-hours</strong>; its effect is zero at the band endpoints and outside its configured band. These are price-move thresholds, not fee rates. Existing deadband, asymmetric impact and the final 2% of adjusted profit still matter outside the new band.
+💡 The first **0.002%** of a favorable price move does not count toward profit. This is called the **deadband**. The new rules add another cut for small gains, within **6bps (0.06%) in on-hours mode** or **10bps (0.1%) in off-hours mode**. This extra cut is zero at the ends of its set range and outside it. The cut also depends on where the move sits inside that range.
 
-[Adjustment and boundary checks](docs/research-notes/014-official-announcement-crosscheck.md#3-the-new-profit-adjustment-is-a-price-move-band) · [Earlier baseline formula](docs/readme-figures.md#profit-retention-examples)
+Those numbers describe price moves, not fee rates. Larger moves still face the existing profit adjustment, called asymmetric impact, and the final 2% fee.
 
-**Fees and settlement rules can change.** Owner changes and upgrades follow governance authority. The observed timelock minimum delay is one day; the guardian can pause new opens without scheduling, while resumption requires owner authority. [Rule authority](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed) · [Upgrade records](docs/research-notes/013-market-state-funding-and-upgrade-followup.md#1-the-scheduled-implementations-are-now-installed)
+[Fee examples and formulas](docs/readme-figures.md#profit-retention-examples) · [How the new cut works](docs/research-notes/014-official-announcement-crosscheck.md#3-the-new-profit-adjustment-is-a-price-move-band)
+
+**The rules can change.** Rule changes and upgrades use the protocol's governance permissions. The timelock we checked had a 1-day minimum delay. A guardian can pause new positions without that wait; the owner must approve reopening them. [Who can change the rules](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed) · [Upgrade history](docs/research-notes/013-market-state-funding-and-upgrade-followup.md#1-the-scheduled-implementations-are-now-installed)
 
 ## Who pays whom?
 
 ```mermaid
 flowchart TB
-    Price[HyperCore BBO midpoint] -.->|Execution price| Trader[Trader: isolated positions]
-    Trader -->|Cash-funded loss| Pool[Protocol LP: the counterparty]
-    Pool -->|Settled gain or unpaid claim| Trader
-    Trader -->|Eligible loss basis| PAPER[PAPER issuance]
+    Price[HyperCore buy/sell midpoint] -.->|Trade price| Trader[Trader: separate positions]
+    Trader -->|Cash loss| Pool[Protocol trading pool: LP]
+    Pool -->|Paid profit or money owed| Trader
+    Trader -->|Loss counted by mint rules| PAPER[New PAPER]
     classDef accent fill:#e1f4d5,stroke:#477a35,color:#18351b
     class Pool,PAPER accent
 ```
 
-| Two separate waits | What is waiting? |
+| Two different waits | What is waiting? |
 |---|---|
-| **Execution queue** | An open or close intent waiting for relayer selection and successful execution. |
-| **Payout queue** | A settled claim waiting for available LP backing and harvest; the documented payout order is FIFO. |
+| **Order queue** | Your open or close request waits for the relayer to send it and for it to succeed. |
+| **Payout queue** | Profit that has already been recorded waits for enough money to pay it. The docs say the oldest claims are paid first. |
 
-With cash-funded positions, returned margin is credited separately from unpaid gains.
-Debt-funded losses cancel the corresponding claim rather than bring in new cash.
-PAPER issuance and tracked LP are therefore not substitutes for cash available to pay winners. A payout queue orders available funding; it does not create funds or establish a fixed clearance time. Actual active-debt and partial-payment cases remain missing.
-[Execution queue and payout mechanics](docs/research-notes/007-queue-and-dividend-payment.md) · [Payment capacity and conditional examples](docs/research-notes/011-loss-governance-staking-and-payments.md#5-payment-capacity-when-many-traders-win)
+For a position opened with cash, returned margin is recorded separately from profit still owed. Some positions use a claim on unpaid money instead of cash; a loss then reduces that claim and adds no new cash to the pool.
+
+New PAPER and the LP balance shown by the protocol do not tell you how much cash is ready to pay winners. A payout queue orders payments; it does not create money or promise a fixed wait. We still need real examples of partly paid claims to check the full process.
+
+[Order and payout queues](docs/research-notes/007-queue-and-dividend-payment.md) · [What affects payment](docs/research-notes/011-loss-governance-staking-and-payments.md#5-payment-capacity-when-many-traders-win)
 
 ## PAPER: the dividend token
 
-🪙 Eligible loss basis drives PAPER issuance; trading fees and LP surplus fund USDC distributions.
+🪙 Losses can create PAPER. USDC rewards come from trading fees and money the LP can share above its set limit.
 
-**PAPER is not freely transferable between wallets.** The configured staking route controls transfers. The team links this policy to the risk that an external PAPER short could increase the payoff from attacking LP solvency. This is a conditional economic argument, not proof that external derivatives or manipulation are impossible. [Transfer restrictions and risk argument](docs/research-notes/014-official-announcement-crosscheck.md#1-transfer-restrictions-and-the-external-short-argument)
+**You cannot freely send PAPER from one wallet to another.** Transfers use the allowed staking contract path. The team says an outside market for shorting PAPER could make attacks on the LP more profitable. That is a risk argument; it does not prove that outside derivatives or attacks are impossible. [Transfer rules and the team's reasoning](docs/research-notes/014-official-announcement-crosscheck.md#1-transfer-restrictions-and-the-external-short-argument)
 
 ```mermaid
 flowchart TB
-    Loss[Eligible loss or liquidation] --> Mint[Mint PAPER]
+    Loss[Loss counted by the mint rules] --> Mint[Receive PAPER]
     Mint --> Stake[Stake PAPER]
-    Fees[Half of paid trading fees] --> Rewards[USDC reward distribution]
-    Surplus[Sweepable LP surplus] --> Rewards
-    Stake -.->|Proportional reward share| Rewards
-    Rewards --> Claim[Claim into trading balance]
-    Claim -->|Withdraw via CoreWriter| Core[HyperCore USDC]
+    Fees[Half of paid trading fees] --> Rewards[USDC rewards]
+    Surplus[LP money above the set limit] --> Rewards
+    Stake -.->|Share based on stake| Rewards
+    Rewards --> Claim[Claim to trading balance]
+    Claim -->|Withdraw| Core[HyperCore USDC]
     classDef accent fill:#e1f4d5,stroke:#477a35,color:#18351b
     class Stake,Rewards accent
 ```
 
-| Step | Rule |
+| Step | How it works |
 |---|---|
-| 🪙 **Minting** | Eligible basis, current supply and insolvency timing determine the amount. |
-| 📥 **Staking** | Distributions accrue by share at allocation; holding alone does not participate. New stake can share earlier undistributed funds. No documented lockup or cooldown. |
-| 💵 **Funding** | Half of paid trading fees, plus sweepable tracked-LP excess above the cap; the documented example cap is $5M. |
-| ↗️ **Claiming** | Claim into trading balance, then withdraw separately to HyperCore. |
+| 🪙 **Get PAPER** | The amount depends on the loss counted by the rules, the total supply and any LP-shortfall bonus. |
+| 📥 **Stake** | You share rewards based on your stake when they are divided up. Holding PAPER without staking earns no share. The docs list no lockup or cooldown. |
+| 💵 **Fund rewards** | Half of paid trading fees, plus LP money above the set limit that can be moved into rewards. The documented example limit is $5M. |
+| ↗️ **Claim** | Rewards enter your trading balance. Withdrawing to HyperCore is a separate step. |
 
-**Allocation timing determines who shares each distribution.** In the acquired code, holding time adds no extra weight, and stake and unstake do not first distribute accumulated fees. With 100 reward units waiting, two equal stakes share 50 each if the second joins before allocation; if allocation happens first, the original stake receives 100. Already allocated rewards remain with their holder, including after unstaking. This is a conditional code example, not a demonstrated real timing strategy. [Staking timing](docs/research-notes/011-loss-governance-staking-and-payments.md#3-long-term-staking-versus-joining-immediately-before-allocation)
+**When rewards are shared matters.** The code we checked gives no extra weight for staking longer. Adding or removing a stake does not first share out the waiting fees. For example, if 100 reward units are waiting and a second equal stake joins before they are shared, each gets 50. If they are shared first, the first stake gets 100. Rewards already assigned stay with that holder after unstaking. This is a code-based example, not a tested way to make money. [Reward timing](docs/research-notes/011-loss-governance-staking-and-payments.md#3-long-term-staking-versus-joining-immediately-before-allocation)
 
-Eight checked distributions across two separate windows match fee funding; none establishes an additional LP-surplus transfer. That does not rule out surplus funding elsewhere. A proposal setting the LP reward cap to $10M was cancelled, not applied. Allocation, claim credit and external payment remain separate checks. [Funding records and reserve ledger](docs/research-notes/011-loss-governance-staking-and-payments.md#4-where-distributions-actually-came-from) · [Cap cancellation](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed)
+We checked 8 reward distributions in two periods; their amounts matched fee funding. None showed an extra LP-surplus payment, but that does not rule it out at other times. A plan to raise the LP reward limit to $10M was cancelled. Sharing rewards, claiming them and receiving money outside the platform are separate steps. [Where rewards came from](docs/research-notes/011-loss-governance-staking-and-payments.md#4-where-distributions-actually-came-from) · [Cancelled limit change](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed)
 
-[Mint curve & staking analysis](docs/research-notes/006-current-mechanisms.md) · [Dividend payment path](docs/research-notes/007-queue-and-dividend-payment.md)
+[More on PAPER and staking](docs/research-notes/006-current-mechanisms.md) · [How rewards are paid](docs/research-notes/007-queue-and-dividend-payment.md)
 
 ## Liquidation: trigger price and margin loss
 
-⚠️ Liquidation triggers before the theoretical zero-equity price. The documented buffer is about 5 basis points (0.05%), applied to that reference. Liquidation consumes the full isolated margin.
+⚠️ Liquidation happens before the price that would use up all your margin. The documented safety buffer is about 5bps (0.05%) around that price. Liquidation takes the position's full margin.
 
-![Liquidation formula: integer-rounded long and short bust prices, with inclusive price triggers](docs/assets/liquidation-formula.en.svg)
+![Long and short liquidation formulas, including rounding and the prices that trigger liquidation](docs/assets/liquidation-formula.en.svg)
 
-> 🧮 <strong>Illustrative 100× long:</strong> entry 100 → zero-equity price 99 → liquidation price about 99.0495 ≈ 99.05.
-> A voluntary close before the trigger can return remaining equity; liquidation consumes the full margin.
+> 🧮 <strong>Example: 100× long.</strong> Entry price 100 → zero-margin price 99 → liquidation price about 99.0495, or 99.05.
+> Closing before that point can return the margin left in the position. Liquidation takes it all.
 
-Higher leverage makes the buffer a larger fraction of margin. See [formula and rounding](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold).
+The higher the leverage, the bigger the buffer is relative to your margin. [Formula and rounding](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold).
 
 ## Independent clients and API access
 
-🛠️ The integration route is **read rules and account state → sign an intent →
-submit to the official relayer → reconcile execution and balances**. A custom
-client can use these interfaces to build its own trading workflow; opens and
-closes still pass through the authorized BatchExecutor.
+🛠️ A custom client follows this path: **read prices, rules and account data → sign a request → send it to the official relayer → follow the trade and balance changes**. Opens and closes still go through the allowed BatchExecutor contract.
 
-| Interface | Role in a custom client |
+| Interface | What you use it for |
 |---|---|
-| HTTP queries: `/query/protocol/…` | Protocol summaries, queue information and PAPER activity for monitoring the protocol. |
-| Public WebSocket: `trading:current` | Trading availability and market rules, including leverage and position limits, for validating an order. |
-| Account queries and SSE: `/query/accounts/…`, `/state/user/live?wallet=…` | Balance, positions, operation status and history for reconciling the user's account. Account-access requirements still need to be established. |
-| Signed commands: `POST /intents` | Session registration, opens/closes, withdrawal to HyperCore and PAPER actions. Match the receipt to the intent, then follow execution; acceptance alone is not a fill. |
+| HTTP: `/query/protocol/…` | Protocol totals, queues and PAPER activity. |
+| Public WebSocket: `trading:current` | Whether trading is open and what limits apply, such as leverage and position size. |
+| Account queries and live updates: `/query/accounts/…`, `/state/user/live?wallet=…` | Your balance, positions and past actions. The exact login and access rules still need checking. |
+| Signed requests: `POST /intents` | Session setup, open/close requests, withdrawal to HyperCore and PAPER actions. Match the reply to your request, then check execution. A request being accepted does not mean the trade happened. |
 
-Selected position IDs can be closed in full; another open creates a separate
-position. A supported interface for reducing part of one position, native
-limit/TP/SL orders or changing existing margin/leverage has not been established.
+You can close selected positions in full. Opening again creates a separate position. We have not found a confirmed interface for closing part of one position, built-in limit/TP/SL orders or changing an open position's margin or leverage.
 
 **Deposits and withdrawals:**
 
-| Deposit source | Funding route |
+| Deposit source | Route |
 |---|---|
-| Ethereum, Arbitrum or Solana USDC | Circle-related burn and forwarding to the user's deposit proxy, followed by platform processing and trading-balance credit. |
-| Robinhood USDG | Across bridges into USDC on HyperEVM, then the destination handler forwards it through CoreDepositWallet to the proxy. |
-| HyperEVM or HyperCore USDC | Internal Core/EVM transfers into the proxy, followed by platform credit. |
+| USDC on Ethereum, Arbitrum or Solana | Circle sends funds toward your deposit address. Papertrade then processes them and credits your trading balance. |
+| USDG on Robinhood | Across brings USDC to HyperEVM. The destination contracts then send it through CoreDepositWallet to your deposit address. |
+| USDC on HyperEVM or HyperCore | Core/EVM transfers send funds to your deposit address, followed by platform credit. |
 
-Withdrawals first move platform balance to the user's HyperCore spot account.
-Routes onward to HyperEVM, Ethereum, Arbitrum or Solana require additional
-transfer authorization; the recovered withdrawal routes do not include Robinhood.
-Bridge completion, platform credit and arrival at the final destination are
-separate stages.
+Withdrawals first move trading funds to your HyperCore spot account. Sending them onward to HyperEVM, Ethereum, Arbitrum or Solana needs extra transfer approval. The withdrawal routes we found do not include Robinhood. A bridge transfer, a platform credit and arrival at the final address are different steps.
 
-**Still missing for a complete integration:** server admission and account access,
-reliable reconnect/reconciliation behavior, full fee/arrival/refund handling, and
-builder attribution and fee rules. Across also marks the captured
-`/suggested-fees` interface as legacy, so a new integration needs its migration path.
+**Still needed for a full client:** permission to use the server and account APIs, reliable recovery after a lost connection, complete fee/payment/refund handling, and clear builder credit and payment rules. Across calls the captured `/suggested-fees` API legacy, so its replacement needs checking before a new integration uses it.
 
-**Builder codes:** the team announced an initial whitelist. Recovered registry and enablement gates support controlled admission; fee base, payout and live registration policy still need verification. [Builder boundaries](docs/research-notes/014-official-announcement-crosscheck.md#4-builders-distribution-permissions-and-below-bust-closes)
+**Builder codes:** the team announced that only approved builders would be allowed at first. The code includes registration and enable/disable checks. We still need to check who can join, how fees are calculated and how builders get paid. [Builder details](docs/research-notes/014-official-announcement-crosscheck.md#4-builders-distribution-permissions-and-below-bust-closes)
 
-[API and signing guide](docs/independent-client-guide.md) ·
-[Order capabilities and funding routes](docs/research-notes/012-independent-clients-orders-and-bridges.md)
+[Client and signing guide](docs/independent-client-guide.md) · [Orders and funding routes](docs/research-notes/012-independent-clients-orders-and-bridges.md)
 
 ## Explore the research
 
 | Start here | What you will find |
 |---|---|
-| [Mechanism map](docs/mechanism-map.md) | A guide to the protocol's 14 research areas |
-| [Research notes](docs/research-notes/) · [Case records](research/cases/) | Explanations, source coordinates and structured outcomes |
-| [Losses, governance and staking timing](docs/research-notes/011-loss-governance-staking-and-payments.md) | Five questions with real records, code observations, conditional examples and remaining gaps |
-| [REA analysis](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md) | Client submission paths, PAPER ratio display and contract interface inferences |
-| [Offline arithmetic](packages/research/mechanics.ts) | Mint-curve, bust-price and pending-reward helpers |
-| [Evidence tooling](docs/chain-evidence.md) | Record validation and version consistency |
-| [Collection](docs/readonly-collection.md) · [Safe export](docs/safe-export.md) | Bounded public reads and reviewed metadata export |
-| [Method](docs/research-method.md) · [Progress](STATUS.md) · [Roadmap](ROADMAP.md) | Research process, verification status and next milestones |
+| [How the parts fit together](docs/mechanism-map.md) | A map of 14 topics covered by this project |
+| [Notes](docs/research-notes/) · [Case records](research/cases/) | Explanations, sources and the results of checks |
+| [Losses, rule changes and reward timing](docs/research-notes/011-loss-governance-staking-and-payments.md) | Five common questions, examples and what is still unknown |
+| [REA analysis](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md) | How the client sends requests, shows PAPER ratios and calls contracts |
+| [Calculation helpers](packages/research/mechanics.ts) | Functions for the old mint curve, liquidation price and pending rewards |
+| [Evidence tools](docs/chain-evidence.md) | Checks that records and versions fit together |
+| [Read-only collection](docs/readonly-collection.md) · [Safe export](docs/safe-export.md) | How public data is collected and reviewed before sharing |
+| [Method](docs/research-method.md) · [Progress](STATUS.md) · [Roadmap](ROADMAP.md) | How we work and what comes next |
 
 <details>
 <summary><strong>Run the local checks</strong> · Node.js ≥ 24.12.0 / pnpm 11.25.0</summary>

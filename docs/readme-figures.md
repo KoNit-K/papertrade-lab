@@ -1,6 +1,7 @@
 # README figure inputs and calculations
 
-The bilingual PAPER images now compare old and new issuance in place. They
+The bilingual PAPER images now compare old and new issuance in place. Labels use plain language and B/M for large amounts
+(1B = 10^9, 1M = 10^6); the underlying calculations are unchanged. They
 separate an old-mode LP cross-section, an old-mode progress curve and a deliberately
 simplified new-supply example. They are original explanatory figures, not a source
 mirror, live parameter feed or historical transaction replay. The liquidation
@@ -93,7 +94,7 @@ S(n+1) = S(n) + M(n)
 | Start | — |10,000,000,000 |
 | First $1M loss step |10,000,000 |10,010,000,000 |
 | Second $1M loss step |10,010,000 |10,020,010,000 |
-| 100 identical steps | About 1.05116 bn cumulatively | About 11.05116 bn |
+| 100 identical steps | About 1.05116B cumulatively | About 11.05116B |
 
 After the 100 steps, total supply is up approximately 10.51%. A holder keeping
 100M PAPER goes from 1% of supply to approximately 0.905%. This is supply dilution,
@@ -103,7 +104,7 @@ More issued PAPER does not create more USDC backing.
 
 This fixed 0.1%-per-step recurrence is **not** the deployed interval-mint formula,
 its exact coefficient or staged integer rounding. At the October 22 acquisition,
-supply was about 8.902947 bn and the base marginal rate about 9.802160 PAPER/$;
+supply was about 8.902947B and the base marginal rate about 9.802160 PAPER/$;
 these are related snapshot quantities, not live values. With coefficient q and
 18-decimal raw quantities, the acquired getter computes:
 

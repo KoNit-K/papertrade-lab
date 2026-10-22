@@ -1,10 +1,10 @@
 <h1 align="center">papertrade-research</h1>
 
 <p align="center">
-  <strong>REA 辅助逆向：Papertrade 交易、清算与 PAPER 分红。</strong>
+  <strong>看懂 Papertrade：交易、费用和 PAPER 分红。</strong>
 </p>
 
-![papertrade-research：观察、追踪与对账](docs/assets/readme-banner.svg)
+![papertrade-research：看懂交易、费用和 PAPER](docs/assets/readme-banner.svg)
 
 <p align="center">
   <a href="docs/mechanism-map.md"><img alt="网络：HyperEVM 999" src="https://img.shields.io/badge/HyperEVM-999-b7f58b?style=flat-square&amp;labelColor=17251d" /></a>
@@ -26,177 +26,173 @@
   <a href="docs/sources.md">来源</a>
 </p>
 
-[Papertrade](https://docs.papertrade.xyz/) 是 HyperEVM 上的永续合约协议：与协议 LP 交易，亏损可产生 PAPER，质押参与 USDC 分红。
+[Papertrade](https://docs.papertrade.xyz/) 是 HyperEVM 上的永续合约平台。你和协议的资金池（LP）交易，亏损可获得 PAPER，质押 PAPER 后可参与 USDC 分红。
 
-🔎 这个仓库结合 [REA](https://github.com/morluto/rea) 与人工分析，研究它怎样收费、怎样清算，以及亏损和 PAPER 激励怎样连在一起。[研究进度](STATUS.md) · [来源](docs/sources.md)
+🔎 我们结合官网文档、公开代码和 [REA](https://github.com/morluto/rea)，解释它怎样运作，也核对哪些说法有证据支持。[进度](STATUS.md) · [来源](docs/sources.md)
 
 ## 特性介绍
 
 | 特性 | 怎么运作 |
 |---|---|
-| 🤝 **与协议 LP 交易** | 每笔交易直接与 Papertrade 协议流动性池结算，盈亏由 LP 承接。 |
-| 📊 **Hyperliquid 定价** | 读取 HyperCore 最优买卖价的中间价，在 HyperEVM 记账结算。 |
-| ⚡ **最高 1000×，逐仓隔离** | 保证金与杠杆开仓时固定，每仓整仓平仓；多空仓位独立。 |
-| 💸 **0 开仓费 · 0 资金费率** | 盈利平仓有盈利调整和手续费；经 relayer 执行的交易由其支付 gas。 |
-| ⏳ **高峰期可能排队** | 市价意图由 relayer 接收、排队并批量上链；开仓和平仓都可能等待。 |
-| 🪙 **亏损产生 PAPER** | 合格亏损和清算按排放曲线铸币；质押 PAPER 后按份额参与 USDC 分配。 |
+| 🤝 **和资金池交易** | 盈利由 Papertrade 的 LP 支付，现金亏损则进入池子。 |
+| 📊 **使用 Hyperliquid 价格** | 交易价格取 HyperCore 最优买价和卖价的中间值，余额在 HyperEVM 记账。 |
+| ⚡ **最高 1000× 杠杆** | 每个仓位单独放保证金，保证金和杠杆开仓后固定。每仓整仓平仓，多仓和空仓互不合并。 |
+| 💸 **0 开仓费 · 0 资金费** | 盈利平仓会先调整盈利，再收手续费；由订单服务发送的交易，gas 由服务支付。 |
+| ⏳ **下单可能排队** | 订单服务叫 relayer，会把请求分批上链。开仓和平仓都可能等待。 |
+| 🪙 **亏损可获得 PAPER** | 发币规则决定亏损中有多少能换算成 PAPER，拿到后可质押参与 USDC 分红。 |
 
-> 🖥️ <strong>需要自己盯盘：</strong> 目前只有网页市价单，没有限价单、自动止盈止损或独立手机 App。
-> 高杠杆下，小幅逆向波动就可能爆仓。想控制退出时机，需要自己看盘、手动平仓；平仓排队时也仍可能被清算。
+> 🖥️ <strong>需要自己盯仓：</strong> 我们查看的网页版本使用市价单，没有限价单、自动止盈止损或独立手机 App。
+> 高杠杆下，价格稍微走反就可能爆仓。平仓请求还在排队时，仓位也可能先被清算。
 
-🧩 <strong>机制看点：</strong> 亏损平仓／清算结束仓位，同时按合格亏损基数产生 PAPER；PAPER 质押后再参与分红。清算风险与亏损后的代币激励，被放在了同一套机制里。
+🧩 <strong>为什么关注 PAPER？</strong> 亏损平仓或清算后可能拿到 PAPER，再拿去质押分红。判断这件事值不值，要把交易亏损、拿到的币和真正可分的钱放在一起看。
 
-[交易机制导览](docs/mechanism-map.md)
+[交易怎样运作](docs/mechanism-map.md)
 
 ## PAPER 铸币曲线
 
-**发行规则从“每美元发币量随旧曲线衰减”，改为“按现有总供应量比例增发”。** 合格亏损推动总量增长；拿币更多，也要看总量增加后还占多少。
+**以前，旧曲线越往后，每亏 $1 发的币越少。现在，发多少币取决于当时已经发行了多少 PAPER。** 总量越大，同样亏损拿到的币越多；原来持币不动的人，占比也会变小。
 
-![PAPER 新旧发行机制对比：旧模型保留进度后跨 LP 门槛降档，尾段从25降至20及更低；新模型按供应量增发，总量增长并稀释不变的持币份额](docs/assets/paper-mint-curve.zh-CN.svg)
+![PAPER 新旧发币方式：旧规则过门槛后可能突然降档，之后每美元拿币继续减少；新规则随总量发币，总量增长，持币不变者的占比下降](docs/assets/paper-mint-curve.zh-CN.svg)
 
-| 看什么 | 旧机制 | 新机制 |
+| 想知道什么 | 以前 | 现在 |
 |---|---|---|
-| **每亏 1 美元发多少币** | 100 PAPER/$ 是早期／低 LP 的平坦分支；旧尾段早已按累计进度 H 衰减，例如 25 → 20 → 约 10。保留 H 再跨门槛会突然降档，25/20 不是固定档位。 | 约每 100 万美元合格亏损，增发当时供应量的 0.1%；总量越大，相同亏损对应的币数越多，精确比例由参数决定。 |
-| **发行量怎么增长** | 在尾段，同样亏损带来的新增币数逐步减少。 | 随合格亏损按比例持续增发；不是固定每日释放。持币数不变，供应量占比会下降。 |
-| **资不抵债时** | 适用旧平坦分支。 | 连续资不抵债的时间乘数在 3 天内从 1 倍升至 5 倍，仅对符合条件的缺口修复部分加成。 |
+| **亏损能拿多少 PAPER？** | 100 PAPER/$ 是旧规则中 LP 较低时的分支，后段早已可能降到 25 → 20 → 约 10。再次跨过 LP 门槛时可能突然下降；25/20 是例子，不是固定档位。 | 每 $1M 计入发币的亏损，大约增发当时 PAPER 总量的 0.1%。总量越大，同样亏损拿到的币越多，精确比例还要看参数。 |
+| **总量怎么增加？** | 在旧曲线下降的部分，同样亏损带来的新增币数越来越少。 | 亏损持续推动发币，每次按当时总量计算；没有固定的每日释放量。持币数不变，占总量的比例会下降。 |
+| **LP 不够还欠款时呢？** | 回到旧规则中低 LP 的发币分支。 | 缺口持续越久，奖励越高：3 天内从 1 倍升到 5 倍，只给符合条件、用于填补缺口的那部分亏损加成。 |
 
-💡 **把币数和总量一起看：** 图中假设从 100 亿枚开始，每次 100 万美元合格亏损按 0.1% 增发，总量依次为 **100 亿 → 100.1 亿 → 100.2001 亿**。这是简化示意；并非合约精确结算，也不代表增加了同等价值的 USDC。
+💡 **看个简单例子：** 从 10B PAPER 开始，假设每次 $1M 亏损都按上一次总量增发 0.1%，总量就是 **10B → 10.01B → 10.02001B**。这是帮助理解的算例，合约的实际算法更细。多发 PAPER 不会凭空增加同等价值的 USDC。这里 B = 10亿，M = 100万。
 
-📍 **2026-10-22 采集快照：** 总供应约 **89.03 亿 PAPER**，基础边际发币率约 **9.802 PAPER/$**；这两个量相关，均不是实时数值。实际分红还取决于资金来源、质押份额和分配时点。
+📍 **2026-10-22 查到的数值：** 总量约 **8.903B PAPER**，小额亏损的起始发币率约 **9.802 PAPER/$**，还没算 LP 缺口加成。这些是那次查询的数值，不是实时数据。能分到多少 USDC，还要看有多少钱可分、谁在质押，以及什么时候分。
 
-🗓️ **变更时间：** 留存的旧官网页标注更新于 **2026-10-06**，10月21日取得时仍展示旧曲线；新规则公告显示 **2026-10-20 6:30 AM**（时区未知）；**10月22日已核验新实现安装与新模式启用**，精确升级执行时间尚未还原。
+🗓️ **什么时候变的：** 保存的旧官网页标注 **2026-10-06** 更新，我们在 10月21日读取时仍是旧曲线。新规则公告显示 **2026-10-20 6:30 AM**（时区未知）。**10月22日检查时，新规则已经启用**；精确升级时间还没找到。
 
-[旧官网描述](https://docs.papertrade.xyz/how/mint-curve/) · [官方新规则公告](https://x.com/papertrade_xyz/status/2112310325521399982) · [图表、发行量算例与新旧公式附录](docs/readme-figures.md#issuance-old-vs-new) · [合约证据与版本记录](docs/research-notes/014-official-announcement-crosscheck.md#2-supply-relative-issuance-and-insolvency-timing)
+[旧官网说明](https://docs.papertrade.xyz/how/mint-curve/) · [新规则公告](https://x.com/papertrade_xyz/status/2112310325521399982) · [算例与公式](docs/readme-figures.md#issuance-old-vs-new) · [我们核对了什么](docs/research-notes/014-official-announcement-crosscheck.md#2-supply-relative-issuance-and-insolvency-timing)
 
 ## 交易成本
 
-| 发生什么 | 交易者承担什么成本 |
+| 什么时候 | 你付什么 |
 |---|---|
-| **开仓** | 0 开仓手续费 |
-| **持仓** | 0 资金费率 |
-| **Relayer 执行交易** | Gas 由 relayer 支付 |
-| **盈利平仓** | 先扣 deadband、调整盈利，再收取 <strong>调整后盈利的 2%</strong> |
-| **亏损平仓** | 承担亏损，不额外加收交易费 |
+| **开仓** | 0 开仓费 |
+| **持仓** | 0 资金费 |
+| **Relayer 发送交易** | Gas 由 relayer 支付 |
+| **盈利平仓** | 盈利先经过几项扣减，再收取 **剩余盈利的 2%** |
+| **亏损平仓** | 承担亏损，不额外再加一笔交易费 |
 
-💡 Deadband 约为开仓价的 <strong>0.002%</strong>。新增的非线性调整作用于标的顺向价格变动<strong>正常时段 6bps（0.06%）</strong>或<strong>非正常时段 10bps（0.1%）</strong>以内；在配置区间端点及区间外，这层新增调整为零。这些是价格变动阈值，不是手续费率。超出新区间仍需考虑既有 deadband、asymmetric impact 和最后按调整后盈利收取的 2%。
+💡 顺向价格变动最前面的 **0.002%** 不计入盈利，这叫 **deadband**。新规则还会对小幅盈利多做一层扣减：正常时段模式的范围到 **6bps（0.06%）**，非正常时段模式到 **10bps（0.1%）**。在设定范围的两端和范围外，这层额外扣减为零；范围内扣多少，还取决于价格走到了哪里。
 
-[调整方式与边界核验](docs/research-notes/014-official-announcement-crosscheck.md#3-the-new-profit-adjustment-is-a-price-move-band) · [旧版基础公式](docs/readme-figures.md#profit-retention-examples)
+这些数字说的是价格变动，不是手续费率。更大的价格变动仍要经过原来的盈利调整（asymmetric impact）和最后的 2% 手续费。
 
-**费用和结算规则可以修改。** Owner 改参和升级受治理权限约束，已观察到的时间锁最小延迟为 1 天；guardian 可不经排期暂停新开仓，恢复需要 owner 权限。[规则权限](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed) · [升级记录](docs/research-notes/013-market-state-funding-and-upgrade-followup.md#1-the-scheduled-implementations-are-now-installed)
+[费用算例与公式](docs/readme-figures.md#profit-retention-examples) · [新扣减怎样计算](docs/research-notes/014-official-announcement-crosscheck.md#3-the-new-profit-adjustment-is-a-price-move-band)
+
+**规则可以修改。** 改规则和升级需要相应的治理权限。我们查到的时间锁最少等 1 天；guardian 可以不等时间锁就暂停新开仓，恢复开仓需要 owner 批准。[谁能改规则](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed) · [升级记录](docs/research-notes/013-market-state-funding-and-upgrade-followup.md#1-the-scheduled-implementations-are-now-installed)
 
 ## 盈亏由谁承担？
 
 ```mermaid
 flowchart TB
-    Price[HyperCore BBO 中间价] -.->|成交价格| Trader[交易者：独立逐仓仓位]
-    Trader -->|现金保证金亏损| Pool[协议 LP：交易对手方]
-    Pool -->|盈利结算或待付债权| Trader
-    Trader -->|合格亏损基数| PAPER[铸出 PAPER]
+    Price[HyperCore 最优买卖价中间值] -.->|成交价格| Trader[交易者：各仓独立]
+    Trader -->|现金亏损| Pool[协议资金池 LP]
+    Pool -->|已付盈利或欠款| Trader
+    Trader -->|计入发币的亏损| PAPER[新发 PAPER]
     classDef accent fill:#e1f4d5,stroke:#477a35,color:#18351b
     class Pool,PAPER accent
 ```
 
-| 两种不同的等待 | 等待的是什么？ |
+| 两种不同的等待 | 在等什么？ |
 |---|---|
-| **执行排队** | 开／平仓意图等待 relayer 选取并成功执行。 |
-| **赔付排队** | 已结算债权等待可用 LP 背书资金与 harvest；文档描述的赔付顺序为 FIFO。 |
+| **下单排队** | 开仓或平仓请求，等待 relayer 发送并成功执行。 |
+| **付款排队** | 盈利已经记账，但还在等足够的钱支付。官网说先付较早的欠款。 |
 
-现金开仓的保证金返还与未付盈利分开记账；债权保证金的亏损销毁相应债权，不形成新增现金。
-因此，PAPER 发币量和 tracked LP 不能代替可付给赢家的现金。赔付队列只安排已有资金的支付顺序，不产生资金，也没有由此得到固定清偿期限。真实活跃欠款与部分付款案例仍缺。
-[执行队列与赔付机制](docs/research-notes/007-queue-and-dividend-payment.md) · [付款能力与条件算例](docs/research-notes/011-loss-governance-staking-and-payments.md#5-payment-capacity-when-many-traders-win)
+现金开仓时，返还保证金和还没支付的盈利分开记账。有些仓位用的是尚未收到的款项，而不是现金；这种仓位亏损时，相应欠款会减少，不会有新现金进入池子。
+
+新发了多少 PAPER、页面记录的 LP 余额是多少，都不能直接说明现在有多少现金能付给赢家。付款队列只是安排顺序，不会产生钱，也不保证固定等待时间。完整流程还缺真实的部分付款案例来核对。
+
+[下单和付款排队](docs/research-notes/007-queue-and-dividend-payment.md) · [哪些因素影响付款](docs/research-notes/011-loss-governance-staking-and-payments.md#5-payment-capacity-when-many-traders-win)
 
 ## PAPER：分红代币怎样运作？
 
-🪙 PAPER 把合格亏损转成代币发行；USDC 分红的资金来自交易费用和 LP 盈余。
+🪙 亏损可以产生 PAPER。USDC 分红的钱，来自交易费和 LP 超过设定门槛后能拿出来分享的部分。
 
-**PAPER 不能在钱包之间自由转账。** 转账受配置的质押通道控制。团队将这一政策与外部 PAPER 空头可能放大攻击 LP 偿付能力的收益联系起来；这是有条件的经济风险论证，不能证明外部衍生品或操纵绝不可能。[转账限制与风险逻辑](docs/research-notes/014-official-announcement-crosscheck.md#1-transfer-restrictions-and-the-external-short-argument)
+**PAPER 不能在钱包间自由转账。** 转账要走允许的质押合约路径。团队认为，如果外部市场能做空 PAPER，攻击 LP 可能变得更有利可图。这是在解释风险，不能证明外部衍生品或攻击绝不可能。[转账规则与团队的理由](docs/research-notes/014-official-announcement-crosscheck.md#1-transfer-restrictions-and-the-external-short-argument)
 
 ```mermaid
 flowchart TB
-    Loss[符合条件的亏损或清算] --> Mint[铸出 PAPER]
+    Loss[计入发币的亏损] --> Mint[获得 PAPER]
     Mint --> Stake[质押 PAPER]
-    Fees[已支付交易费用的一半] --> Rewards[USDC 奖励分配]
-    Surplus[可划转 LP 盈余] --> Rewards
-    Stake -.->|按质押份额| Rewards
-    Rewards --> Claim[领取至交易余额]
-    Claim -->|经 CoreWriter 提款| Core[HyperCore USDC]
+    Fees[已付交易费的一半] --> Rewards[USDC 分红]
+    Surplus[LP 超过门槛的可用资金] --> Rewards
+    Stake -.->|按质押份额分享| Rewards
+    Rewards --> Claim[领取到交易余额]
+    Claim -->|提现| Core[HyperCore USDC]
     classDef accent fill:#e1f4d5,stroke:#477a35,color:#18351b
     class Stake,Rewards accent
 ```
 
-| 环节 | 规则 |
+| 环节 | 怎么运作 |
 |---|---|
-| 🪙 **铸币** | 合格亏损基数、当时供应量和资不抵债持续时间共同决定数量。 |
-| 📥 **质押** | 按分配时份额累计分红，仅持有不分红；新加入可分享此前未分配的钱。文档无锁定期或冷却期。 |
-| 💵 **资金来源** | 已支付交易费用的一半，加上 tracked LP 超过门槛的可划转盈余；文档示例门槛为 500 万美元。 |
-| ↗️ **领取** | 先计入交易余额，再单独提款至 HyperCore。 |
+| 🪙 **拿 PAPER** | 取决于计入发币的亏损、当时总量，以及是否有 LP 缺口加成。 |
+| 📥 **质押** | 按分红那一刻的质押份额分享。只持币、不质押，没有这份分红。官网没有写锁定期或冷却期。 |
+| 💵 **准备分红资金** | 已付交易费的一半，加上 LP 超过设定门槛后能转入分红的钱；官网示例门槛为 $5M。 |
+| ↗️ **领取** | 先进入交易余额，提现到 HyperCore 是下一步。 |
 
-**分配时点影响谁能分到这笔钱。** 取得的代码中，持有时长不额外加权，加入和退出质押也不会先把积累的费用分掉。假设有100单位奖励待分，后来者在分配前加入相同份额，两人各得50；若先分配再加入，则原持有人得100。已分配收益归原持有人，退出后也保留。这是条件代码算例，未证明真实临时质押策略已获利。[质押时机分析](docs/research-notes/011-loss-governance-staking-and-payments.md#3-long-term-staking-versus-joining-immediately-before-allocation)
+**什么时候分钱，会影响谁拿到多少。** 我们检查的代码不因为质押更久就多给权重，加入或退出质押也不会先把积累的费用分掉。例如有 100 单位奖励待分，后来者先加入相同份额，两人各得 50；如果先分再加入，原质押者拿 100。已经分给你的奖励，退出质押后也保留。这是按代码举例，还没验证成真实赚钱策略。[分红时机](docs/research-notes/011-loss-governance-staking-and-payments.md#3-long-term-staking-versus-joining-immediately-before-allocation)
 
-两个独立窗口中已核对的8笔分配均与手续费来源相符，未证明额外 LP 盈余划转，但不能排除其他时期有盈余分红。将 tracked LP 盈余分红门槛设为1000万美元的方案已取消，没有生效。分配、领取入账和外部到账仍需分别核对。[资金来源与储备核账](docs/research-notes/011-loss-governance-staking-and-payments.md#4-where-distributions-actually-came-from) · [门槛方案取消记录](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed)
+我们在两个时期核对了 8 笔分红，金额都能和手续费来源对上，没有一笔证明额外用了 LP 盈余，但不能排除其他时期有。把 LP 分红门槛改为 $10M 的方案已经取消。分红记到名下、领取入账、真正转到平台外，是不同的步骤。[分红的钱从哪来](docs/research-notes/011-loss-governance-staking-and-payments.md#4-where-distributions-actually-came-from) · [取消的门槛变更](docs/research-notes/011-loss-governance-staking-and-payments.md#2-who-can-change-rules-and-what-actually-changed)
 
-[铸币与质押机制分析](docs/research-notes/006-current-mechanisms.md) · [分红支付路径](docs/research-notes/007-queue-and-dividend-payment.md)
+[更多 PAPER 与质押说明](docs/research-notes/006-current-mechanisms.md) · [分红怎样支付](docs/research-notes/007-queue-and-dividend-payment.md)
 
 ## 清算：触发价格与保证金损失
 
-⚠️ 清算在理论归零价之前触发。文档缓冲约为 5 个基点（0.05%），按归零价计算；一旦触发，损失整笔逐仓保证金。
+⚠️ 清算会发生在理论上用完保证金的价格之前。官网写的缓冲约为 5bps（0.05%），围绕这个理论价格计算；一旦清算，损失该仓位全部保证金。
 
-![清算公式：保留整数取整顺序的多空清算价格，以及包含等号的触发条件](docs/assets/liquidation-formula.zh-CN.svg)
+![多仓和空仓的清算公式，包含取整方式和触发清算的价格条件](docs/assets/liquidation-formula.zh-CN.svg)
 
-> 🧮 <strong>100× 多仓示意：</strong> 开仓价 100 → 理论归零价 99 → 清算价约 99.0495 ≈ 99.05。
-> 触发前主动平仓可返还剩余权益；触发清算则损失整笔保证金。
+> 🧮 <strong>100× 多仓例子：</strong> 开仓价 100 → 理论上保证金归零的价格 99 → 清算价约 99.0495，也就是 99.05。
+> 触发前平仓，可以拿回仓里剩余的钱；清算会损失全部保证金。
 
-杠杆越高，缓冲占保证金的比例越大。具体取整见[公式与计算](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold)。
+杠杆越高，缓冲相当于保证金的比例越大。[公式与取整](docs/research-notes/006-current-mechanisms.md#liquidation-exact-buffer-basis-and-inclusive-threshold)。
 
 ## 独立客户端与 API 接入
 
-🛠️ 接入流程是 **读取规则和账户状态 → 签署交易意图 → 提交官方 relayer →
-跟踪执行及余额变化**。自写客户端可以用这些接口串起自己的交易流程；开平仓仍由
-获授权的 BatchExecutor 执行。
+🛠️ 自写客户端的流程是 **读取价格、规则和账户数据 → 签署请求 → 发给官方 relayer → 跟踪交易和余额变化**。开平仓仍要经过获准的 BatchExecutor 合约。
 
-| 接口 | 在独立客户端中的作用 |
+| 接口 | 用来做什么 |
 |---|---|
-| HTTP 查询：`/query/protocol/…` | 获取协议汇总、队列概况和 PAPER 动态，用于了解协议运行情况。 |
-| 公共 WebSocket：`trading:current` | 获取交易开关和市场规则，包括杠杆、仓位限制，用于下单前校验。 |
-| 账户查询与 SSE：`/query/accounts/…`、`/state/user/live?wallet=…` | 获取本人余额、仓位、操作状态和历史，用于核对账户变化；具体接入鉴权条件仍待补齐。 |
-| 签名指令：`POST /intents` | 提交会话授权、开平仓、提现到 HyperCore 及 PAPER 操作。先匹配接单回执，再跟踪实际执行；接单不等于成交。 |
+| HTTP：`/query/protocol/…` | 查看协议总量、队列和 PAPER 动态。 |
+| 公共 WebSocket：`trading:current` | 查看能否交易、杠杆和仓位大小限制。 |
+| 账户查询和实时更新：`/query/accounts/…`、`/state/user/live?wallet=…` | 查看自己的余额、仓位和历史操作；具体登录及访问规则还要核对。 |
+| 签名请求：`POST /intents` | 设置会话授权、开平仓、提现到 HyperCore，以及 PAPER 操作。先把回复和请求对上，再查执行结果；被接收不等于已经成交。 |
 
-可以选择若干仓位逐个全平，再次开仓会形成独立仓位。单仓部分减仓、原生限价/
-止盈止损，以及修改旧仓保证金或杠杆，尚未找到已确立的支持接口。
+可以选择几个仓位分别全平，再次开仓会形成新仓位。单仓只平一部分、内置限价／止盈止损、修改已有仓位的保证金或杠杆，目前都还没找到已确认支持的接口。
 
-**充值与提现：**
+**充值和提现：**
 
-| 充值来源 | 资金路线 |
+| 充值来源 | 怎么走 |
 |---|---|
-| Ethereum、Arbitrum、Solana 的 USDC | 走 Circle 相关销毁与转发流程到用户充值代理，再由平台处理并记入交易余额。 |
-| Robinhood 的 USDG | 走 Across，在 HyperEVM 侧以 USDC 到达，再经目标链处理器和 CoreDepositWallet 转入代理。 |
-| HyperEVM、HyperCore 的 USDC | 经 Core/EVM 内部转移进入代理，再由平台记账。 |
+| Ethereum、Arbitrum、Solana 上的 USDC | Circle 把资金转向你的充值地址，再由 Papertrade 处理并记入交易余额。 |
+| Robinhood 上的 USDG | Across 把 USDC 带到 HyperEVM，目标链合约再通过 CoreDepositWallet 送到充值地址。 |
+| HyperEVM、HyperCore 上的 USDC | 经 Core/EVM 转移到充值地址，再由平台入账。 |
 
-提现先将平台余额转回用户的 HyperCore 现货账户。继续转到 HyperEVM、Ethereum、
-Arbitrum 或 Solana 时需要额外的后续转账授权；已恢复的提现路线不包含 Robinhood。
-跨链完成、平台入账和最终目的地到账是需要分别跟踪的阶段。
+提现先把交易资金转到 HyperCore 现货账户。继续转到 HyperEVM、Ethereum、Arbitrum 或 Solana，需要额外的转账授权。已找到的提现路线不包含 Robinhood。跨链完成、平台入账、最后一个地址收到钱，需要分开跟踪。
 
-**串成完整客户端还缺：** 服务端准入与账户鉴权、可靠的断线重连和状态对账、完整的
-费用/到账/退款处理，以及 builder 归属和费用规则。Across 已将这里使用的
-`/suggested-fees` 标为 legacy，新接入还需核对迁移路线。
+**做成完整客户端还缺什么：** 服务器和账户 API 的使用权限、断线后可靠恢复、完整的费用／到账／退款流程，以及 builder 算谁的、怎样拿钱。Across 把这里使用的 `/suggested-fees` API 标为 legacy，新接入前还要核对替代接口。
 
-**Builder codes：** 团队宣布初期仅开放白名单；已恢复的注册表和启用检查支持受控准入。费用基数、分账到账及现行注册政策仍待核验。[Builder 边界](docs/research-notes/014-official-announcement-crosscheck.md#4-builders-distribution-permissions-and-below-bust-closes)
+**Builder codes：** 团队宣布初期只允许获批的 builder，代码也有注册和启停检查。谁能加入、费用怎么算、钱怎么分到 builder，还要继续核对。[Builder 说明](docs/research-notes/014-official-announcement-crosscheck.md#4-builders-distribution-permissions-and-below-bust-closes)
 
-[API 与签名指南](docs/independent-client-guide.md) ·
-[订单能力及资金路线](docs/research-notes/012-independent-clients-orders-and-bridges.md)
+[客户端与签名指南](docs/independent-client-guide.md) · [订单和资金路线](docs/research-notes/012-independent-clients-orders-and-bridges.md)
 
 ## 探索研究仓库
 
-| 从这里开始 | 可以找到什么 |
+| 从这里开始 | 可以看到什么 |
 |---|---|
-| [机制地图](docs/mechanism-map.md) | 协议的 14 个研究方向 |
-| [研究笔记](docs/research-notes/) · [案例记录](research/cases/) | 机制解释、来源坐标与结构化结果 |
-| [亏损、治理与质押时机](docs/research-notes/011-loss-governance-staking-and-payments.md) | 五题的真实记录、代码观察、条件算例与缺口 |
-| [REA 分析](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md) | 客户端提交路径、PAPER 比例显示与合约接口推断 |
-| [离线算术](packages/research/mechanics.ts) | 铸币曲线、清算价格和待领取奖励的计算函数 |
-| [证据工具](docs/chain-evidence.md) | 记录验证与版本一致性检查 |
-| [只读采集](docs/readonly-collection.md) · [安全导出](docs/safe-export.md) | 有界公开读取与经审阅的元数据导出 |
-| [研究方法](docs/research-method.md) · [研究进度](STATUS.md) · [路线图](ROADMAP.md) | 工作方法、验证状态与下一阶段目标 |
+| [各部分怎样连接](docs/mechanism-map.md) | 本项目关注的 14 个话题 |
+| [笔记](docs/research-notes/) · [案例记录](research/cases/) | 机制解释、来源和检查结果 |
+| [亏损、改规则与分红时机](docs/research-notes/011-loss-governance-staking-and-payments.md) | 五个常见问题、例子和还不清楚的地方 |
+| [REA 分析](docs/research-notes/010-rea-frontend-and-contract-crosscheck.md) | 客户端怎样发送请求、显示 PAPER 比例和调用合约 |
+| [计算函数](packages/research/mechanics.ts) | 旧铸币曲线、清算价格和待领取奖励的算法 |
+| [证据工具](docs/chain-evidence.md) | 检查记录与版本是否对得上 |
+| [只读采集](docs/readonly-collection.md) · [安全导出](docs/safe-export.md) | 怎样读取公开数据，以及分享前做哪些检查 |
+| [方法](docs/research-method.md) · [进度](STATUS.md) · [后续计划](ROADMAP.md) | 我们怎样做、接下来做什么 |
 
 <details>
 <summary><strong>运行本地检查</strong> · Node.js ≥ 24.12.0 / pnpm 11.25.0</summary>

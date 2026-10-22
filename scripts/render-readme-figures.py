@@ -114,17 +114,17 @@ def render(output: Path, language: str, font: str | None) -> None:
     bg, panel, text, muted, grid = '#0e1713', '#15241c', '#eff6ee', '#adc1b2', '#34483b'
     mint, amber = '#b7f58b', '#f2bc72'
     fig = plt.figure(figsize=(14, 10), facecolor=bg)
-    fig.text(.055, .945, 'PAPER 发行：旧曲线 → 新机制' if zh else 'PAPER ISSUANCE  /  OLD → NEW',
+    fig.text(.055, .945, 'PAPER 怎么发：以前 → 现在' if zh else 'PAPER  /  HOW THE TOTAL GROWS',
              color=text, fontsize=27, weight='bold')
     fig.text(.055, .90, '看发了多少币，也看总量增长后你还占多少。' if zh
-             else 'Read the token count together with total supply and your remaining share.',
+             else 'See how many tokens you get and how big the total becomes.',
              color=muted, fontsize=15)
-    fig.text(.055, .855, '2026 · 10/06 旧官网页标注  →  10/20 新机制公告  →  10/22 已安装核验（并非精确执行时间）' if zh
-             else '2026 · Oct 06: old docs date  →  Oct 20: announcement  →  Oct 22: installation checked (not execution time)',
+    fig.text(.055, .855, '2026 · 10/06 旧文档日期  →  10/20 公告  →  10/22 已查到新规则启用（确切切换时间未知）' if zh
+             else '2026 · Oct 06: old docs date  →  Oct 20: announced  →  Oct 22: new rules active (exact switch time unknown)',
              color=muted, fontsize=11)
-    fig.text(.055, .79, '旧模型  /  门槛降档 + 尾段衰减' if zh else 'OLD  /  THRESHOLD + DECAY',
+    fig.text(.055, .79, '以前  /  过门槛后，每美元拿币继续减少' if zh else 'BEFORE  /  FEWER TOKENS PER $1',
              color=amber, fontsize=15, weight='bold')
-    fig.text(.545, .79, '新模型  /  按现有供应量比例增发' if zh else 'NEW  /  SUPPLY-RELATIVE ISSUANCE',
+    fig.text(.545, .79, '现在  /  总量越大，发的币也越多' if zh else 'NOW  /  TOKENS GROW WITH THE TOTAL',
              color=mint, fontsize=15, weight='bold')
     step = fig.add_axes((.085, .56, .37, .16), facecolor=panel)
     tail = fig.add_axes((.085, .275, .37, .16), facecolor=panel)
@@ -135,40 +135,40 @@ def render(output: Path, language: str, font: str | None) -> None:
         ax.set_axisbelow(True)
         for spine in ax.spines.values():
             spine.set_color(grid)
-    fig.text(.055, .745, '① 保留旧进度后，再过 LP 门槛会突然降档' if zh
-             else '01  A threshold re-entry can step down at retained H', color=text, fontsize=12)
+    fig.text(.055, .745, '① 旧进度保留，再跨过 LP 门槛时可能突然下降' if zh
+             else '01  The rate can drop when LP crosses $2M again', color=text, fontsize=12)
     # Hold H fixed. Do not join this LP cross-section to the H-axis tail plot.
     step.plot([1, 2], [legacy_rate(1, 120)] * 2, color=amber, linewidth=3)
     step.plot([2, 3.5], [legacy_rate(2, 120)] * 2, color=amber, linewidth=3)
     step.plot([2, 2], [100, 25], color=amber, linestyle='--', linewidth=2)
     step.set(xlim=(1, 3.5), ylim=(0, 115), xticks=[1, 2, 3], yticks=[0, 25, 100])
-    step.set_xlabel('当前 LP（百万美元）；H 固定为 $120M' if zh
-                    else 'Current LP ($M); H held at $120M', color=muted, fontsize=10)
+    step.set_xlabel('LP 余额（$M）；历史进度 H = $120M 不变' if zh
+                    else 'LP balance ($M); same past progress H = $120M', color=muted, fontsize=10)
     step.set_ylabel('PAPER / $1', color=muted, fontsize=10)
-    step.text(1.07, 104, '100：平坦段' if zh else '100: flat branch', color=amber, fontsize=10)
-    step.text(2.13, 38, '25：保留进度的例子' if zh else '25: retained-H example', color=amber, fontsize=10)
-    fig.text(.055, .49, '② 尾段继续衰减：25 → 20 → 约 10' if zh
-             else '02  The tail keeps decaying: 25 → 20 → about 10', color=text, fontsize=12)
+    step.text(1.07, 104, '100：旧低 LP 规则' if zh else '100: old low-LP rule', color=amber, fontsize=10)
+    step.text(2.13, 38, '25：降档后的例子' if zh else '25: example after the drop', color=amber, fontsize=10)
+    fig.text(.055, .49, '② 后面继续减少：25 → 20 → 约 10' if zh
+             else '02  The old rate keeps falling: 25 → 20 → about 10', color=text, fontsize=12)
     h = np.linspace(120, 280, 401)
     tail.plot(h, [tail_rate(float(x)) for x in h], color=amber, linewidth=3)
     tail.fill_between(h, [tail_rate(float(x)) for x in h], color=amber, alpha=.09)
     tail.set(xlim=(115, 285), ylim=(0, 31), xticks=[120, 180, 260], yticks=[0, 10, 20, 25])
-    tail.set_xlabel('累计尾段进度 H（百万美元），不是当前 LP' if zh
-                    else 'Cumulative tail H ($M), not current LP', color=muted, fontsize=10)
+    tail.set_xlabel('旧曲线后段进度 H（$M），不是 LP 余额' if zh
+                    else 'Old curve progress H ($M), not LP balance', color=muted, fontsize=10)
     tail.set_ylabel('PAPER / $1', color=muted, fontsize=10)
     for x, label in [(120, '25'), (120 * (5 ** .5 - 1), '20'), (260.5, '9.95')]:
         y = tail_rate(x)
         tail.scatter([x], [y], color=amber, s=30)
         tail.annotate(label, (x, y), xytext=(3, 9), textcoords='offset points',
                       color=amber, fontsize=11, weight='bold')
-    fig.text(.055, .205, '100 不是升级前一直适用的水平；25 / 20 也不是固定跳档值。' if zh
-             else '100 was not the universal pre-upgrade rate; 25 / 20 are not fixed tiers.',
+    fig.text(.055, .205, '100 只用于旧低 LP 分支；25 / 20 是例子，不是固定档位。' if zh
+             else '100 applied at low LP; 25 / 20 are examples, not set levels.',
              color=amber, fontsize=10)
-    fig.text(.545, .745, '① 相同亏损，供应量越大，新增币数越多' if zh
-             else '01  Same loss: a larger supply creates more new tokens', color=text, fontsize=12)
+    fig.text(.545, .745, '① 同样亏损，总量越大，拿到的币越多' if zh
+             else '01  Same loss: a bigger total means more new tokens', color=text, fontsize=12)
     supplies = issuance_steps(Decimal('10000000000'), 100)
-    unit, suffix = (Decimal('1e8'), ' 亿') if zh else (Decimal('1e9'), ' bn')
-    precision = [3, 3, 4] if zh else [3, 3, 5]
+    unit, suffix = Decimal('1e9'), 'B'
+    precision = [3, 3, 5]
     cards = [f'{supply / unit:.{places}f}' + suffix
              for supply, places in zip(supplies[:3], precision)]
     for j, value in enumerate(cards):
@@ -178,35 +178,35 @@ def render(output: Path, language: str, font: str | None) -> None:
                               transform=fig.transFigure, facecolor=panel, edgecolor=grid)
         fig.add_artist(patch)
         fig.text(x + .009, .668, ('起始总量' if j == 0 else f'第 {j} 次后') if zh
-                 else ('Starting supply' if j == 0 else f'After step {j}'), color=muted, fontsize=10)
+                 else ('Starting total' if j == 0 else f'After step {j}'), color=muted, fontsize=10)
         fig.text(x + .009, .622, value, color=mint, fontsize=14, weight='bold')
-    fig.text(.545, .55, '每步 $1M 合格亏损 → 按前一步总量增发约 0.1%' if zh
-             else 'Each $1M eligible loss → issue about 0.1% of the prior supply',
+    fig.text(.545, .55, '每次 $1M 计入发币的亏损 → 新发约上次总量的 0.1%' if zh
+             else 'Each $1M of qualifying losses adds about 0.1% to the total',
              color=muted, fontsize=11)
     supply_ax.plot(range(101), [float(x / Decimal('1000000000')) for x in supplies],
                    color=mint, linewidth=3)
     supply_ax.fill_between(range(101), 10, [float(x / Decimal('1000000000')) for x in supplies],
                            color=mint, alpha=.1)
     supply_ax.set(xlim=(0, 100), ylim=(9.9, 11.4), xticks=[0, 50, 100], yticks=[10, 10.5, 11])
-    supply_ax.set_xlabel('累计合格亏损（百万美元）' if zh else 'Cumulative eligible loss ($M)',
+    supply_ax.set_xlabel('累计计入发币的亏损（$M）' if zh else 'Total qualifying losses ($M)',
                          color=muted, fontsize=10)
-    supply_ax.set_ylabel('总供应量（十亿枚）' if zh else 'Total supply (bn PAPER)',
+    supply_ax.set_ylabel('PAPER 总量（B）' if zh else 'Total PAPER (B)',
                          color=muted, fontsize=10)
     supply_ax.annotate('+10.51%', (100, float(supplies[-1] / Decimal('1e9'))),
                        xytext=(-74, 12), textcoords='offset points', color=mint,
                        fontsize=13, weight='bold')
     share = unchanged_holder_share(Decimal('100000000'), supplies[-1]) * 100
     fig.text(.545, .205, ('持币数不变：原占比 1% → 约 ' + f'{share:.3f}%') if zh
-             else f'Unchanged holding: 1% of supply → about {share:.3f}%',
+             else f'Same tokens, smaller share: 1% → about {share:.3f}%',
              color=mint, fontsize=12, weight='bold')
-    fig.text(.055, .135, '资不抵债加成：1 → 5 倍 / 3 天，仅作用于符合条件的缺口修复部分。' if zh
-             else 'Insolvency incentive: 1 → 5× over 3 days, limited to the eligible deficit-repair portion.',
+    fig.text(.055, .135, 'LP 不够还欠款时，加成在 3 天内从 1 升到 5 倍；仅算符合条件、填补缺口的部分。' if zh
+             else 'If the LP cannot cover its debts: 1 → 5× over 3 days, only for the qualifying part that fills the gap.',
              color=text, fontsize=12)
-    fig.text(.055, .085, '图为机制示意：右侧每步固定 0.1%，不是合约精确计算；左侧使用旧参数与指定 H，不是历史行情。' if zh
-             else 'Illustrations: right uses a fixed 0.1% step, not exact contract math; left uses old parameters and chosen H, not history.',
+    fig.text(.055, .085, '这是算例：右侧每次固定 0.1%，实际算法更细；左侧用了指定的旧进度，不是历史走势。' if zh
+             else 'Examples: right adds a fixed 0.1% each step, not exact contract math; left uses chosen old progress, not a historical chart.',
              color=muted, fontsize=10)
-    fig.text(.055, .045, '更多 PAPER ≠ 更多 USDC；实际分红还取决于资金来源、质押份额与分配时点。' if zh
-             else 'More PAPER does not create more USDC; distributions depend on funding, staking shares and allocation timing.',
+    fig.text(.055, .045, '多发 PAPER 不会凭空增加 USDC；分红还要看有多少钱、谁在质押、什么时候分。' if zh
+             else 'More PAPER does not add USDC. Rewards depend on the money available, your stake and when it is shared.',
              color=muted, fontsize=11)
     output.mkdir(parents=True, exist_ok=True)
     stem = output / f'paper-mint-curve.{language}'
